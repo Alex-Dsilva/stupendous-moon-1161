@@ -9,19 +9,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
-
+    "@chakra-ui/icons": "^2.0.13",
+    "@chakra-ui/react": "^2.4.3",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "firebase": "^9.15.0",
+    "framer-motion": "^7.9.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.7.1",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.5",
     "react-simple-captcha": "^9.0.1",
     "redux": "^4.2.0",
-    "styled-components": "^5.3.6",
-    "@chakra-ui/icons": "^2.0.13",
-    "@chakra-ui/react": "^2.4.3",
-    "react-icons": "^4.7.1",
-
+    "styled-components": "^5.3.6"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",
