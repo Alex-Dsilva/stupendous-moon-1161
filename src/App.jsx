@@ -1,12 +1,14 @@
 import { useState } from 'react'
+import { Route, Routes } from 'react-router-dom'
+import Login from './Pages/Login'
+import Signup from './Pages/Signup'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <div className="App">
-      <h1>Shopmart</h1>
+      <Signup/>
     </div>
   )
 }
