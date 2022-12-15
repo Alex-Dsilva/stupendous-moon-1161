@@ -22,7 +22,8 @@
     "react-router-dom": "^6.4.5",
     "react-simple-captcha": "^9.0.1",
     "redux": "^4.2.0",
-    "styled-components": "^5.3.6"
+    "styled-components": "^5.3.6",
+    "swiper": "^8.4.5"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",

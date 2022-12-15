@@ -1,0 +1,133 @@
+.Homepage {
+  width: 90%;
+  margin: auto;
+}
+.trending_bef {
+  margin: 1rem;
+}
+.trending {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.trending div {
+  border: 1px solid rgb(223, 220, 220);
+}
+img {
+  width: 100%;
+}
+.new_bef {
+  background-color: skyblue;
+  padding: 1rem;
+  margin: 1rem;
+}
+.new {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.new_1 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  border-radius: 5px;
+}
+.new_one img {
+  border-radius: 5px;
+  height: 25rem;
+}
+.new_2 {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 5px;
+  height: 23rem;
+}
+.mySwiper1{
+    height: 30rem;
+    width: 30rem;
+}
+.deal_1{
+    display: flex;
+    gap: 1rem;
+}
+.deal_1_5{
+    border: 1px solid rgb(226, 226, 226);
+    padding: 0.5rem;
+}
+.deal_2{
+    display: flex;
+    /* padding: 0.5rem; */
+}
+.deal_2 img{
+    width: 70%;
+}
+.pop{
+    margin: 1rem;
+}
+.enjoy{
+    margin: 1rem;
+}
+.enjoy_1{
+    display: flex;
+    gap: 1rem;
+}
+.pop1{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 1rem;
+}
+.best{
+    margin: 1rem;
+}
+.best1{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+@media screen and (max-width:1300px) {
+    .new_one img{
+        height: 21rem;
+    }
+    .new_2{
+        height: 19rem;
+    }
+}
+@media screen and (max-width:1200px) {
+    .mySwiper1{
+        width: 22rem;
+        height: 21rem;
+    }
+}
+@media screen and (max-width:768px) {
+    .mySwiper1{
+        width: 35rem;
+        height: 25rem;
+    }
+    .deal_1{
+        display: grid;
+    }
+    .trending{
+        grid-template-columns: repeat(1,1fr);
+    }
+    .new_1{
+        grid-template-columns: repeat(2,1fr);
+        height: auto;
+    }
+    .pop1{
+        grid-template-columns: repeat(2,1fr);
+    }
+    .new img{
+        height: auto;
+    }
+    .new_2{
+        height: auto;
+    }
+    .best1{
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+@media screen and (max-width:480px){
+    .mySwiper1{
+        width: 20rem;
+        height: 15rem;
+    }
+}
