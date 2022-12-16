@@ -1,5 +1,6 @@
 
 
+
 /* 
 .NavMenu{
     display: none;
@@ -31,6 +32,8 @@
     .navbarBox{
         width: 100%;
     }
+}
+
 } */
 
 
@@ -108,4 +111,5 @@
     color: white;
     margin-left: 20px;
 }
+
 

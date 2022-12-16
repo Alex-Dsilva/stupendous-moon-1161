@@ -28,60 +28,122 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 
 function Navbar() {
   return (
+
+    <>
+ 
     <Box
-    height={"250px"}
-    width={"1358px"}
-    border={"2px solid #0e6548"}
-    backgroundColor={"#0e6548"}
-    marginLeft={"-42px"}
-    marginTop={"-40px"}
     
+      p="10px"
+      pb='0px'
+      width='100%'
+      maxw="1200px"
+      className="navbarBox"
+      display="flex"
+      gap="40px"
+      justifyContent="space-between"
+      // position={'fixed'}
+      // top='0px'
+      // margin='auto'
+      // zIndex='200'
+      background={'#f8f9fa'}
+      
+      
+  
     >
-
-
-      <Box gap={"30px"} display="flex" marginLeft={"1000px"} >
-        <a href="" id="sap">Language</a>
-        <a href="" id="sap">Support</a>
-
+      <Center maxWidth="300px" minW="150px" h="108px">
+        <Link to="/">
+          <Image
+            cursor="pointer"
+            w="80%"
+            minW="160px"
+            src=""
+          ></Image>
+        </Link>
+      </Center>
+      <Box className="navSecondBox" flexGrow="60%">
+        <Flex p="10px" gap="20px" flexDir="row-reverse" >
+          <Text fontSize="14px" fontWeight="300" cursor="pointer">
+            Country Website
+          </Text>
+          <Text fontSize="14px" fontWeight="300" cursor="pointer">
+            Language
+          </Text>
+          <Text fontSize="14px" fontWeight="300" cursor="pointer">
+            Support Center
+          </Text>
+          <Text fontSize="14px" fontWeight="300" cursor="pointer">
+            Ship to
+          </Text>
+          <Text fontSize="14px" fontWeight="300" cursor="pointer">
+            Mobile Offer
+          </Text>
+        </Flex>
+        <Flex p="10px" gap="40px" flexDir="row-reverse">
+          <Link to="/cart">
+            <Center cursor="pointer" gap="10px">
+              <Icon boxSize="1.5rem" as={AiOutlineShoppingCart} />
+              <Text fontSize="1.05rem">Cart</Text>
+            </Center>
+          </Link>
+          <Link to="/wishlist">
+            <Center cursor="pointer" gap="10px">
+              <Icon boxSize="1.5rem" as={AiOutlineHeart} />
+              <Text fontSize="1.15rem">Favourites</Text>
+            </Center>
+          </Link>
+          <Link to="/login">
+            <Center cursor="pointer" gap="10px">
+              <Icon boxSize="1.5rem" as={CgProfile} />
+              <Text fontSize="1.05rem">Log In</Text>
+            </Center>
+          </Link>
+          <Flex h="35px" border="2.2px solid #3a86ff" borderRadius="25px">
+            <Input
+              h="100%"
+              className="NavInput"
+              maxW="300px"
+              borderLeftRadius="25px"
+              borderWidth="0px"
+              fontSize="1.1rem"
+              placeholder="mobile phone"
+              py="-4px"
+            ></Input>
+            <Button h="100%" borderRadius="25px">
+              <Center>
+                <Icon boxSize="1.3rem" as={AiOutlineSearch}></Icon>
+              </Center>
+            </Button>
+          </Flex>
+        </Flex>
       </Box>
-
-      <Box>
-        <img id="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWyvsEvB5CUAeZNr_KZ4YVYtGjLxPvAyi62w&usqp=CAU" alt="" />
+      <Box className="NavMenu">
+        <Center>
+          <Menu>
+            <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+              Menu
+            </MenuButton>
+            <MenuList>
+              <Link to="/signup">
+                <MenuItem>Sign up</MenuItem>
+              </Link>
+              <Link to="/wishlist">
+                <MenuItem>Wish List</MenuItem>
+              </Link>
+              <Link to="/cart">
+                <MenuItem>Cart</MenuItem>
+              </Link>
+              <Link to="/products">
+                <MenuItem>Mobiles</MenuItem>
+              </Link>
+            </MenuList>
+          </Menu>
+        </Center>
       </Box>
-
-      
-
-      <Box >
-        <input  type="text" id="search" onClick={"Enter"} placeholder={"Search by Keyword"}  />
-        
-
-        <a href="" id="sign">Sign In</a>
-
-        <a href="" id="cart">Cart</a>
-      </Box>
-
-
-
-      <Box marginTop={"60px"} fontSize={"20px"}>
-        <a href="" id="menu">Category</a>
-        <a href="" id="new">new</a>
-        <a href="" id="best">Bestselling</a>
-        <a href="" id="brand">Brand</a>
-        <a href="" id="clear">Clearence</a>
-        <a href="" id="deal">Deals</a>
-        <a href="" id="coup">Coupons</a>
-        <a href="" id="ap">App Only</a>
-        <a href="" id="what">What Geek</a>
-        
-      </Box>
-
-
-      
-
-
-
     </Box>
-  )
+
+ 
+    </>
+  );
 }
 
 
