@@ -14,6 +14,7 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  Heading,
 } from "@chakra-ui/react";
 import {
   AiOutlineShoppingCart,
@@ -27,6 +28,7 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 
 function Navbar() {
   return (
+
     <>
  
     <Box
@@ -143,5 +145,6 @@ function Navbar() {
     </>
   );
 }
+
 
 export default Navbar;
