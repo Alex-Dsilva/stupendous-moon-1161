@@ -34,7 +34,7 @@ function Navbar() {
     border={"2px solid #0e6548"}
     backgroundColor={"#0e6548"}
     marginLeft={"-42px"}
-    marginTop={"-250px"}
+    marginTop={"-40px"}
     
     >
 
