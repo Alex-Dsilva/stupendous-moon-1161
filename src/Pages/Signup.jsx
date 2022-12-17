@@ -178,6 +178,7 @@ function Signup() {
 
   return (
     <div >
+        
        <FormWrapper>
         <FormHead>
             <h3>Create your account</h3>
