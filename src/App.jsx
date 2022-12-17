@@ -9,7 +9,7 @@ import Products from './Pages/Products/Products'
 function App() {
   return (
     <div className="App">
-      {/* <Homepage/> */}
+      <Homepage/>
       {/* <TodayDeals title={"Featured Outlet Deals"}/> */}
       {/* <Products title={"New Arrivals"} searchQuery={"new items"}/> */}
       {/* <Products title={"Bestselling"} searchQuery={"best"}/> */}

@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { getProducts } from "../../redux/App/AppAction";
 import { useDispatch, useSelector } from "react-redux";
+import { Line, Circle } from "rc-progress";
 
-const Products = ({ title,searchQuery }) => {
+const Products = ({ title, searchQuery }) => {
   const [page, setPage] = useState(1);
   const { Appreducer } = useSelector(store => store);
+  //   console.log(Appreducer);
   const { products } = Appreducer;
-  console.log(products);
+  const isLoading = true;
+  //   console.log(products);
   const dispatch = useDispatch();
   const options = {
     method: "GET",
@@ -24,8 +27,16 @@ const Products = ({ title,searchQuery }) => {
   };
 
   useEffect(() => {
-    dispatch(getProducts(options));
+    // dispatch(getProducts(options));
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className="loading">
+
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -41,7 +52,7 @@ const Products = ({ title,searchQuery }) => {
                 {ele.product_title}
               </p>
               <p>
-                {ele.original_price===null?"₹249":ele.original_price}
+                {ele.original_price === null ? "₹249" : ele.original_price}
               </p>
               <button className="rating" disabled>
                 {ele.evaluate_rate !== null ? ele.evaluate_rate : "No Reviews"}
