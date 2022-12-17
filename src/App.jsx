@@ -4,7 +4,7 @@ import Login from './Pages/Login'
 import Signup from './Pages/Signup'
 import './App.css'
 import Navbar from './components/Navbar'
-
+import Footer from "./components/Footer";
 import Homepage from "./Pages/Homepage/Homepage";
 
 
@@ -15,6 +15,7 @@ function App() {
 
       <Navbar />
       <Homepage />
+      <Footer /> 
 
     </div>
   )
