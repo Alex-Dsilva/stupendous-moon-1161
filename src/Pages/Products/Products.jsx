@@ -4,12 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Line, Circle } from "rc-progress";
 
 const Products = ({ title, searchQuery }) => {
-  const [page, setPage] = useState(1);
   const { Appreducer } = useSelector(store => store);
   //   console.log(Appreducer);
-  const { products } = Appreducer;
-  const isLoading = true;
-  //   console.log(products);
+  const { products ,isLoading } = Appreducer;
+  console.log(Appreducer)
   const dispatch = useDispatch();
   const options = {
     method: "GET",
@@ -27,13 +25,12 @@ const Products = ({ title, searchQuery }) => {
   };
 
   useEffect(() => {
-    // dispatch(getProducts(options));
+    dispatch(getProducts(options));
   }, []);
 
   if (isLoading) {
     return (
       <div className="loading">
-
       </div>
     );
   }
