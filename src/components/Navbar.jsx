@@ -14,6 +14,7 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  Heading,
 } from "@chakra-ui/react";
 import {
   AiOutlineShoppingCart,
@@ -27,6 +28,7 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 
 function Navbar() {
   return (
+
     <>
  
     <Box
@@ -49,14 +51,14 @@ function Navbar() {
   
     >
       <Center maxWidth="300px" minW="150px" h="108px">
-        {/* <Link to="/"> */}
+        <Link to="/">
           <Image
             cursor="pointer"
             w="80%"
             minW="160px"
             src=""
           ></Image>
-        {/* </Link> */}
+        </Link>
       </Center>
       <Box className="navSecondBox" flexGrow="60%">
         <Flex p="10px" gap="20px" flexDir="row-reverse" >
@@ -77,24 +79,24 @@ function Navbar() {
           </Text>
         </Flex>
         <Flex p="10px" gap="40px" flexDir="row-reverse">
-          {/* <Link to="/cart"> */}
+          <Link to="/cart">
             <Center cursor="pointer" gap="10px">
               <Icon boxSize="1.5rem" as={AiOutlineShoppingCart} />
               <Text fontSize="1.05rem">Cart</Text>
             </Center>
-          {/* </Link> */}
-          {/* <Link to="/wishlist"> */}
+          </Link>
+          <Link to="/wishlist">
             <Center cursor="pointer" gap="10px">
               <Icon boxSize="1.5rem" as={AiOutlineHeart} />
               <Text fontSize="1.15rem">Favourites</Text>
             </Center>
-          {/* </Link> */}
-          {/* <Link to="/login"> */}
+          </Link>
+          <Link to="/login">
             <Center cursor="pointer" gap="10px">
               <Icon boxSize="1.5rem" as={CgProfile} />
               <Text fontSize="1.05rem">Log In</Text>
             </Center>
-          {/* </Link> */}
+          </Link>
           <Flex h="35px" border="2.2px solid #3a86ff" borderRadius="25px">
             <Input
               h="100%"
@@ -121,18 +123,18 @@ function Navbar() {
               Menu
             </MenuButton>
             <MenuList>
-              {/* <Link to="/signup"> */}
+              <Link to="/signup">
                 <MenuItem>Sign up</MenuItem>
-              {/* </Link> */}
-              {/* <Link to="/wishlist"> */}
+              </Link>
+              <Link to="/wishlist">
                 <MenuItem>Wish List</MenuItem>
-              {/* </Link> */}
-              {/* <Link to="/cart"> */}
+              </Link>
+              <Link to="/cart">
                 <MenuItem>Cart</MenuItem>
-              {/* </Link> */}
-              {/* <Link to="/products"> */}
+              </Link>
+              <Link to="/products">
                 <MenuItem>Mobiles</MenuItem>
-              {/* </Link> */}
+              </Link>
             </MenuList>
           </Menu>
         </Center>
@@ -143,5 +145,6 @@ function Navbar() {
     </>
   );
 }
+
 
 export default Navbar;
