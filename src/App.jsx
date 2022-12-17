@@ -1,10 +1,11 @@
 import { Route, Routes } from 'react-router-dom'
 import Login from './Pages/Login'
+import Passwordreset from './Pages/Passwordreset'
 import Signup from './Pages/Signup'
-import './App.css'
+// import './App.css'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer/Footer'
-// import Homepage from "./Pages/Homepage/Homepage";
+import Homepage from "./Pages/Homepage/Homepage";
 
 
 function App() {
@@ -12,9 +13,11 @@ function App() {
     <div className="App">
 
 
-      <Navbar />
+      {/* <Navbar /> */}
+      <Passwordreset/>
+    {/* <Login/> */}
       {/* <Homepage /> */}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }

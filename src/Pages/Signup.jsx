@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import styled from 'styled-components'
+import {RxEyeClosed, RxEyeOpen} from 'react-icons/rx'
 import { loadCaptchaEnginge,LoadCanvasTemplateNoReload,validateCaptcha} from 'react-simple-captcha';
 import {
     getAuth,
@@ -9,6 +10,7 @@ import {
 import { app, db } from "../config/firebaseConfig"
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { Link, useNavigate } from 'react-router-dom';
+import bg from "../assets/Signup.jpg"
 
 
 const CaptchaContainer=styled.div`
@@ -21,6 +23,10 @@ const CaptchaContainer=styled.div`
         flex-direction: column;
         > label{
             font-size: 12px;
+            color: red;
+            ::after{
+            content: "*";
+        }
         }
     }
 `;
@@ -41,13 +47,14 @@ const CaptchaInput=styled.input`
 
 const FormWrapper=styled.div`
     padding: 5px;
-    width: 35%;
+    width: 30%;
     padding: 20px 30px;
+    background-color: #fff;
     border-radius: 4px;
     box-shadow: 0 0 10px rgb(0 0 0 / 20%);
     position: absolute;
     top: 200px;
-    transform: translate(75%);
+    transform: translate(90%);
     z-index: 3;
 `;
 
@@ -60,7 +67,6 @@ const SignInform=styled.form`
     #submit{
         justify-self: center;
         align-self: center;
-        background-color: #06f;
         color: antiquewhite;
         height: 44px;
         outline: none;
@@ -70,15 +76,19 @@ const SignInform=styled.form`
         background-color: #06f;
         font-size: 14px;
         font-weight: bold;
-        color: #fff;
         border: 1px solid #06f;
         border-radius: 4px;
     }
+    
    > div{
     text-align: left;
     > label {
         font-size: 12px;
         line-height: 0;
+        color:red;
+        ::after{
+            content: "*";
+        }
     }
    }
 `;
@@ -86,6 +96,21 @@ const SignInform=styled.form`
 const FromInputWrapper=styled.div`
     /* border:1.5px solid ; */
 
+`
+
+const FromPasswordInputWrapper=styled.div`
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 44px;
+    line-height: 44px;
+    text-indent: 14px;
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-block;
 `
 
 const FormHead=styled.div`
@@ -111,30 +136,96 @@ const SignInput=styled.input`
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     display: inline-block;
+
 `;
+
+const PasswordSignInput=styled.input`
+     outline: none;
+     width: 90%;
+    line-height: 30px;
+    text-indent: 14px;
+    border:none;
+    box-sizing: border-box;
+`
+
+
+const USER_REGEX = /^[A-z][A-z0-9-_]{2,23}$/;
+const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{6,24}$/;
+const EMAIl_REGEX =/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+// const CAPTCHA_REGEX=/^[a-zA-Z0-9]{5}$/;
 
 function Signup() {
 
     const auth = getAuth();
-    const [checkCaptcha, setCheckCaptcha]= useState(false)
-    const [data, setdata] = useState({});
+    const userRef=useRef();
+    const errRef=useRef();
+
+
+    const [checkpass, setCheckPass]=useState(false)
+    const [user, setUser] = useState('');
+    const [validName, setValidName] = useState(false);
+    const [userFocus, setUserFocus] = useState(false);
+
+    const [email, setEmail] = useState('');
+    const [validEmail, setValidEmail] = useState(false);
+    const [emailFocus, setEmailFocus] = useState(false);
+
+    const [pwd, setPwd] = useState('');
+    const [validPwd, setValidPwd] = useState(false);
+    const [pwdFocus, setPwdFocus] = useState(false);
+
+    const [captcha, setCaptcha] = useState('');
+    const [validCaptcha, setValidCaptcha] = useState(false);
+    const [captchaFocus, setCaptchaFocus] = useState(false);
+
+    const [errMsg, setErrMsg] = useState('');
 
     useEffect(()=>{
         loadCaptchaEnginge(5);
     },[])
 
-    const handleInput = (event) => {
-        let input = { [event.target.name]: event.target.value };
-    
-        console.log(event.target.value);
-        setdata({ ...data, ...input });
-      };
+    useEffect(() => {
+        setValidName(USER_REGEX.test(user));
+    }, [user])
+
+    useEffect(() => {
+        setValidEmail(EMAIl_REGEX.test(email));
+    }, [email])
+
+    useEffect(() => {
+        setValidPwd(PWD_REGEX.test(pwd));
+    }, [pwd])
+
+    useEffect(() => {
+        if(captcha.lenght==5){
+            setValidCaptcha(validateCaptcha(captcha));
+        }
+        
+    }, [captcha])
+
+    useEffect(() => {
+        setErrMsg('');
+    }, [user,email, pwd, captcha])
     
       const handleSubmit = async (e) => {
+        e.preventDefault();
+        // if button enabled with JS hack
+        const v1 = USER_REGEX.test(user);
+        const v2 = PWD_REGEX.test(pwd);
+        const v3=EMAIl_REGEX.test(email)
+        const v4=validateCaptcha(captcha)
+        if (!v1 || !v2 || !v3 || !v4 ) {
+            alert("Invalid Entry");
+            return;
+        }
         e.preventDefault()
-        if(data.username!==undefined||""){
-          if(data.email!==undefined||""){
-            console.log("hi")
+        console.log("res")
+        const data={
+            username:user,
+            email:email,
+            password:pwd
+        }
+        console.log()
             createUserWithEmailAndPassword(auth, data.email, data.password)
             .then((res) => {
               updateProfile(auth.currentUser, {
@@ -159,26 +250,12 @@ function Signup() {
             .catch((err) => alert(err));
           } 
        
-        }
-    }
 
-    const handleCaptchaChange=(e)=>{
-        let Captcha = e.target.value;
-        console.log(Captcha.length)
-        if(Captcha.length===5){
-            console.log(Captcha)
-            if(validateCaptcha(Captcha)===true){
 
-                setCheckCaptcha(true)
-            }else{
-                loadCaptchaEnginge(5); 
-            }
-        }
-    }
 
   return (
     <div >
-        
+        <Link to="products"><img src={bg}/></Link>
        <FormWrapper>
         <FormHead>
             <h3>Create your account</h3>
@@ -187,34 +264,59 @@ function Signup() {
         <SignInform onSubmit={ handleSubmit }>
             <div>
                 <FromInputWrapper>
-                    <SignInput type="text" placeholder="Nick name" name="username" onChange={handleInput}/>
+                    <SignInput type="text" placeholder="Nick name" name="username" onChange={(e) => setUser(e.target.value)}
+                     ref={userRef}
+                     value={user}   
+                    required
+                    aria-invalid={validName ? "false" : "true"}
+                    aria-describedby="uidnote"
+                    onFocus={() => setUserFocus(true)}
+                    onBlur={() => setUserFocus(false)}/>
                 </FromInputWrapper>
-                <label for="name">Please enter your name</label>
+                {userFocus && user && !validName ?<label for="name">Please enter your name</label>:""}
             </div>
             <div>
                 <FromInputWrapper>
-                    <SignInput type="email" placeholder="Email address" name="email" onChange={handleInput}/>
+                    <SignInput type="email" placeholder="Email address" name="email" onChange={(e) => setEmail(e.target.value)} 
+                    required
+                    value={email}
+                    aria-invalid={validEmail ? "false" : "true"}
+                    aria-describedby="emailnote"
+                    onFocus={() => setEmailFocus(true)}
+                    onBlur={() => setEmailFocus(false)}/>
                 </FromInputWrapper>
-                <label for="name">Please enter a valid email address</label>
+                {emailFocus && email && !validEmail?<label for="email">Please enter a valid email address</label>:""}
             </div>
             <div>
-                <FromInputWrapper>
-                    <SignInput type="text" placeholder="Password" name="password" onChange={handleInput}/>
-                </FromInputWrapper>
-                <label for="name">Please enter a valid password</label>
+                <FromPasswordInputWrapper>
+                    <PasswordSignInput type={checkpass?"text":"password"} placeholder="Password" name="password" onChange={(e) => setPwd(e.target.value)}
+                    required
+                    aria-invalid={validPwd ? "false" : "true"}
+                    aria-describedby="pwdnote"
+                    onFocus={() => setPwdFocus(true)}
+                    onBlur={() => setPwdFocus(false)}/>
+                    {checkpass? <RxEyeOpen onClick={()=>setCheckPass(false)}/>:<RxEyeClosed onClick={()=>setCheckPass(true)} />}
+                </FromPasswordInputWrapper>
+                {pwdFocus && pwd && !validPwd?<label for="password">Please enter a valid password</label>:""}
+
             </div>
             <CaptchaContainer>
             <div id="Captchadiv">
                 <FromCaptchaInputWrapper>
-                    <CaptchaInput placeholder="Enter Captcha" onChange={handleCaptchaChange} id="user_captcha_input" name="user_captcha_input" type="text"/>
+                    <CaptchaInput placeholder="Enter Captcha" onChange={(e)=> setCaptcha(e.target.value)} id="user_captcha_input" name="user_captcha_input" type="text"
+                    required
+                    aria-invalid={validCaptcha ? "false" : "true"}
+                    aria-describedby="captchanote"
+                    onFocus={() => setCaptchaFocus(true)}
+                    onBlur={() => setCaptchaFocus(false)}/>
                 </FromCaptchaInputWrapper>
-                <label for="name">Enter the verification code</label>
+                {captchaFocus && captcha &&validCaptcha?<label for="captcha">ReEnter the verification code</label>:""}
             </div>
             
                <LoadCanvasTemplateNoReload/>
             </CaptchaContainer>
         
-            <SignInput id="submit" type="submit"/>
+            <SignInput id="submit" disabled={!validName || !validPwd || !validEmail ||!validCaptcha ? false : true}  type="submit"/>
 
         </SignInform>
        </FormWrapper>
