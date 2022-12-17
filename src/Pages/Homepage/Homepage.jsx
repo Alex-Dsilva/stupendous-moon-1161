@@ -10,6 +10,7 @@ import { Navigation, Pagination } from "swiper";
 import Swiper_One from "./Swiper_one";
 
 const Homepage = () => {
+  getData()
   return (
     <div className="Homepage">
       {/* Deals of The Day */}
@@ -165,18 +166,6 @@ const Homepage = () => {
         </div>
       </div>
       {/* Enjoy Life */}
-      {/* <div className="enjoy">
-        <h2>Enjoy Life</h2>
-        <div className="enjoy_1">
-          <div>
-            <img
-              src="https://img.gkbcdn.com/bn/2212/1-639692292b40c948ec525e8d._p1_.jpg"
-              alt=""
-            />
-          </div>
-          <div />
-        </div>
-      </div> */}
       {/* Best Sellers */}
       <div className="best">
         <h2>Best Sellers</h2>

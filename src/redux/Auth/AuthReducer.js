@@ -1,4 +1,4 @@
-import * as types from "./actionTypes";
+import * as types from "./AuthActionTypes";
 
 const initialState = {
   name: null, //For displaying the login user name
