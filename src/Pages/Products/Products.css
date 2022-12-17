@@ -36,6 +36,7 @@ p {
   border: 0;
   border-radius: 5px;
 }
+
 .rating:hover {
   background-color: orange;
 }

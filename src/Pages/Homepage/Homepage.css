@@ -95,6 +95,10 @@ img {
     display: grid;
     grid-template-columns: repeat(4,1fr);
 }
+.deal_1_5 img{
+    width: 70%;
+    height: 10rem;
+}
 @media screen and (max-width:1300px) {
     .new_one img{
         height: 21rem;
