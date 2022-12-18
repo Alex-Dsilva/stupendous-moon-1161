@@ -37,13 +37,13 @@ img {
 }
 .new_one img {
   border-radius: 5px;
-  height: 25rem;
+  height: 22rem;
+  width: 15rem;
 }
 .new_2 {
   background-color: white;
   padding: 1rem;
   border-radius: 5px;
-  height: 23rem;
 }
 .mySwiper1{
     height: 37.5rem;
@@ -63,6 +63,7 @@ img {
 .deal_1_5{
     border: 1px solid rgb(226, 226, 226);
     padding: 0.5rem;
+    border-radius: 5px;
 }
 .deal_2{
     display: flex;
@@ -111,6 +112,12 @@ img {
     .mySwiper1{
         width: 50rem;
         /* height: 21rem; */
+    }
+    .new_1{
+        grid-template-columns: repeat(2,1fr);
+    }
+    .new_1 img{
+        width: 100%;
     }
     .deal_1{
         display: grid;

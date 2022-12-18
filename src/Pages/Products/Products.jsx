@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { getProducts } from "../../redux/App/AppAction";
 import { useDispatch, useSelector } from "react-redux";
-import { Line, Circle } from "rc-progress";
+import { useNavigate } from "react-router-dom";
 
 const Products = ({ title, searchQuery }) => {
   const { Appreducer } = useSelector(store => store);
   //   console.log(Appreducer);
+  const navigate=useNavigate();
   const { products ,isLoading } = Appreducer;
   console.log(Appreducer)
   const dispatch = useDispatch();
@@ -35,6 +36,10 @@ const Products = ({ title, searchQuery }) => {
     );
   }
 
+  const handleNavigate=(id)=>{
+    navigate(`/${id}`)
+  }
+
   return (
     <div>
       <h1>
@@ -43,7 +48,7 @@ const Products = ({ title, searchQuery }) => {
       <div className="product">
         {products.length > 0 &&
           products.map(ele =>
-            <div key={ele.product_id} className="product1">
+            <div onClick={()=>handleNavigate(ele.product_id)} key={ele.product_id} className="product1">
               <img src={ele.product_main_image_url} alt="" />
               <p>
                 {ele.product_title}

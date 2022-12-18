@@ -5,6 +5,7 @@ import Navbar from './components/Navbar'
 import Homepage from './Pages/Homepage/Homepage'
 import TodayDeals from './Pages/Products/TodayDeals'
 import Products from './Pages/Products/Products'
+import { SingleProduct } from './Pages/Products/SingleProduct'
 
 function App() {
   return (
