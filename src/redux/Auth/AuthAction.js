@@ -1,4 +1,4 @@
-import * as types from "./actionTypes";
+import * as types from "./AuthActionTypes";
 
 export const removeFromCart = (payload) => {
   return {
@@ -55,27 +55,42 @@ export const updateAddress = (payload) => {
   };
 };
 
-export const loginrequest = (payload) =>(dispatch) => {
-  return dispatch({ type: types.EMAIL_LOGIN_REQUEST });
+
+//----------------------- Login Signup actions
+
+export const signuprequest=()=>{
+  return { type: types.SIGN_UP_REQUEST}
+}
+
+export const signupsuccess=(payload)=>{
+  return { type: types.SIGN_UP_SUCCESS, payload}
+}
+
+export const signupfailure=()=>{
+  return { type: types.SIGN_UP_FAILURE}
+}
+
+export const loginrequest = () => {
+  return { type: types.EMAIL_LOGIN_REQUEST };
 };
 
-export const loginsuccess = (payload) => (dispatch) => {
-  return dispatch({ type: types.EMAIL_LOGIN_SUCCESS, payload });
+export const loginsuccess = (payload) => {
+  return { type: types.EMAIL_LOGIN_SUCCESS, payload };
 };
 
-export const googleloginrequest = (payload) => (dispatch) => {
-  return dispatch({ type: types.GOOGLE_LOGIN_REQUEST });
+export const loginfailure = () => {
+  return { type: types.EMAIL_LOGIN_FAILURE };
 };
 
-export const googleloginsuccess = (payload) => (dispatch) => {
-  return dispatch({ type: types.GOOGLE_LOGIN_SUCCESS, payload });
+export const googleloginrequest = () => {
+  return { type: types.GOOGLE_LOGIN_REQUEST };
 };
 
-export const phoneloginrequest = (payload) => (dispatch) => {
-  return dispatch({ type: types.PHONE_LOGIN_REQUEST });
+export const googleloginsuccess = (payload) => {
+  return { type: types.GOOGLE_LOGIN_SUCCESS, payload };
 };
 
-export const phoneloginsuccess = (payload) => (dispatch) => {
-  return dispatch({ type: types.PHONE_LOGIN_SUCCESS, payload });
-
+export const google_login_failure = () => {
+  return { type: types.GOOGLE_LOGIN_FAILURE };
 };
+
