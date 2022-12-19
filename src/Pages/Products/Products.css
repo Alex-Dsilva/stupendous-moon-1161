@@ -48,9 +48,18 @@ p {
   cursor: pointer;
   background-color: rgb(56, 193, 211);
 }
+#imgdiv{
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 img {
-  width: 10rem;
-  height: 12rem;
+  width:80px;
+  height: 150px;
+}
+.Price{
+  color:red;
 }
 /* loading */
 .loading {

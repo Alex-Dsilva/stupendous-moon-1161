@@ -1,29 +1,26 @@
 import * as types from "./AuthActionTypes";
 
-export const removeFromCart = (payload) => {
-  return {
-    type: types.REMOVE_CART_ITEM,
-    payload,
-  };
+export const requestremovecart = (payload) => {
+  return {type: types.REQUEST_REMOVE_CART};
+};
+export const successremovecart = (payload) => {
+  return {type: types.SUCCESS_REMOVE_CART ,payload};
+};
+
+export const failureremovecart = () => {
+  return {type: types.FAILURE_REMOVE_CART};
 };
 
 export const modifyItemQuantity = (payload) => {
   return {
     type: types.MODIFY_ITEM_QUANTITY,
     payload,
-  };
+};
 };
 
 export const modifyItemSize = (payload) => {
   return {
     type: types.MODIFY_ITEM_SIZE,
-    payload,
-  };
-};
-
-export const addToWishList = (payload) => {
-  return {
-    type: types.ADD_TO_WISHLIST,
     payload,
   };
 };
@@ -35,12 +32,6 @@ export const addToCart = (payload) => {
   };
 };
 
-export const removeFromWishlist = (payload) => {
-  return {
-    type: types.REMOVE_WISHLIST_ITEM,
-    payload,
-  };
-};
 
 export const setCartEmpty = () => {
   return {
