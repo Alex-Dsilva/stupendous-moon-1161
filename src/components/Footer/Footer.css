@@ -1,0 +1,99 @@
+#help{
+    font-size: 15px;
+   
+    height: 300px;
+    width: 200px;
+    
+}
+
+#support{
+    margin-left: 180px;
+    margin-top: -320px;
+    font-size: 15px;
+    
+    width: 150px;
+}
+
+#policy{
+    margin-left: 360px;
+    margin-top: -319px;
+    font-size: 15px;
+    
+    width: 100px;
+
+}
+
+#qr{
+    height: 150px;
+    width: 150px;
+    margin-left: 30px;
+    margin-bottom: 80px;
+    /* margin-left: -80px;
+    margin-top: -00px;
+    margin-bottom: 400px; */
+  
+}
+
+#down{
+   
+    margin-top: -220px;
+    height: 200px;
+    width: 400px;
+    margin-left: 550px;
+}
+
+#goo{
+    height: 100px;
+    margin-bottom: 100px;
+    margin-left: 30px;
+    /* margin-bottom: 300px; */
+    
+}
+
+#serv{
+    margin-left: 1000px;
+    height: 130px;
+    width: 280px;
+    /* border: 1px solid red; */
+    margin-top: -160px;
+}
+
+#logos{
+    display: flex;
+    margin-top: 75px;
+    margin-left: 250px;
+}
+
+#log{
+    height: 100px;
+    width: 100px;
+}
+
+#paypal{
+    height: 80px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+#visa{
+    height: 90px;
+    margin-top: 5px;
+}
+
+#master{
+    height: 60px;
+    margin-top: 10px;
+
+}
+
+#amr{
+    height: 80px;
+    margin-left: 15px;
+    margin-top: 5px;
+}
+
+#pilot{
+    height: 40px;
+    margin-left: 10px;
+    margin-top: 20px;
+}

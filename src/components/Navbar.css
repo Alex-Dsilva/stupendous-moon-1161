@@ -1,34 +1,75 @@
 
+#search{
+    height: 35px;
+    width: 600px;
+    margin-left: -120px;
 
-
-.NavMenu{
-    display: none;
 }
 
-@media (min-width : 0px) and (max-width : 880px){
-
-    .NavInput{
-        display:none;
-    }
-
-    .navSecondBox{
-        display: none;
-    }
-
-    .NavMenu{
-        display: flex;
-    }
-
-    .navbarBox{
-        width: 100%;
-    }
+#sap{
+    color: white;
+    margin-top: 30px;
 }
 
-@media (max-width : 1150px){
-    .NavInput{
-        display:none;
-    }
-    .navbarBox{
-        width: 100%;
-    }
+#logo{
+    height: 60px;
+    width: 100px;
+    /* margin-left: -1000px;
+    margin-top: -50px; */
+
+}
+
+#sign{
+    margin-left: 40px;
+    color: white;
+}
+
+#cart{
+    margin-left: 40px;
+    color: white;
+}
+
+#menu{
+    color: white;
+    margin-left: 40px;
+}
+
+#new{
+    color: white;
+    margin-left: 20px;
+}
+
+#best{
+    color: white;
+    margin-left: 20px;
+}
+
+#brand{
+    color: white;
+    margin-left: 20px;
+}
+
+#clear{
+    color: white;
+    margin-left: 20px;
+}
+
+#deal{
+    color: white;
+    margin-left: 20px;
+}
+
+#coup{
+    color: white;
+    margin-left: 20px;
+}
+
+#ap{
+    color: white;
+    margin-left: 20px;
+}
+
+#what{
+    color: white;
+    margin-left: 20px;
 }
