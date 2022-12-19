@@ -1,9 +1,7 @@
 import { Center, Image } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
-
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { shoppingDone } from "../Redux/App/AppAction";
-
 import styles from "./payment.module.css";
 export default function Payment() {
   const dispatch = useDispatch();
