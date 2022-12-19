@@ -7,146 +7,12 @@ import {
     createUserWithEmailAndPassword,
     updateProfile
   } from "firebase/auth";
+import {signuprequest, signupsuccess, signupfailure} from '../redux/Auth/AuthAction'
 import { app, db } from "../config/firebaseConfig"
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { Link, useNavigate } from 'react-router-dom';
 import bg from "../assets/Signup.jpg"
-
-
-const CaptchaContainer=styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-
-    > #Captchadiv{
-        display: flex;
-        flex-direction: column;
-        > label{
-            font-size: 12px;
-            color: red;
-            ::after{
-            content: "*";
-        }
-        }
-    }
-`;
-
-const FromCaptchaInputWrapper=styled.div`
-    border:1.5px solid ;
-    width: 98px;
-   height: 30px;
-
-`
-
-const CaptchaInput=styled.input`
-   width: 90px;
-   height: 28px;
-   border: none;
-   outline: none;
-`;
-
-const FormWrapper=styled.div`
-    padding: 5px;
-    width: 30%;
-    padding: 20px 30px;
-    background-color: #fff;
-    border-radius: 4px;
-    box-shadow: 0 0 10px rgb(0 0 0 / 20%);
-    position: absolute;
-    top: 200px;
-    transform: translate(90%);
-    z-index: 3;
-`;
-
-const SignInform=styled.form`
-   display: flex;
-   flex-direction: column;
-   gap: 15px;
-   justify-content: center;
-
-    #submit{
-        justify-self: center;
-        align-self: center;
-        color: antiquewhite;
-        height: 44px;
-        outline: none;
-        text-align: center;
-        line-height: 44px;
-        cursor: pointer;
-        background-color: #06f;
-        font-size: 14px;
-        font-weight: bold;
-        border: 1px solid #06f;
-        border-radius: 4px;
-    }
-    
-   > div{
-    text-align: left;
-    > label {
-        font-size: 12px;
-        line-height: 0;
-        color:red;
-        ::after{
-            content: "*";
-        }
-    }
-   }
-`;
-
-const FromInputWrapper=styled.div`
-    /* border:1.5px solid ; */
-
-`
-
-const FromPasswordInputWrapper=styled.div`
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    height: 44px;
-    line-height: 44px;
-    text-indent: 14px;
-    border: 1px solid #d1d1d1;
-    border-radius: 4px;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    display: inline-block;
-`
-
-const FormHead=styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    > p{
-        cursor: pointer;
-    }
-`
-
-const SignInput=styled.input`
-    /* height: 25px;
-    width: 95%; */
-    outline: none;
-
-    width: 100%;
-    height: 44px;
-    line-height: 44px;
-    text-indent: 14px;
-    border: 1px solid #d1d1d1;
-    border-radius: 4px;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    display: inline-block;
-
-`;
-
-const PasswordSignInput=styled.input`
-     outline: none;
-     width: 90%;
-    line-height: 30px;
-    text-indent: 14px;
-    border:none;
-    box-sizing: border-box;
-`
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{2,23}$/;
@@ -159,6 +25,7 @@ function Signup() {
     const auth = getAuth();
     const userRef=useRef();
     const errRef=useRef();
+    const dispatch=useDispatch()
 
 
     const [checkpass, setCheckPass]=useState(false)
@@ -180,6 +47,9 @@ function Signup() {
 
     const [errMsg, setErrMsg] = useState('');
 
+    // const {name, userId}=useSelector((store)=>{ return { name:store.Authreducer.name, userId:store.Authreducer.userId  }}  )
+
+    // console.log(name, userId)
     useEffect(()=>{
         loadCaptchaEnginge(5);
     },[])
@@ -218,36 +88,46 @@ function Signup() {
             alert("Invalid Entry");
             return;
         }
-        e.preventDefault()
-        console.log("res")
+
+        dispatch(signuprequest())
         const data={
             username:user,
             email:email,
             password:pwd
         }
-        console.log()
+        console.log(data)
             createUserWithEmailAndPassword(auth, data.email, data.password)
             .then((res) => {
               updateProfile(auth.currentUser, {
                 displayName: data.username
-              });
-              console.log(res);
-              const docData={
-                address: {
-                  pincode: "",
-                  locality: "",
-                  city: "",
-                  state: "",
-                },
-                wishlist:[],
-                bag:[],
-                phone:""
-              }
-             setDoc(doc(db, "users", `${res.user.uid}`), docData);
-            //  navigate("/");
-            alert("sign")
+              }).then(()=>{
+                console.log(res)
+                const {displayName, uid} = res.user;
+                
+                console.log(displayName, uid)
+                dispatch(signupsuccess({displayName, uid}))
+                const docData={
+                  address: {
+                    pincode: "",
+                    locality: "",
+                    city: "",
+                    state: "",
+                  },
+                  wishlist:[],
+                  bag:[],
+                  phone:""
+                }
+               setDoc(doc(db, "users", `${res.user.uid}`), docData);
+              //  navigate("/");
+              alert("sign")
+              }).catch((error)=>{
+                alert("something went wrong")
+              })
             })
-            .catch((err) => alert(err));
+            .catch((err) =>{
+             dispatch(signupfailure())   
+             alert(err)
+            });
           } 
        
 
@@ -255,7 +135,7 @@ function Signup() {
 
   return (
     <div >
-        <Link to="products"><img src={bg}/></Link>
+        <Link to="products"><BgImage src={bg}/></Link>
        <FormWrapper>
         <FormHead>
             <h3>Create your account</h3>
@@ -326,3 +206,255 @@ function Signup() {
 
 export default Signup
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const CaptchaContainer=styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    > #Captchadiv{
+        display: flex;
+        flex-direction: column;
+        > label{
+            font-size: 12px;
+            color: red;
+            ::after{
+            content: "*";
+        }
+        }
+    }
+`;
+
+const BgImage=styled.img`
+    width: 100%;
+    height: 100%;
+    border: none;
+`
+
+const FromCaptchaInputWrapper=styled.div`
+    border:1.5px solid ;
+    width: 98px;
+   height: 30px;
+
+`
+
+const CaptchaInput=styled.input`
+   width: 90px;
+   height: 28px;
+   text-align: left;
+   border: none;
+   outline: none;
+`;
+
+const FormWrapper=styled.div`
+    padding: 5px;
+    width: 30%;
+    padding: 20px 30px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+    position: absolute;
+    top: 200px;
+    transform: translate(90%);
+    z-index: 3;
+    text-align: left;
+`;
+
+const SignInform=styled.form`
+   display: flex;
+   flex-direction: column;
+   gap: 15px;
+   justify-content: center;
+
+    #submit{
+        justify-self: center;
+        align-self: center;
+        color: antiquewhite;
+        height: 44px;
+        outline: none;
+        text-align: center;
+        line-height: 44px;
+        cursor: pointer;
+        background-color: #06f;
+        font-size: 14px;
+        font-weight: bold;
+        border: 1px solid #06f;
+        border-radius: 4px;
+    }
+    
+   > div{
+    text-align: left;
+    > label {
+        font-size: 12px;
+        line-height: 0;
+        color:red;
+        ::after{
+            content: "*";
+        }
+    }
+   }
+`;
+
+const FromInputWrapper=styled.div`
+    /* border:1.5px solid ; */
+
+`
+
+const FromPasswordInputWrapper=styled.div`
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 44px;
+    line-height: 44px;
+    text-indent: 14px;
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    /* display: inline-block; */
+`   
+
+const FormHead=styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    > p{
+        cursor: pointer;
+    }
+`
+
+const SignInput=styled.input`
+    /* height: 25px;
+    width: 95%; */
+    outline: none;
+    text-align: left;
+    width: 100%;
+    height: 44px;
+    line-height: 44px;
+    text-indent: 14px;
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-block;
+
+`;
+
+const PasswordSignInput=styled.input`
+     outline: none;
+     width: 88%;
+    line-height: 30px;
+    text-indent: 14px;
+    text-align: left;
+    display: inline-block;
+    border:none;
+    box-sizing: border-box;
+`
