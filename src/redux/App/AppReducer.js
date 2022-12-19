@@ -1,4 +1,4 @@
-import * as types from "./actionTypes"
+import * as types from "./AppActionTypes"
 
 const initialData = {
     isLoading : false,
