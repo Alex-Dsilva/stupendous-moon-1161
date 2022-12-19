@@ -4,7 +4,7 @@ import "./Footer.css"
 
 const Footer = () => {
   return (
-    <Box  height={"400px"} width={"100%"}>
+    <Box  height={"350px"} width={"100%"}>
 
      <Box id='help'>
         <h2>Help</h2>

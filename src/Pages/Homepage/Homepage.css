@@ -40,6 +40,9 @@ img {
   height: 22rem;
   width: 15rem;
 }
+.Image{
+    width:"50px"
+}
 .new_2 {
   background-color: white;
   padding: 1rem;

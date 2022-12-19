@@ -1,5 +1,5 @@
 import React from "react";
-import "./Navbar.css";
+// import "./Navbar.css";
 import logo from "../assets/onchoiselogo_4.jpg";
 import {
   Box,
@@ -32,55 +32,41 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 
 function Navbar() {
   return (
-    <>
 
 <Box
-    height={"250px"}
-    width={"1358px"}
+    height="fit-content"
+    w="100%"
+    pt="10px"
     border={"2px solid #0e6548"}
     backgroundColor={"#0e6548"}
-    marginLeft={"-42px"}
-    // marginTop={"-100px"} 
-    
     position={"fixed"} top={"0"} zIndex={5} >
 
-  <Box gap={"30px"} display="flex" marginLeft={"1000px"} >
-        <a href="" id="sap">Language</a>
-        <a href="" id="sap">Support</a>
-
-      </Box>
-    
-    <Box>
-        <img id="logo" src={logo} alt="" />
-      </Box>
-    <Box>
-    <Box >
-    <input  type="text" id="search" onClick={"Enter"} placeholder={"Search by Keyword"}  />
-
-
-    <a href="" id="sign">Sign In</a>
-
-    <a href="" id="cart">Cart</a>
-  </Box>
+  <Flex justify="space-around" align="center" >
+    <Link to="/" style={{width:"15%"}}><Image w="100%" h="55px" id="logo" src={logo} alt="" /></Link>
+    <Flex w="40%">
+    <Input h="30px" pl="20px" w="100%" textAlign="left" border="none" borderLeftRadius="4px" outline="none" type="text" id="search" placeholder={"Search by Keyword"}/>
+    <Button border="none" w="30px" borderRightRadius="4px" bg="white"><AiOutlineSearch style={{fontSize:"16px", fontWeight:"800"}}/></Button>
+    </Flex>
+   
+    <Flex w="20%" justify="space-around" align="center">
+    <Link to="/login" style={{textDecoration:"none"}} id="sign"><Box color="#FFFFFF" fontWeight="600" >Sign In</Box></Link>
+    <Link to="/cart" style={{textDecoration:"none"}}  id="cart"><Box color="#FFFFFF"><AiOutlineShoppingCart style={{fontSize:"22px",fontWeight:"900"}}/></Box></Link>
+    </Flex>
+  </Flex>
 
 
-
-  <Box marginTop={"60px"} fontSize={"20px"}>
-    <a href="" id="menu">Category</a>
-    <a href="" id="new">new</a>
-    <a href="" id="best">Bestselling</a>
-    <a href="" id="brand">Brand</a>
-    <a href="" id="clear">Clearence</a>
-    <a href="" id="deal">Deals</a>
-    <a href="" id="coup">Coupons</a>
-    <a href="" id="ap">App Only</a>
-    <a href="" id="what">What Geek</a>
-
-  </Box>
-</Box>
-</Box>
-</>);
+  <Flex w="60%" h="40px" m="auto" align="center" color="#FFFFFF" justify="space-around">
+    <Link style={{textDecoration:"none"}} to="/newproducts" id="new"><Box color="#FFFFFF" fontWeight="600" >new</Box></Link>
+    <Link style={{textDecoration:"none"}}  to="/bestproducts" id="best"><Box color="#FFFFFF" fontWeight="600">Bestselling</Box></Link>
+    <Link style={{textDecoration:"none"}}to="/clearanceproducts" id="clear"><Box color="#FFFFFF" fontWeight="600">Clearance</Box></Link>
+    <Link style={{textDecoration:"none"}} to="/todaydeals" id="deal"><Box color="#FFFFFF" fontWeight="600">Deals</Box></Link>
+    <Link style={{textDecoration:"none"}} to="/payment" id="coup"><Box color="#FFFFFF" fontWeight="600">Wallet</Box></Link>
+    <Link style={{textDecoration:"none"}} to="/apponlyproducts" id="ap"><Box color="#FFFFFF" fontWeight="600">App Only</Box></Link>
+  </Flex>
+</Box>);
 }
 
 
 export default Navbar;
+
+

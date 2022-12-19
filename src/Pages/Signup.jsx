@@ -135,11 +135,11 @@ function Signup() {
 
   return (
     <div >
-        <Link to="products"><BgImage src={bg}/></Link>
+        <Link to="/bestproducts"><BgImage src={bg}/></Link>
        <FormWrapper>
         <FormHead>
             <h3>Create your account</h3>
-            <p onClick={()=>alert("sign in")}>Sign in</p>
+            <Link to="/login">Sign in</Link>
         </FormHead>
         <SignInform onSubmit={ handleSubmit }>
             <div>
@@ -346,8 +346,10 @@ const FromCaptchaInputWrapper=styled.div`
 `
 
 const CaptchaInput=styled.input`
-   width: 90px;
+   width: 70px;
    height: 28px;
+   padding: none;
+   margin: none;
    text-align: left;
    border: none;
    outline: none;

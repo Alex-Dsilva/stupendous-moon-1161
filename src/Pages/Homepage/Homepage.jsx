@@ -10,7 +10,6 @@ import { Navigation, Pagination } from "swiper";
 import Swiper_One from "./Swiper_one";
 
 const Homepage = () => {
-  getData()
   return (
     <div className="Homepage">
       {/* Deals of The Day */}
@@ -134,13 +133,13 @@ const Homepage = () => {
         <h2>New For You</h2>
         <div className="new_1">
           <div className="new_one">
-            <img
+            <img className="Image"
               src="https://img.gkbcdn.com/bn/2212/LOKMATTIMEPRO-638d8d152b40c93c74f9ec1f._p1_.jpg"
               alt=""
             />
           </div>
           <div className="new_2">
-            <img
+            <img className="Image"
               src="https://img.gkbcdn.com/p/2022-11-04/Q26-Pro-Smartwatch-1-83---TFT-Screen-Black-518108-0._w280_p1_.jpg"
               alt=""
             />
@@ -148,20 +147,20 @@ const Homepage = () => {
             <h3>₹1689.70</h3>
           </div>
           <div className="new_2">
-            <img
+            <img className="Image"
               src="https://img.gkbcdn.com/p/2022-12-09/LOKMAT-ZEUS-PRO-Bluetooth-Calling-Watch-Green-518642-0._w280_p1_.jpg"
               alt=""
             />
             <p>LOKMAT ZEUS PRO Bluetooth Calling Watch 1.6" HD Screen</p>
-            <h3>3887.40</h3>
+            <h3>₹3887.40</h3>
           </div>
           <div className="new_2">
-            <img
+            <img className="Image"
               src="https://img.gkbcdn.com/p/2022-10-12/SENBONO-MAX9-Smartwatch-1-32---Full-Touch-Screen-Black-517830-0._w280_p1_.jpg"
               alt=""
             />
             <p>SENBONO MAX9 Smartwatch 1.32" Full Touch Sport Fitness</p>
-            <h3>2112.33</h3>
+            <h3>₹2112.33</h3>
           </div>
         </div>
       </div>
