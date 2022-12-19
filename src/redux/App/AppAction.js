@@ -1,4 +1,4 @@
-import * as types from "./actionTypes";
+import * as types from "./AppActionTypes";
 import axios from "axios";
 
 let getProductsRequest = () => {
@@ -12,22 +12,35 @@ let getProductsSuccess = (payload) => {
 let getProductsFailure = () => {
   return { type: types.GET_PRODUCTS_FAILURE };
 };
-
-const getProducts = (queryParams) => (dispatch) => {
+//today deals api
+const getTodayDeals = (options) => async(dispatch) => {
   dispatch(getProductsRequest());
-  axios
-    .get(
-      `https://shoppingbazaar.onrender.com/api/men_products`,
-      queryParams
-    )
-    .then((res) => {
-      // console.log(res);
-      dispatch(getProductsSuccess(res.data));
-    })
-    .catch((err) => {
-      console.log(err);
-      dispatch(getProductsFailure());
-    });
+  axios.request(options).then(function (response) {
+    // console.log(response.data)
+    dispatch(getProductsSuccess(response.data.docs));
+  }).catch(function (error) {
+    console.error(error);
+  });
 };
 
-export { getProducts };
+// getptoducts
+const getProducts = (options) => async(dispatch) => {
+  dispatch(getProductsRequest());
+  axios.request(options).then(function (response) {
+    dispatch(getProductsSuccess(response.data.docs));
+  }).catch(function (error) {
+    console.error(error);
+  });
+};
+// getproducts by id
+const getProductsByID = (options) => async(dispatch) => {
+  dispatch(getProductsRequest());
+  axios.request(options).then(function (response) {
+    console.log(response.data)
+    dispatch(getProductsSuccess(response.data));
+  }).catch(function (error) {
+    console.error(error);
+  });
+};
+export { getTodayDeals ,getProducts,getProductsByID};
+
