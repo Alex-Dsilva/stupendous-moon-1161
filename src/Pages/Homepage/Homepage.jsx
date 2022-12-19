@@ -10,7 +10,7 @@ import { Navigation, Pagination } from "swiper";
 import Swiper_One from "./Swiper_one";
 
 const Homepage = () => {
-  // getData()
+  getData()
   return (
     <div className="Homepage">
       {/* Deals of The Day */}
@@ -25,28 +25,28 @@ const Homepage = () => {
               <div className="deal_2">
                 <div>
                   <img
-                    src="https://img.gkbcdn.com/p/2021-10-29/P400-Bluetooth-5-2-TWS-Earbuds-475334-3._w280_p1_.jpg"
+                    src="https://img.gkbcdn.com/p/2022-09-22/KZ-ZS10-Pro-X-Wired-Earphone-517156-0._w280_p1_.jpg"
                     alt=""
                   />
                   <h4>₹1689</h4>
                 </div>
                 <div>
                   <img
-                    src="https://img.gkbcdn.com/p/2022-02-10/a6r-tws-wireless-earphones-black-4570b2-1644488631155._w280_p1_.jpg"
+                    src="https://img.gkbcdn.com/p/2019-01-31/tronsmart-element-force-portable-bluetooth-speaker-1571993707403._w280_p1_.jpg"
                     alt=""
                   />
                   <h4>₹1689</h4>
                 </div>
                 <div>
                   <img
-                    src="https://img.gkbcdn.com/p/2019-11-30/tws-i500-earphones-20191130100234539._w280_p1_.jpg"
+                    src="https://img.gkbcdn.com/p/2020-11-02/rg351p-anbernic-retro-game-console-black-1604318839608._w280_p1_.jpg"
                     alt=""
                   />
                   <h4>₹1689</h4>
                 </div>
                 <div>
                   <img
-                    src="https://img.gkbcdn.com/p/2020-04-03/ENCHEN-Multi-purpose-Electric-Hair-Clipper-Trimmer-Black-901271-._w280_p1_.jpg"
+                    src="https://img.gkbcdn.com/p/2018-10-22/kingston-a400-ssd-480gb-sata-3-2-5-inch-solid-state-drive-dark-gray-1571984759547._w280_p1_.jpg"
                     alt=""
                   />
                   <h4>₹1689</h4>
@@ -263,3 +263,6 @@ const Homepage = () => {
 };
 
 export default Homepage;
+
+
+

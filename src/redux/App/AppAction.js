@@ -17,7 +17,7 @@ const getTodayDeals = (options) => async(dispatch) => {
   dispatch(getProductsRequest());
   axios.request(options).then(function (response) {
     // console.log(response.data)
-    dispatch(getProductsSuccess(response.data.deal_docs));
+    dispatch(getProductsSuccess(response.data.docs));
   }).catch(function (error) {
     console.error(error);
   });
@@ -27,12 +27,20 @@ const getTodayDeals = (options) => async(dispatch) => {
 const getProducts = (options) => async(dispatch) => {
   dispatch(getProductsRequest());
   axios.request(options).then(function (response) {
-    console.log(response.data)
     dispatch(getProductsSuccess(response.data.docs));
   }).catch(function (error) {
     console.error(error);
   });
 };
-
-export { getTodayDeals ,getProducts};
+// getproducts by id
+const getProductsByID = (options) => async(dispatch) => {
+  dispatch(getProductsRequest());
+  axios.request(options).then(function (response) {
+    console.log(response.data)
+    dispatch(getProductsSuccess(response.data));
+  }).catch(function (error) {
+    console.error(error);
+  });
+};
+export { getTodayDeals ,getProducts,getProductsByID};
 

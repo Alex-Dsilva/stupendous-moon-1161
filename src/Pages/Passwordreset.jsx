@@ -102,7 +102,6 @@ const PasswordSignInput=styled.input`
 
 
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{6,24}$/;
-const EMAIl_REGEX =/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const Passwordreset = () => {
      const auth = getAuth();
     const user = auth.currentUser;
