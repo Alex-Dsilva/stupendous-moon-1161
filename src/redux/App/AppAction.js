@@ -33,6 +33,15 @@ const getProducts = (options) => async(dispatch) => {
     console.error(error);
   });
 };
-
-export { getTodayDeals ,getProducts};
+// getproducts by id
+const getProductsByID = (options) => async(dispatch) => {
+  dispatch(getProductsRequest());
+  axios.request(options).then(function (response) {
+    console.log(response.data)
+    dispatch(getProductsSuccess(response.data));
+  }).catch(function (error) {
+    console.error(error);
+  });
+};
+export { getTodayDeals ,getProducts,getProductsByID};
 
