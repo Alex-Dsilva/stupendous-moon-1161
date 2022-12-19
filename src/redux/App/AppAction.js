@@ -20,6 +20,7 @@ const getTodayDeals = (options) => async(dispatch) => {
     dispatch(getProductsSuccess(response.data.docs));
   }).catch(function (error) {
     console.error(error);
+    alert(error.response.data.message)
   });
 };
 
@@ -30,6 +31,7 @@ const getProducts = (options) => async(dispatch) => {
     dispatch(getProductsSuccess(response.data.docs));
   }).catch(function (error) {
     console.error(error);
+    alert(error.response.data.message)
   });
 };
 // getproducts by id

@@ -5,23 +5,17 @@ import { useNavigate } from "react-router-dom";
 
 
 const Products = ({ title,searchQuery }) => {
-  const [page, setPage] = useState(1);
   const { Appreducer, Authreducer } = useSelector(store => store);
-  const { products } = Appreducer;
+  const { products ,isLoading} = Appreducer;
 
   const dispatch = useDispatch();
   const options = {
-    method: "GET",
-    url: "https://amazon24.p.rapidapi.com/api/product",
-    params: {
-      categoryID: "aps",
-      keyword: searchQuery,
-      country: "IN",
-      page: "1"
-    },
+    method: 'GET',
+    url: 'https://amazon24.p.rapidapi.com/api/product',
+    params: {categoryID: 'aps', keyword:searchQuery, country: 'IN', page: '1'},
     headers: {
-      "X-RapidAPI-Key": "191cfb01c9mshabc871ac0ebaa17p1b1493jsn024c4f6cba86",
-      "X-RapidAPI-Host": "amazon24.p.rapidapi.com"
+      'X-RapidAPI-Key': '5c29c0f5dcmsh221befa5b77990fp148730jsna14c92afa3c0',
+      'X-RapidAPI-Host': 'amazon24.p.rapidapi.com'
     }
   };
 
@@ -34,7 +28,7 @@ const Products = ({ title,searchQuery }) => {
 
   useEffect(() => {
     dispatch(getProducts(options));
-  }, []);
+  }, [searchQuery]);
 
   if (isLoading) {
     return (
@@ -43,9 +37,6 @@ const Products = ({ title,searchQuery }) => {
     );
   }
 
-  const handleNavigate=(id)=>{
-    navigate(`/${id}`)
-  }
 
   return (
     <div>
@@ -70,7 +61,7 @@ const Products = ({ title,searchQuery }) => {
               <button className="rating" disabled>
                 {ele.evaluate_rate !== null ? ele.evaluate_rate : "No Reviews"}
               </button>
-              <button onClick={()=> HandleAddToCart(ele)} className="cart">Add To Cart</button>
+              <button onClick={()=> HandleAddToCart(ele.product_id)} className="cart">Add To Cart</button>
             </div>
           )}
       </div>

@@ -13,7 +13,7 @@ export const SingleProduct = () => {
     url: "https://amazon24.p.rapidapi.com/api/product/B0B9N6HV6B",
     params: { country: "US" },
     headers: {
-      "X-RapidAPI-Key": "191cfb01c9mshabc871ac0ebaa17p1b1493jsn024c4f6cba86",
+      "X-RapidAPI-Key": "5c29c0f5dcmsh221befa5b77990fp148730jsna14c92afa3c0",
       "X-RapidAPI-Host": "amazon24.p.rapidapi.com"
     }
   };

@@ -148,13 +148,13 @@ const Login = () => {
                     <AiOutlineQuestionCircle/>
                </Left>
                <Right>
-                    <div>Forgot your password?</div>
+                    <Link to="/passwordreset"><div>Forgot your password?</div></Link>
                </Right>
             </CheckOut>
         
             <SignInput id="submit"  type="submit"/>
 
-            <Link to="Signup"><button id="New_Account" >Create a new account</button></Link>
+            <Link to="/signup"><button id="New_Account" >Create a new account</button></Link>
 
             <Orline>
               <span>or</span>
