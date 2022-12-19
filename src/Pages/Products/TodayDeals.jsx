@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./Products.css";
-import { getProducts, getTodayDeals } from "../../redux/App/AppAction";
+import {  getTodayDeals } from "../../redux/App/AppAction";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const TodayDeals = ({ title }) => {
   const {Appreducer}=useSelector((store)=>store);
-  const {products}=Appreducer
-  console.log(products);
+  const {products,isLoading}=Appreducer
+  console.log(Appreducer);
   const dispatch=useDispatch()
 
   const options = {
@@ -21,6 +22,13 @@ const TodayDeals = ({ title }) => {
     dispatch(getTodayDeals(options))
   }, []);
 
+  if (isLoading) {
+    return (
+      <div className="loading">
+      </div>
+    );
+  }
+
   return (
     <div>
       <h1>
@@ -29,7 +37,7 @@ const TodayDeals = ({ title }) => {
       <div className="product">
         {products.length > 0 &&
           products.map(ele =>
-            <div key={ele.product_id} className="product1">
+            <div key={Math.random()} className="product1">
               <img src={ele.deal_main_image_url} alt="" />
               <p>
                 {ele.deal_title}

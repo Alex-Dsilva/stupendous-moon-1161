@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { getProducts } from "../../redux/App/AppAction";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-const Products = ({ title,searchQuery }) => {
-  const [page, setPage] = useState(1);
+const Products = ({ title, searchQuery }) => {
   const { Appreducer } = useSelector(store => store);
-  const { products } = Appreducer;
-  console.log(products);
+  //   console.log(Appreducer);
+  const navigate=useNavigate();
+  const { products ,isLoading } = Appreducer;
+  console.log(Appreducer)
   const dispatch = useDispatch();
   const options = {
     method: "GET",
@@ -27,6 +29,17 @@ const Products = ({ title,searchQuery }) => {
     dispatch(getProducts(options));
   }, []);
 
+  if (isLoading) {
+    return (
+      <div className="loading">
+      </div>
+    );
+  }
+
+  const handleNavigate=(id)=>{
+    navigate(`/${id}`)
+  }
+
   return (
     <div>
       <h1>
@@ -35,13 +48,13 @@ const Products = ({ title,searchQuery }) => {
       <div className="product">
         {products.length > 0 &&
           products.map(ele =>
-            <div key={ele.product_id} className="product1">
+            <div onClick={()=>handleNavigate(ele.product_id)} key={ele.product_id} className="product1">
               <img src={ele.product_main_image_url} alt="" />
               <p>
                 {ele.product_title}
               </p>
               <p>
-                {ele.original_price===null?"₹249":ele.original_price}
+                {ele.original_price === null ? "₹249" : ele.original_price}
               </p>
               <button className="rating" disabled>
                 {ele.evaluate_rate !== null ? ele.evaluate_rate : "No Reviews"}

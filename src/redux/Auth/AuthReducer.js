@@ -4,7 +4,6 @@ const initialState = {
   name: null, //For displaying the login user name
   userId: null, //Can be user Email,Mobile Number
   mobile_number: null, //required for order place
-  wishlist: [], //Array of objects
   cart: [], //Array of objects products->(image,brand,title,price,MRP,size,qty=1)
   address: {
     pincode: null,
@@ -31,10 +30,6 @@ export const Authreducer = (state = initialState, action) => {
       );
       console.log("updatedCart:", updatedCart);
       return { ...state, cart: updatedCart };
-
-    case types.ADD_TO_WISHLIST:
-      const updatedWishList = [...state.wishlist, payload];
-      return { ...state, wishlist: updatedWishList };
 
     case types.MODIFY_ITEM_QUANTITY:
       const updatedQuantity = state.cart.map((item) => {
@@ -86,7 +81,7 @@ export const Authreducer = (state = initialState, action) => {
 
     case "EMAIL_LOGIN_SUCCESS":
       const {address:getAddress}=payload;
-      return { ...state, name: payload.displayName, userId: payload.uid, mobile_number:payload.phone,address:getAddress, isLoading:false  };
+      return { ...state, name: payload.displayName, userId: payload.uid,cart:payload.bag, mobile_number:payload.phone,address:getAddress, isLoading:false  };
 
     case "EMAIL_LOGIN_FAILURE":
       return {...state, isError:true}
@@ -98,15 +93,14 @@ export const Authreducer = (state = initialState, action) => {
       const {address:getGoogleAddress}=payload;
       return {...state, name: payload.displayName, userId: payload.uid, mobile_number:payload.phone, address:getGoogleAddress, isLoading:false}
     
-    case "PHONE_LOGIN_REQUEST":
-      return {...state, isLoading:true}
-
-    case "PHONE_LOGIN_SUCCESS":
-      const {address:getPhoneAddress}=payload;
-      return {...state, name: payload.displayName, userId: payload.uid, mobile_number:payload.phone, address:getPhoneAddress, isLoading:false}
-    
     case "SIGN_UP_REQUEST":
       return {...state, isLoading:true}
+    
+    case "SIGN_UP_SUCCESS":
+      return {...state, isLoading:false,name: payload.displayName, userId: payload.uid }
+   
+    case "SIGN_UP_FAILURE":
+      return {...state, isLoading:false,isError: true}
     
     default:
       return state;
