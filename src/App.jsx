@@ -4,19 +4,19 @@ import Passwordreset from './Pages/Passwordreset'
 import Signup from './Pages/Signup'
 import Navbar from './components/Navbar'
 import Footer from "./components/Footer/Footer";
-// import Homepage from "./Pages/Homepage/Homepage";
+import Homepage from "./Pages/Homepage/Homepage";
 import TodayDeals from './Pages/Products/TodayDeals'
-import Products from './Pages/Products/Products'
+import Products from './Pages/Homepage/Homepage'
+import MainRoutes from './Pages/MainRoutes'
 
 
 function App() {
   return (
     <div className="App">
-      {/* <Signup/> */}
-      <Login/>
-      {/* <Navbar />
-      <Homepage />
-      <Footer />  */}
+      {/* <Navbar /> */}
+      <MainRoutes/>
+      {/* <Homepage/> */}
+      {/* <Footer />  */}
     </div>
   )
 }
