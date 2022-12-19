@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { getProducts } from "../../redux/App/AppAction";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 
 const Products = ({ title,searchQuery }) => {
   const [page, setPage] = useState(1);
   const { Appreducer, Authreducer } = useSelector(store => store);
   const { products } = Appreducer;
+
   const dispatch = useDispatch();
   const options = {
     method: "GET",
@@ -33,6 +36,17 @@ const Products = ({ title,searchQuery }) => {
     dispatch(getProducts(options));
   }, []);
 
+  if (isLoading) {
+    return (
+      <div className="loading">
+      </div>
+    );
+  }
+
+  const handleNavigate=(id)=>{
+    navigate(`/${id}`)
+  }
+
   return (
     <div>
       <h1>
@@ -51,6 +65,7 @@ const Products = ({ title,searchQuery }) => {
               </h2>
               <p>
               <s>{ele.original_price===null?"₹249":ele.original_price}</s>
+
               </p>
               <button className="rating" disabled>
                 {ele.evaluate_rate !== null ? ele.evaluate_rate : "No Reviews"}

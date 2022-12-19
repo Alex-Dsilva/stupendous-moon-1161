@@ -6,17 +6,18 @@ import Navbar from './components/Navbar'
 import Footer from "./components/Footer/Footer";
 import Homepage from "./Pages/Homepage/Homepage";
 import TodayDeals from './Pages/Products/TodayDeals'
-import Products from './Pages/Homepage/Homepage'
-import MainRoutes from './Pages/MainRoutes'
+import Products from './Pages/Products/Products'
+import { SingleProduct } from './Pages/Products/SingleProduct'
+
 
 
 function App() {
   return (
     <div className="App">
-      {/* <Navbar /> */}
-      <MainRoutes/>
-      {/* <Homepage/> */}
-      {/* <Footer />  */}
+      <Homepage/>
+      {/* <TodayDeals title={"Featured Outlet Deals"}/> */}
+      {/* <Products title={"New Arrivals"} searchQuery={"new items"}/> */}
+      {/* <Products title={"Bestselling"} searchQuery={"best"}/> */}
     </div>
   )
 }

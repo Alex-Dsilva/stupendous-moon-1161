@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect, useState } from "react";
 import "./Products.css";
-import { getProducts, getTodayDeals } from "../../redux/App/AppAction";
+import {  getTodayDeals } from "../../redux/App/AppAction";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const TodayDeals = ({ title }) => {
-
-  const [cart,setCart]=useState([]);
-  const {Appreducer, Authreducer}=useSelector((store)=>store);
-  const {products}=Appreducer
+  const {Appreducer}=useSelector((store)=>store);
+  const {products,isLoading}=Appreducer
+  console.log(Appreducer);
   const dispatch=useDispatch()
 
   const options = {
@@ -30,6 +30,13 @@ const TodayDeals = ({ title }) => {
   useEffect(() => {
     dispatch(getTodayDeals(options))
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className="loading">
+      </div>
+    );
+  }
 
   return (
     <div>
