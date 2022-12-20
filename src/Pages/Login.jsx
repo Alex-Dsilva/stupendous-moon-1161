@@ -24,6 +24,7 @@ const Login = () => {
     const userRef=useRef();
     const errRef=useRef();
     const dispatch=useDispatch()
+    const navigate = useNavigate();
 
 
     const [checkpass, setCheckPass]=useState(false)
@@ -94,7 +95,7 @@ const Login = () => {
             console.log("address", address)
 
             dispatch(loginsuccess({displayName, uid, address, bag, phone}))
-            // navigate("/");
+            navigate("/");
           })
           
           .catch((err)=> alert(err.message))
@@ -169,7 +170,9 @@ const Login = () => {
   )
 }
 
-export default memo(Login)
+export default memo(Login, (prevProps, nextProps)=>{
+  return prevProps.value===nextProps.value
+})
 
 
 

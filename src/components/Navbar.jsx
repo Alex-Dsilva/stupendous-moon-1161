@@ -26,11 +26,18 @@ import {
 import { CgProfile } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import { ChevronDownIcon } from "@chakra-ui/icons";
+import { useSelector } from "react-redux";
 
 
 
 
 function Navbar() {
+
+
+  
+  const { Appreducer, Authreducer } = useSelector(store => store);
+  const {name}= Authreducer
+
   return (
 
 <Box
@@ -49,7 +56,7 @@ function Navbar() {
     </Flex>
    
     <Flex w="20%" justify="space-around" align="center">
-    <Link to="/login" style={{textDecoration:"none"}} id="sign"><Box color="#FFFFFF" fontWeight="600" >Sign In</Box></Link>
+    <Link to="/login" style={{textDecoration:"none"}} id="sign"><Box color="#FFFFFF" fontWeight="600" >{name? name:"Sign In"}</Box></Link>
     <Link to="/cart" style={{textDecoration:"none"}}  id="cart"><Box color="#FFFFFF"><AiOutlineShoppingCart style={{fontSize:"22px",fontWeight:"900"}}/></Box></Link>
     </Flex>
   </Flex>

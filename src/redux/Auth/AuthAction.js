@@ -11,6 +11,8 @@ export const failureremovecart = () => {
   return {type: types.FAILURE_REMOVE_CART};
 };
 
+
+
 export const modifyItemQuantity = (payload) => {
   return {
     type: types.MODIFY_ITEM_QUANTITY,
@@ -25,11 +27,16 @@ export const modifyItemSize = (payload) => {
   };
 };
 
+export const RequestToCart = () => {
+  return {type: types.REQUEST_ADD_CART};
+};
+
 export const addToCart = (payload) => {
-  return {
-    type: types.ADD_CART_ITEM,
-    payload,
-  };
+  return {type: types.SUCCESS_ADD_CART,payload};
+};
+
+export const FailToCart = () => {
+  return {type: types.FAILURE_ADD_CART};
 };
 
 
