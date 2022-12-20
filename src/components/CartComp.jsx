@@ -42,9 +42,9 @@ function CartComp({items, onAdd, onRemove, onDelete}) {
     <div >
       <Box>
         <Flex>
-          <img src={items.product_main_image_url} alt={items.product_title} />
-          <p>{items.product_title}</p> 
-          <h4>{items.app_sale_price_currency+" "+(items.app_sale_price*items.qty)}</h4>
+          <img src={items.product_main_image_url.stringValue} alt={items.product_title} />
+          <p>{items.product_title.stringValue}</p> 
+          <h4>{items.app_sale_price_currency.stringValue+" "+(items.app_sale_price.stringValue*items.qty)}</h4>
             <Qtycon >
               <button onClick={() => onRemove(items)} className="remove">
                 -
@@ -54,7 +54,7 @@ function CartComp({items, onAdd, onRemove, onDelete}) {
                 +
               </button>
             </Qtycon>
-            <h4>{items.app_sale_price_currency+" "+(items.app_sale_price)}</h4>
+            <h4>{items.app_sale_price_currency.stringValue+" "+(items.app_sale_price.stringValue)}</h4>
 
             <button onClick={()=> onDelete(items)}> Remove From the Cart</button>
             

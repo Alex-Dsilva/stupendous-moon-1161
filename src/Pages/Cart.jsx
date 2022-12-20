@@ -1,50 +1,67 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import  CartComp from '../components/CartComp'
 import {BiChevronRight} from 'react-icons/bi'
+// import { doc, , setDoc } from "firebase/firestore";
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-const product =[
-    {isBestSeller:false,
-      product_title:"Apple iPhone XR, 64GB, Black - Unlocked (Renewed)",
-      product_main_image_url:"https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/717KHGCJ6eL._AC_UY218_.jpg",
-      app_sale_price:"224.00",
-      app_sale_price_currency:"$",
-      isPrime:false,
-      product_detail_url:"https://www.amazon.com/dp/B07P6Y7954",
-      product_id:"B07P6Y7956",
-      evaluate_rate:"4.5 out of 5 stars",
-      original_price:null,
-      qty:2
-    },
-    {isBestSeller:false,
-      product_title:"Apple  Black - Unlocked (Renewed)",
-      product_main_image_url:"https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/717KHGCJ6eL._AC_UY218_.jpg",
-      app_sale_price:"224.00",
-      app_sale_price_currency:"$",
-      isPrime:false,
-      product_detail_url:"https://www.amazon.com/dp/B07P6Y7954",
-      product_id:"B07P6Y7952",
-      evaluate_rate:"4.5 out of 5 stars",
-      original_price:null,
-      qty:1
-    },
-    {isBestSeller:false,
-      product_title:"Apple iPhone XR, 64GB, Black - Unlocked (Renewed)",
-      product_main_image_url:"https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/717KHGCJ6eL._AC_UY218_.jpg",
-      app_sale_price:"224.00",
-      app_sale_price_currency:"$",
-      isPrime:false,
-      product_detail_url:"https://www.amazon.com/dp/B07P6Y7954",
-      product_id:"B07P6Y7953",
-      evaluate_rate:"4.5 out of 5 stars",
-      original_price:null,
-      qty:1
-    },
-  ]
+// const product =[
+//     {isBestSeller:false,
+//       product_title:"Apple iPhone XR, 64GB, Black - Unlocked (Renewed)",
+//       product_main_image_url:"https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/717KHGCJ6eL._AC_UY218_.jpg",
+//       app_sale_price:"224.00",
+//       app_sale_price_currency:"$",
+//       isPrime:false,
+//       product_detail_url:"https://www.amazon.com/dp/B07P6Y7954",
+//       product_id:"B07P6Y7956",
+//       evaluate_rate:"4.5 out of 5 stars",
+//       original_price:null,
+//       qty:2
+//     },
+//     {isBestSeller:false,
+//       product_title:"Apple  Black - Unlocked (Renewed)",
+//       product_main_image_url:"https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/717KHGCJ6eL._AC_UY218_.jpg",
+//       app_sale_price:"224.00",
+//       app_sale_price_currency:"$",
+//       isPrime:false,
+//       product_detail_url:"https://www.amazon.com/dp/B07P6Y7954",
+//       product_id:"B07P6Y7952",
+//       evaluate_rate:"4.5 out of 5 stars",
+//       original_price:null,
+//       qty:1
+//     },
+//     {isBestSeller:false,
+//       product_title:"Apple iPhone XR, 64GB, Black - Unlocked (Renewed)",
+//       product_main_image_url:"https://m.media-amazon.com/images/W/WEBP_402378-T1/images/I/717KHGCJ6eL._AC_UY218_.jpg",
+//       app_sale_price:"224.00",
+//       app_sale_price_currency:"$",
+//       isPrime:false,
+//       product_detail_url:"https://www.amazon.com/dp/B07P6Y7954",
+//       product_id:"B07P6Y7953",
+//       evaluate_rate:"4.5 out of 5 stars",
+//       original_price:null,
+//       qty:1
+//     },
+//   ]
 function Cart() {
 
-    const [cartItems, setCartItems] = useState(product);
+  const { Appreducer, Authreducer } = useSelector(store => store);
+  const {cart, userId, AuthLoading}=Authreducer
+
+  if(AuthLoading){
+    return (
+      <div className="loading">
+      </div>
+    );
+  }
+ const Data=cart.map((items)=>  ({ ...items.mapValue.fields, qty:1 }))
+
+    const [cartItems, setCartItems] = useState(Data);
+
+
+
+    console.log(cartItems)
 
     const onAdd = (product) => {
         console.log(product)
@@ -82,6 +99,13 @@ function Cart() {
         }
       };
 
+      if (AuthLoading) {
+        return (
+          <div className="loading">
+          </div>
+        );
+      }
+
   return (
     <div>
         <Head>
@@ -105,7 +129,7 @@ function Cart() {
         </Listdiv>
         <Paymentdiv>
             <Link to="/product"><p className="ContinueShopping">Continue Shopping <BiChevronRight/></p></Link>
-            <h5>You have {cartItems.reduce((a,b)=>a+Number(b.qty),0)} item(s) and your total is {cartItems[0].app_sale_price_currency}{cartItems.reduce((a,b)=>a+Number(b.app_sale_price*b.qty),0)}</h5>
+            <h5>You have {cartItems.reduce((a,b)=>a+Number(b.qty),0)} item(s) and your total is {cartItems[0].app_sale_price_currency.stringValue}{cartItems.reduce((a,b)=>a+Number(b.app_sale_price.stringValue*b.qty),0)}</h5>
             <PayWall>
             
             <button id="Pay">Pay with OnPay</button>

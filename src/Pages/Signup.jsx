@@ -26,7 +26,7 @@ function Signup() {
     const userRef=useRef();
     const errRef=useRef();
     const dispatch=useDispatch()
-
+    const navigate=useNavigate()
 
     const [checkpass, setCheckPass]=useState(false)
     const [user, setUser] = useState('');
@@ -79,7 +79,6 @@ function Signup() {
     
       const handleSubmit = async (e) => {
         e.preventDefault();
-        // if button enabled with JS hack
         const v1 = USER_REGEX.test(user);
         const v2 = PWD_REGEX.test(pwd);
         const v3=EMAIl_REGEX.test(email)
@@ -118,7 +117,7 @@ function Signup() {
                   phone:""
                 }
                setDoc(doc(db, "users", `${res.user.uid}`), docData);
-              //  navigate("/");
+               navigate("/");
               alert("sign")
               }).catch((error)=>{
                 alert("something went wrong")
@@ -342,6 +341,12 @@ const FromCaptchaInputWrapper=styled.div`
     border:1.5px solid ;
     width: 98px;
    height: 30px;
+   padding: none;
+   margin: none;
+   > input{
+    padding: 0;
+    margin: 0;
+   }
 
 `
 

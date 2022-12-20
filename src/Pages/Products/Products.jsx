@@ -2,12 +2,17 @@ import React, { useEffect, useState } from "react";
 import { getProducts } from "../../redux/App/AppAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+// import { doc, , setDoc } from "firebase/firestore";
+import { doc, updateDoc, getDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import { app, db } from "../../config/firebaseConfig"
+import { RequestToCart, addToCart, FailToCart } from "../../redux/Auth/AuthAction";
 
 
 const Products = ({ title,searchQuery }) => {
   const { Appreducer, Authreducer } = useSelector(store => store);
-  const { products ,isLoading} = Appreducer;
-
+  const { products ,isLoading, } = Appreducer;
+  const {cart, userId, AuthLoading}=Authreducer
+  console.log(cart)
   const dispatch = useDispatch();
   const options = {
     method: 'GET',
@@ -20,17 +25,36 @@ const Products = ({ title,searchQuery }) => {
   };
 
   const HandleAddToCart=(el)=>{
-    const {cart}=Authreducer
-    console.log(cart)
-    cart.push(el)
-    console.log("cart", cart)
+    console.log(el)
+    // el=el.qty=1
+    // console.log(el)
+    dispatch(RequestToCart())
+    updateDoc(doc(db, "users", `${userId}`), {
+      bag: arrayUnion(el)
+  })
+      .then(()=>{
+      const query = doc(db,"users", `${userId}`)
+      getDoc(query)
+      .then((res)=> {
+
+        const {bag}={
+            bag:res._document.data.value.mapValue.fields.bag.arrayValue.values,
+        }
+        dispatch(addToCart(bag))
+      })
+      
+      .catch((err)=> alert(err.message)) 
+    }).catch((err) =>{
+      dispatch(FailToCart())
+      alert(err.message)
+     });
   }
 
   useEffect(() => {
     dispatch(getProducts(options));
   }, [searchQuery]);
 
-  if (isLoading) {
+  if (isLoading || AuthLoading) {
     return (
       <div className="loading">
       </div>
@@ -61,7 +85,7 @@ const Products = ({ title,searchQuery }) => {
               <button className="rating" disabled>
                 {ele.evaluate_rate !== null ? ele.evaluate_rate : "No Reviews"}
               </button>
-              <button onClick={()=> HandleAddToCart(ele.product_id)} className="cart">Add To Cart</button>
+              <button onClick={()=> HandleAddToCart(ele)} className="cart">Add To Cart</button>
             </div>
           )}
       </div>
