@@ -83,6 +83,8 @@ function Signup() {
         const v2 = PWD_REGEX.test(pwd);
         const v3=EMAIl_REGEX.test(email)
         const v4=validateCaptcha(captcha)
+        // console.log(!v1, !v2, !v3, !v4)
+        console.log(!v3)
         if (!v1 || !v2 || !v3 || !v4 ) {
             alert("Invalid Entry");
             return;
