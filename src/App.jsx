@@ -6,15 +6,15 @@ import MainRoutes from './Pages/MainRoutes'
 function App() {
   return (
     <div className="App">
-      {/* <DesktopNav/> */}
-      {/* <br/>
+      <DesktopNav/>
       <br/>
       <br/>
       <br/>
       <br/>
-      <br/> */}
+      <br/>
+      <br/>
       <MainRoutes/>
-      {/* <Footer/> */}
+      <Footer/>
     </div>
   )
 }
