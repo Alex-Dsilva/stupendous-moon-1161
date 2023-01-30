@@ -111,8 +111,8 @@ const Login = () => {
 
 
   return (
-    <Formbg >
-        {/* <Link to="products"><BgImage src={bg}/></Link> */}
+    <div >
+        <Link to="products"><BgImage src={bg}/></Link>
        <FormWrapper>
         <FormHead>
             <h3>Sign in</h3>
@@ -166,14 +166,13 @@ const Login = () => {
             </Gdiv>
         </SignInform>
        </FormWrapper>
-    </Formbg>
+    </div>
   )
 }
 
 export default memo(Login, (prevProps, nextProps)=>{
   return prevProps.value===nextProps.value
 })
-
 
 
 const Formbg=styled.div`
@@ -189,7 +188,6 @@ const Formbg=styled.div`
   background-repeat: no-repeat;
 `
 
-
 const FormWrapper=styled.div`
     padding: 5px;
     width: 30%;
@@ -198,13 +196,10 @@ const FormWrapper=styled.div`
     border-radius: 4px;
     box-shadow: 0 0 10px rgb(0 0 0 / 20%);
     position: absolute;
-    /* top: 200px;
+    top: 200px;
     transform: translate(90%);
-    text-align: left; */
+    text-align: left;
     z-index: 3;
-    @media (max-width: 768px) {
-      width: 80%;
-  }
 `;
 
 const SignInform=styled.form`
@@ -228,7 +223,6 @@ const SignInform=styled.form`
         border: 1px solid #06f;
         border-radius: 4px;
     }
-
     #New_Account{
         justify-self: center;
         width: 100%;
@@ -313,12 +307,9 @@ const Right=styled.div`
   }
 `
 const BgImage=styled.img`
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     border: none;
-    @media (max-width: 768px) {
-      width: 98vw;
-  }
 `
 const FromPasswordInputWrapper=styled.div`
     display: flex;
