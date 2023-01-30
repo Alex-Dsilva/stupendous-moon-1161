@@ -83,8 +83,7 @@ function Signup() {
         const v2 = PWD_REGEX.test(pwd);
         const v3=EMAIl_REGEX.test(email)
         const v4=validateCaptcha(captcha)
-        // console.log(!v1, !v2, !v3, !v4)
-        console.log(!v3)
+        console.log(!v1, !v2, !v3, !v4)
         if (!v1 || !v2 || !v3 || !v4 ) {
             alert("Invalid Entry");
             return;
@@ -135,8 +134,8 @@ function Signup() {
 
 
   return (
-    <div >
-        <Link to="/bestproducts"><BgImage src={bg}/></Link>
+    <Formbg >
+        {/* <Link to="/bestproducts"><BgImage src={bg}/></Link> */}
        <FormWrapper>
         <FormHead>
             <h3>Create your account</h3>
@@ -201,7 +200,7 @@ function Signup() {
 
         </SignInform>
        </FormWrapper>
-    </div>
+    </Formbg>
   )
 }
 
@@ -310,10 +309,17 @@ export default Signup
 
 
 
-
-
-
-
+const Formbg=styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 90vh;
+  background: url(${bg});
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+`
 
 const CaptchaContainer=styled.div`
     display: flex;
@@ -341,11 +347,13 @@ const BgImage=styled.img`
 
 const FromCaptchaInputWrapper=styled.div`
     border:1.5px solid ;
-    width: 98px;
+    width: 98%;
    height: 30px;
    padding: none;
    margin: none;
    > input{
+    width: 100%;
+    text-align: center;
     padding: 0;
     margin: 0;
    }
@@ -370,10 +378,14 @@ const FormWrapper=styled.div`
     border-radius: 4px;
     box-shadow: 0 0 10px rgb(0 0 0 / 20%);
     position: absolute;
-    top: 200px;
+    /* top: 200px;
     transform: translate(90%);
-    z-index: 3;
+    z-index: 3; */
     text-align: left;
+
+    @media (max-width: 768px) {
+      width: 80%;
+  }
 `;
 
 const SignInform=styled.form`
