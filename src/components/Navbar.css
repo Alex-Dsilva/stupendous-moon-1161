@@ -1,10 +1,29 @@
 
-#search{
+/* #search{
     height: 35px;
     width: 600px;
     margin-left: -120px;
 
+} */
+.flexmanu{
+    display: flex;
+    width:60%;
+    height:40px;
+    margin:auto;
+    align-items:center;
+    color:#FFFFFF;
+    justify-content: space-around;
 }
+
+@media (max-width: 767px) {
+    .flexmanu{
+        display: none;
+    }
+    .responsive-navbar {
+      flex-direction: column;
+    }
+  }
+
 
 #sap{
     color: white;

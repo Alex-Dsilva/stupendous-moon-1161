@@ -175,7 +175,18 @@ export default memo(Login, (prevProps, nextProps)=>{
 })
 
 
-
+const Formbg=styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 90px;
+  width: 100%;
+  height: 90vh;
+  background: url(${bg});
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+`
 
 const FormWrapper=styled.div`
     padding: 5px;

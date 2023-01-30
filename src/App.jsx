@@ -7,12 +7,6 @@ function App() {
   return (
     <div className="App">
       <DesktopNav/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
       <MainRoutes/>
       <Footer/>
     </div>

@@ -311,8 +311,18 @@ export default Signup
 
 
 
-
-
+const Formbg=styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 90vh;
+  margin-top: 112px;
+  background: url(${bg});
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+`
 
 
 const CaptchaContainer=styled.div`
