@@ -99,6 +99,7 @@ const Footer = () => {
             Customs
           </Text>
         </Box>
+        
 
         <Box className="qrCode">
           <Text className="DandC">Download the App</Text>
