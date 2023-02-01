@@ -46,8 +46,9 @@ import { useSelector } from 'react-redux'
 //   ]
 function Cart() {
 
-  const { Appreducer, Authreducer } = useSelector(store => store);
-  const {cart, userId, AuthLoading}=Authreducer
+  const {product, auth } = useSelector(store => store);
+  const { products ,isLoading, } = product;
+  const {cart, userId, AuthLoading}=auth
 
   if(AuthLoading){
     return (

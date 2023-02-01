@@ -315,7 +315,7 @@ const Formbg=styled.div`
   align-items: center;
   width: 100%;
   height: 90vh;
-  margin-top: 112px;
+  margin-top: 90px;
   background: url(${bg});
   background-attachment: fixed;
   background-size: cover;

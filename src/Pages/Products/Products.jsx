@@ -9,25 +9,25 @@ import { RequestToCart, addToCart, FailToCart } from "../../redux/Auth/AuthActio
 
 
 const Products = ({ title,searchQuery }) => {
-  const { Appreducer, Authreducer } = useSelector(store => store);
-  const { products ,isLoading, } = Appreducer;
-  const {cart, userId, AuthLoading}=Authreducer
-  console.log(cart)
+  const {product, auth } = useSelector(store => store);
+  const { products ,isLoading, } = product;
+  const {cart, userId, AuthLoading}=auth
+  console.log(auth)  
   const dispatch = useDispatch();
   const options = {
     method: 'GET',
-    url: 'https://amazon24.p.rapidapi.com/api/product',
-    params: {categoryID: 'aps', keyword:searchQuery, country: 'IN', page: '1'},
+    url: 'https://amazon23.p.rapidapi.com/product-search',
+    params: {query: searchQuery , country: 'IN'},
     headers: {
       'X-RapidAPI-Key': '5c29c0f5dcmsh221befa5b77990fp148730jsna14c92afa3c0',
-      'X-RapidAPI-Host': 'amazon24.p.rapidapi.com'
+      'X-RapidAPI-Host': 'amazon23.p.rapidapi.com'
     }
   };
 
   const HandleAddToCart=(el)=>{
     console.log(el)
-    // el=el.qty=1
-    // console.log(el)
+    el=el.qty=1
+    console.log(el)
     dispatch(RequestToCart())
     updateDoc(doc(db, "users", `${userId}`), {
       bag: arrayUnion(el)
@@ -51,10 +51,11 @@ const Products = ({ title,searchQuery }) => {
   }
 
   useEffect(() => {
+    console.log(options)
     dispatch(getProducts(options));
   }, [searchQuery]);
 
-  if (isLoading || AuthLoading) {
+  if (isLoading ) {
     return (
       <div className="loading">
       </div>
@@ -63,27 +64,27 @@ const Products = ({ title,searchQuery }) => {
 
 
   return (
-    <div>
-      <h1>
+    <div id="pro">
+      <h1 className="title">
         {title}
       </h1>
       <div className="product">
-        {products.length > 0 &&
+        {products && products.length > 0 &&
           products.map((ele,index) =>
             <div key={index} className="product1">
-              <div id="imgdiv" ><img style={{height:"120px"}} src={ele.product_main_image_url} alt={ele.product_title} /></div>
+              <div id="imgdiv" ><img style={{height:"120px"}} src={ele.thumbnail} alt={ele.title} /></div>
               <p>
-                {ele.product_title}
+                {ele.title}
               </p>
               <h2 className="Price">
-              ₹{ele.app_sale_price===null?"249":ele.app_sale_price }      
+              ₹{ele.price.current_price===null?"249":ele.price.current_price }      
               </h2>
               <p>
-              <s>{ele.original_price===null?"₹249":ele.original_price}</s>
+              <s>{ele.price.before_price===null?"₹1249":ele.price.before_price}</s>
 
               </p>
               <button className="rating" disabled>
-                {ele.evaluate_rate !== null ? ele.evaluate_rate : "No Reviews"}
+                {ele.reviews.rating !== null ? ele.reviews.rating  : "No Reviews"}
               </button>
               <button onClick={()=> HandleAddToCart(ele)} className="cart">Add To Cart</button>
             </div>

@@ -40,10 +40,9 @@ import { useSelector } from "react-redux";
 
 function Navbar() {
 
-
+  const {product, auth } = useSelector(store => store);
+  const {name}=auth
   
-  const { Appreducer, Authreducer } = useSelector(store => store);
-  const {name}= Authreducer
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (

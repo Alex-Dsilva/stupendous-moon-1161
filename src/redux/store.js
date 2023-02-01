@@ -8,7 +8,11 @@ import {
   import { Appreducer } from "./App/AppReducer";
 import thunk from "redux-thunk";
   
-  const rootReducer = combineReducers({ Authreducer, Appreducer });
-  const composeEnhancers =window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ||compose;
+  const rootReducer = combineReducers({
+    auth: Authreducer,
+    product: Appreducer
+  }
+    );
+  // const composeEnhancers =window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ||compose;
   
-  export const store = legacy_createStore(rootReducer,composeEnhancers(applyMiddleware(thunk)));
+  export const store = legacy_createStore(rootReducer, applyMiddleware(thunk));

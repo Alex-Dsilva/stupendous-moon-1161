@@ -1,6 +1,15 @@
 * {
   text-align: center;
 }
+
+#pro{
+  margin-top: 96px;
+}
+
+.title{
+  font-size: 35px;
+}
+
 .product {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

@@ -59,7 +59,6 @@ const Login = () => {
       const handleSubmit = async (e) => {
         e.preventDefault();
         // if button enabled with JS hack
-        console.log("resfromsub")
         const v1 = PWD_REGEX.test(pwd);
         const v2=EMAIl_REGEX.test(email)
         if (!v1 || !v2 ) {
@@ -287,7 +286,7 @@ const Orline=styled.div`
     position: relative;
     >span {
       font-size: 14px;
-    width: 16px;
+    width: 50px;
     color: #999;
     background-color: #fff;
     padding: 0 13px;
