@@ -1,6 +1,7 @@
 .Homepage {
   width: 90%;
   margin: auto;
+  margin-top: 130px;
 }
 .trending_bef {
   margin: 1rem;
@@ -37,16 +38,20 @@ img {
 }
 .new_one img {
   border-radius: 5px;
-  height: 22rem;
-  width: 15rem;
+  height: 220px;
+  width: 250px;
 }
 .Image{
     width:"50px"
 }
 .new_2 {
   background-color: white;
-  padding: 1rem;
+  padding: 2rem;
   border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .mySwiper1{
     height: 37.5rem;
@@ -63,6 +68,11 @@ img {
     justify-content: center;
     align-items: center;
 }
+
+h2{
+    font-size: 25px;
+}
+
 .deal_1_5{
     border: 1px solid rgb(226, 226, 226);
     padding: 0.5rem;
@@ -74,6 +84,14 @@ img {
 .deal_2 img{
     width: 70%;
 }
+
+.best1 div{
+ display:flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+}
+
 .pop{
     margin: 1rem;
 }
@@ -103,7 +121,7 @@ img {
     width: 70%;
     height: 10rem;
 }
-@media screen and (max-width:1300px) {
+@media screen and (max-width:750px) {
     .new_one img{
         height: 21rem;
     }
@@ -111,7 +129,7 @@ img {
         height: 19rem;
     }
 }
-@media screen and (max-width:1200px) {
+@media screen and (max-width:750px) {
     .mySwiper1{
         width: 50rem;
         /* height: 21rem; */

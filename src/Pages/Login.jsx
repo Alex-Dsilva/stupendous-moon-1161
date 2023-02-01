@@ -59,7 +59,6 @@ const Login = () => {
       const handleSubmit = async (e) => {
         e.preventDefault();
         // if button enabled with JS hack
-        console.log("resfromsub")
         const v1 = PWD_REGEX.test(pwd);
         const v2=EMAIl_REGEX.test(email)
         if (!v1 || !v2 ) {
@@ -111,8 +110,7 @@ const Login = () => {
 
 
   return (
-    <div >
-        <Link to="products"><BgImage src={bg}/></Link>
+    <Formbg >
        <FormWrapper>
         <FormHead>
             <h3>Sign in</h3>
@@ -128,7 +126,7 @@ const Login = () => {
                     onFocus={() => setEmailFocus(true)}
                     onBlur={() => setEmailFocus(false)}/>
                 </FromInputWrapper>
-                {emailFocus && email && !validEmail?<label for="email">Please enter a valid email address</label>:""}
+                {emailFocus && email && !validEmail?<label htmlFor="email">Please enter a valid email address</label>:""}
             </div>
             <div>
                 <FromPasswordInputWrapper>
@@ -140,12 +138,12 @@ const Login = () => {
                     onBlur={() => setPwdFocus(false)}/>
                     {checkpass? <RxEyeOpen onClick={()=>setCheckPass(false)}/>:<RxEyeClosed onClick={()=>setCheckPass(true)} />}
                 </FromPasswordInputWrapper>
-                {pwdFocus && pwd && !validPwd?<label for="password">Please enter a valid password</label>:""}
+                {pwdFocus && pwd && !validPwd?<label htmlFor="password">Please enter a valid password</label>:""}
             </div>
             <CheckOut>
                <Left>
                     <input type="checkbox" placeholder="checkbox" name="checkbox" onChange={(e) => console.log(e.target.value)} />
-                    <span for="checkbox">Keep me signed in  </span>
+                    <span htmlFor="checkbox">Keep me signed in  </span>
                     <AiOutlineQuestionCircle/>
                </Left>
                <Right>
@@ -166,7 +164,7 @@ const Login = () => {
             </Gdiv>
         </SignInform>
        </FormWrapper>
-    </div>
+    </Formbg>
   )
 }
 
@@ -179,7 +177,7 @@ const Formbg=styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 90px;
+  margin-top: 60px;
   width: 100%;
   height: 90vh;
   background: url(${bg});
@@ -190,16 +188,21 @@ const Formbg=styled.div`
 
 const FormWrapper=styled.div`
     padding: 5px;
-    width: 30%;
+    /* width: 30%; */
     padding: 20px 30px;
     background-color: #fff;
     border-radius: 4px;
     box-shadow: 0 0 10px rgb(0 0 0 / 20%);
     position: absolute;
-    top: 200px;
+    margin-top: 70px;
+
+    /* top: 200px;
     transform: translate(90%);
-    text-align: left;
+    text-align: left; */
     z-index: 3;
+    @media (max-width: 768px) {
+      width: 80%;
+  }
 `;
 
 const SignInform=styled.form`
@@ -263,7 +266,7 @@ const CheckOut=styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
+  gap: 20px;
 `
 const Left=styled.div`
   display: flex;
@@ -281,7 +284,7 @@ const Orline=styled.div`
     position: relative;
     >span {
       font-size: 14px;
-    width: 16px;
+    width: 50px;
     color: #999;
     background-color: #fff;
     padding: 0 13px;

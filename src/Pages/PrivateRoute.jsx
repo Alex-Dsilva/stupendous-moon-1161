@@ -4,8 +4,9 @@ import { useSelector } from 'react-redux';
 
 const PrivateRoute = ({children}) => {
 
-    const { Appreducer, Authreducer } = useSelector(store => store);
-    const {userId} = Authreducer;
+  const { auth } = useSelector(store => store);
+  const {userId}=auth
+
     // console.log()
     if(!userId){
         return <Navigate to="/login" state={{ from: history.location }} />

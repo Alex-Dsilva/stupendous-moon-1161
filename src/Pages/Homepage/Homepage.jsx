@@ -20,7 +20,7 @@ const Homepage = () => {
           </div>
           <div>
             <div className="deal_1_5">
-              Deal Of The Day
+             <h2>Deal Of The Day</h2> 
               <div className="deal_2">
                 <div>
                   <img
@@ -53,7 +53,7 @@ const Homepage = () => {
               </div>
             </div>
             <div style={{ marginTop: "1rem" }} className="deal_1_5">
-              Featured Products
+               <h2>Featured Products</h2>
               <div className="deal_2">
                 <div>
                   <img

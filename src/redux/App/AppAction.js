@@ -16,7 +16,7 @@ let getProductsFailure = () => {
 const getTodayDeals = (options) => async(dispatch) => {
   dispatch(getProductsRequest());
   axios.request(options).then(function (response) {
-    // console.log(response.data)
+    console.log(response.data)
     dispatch(getProductsSuccess(response.data.docs));
   }).catch(function (error) {
     console.error(error);
@@ -28,7 +28,8 @@ const getTodayDeals = (options) => async(dispatch) => {
 const getProducts = (options) => async(dispatch) => {
   dispatch(getProductsRequest());
   axios.request(options).then(function (response) {
-    dispatch(getProductsSuccess(response.data.docs));
+    console.log(response.data)
+    dispatch(getProductsSuccess(response.data.result));
   }).catch(function (error) {
     console.error(error);
     alert(error.response.data.message)

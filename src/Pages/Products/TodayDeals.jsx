@@ -5,8 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const TodayDeals = ({ title }) => {
-  const {Appreducer}=useSelector((store)=>store);
-  const {products,isLoading}=Appreducer
+
+  const {product, auth } = useSelector(store => store);
+  const { products ,isLoading, } = product;
+  const {cart, userId, AuthLoading}=auth
+
   console.log(Appreducer);
   const dispatch=useDispatch()
 
@@ -15,8 +18,8 @@ const TodayDeals = ({ title }) => {
     url: 'https://amazon24.p.rapidapi.com/api/product',
     params: {categoryID: 'aps', keyword: 'todays deal', country: 'IN', page: '2'},
     headers: {
-      'X-RapidAPI-Key': '5c29c0f5dcmsh221befa5b77990fp148730jsna14c92afa3c0',
-      'X-RapidAPI-Host': 'amazon24.p.rapidapi.com'
+      "X-RapidAPI-Key": "5c29c0f5dcmsh221befa5b77990fp148730jsna14c92afa3c0",
+      "X-RapidAPI-Host": "amazon24.p.rapidapi.com"
     }
   };
 
@@ -31,12 +34,12 @@ const TodayDeals = ({ title }) => {
     dispatch(getTodayDeals(options))
   }, []);
 
-  // if (isLoading) {
-  //   return (
-  //     <div className="loading">
-  //     </div>
-  //   );
-  // }
+  if (isLoading) {
+    return (
+      <div className="loading">
+      </div>
+    );
+  }
 
   return (
     <div>

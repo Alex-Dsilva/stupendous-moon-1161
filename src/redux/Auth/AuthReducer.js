@@ -20,9 +20,9 @@ initialState.cart.map((items) => (items["item_quantity"] = 1));
 //set Cart item id
 initialState.cart.map((items) => (items["id"] = items.product_base_href));
 
-export const Authreducer = (state = initialState, action) => {
+const Authreducer = (state = initialState, action) => {
   const { type, payload } = action;
-  // console.log(payload)
+  console.log(type)
   switch (type) {
     case types.REMOVE_CART_ITEM:
       const updatedCart = state.cart.filter(
@@ -109,3 +109,5 @@ export const Authreducer = (state = initialState, action) => {
       return state;
   }
 };
+
+export {Authreducer}
