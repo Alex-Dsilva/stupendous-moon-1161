@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <DesktopNav/>
       <MainRoutes/>
-      {/* <Footer/> */}
+      <Footer/>
     </div>
   )
 }

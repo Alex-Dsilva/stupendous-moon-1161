@@ -1,96 +1,153 @@
-#help{
-    font-size: 15px;
-    height: 300px;
-    width: 200px;
-    
+
+
+.Footer{
+    background: #F1F6FD;
+    height: 800px;
+    margin-top: 50px;
 }
 
-#support{
-    margin-left: 180px;
-    margin-top: -320px;
-    font-size: 15px;
-    width: 150px;
-}
-
-#policy{
-    margin-left: 360px;
-    margin-top: -270px;
-    font-size: 15px;
-    width: 100px;
-
-}
-
-#qr{
-    height: 150px;
-    width: 150px;
-    margin-left: 30px;
-    margin-bottom: 80px;
-    /* margin-left: -80px;
-    margin-top: -00px;
-    margin-bottom: 400px; */
-  
-}
-
-#down{
-   
-    margin-top: -220px;
-    height: 200px;
-    width: 400px;
-    margin-left: 550px;
-}
-
-#goo{
-    height: 100px;
-    margin-bottom: 100px;
-    margin-left: 30px;
-    /* margin-bottom: 300px; */
-    
-}
-
-#serv{
-    margin-left: 1000px;
-    height: 130px;
-    width: 280px;
-    /* border: 1px solid red; */
-    margin-top: -160px;
-}
-
-#logos{
-    display: flex;
-    margin-top: 75px;
-    margin-left: 250px;
-}
-
-#log{
-    height: 100px;
-    width: 100px;
-}
-
-#paypal{
-    height: 80px;
-    margin-left: 10px;
-    margin-top: 10px;
-}
-
-#visa{
-    height: 90px;
-    margin-top: 5px;
-}
-
-#master{
-    height: 60px;
-    margin-top: 10px;
-
-}
-
-#amr{
-    height: 80px;
-    margin-left: 15px;
-    margin-top: 5px;
-}
-
-#pilot{
-    height: 40px;
-    margin-left: 10px;
+#textHead{
     margin-top: 20px;
+}
+
+.subscribeBox{
+    display: flex;
+   padding: 20px 0px 20px 0px;
+   
+   justify-content: center;
+}
+
+.input{
+    width:480px;
+    height:50px;
+    border:1px solid #0066FF;
+}
+
+.subBtn{
+    height: 50px;
+    border: 1px solid #0066FF;
+    width: 112px;
+    color: white;
+    background: #0066FF;
+}
+
+.footerDiv{
+    display: flex;
+    margin-top: 70px;
+    margin-left: 100px;
+    
+}
+
+.footerDiv:hover{
+    cursor: pointer;
+}
+
+.policySection{
+    margin-left: 50px;
+}
+
+.qrCode{
+    margin-left: 120px;
+}
+
+.DandC{
+    font-weight: bold;
+}
+
+.lowerImages{
+    display:flex;
+    margin-top:170px;
+    margin-left:100px;
+    padding-bottom:60px;
+}
+
+@media screen and (max-width:500px)
+{
+    .Footer{
+        width: 100%;
+        
+    }
+
+    .subscribeBox{
+       
+        width: 100%;
+      
+    }
+
+    
+
+    .footerDiv{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+       
+    }
+
+    .policySection{
+        margin-left: 10px;
+    }
+
+    .qrCode{
+        margin: auto;
+    }
+
+    .DandC{
+        margin-left: -50px;
+    }
+
+    .lowerImages{
+        display: grid;
+        margin-left: 10px;
+        grid-template-columns: repeat(4, 1fr);
+        margin-top: 30px;
+    }
+}
+
+
+
+@media screen and (max-width:900px)
+{
+    .Footer{
+        width: 100%;
+        
+    }
+
+    .subscribeBox{
+        margin: auto;
+        width: 100%;
+        display: grid;
+        gap: 10px;
+    }
+
+    .input{
+        width: 400px;
+        margin-left: 20px;
+    }
+
+    .footerDiv{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        margin-left: 20px;
+    }
+
+    .policySection{
+        margin-left: 10px;
+    }
+
+    .qrCode{
+        /* margin-left: 80px; */
+        margin: auto;
+    }
+
+    .DandC{
+        /* margin-left: -60px; */
+        margin: auto;
+    }
+
+    .lowerImages{
+        /* display: grid;
+        margin-left: 10px;
+        grid-template-columns: repeat(4, 1fr);
+        margin-top: 70px; */
+        display: none;
+    }
 }
