@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProductsByID } from "../../redux/App/AppAction";
 
 export const SingleProduct = () => {
-  const { Appreducer } = useSelector(store => store);
+  const {product, auth } = useSelector(store => store);
+  const { products ,isLoading, } = product;
+  const {cart, userId, AuthLoading}=auth
   //   console.log(Appreducer);
 //   const { products, isLoading } = Appreducer;
   console.log(Appreducer);

@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import styled from 'styled-components'
 import {RxEyeClosed, RxEyeOpen} from 'react-icons/rx'
 import { loadCaptchaEnginge,LoadCanvasTemplateNoReload,validateCaptcha} from 'react-simple-captcha';
+import {FcGoogle} from 'react-icons/fc'
 import {
     getAuth,
     createUserWithEmailAndPassword,
@@ -135,8 +136,7 @@ function Signup() {
 
 
   return (
-    <div >
-        <Link to="/bestproducts"><BgImage src={bg}/></Link>
+    <Formbg >
        <FormWrapper>
         <FormHead>
             <h3>Create your account</h3>
@@ -154,7 +154,7 @@ function Signup() {
                     onFocus={() => setUserFocus(true)}
                     onBlur={() => setUserFocus(false)}/>
                 </FromInputWrapper>
-                {userFocus && user && !validName ?<label for="name">Please enter your name</label>:""}
+                {userFocus && user && !validName ?<label htmlFor="name">Please enter your name</label>:""}
             </div>
             <div>
                 <FromInputWrapper>
@@ -166,7 +166,7 @@ function Signup() {
                     onFocus={() => setEmailFocus(true)}
                     onBlur={() => setEmailFocus(false)}/>
                 </FromInputWrapper>
-                {emailFocus && email && !validEmail?<label for="email">Please enter a valid email address</label>:""}
+                {emailFocus && email && !validEmail?<label htmlFor="email">Please enter a valid email address</label>:""}
             </div>
             <div>
                 <FromPasswordInputWrapper>
@@ -178,7 +178,7 @@ function Signup() {
                     onBlur={() => setPwdFocus(false)}/>
                     {checkpass? <RxEyeOpen onClick={()=>setCheckPass(false)}/>:<RxEyeClosed onClick={()=>setCheckPass(true)} />}
                 </FromPasswordInputWrapper>
-                {pwdFocus && pwd && !validPwd?<label for="password">Please enter a valid password</label>:""}
+                {pwdFocus && pwd && !validPwd?<label htmlFor="password">Please enter a valid password</label>:""}
 
             </div>
             <CaptchaContainer>
@@ -191,7 +191,7 @@ function Signup() {
                     onFocus={() => setCaptchaFocus(true)}
                     onBlur={() => setCaptchaFocus(false)}/>
                 </FromCaptchaInputWrapper>
-                {captchaFocus && captcha &&validCaptcha?<label for="captcha">ReEnter the verification code</label>:""}
+                {captchaFocus && captcha &&validCaptcha?<label htmlFor="captcha">ReEnter the verification code</label>:""}
             </div>
             
                <LoadCanvasTemplateNoReload/>
@@ -199,9 +199,17 @@ function Signup() {
         
             <SignInput id="submit" disabled={!validName || !validPwd || !validEmail ||!validCaptcha ? false : true}  type="submit"/>
 
+            <Orline>
+              <span>or</span>
+            </Orline>
+
+            <Gdiv>
+              <FcGoogle/>
+            </Gdiv>
+
         </SignInform>
        </FormWrapper>
-    </div>
+    </Formbg>
   )
 }
 
@@ -311,13 +319,14 @@ export default Signup
 
 
 
+
 const Formbg=styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 60px;
   width: 100%;
   height: 90vh;
-  margin-top: 90px;
   background: url(${bg});
   background-attachment: fixed;
   background-size: cover;
@@ -351,10 +360,10 @@ const BgImage=styled.img`
 
 const FromCaptchaInputWrapper=styled.div`
     border:1.5px solid ;
-    width: 98px;
-   height: 30px;
-   padding: none;
-   margin: none;
+    width: 100%;
+    height: 30px;
+    padding: none;
+    margin: none;
    > input{
     padding: 0;
     margin: 0;
@@ -363,7 +372,7 @@ const FromCaptchaInputWrapper=styled.div`
 `
 
 const CaptchaInput=styled.input`
-   width: 70px;
+   width: 60%;
    height: 28px;
    padding: none;
    margin: none;
@@ -373,18 +382,48 @@ const CaptchaInput=styled.input`
 `;
 
 const FormWrapper=styled.div`
-    padding: 5px;
-    width: 30%;
     padding: 20px 30px;
     background-color: #fff;
     border-radius: 4px;
     box-shadow: 0 0 10px rgb(0 0 0 / 20%);
     position: absolute;
-    top: 200px;
-    transform: translate(90%);
+     top: 50px;
+    /* transform: translate(120%); 
+    z-index: 3; */
     z-index: 3;
-    text-align: left;
+    @media (max-width: 768px) {
+      width: 80%;
+  }
 `;
+
+const Gdiv=styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  > svg{
+    height: 44px;
+    width: 35px;
+  }
+`
+
+const Orline=styled.div`
+    height: 20px;
+    border-bottom: 1px solid #e6e7e8;
+    position: relative;
+    >span {
+      font-size: 14px;
+    width: 50px;
+    color: #999;
+    background-color: #fff;
+    padding: 0 13px;
+    margin-left: -21px;
+    position: absolute;
+    left: 50%;
+    bottom: -9px;
+    z-index: 2;
+    }
+`
 
 const SignInform=styled.form`
    display: flex;
