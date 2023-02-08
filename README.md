@@ -1,4 +1,4 @@
-# ShopMart
+# GeekBuying
 ![image](https://user-images.githubusercontent.com/107488954/217531935-18fcdad9-733a-40f6-a9b1-649feb3e139a.png)
 
 ## Buy Anything from AnyWhere
