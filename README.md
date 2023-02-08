@@ -80,5 +80,9 @@ its Fully Responsive. Daily Objects is a E-Commerce Website who deals with the c
 ![image](https://user-images.githubusercontent.com/107488954/217532630-a6d26ee2-d3cf-404b-984e-d95c8e0bf735.png)
 
 
+## Team Members.
+1.	Mr. Alex Dislva 
+2.	Mr. Sandeep Prajapati
+3.	Mr. Ms. Vishal Raj.
 
 
