@@ -27,12 +27,12 @@ const getTodayDeals = (options) => async(dispatch) => {
 // getptoducts
 const getProducts = (options) => async(dispatch) => {
   dispatch(getProductsRequest());
-  axios.request(options).then(function (response) {
-    console.log(response.data)
-    dispatch(getProductsSuccess(response.data.result));
-  }).catch(function (error) {
+  axios.get(`http://localhost:6351/products?${new URLSearchParams(options).toString()}`).then((res) =>{
+    console.log(res.data)
+    dispatch(getProductsSuccess(res.data));
+  }).catch( (error)=> {
     console.error(error);
-    alert(error.response.data.message)
+    alert(error.data.message)
   });
 };
 // getproducts by id
@@ -45,5 +45,12 @@ const getProductsByID = (options) => async(dispatch) => {
     console.error(error);
   });
 };
+
+
+const addtocart=(payload)=>async(dispatch)=>{
+  
+}
+
+
 export { getTodayDeals ,getProducts,getProductsByID};
 

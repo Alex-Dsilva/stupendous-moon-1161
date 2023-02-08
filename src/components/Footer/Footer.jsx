@@ -9,6 +9,7 @@ const Footer = () => {
         color="#0066FF"
         paddingTop="20px"
         paddingBottom="20px"
+        ml="10px"
         fontSize="16px"
       >
         Why Buy From GeekBuying &nbsp; &nbsp; &nbsp; <b>+</b>
@@ -53,7 +54,7 @@ const Footer = () => {
             Site Map
           </Text>
         </Box>
-        <Box marginLeft="100px">
+        <Box marginLeft={["100px","20px","20px"]}>
           <Text textAlign="left" fontSize="18px" fontWeight="bold">
             Support
           </Text>
@@ -104,8 +105,8 @@ const Footer = () => {
         <Box className="qrCode">
           <Text className="DandC">Download the App</Text>
           <Image
-            height="120px"
-            width="120px"
+            height="100px"
+            width="100px"
             src="https://content1.geekbuying.com/V1.4/en/images/index_images/android_app.png"
           />
           <Text className="DandC">Connect With Us</Text>
@@ -135,7 +136,7 @@ const Footer = () => {
           />
         </Box>
 
-        <Box marginLeft="80px" marginTop="30px">
+        {/* <Box marginLeft="80px" marginTop="30px">
           <Box display="flex" gap="10px">
             <Image
               width="22px"
@@ -160,7 +161,7 @@ const Footer = () => {
             />
             <Text>Live Chat</Text>
           </Box>
-        </Box>
+        </Box> */}
       </Box>
       <Box
        className="lowerImages"

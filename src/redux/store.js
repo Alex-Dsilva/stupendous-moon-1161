@@ -4,13 +4,12 @@ import {
     compose,
     combineReducers,
   } from "redux";
-  import { Authreducer } from "./Auth/AuthReducer";
-  import { Appreducer } from "./App/AppReducer";
+import { Authreducer } from "./Auth/AuthReducer";
+import { Appreducer } from "./App/AppReducer";
 import thunk from "redux-thunk";
   
   const rootReducer = combineReducers({
-    auth: Authreducer,
-    product: Appreducer
+    Authreducer, Appreducer
   }
     );
   // const composeEnhancers =window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ||compose;

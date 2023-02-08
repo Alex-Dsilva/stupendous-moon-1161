@@ -4,7 +4,7 @@ import {  getTodayDeals } from "../../redux/App/AppAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const TodayDeals = ({ title }) => {
+const TodayDeals = ({ title, searchQuery }) => {
 
   const {product, auth } = useSelector(store => store);
   const { products ,isLoading, } = product;

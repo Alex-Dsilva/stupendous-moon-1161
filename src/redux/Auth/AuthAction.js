@@ -1,50 +1,5 @@
 import * as types from "./AuthActionTypes";
 
-export const requestremovecart = (payload) => {
-  return {type: types.REQUEST_REMOVE_CART};
-};
-export const successremovecart = (payload) => {
-  return {type: types.SUCCESS_REMOVE_CART ,payload};
-};
-
-export const failureremovecart = () => {
-  return {type: types.FAILURE_REMOVE_CART};
-};
-
-
-
-export const modifyItemQuantity = (payload) => {
-  return {
-    type: types.MODIFY_ITEM_QUANTITY,
-    payload,
-};
-};
-
-export const modifyItemSize = (payload) => {
-  return {
-    type: types.MODIFY_ITEM_SIZE,
-    payload,
-  };
-};
-
-export const RequestToCart = () => {
-  return {type: types.REQUEST_ADD_CART};
-};
-
-export const addToCart = (payload) => {
-  return {type: types.SUCCESS_ADD_CART,payload};
-};
-
-export const FailToCart = () => {
-  return {type: types.FAILURE_ADD_CART};
-};
-
-
-export const setCartEmpty = () => {
-  return {
-    type: types.MAKE_CART_EMPTY,
-  };
-};
 
 export const updateAddress = (payload) => {
   return {
@@ -69,17 +24,19 @@ export const signupfailure=()=>{
 }
 
 export const loginrequest = () => {
-  return { type: types.EMAIL_LOGIN_REQUEST };
+  return { type: types.LOGIN_REQUEST };
 };
 
 export const loginsuccess = (payload) => {
-  return { type: types.EMAIL_LOGIN_SUCCESS, payload };
+  return { type: types.LOGIN_SUCCESS, payload };
 };
 
 export const loginfailure = () => {
-  return { type: types.EMAIL_LOGIN_FAILURE };
+  return { type: types.LOGIN_FAILURE };
 };
 
+
+// --------------------------------google login actions
 export const googleloginrequest = () => {
   return { type: types.GOOGLE_LOGIN_REQUEST };
 };

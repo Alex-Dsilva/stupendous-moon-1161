@@ -1,17 +1,18 @@
 import React, { useEffect, useState, useRef, memo } from 'react'
+import axios from 'axios'
 import styled from 'styled-components'
 import {RxEyeClosed, RxEyeOpen} from 'react-icons/rx'
 import {AiOutlineQuestionCircle} from 'react-icons/ai'
 import {FcGoogle} from 'react-icons/fc'
-import {
-    getAuth,
-    signInWithEmailAndPassword,
-    GoogleAuthProvider,
-    signInWithPopup
-  } from "firebase/auth";
+// import {
+//     getAuth,
+//     signInWithEmailAndPassword,
+//     GoogleAuthProvider,
+//     signInWithPopup
+//   } from "firebase/auth";
 import {loginrequest, loginsuccess, loginfailure} from "../redux/Auth/AuthAction"
-import { app, db } from "../config/firebaseConfig"
-import { doc, getDoc, setDoc, collection } from "firebase/firestore";
+// import { app, db } from "../config/firebaseConfig"
+// import { doc, getDoc, setDoc, collection } from "firebase/firestore";
 import { Link, useNavigate } from 'react-router-dom';
 import bg from "../assets/Signup.jpg"
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,7 +21,7 @@ import { useDispatch, useSelector } from 'react-redux';
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{6,24}$/;
 const EMAIl_REGEX =/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const Login = () => {
-  const auth = getAuth();
+    // const auth = getAuth();
     const userRef=useRef();
     const errRef=useRef();
     const dispatch=useDispatch()
@@ -40,7 +41,7 @@ const Login = () => {
 
     const [errMsg, setErrMsg] = useState('');
 
-    // const cart=useSelector((store)=>store.Authreducer.cart  )
+    // const {}=useSelector((store)=>store.AuthReducer  )
 
     // console.log(cart)
     useEffect(() => {
@@ -56,55 +57,57 @@ const Login = () => {
         setErrMsg('');
     }, [email, pwd])
     
-      const handleSubmit = async (e) => {
-        e.preventDefault();
-        // if button enabled with JS hack
-        const v1 = PWD_REGEX.test(pwd);
-        const v2=EMAIl_REGEX.test(email)
-        if (!v1 || !v2 ) {
-            alert("Invalid Entry");
-            return;
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      // if button enabled with JS hack
+      const v1 = PWD_REGEX.test(pwd);
+      const v2=EMAIl_REGEX.test(email)
+      if (!v1 || !v2 ) {
+          alert("Invalid Entry");
+          return;
+      }
+      
+      dispatch(loginrequest())
+      const data={
+          email:email,
+          password:pwd
+      }
+      const config = {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
         }
-        e.preventDefault()
-        console.log("res")
-        const data={
-            email:email,
-            password:pwd
-        }
-        dispatch(loginrequest())
-        signInWithEmailAndPassword(auth, data.email, data.password)
-        .then((userCredential) => {
-          const {displayName, uid} = userCredential.user;
-          console.log(displayName, uid);
-          const query = doc(db,"users", `${uid}`)
-          getDoc(query)
-          .then((res)=> {
-            const address= {
-              pincode: res._document.data.value.mapValue.fields.address.mapValue.fields.pincode.integerValue,
-              locality: res._document.data.value.mapValue.fields.address.mapValue.fields.locality,
-              city: res._document.data.value.mapValue.fields.address.mapValue.fields.city.stringValue,
-              state: res._document.data.value.mapValue.fields.address.mapValue.fields.state.stringValue,
-            }
-            const { bag, phone}={
-                bag:res._document.data.value.mapValue.fields.bag.arrayValue.values,
-                phone:res._document.data.value.mapValue.fields.phone.stringValue,
-            }
-  
-            console.log("data",  bag, phone)
-            console.log("address", address)
+      };
+      try {
+        const response = await axios.post('http://localhost:6351/users/login', data);
+        const token = response.data.token;
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-            dispatch(loginsuccess({displayName, uid, address, bag, phone}))
-            navigate("/");
-          })
-          
-          .catch((err)=> alert(err.message))
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          alert(`Sign-in Failed : ${errorMessage}`);
-        });
-      } 
+
+
+        // name: payload.name, userId:payload.userId
+        const name=response.data.name
+        const userId=response.data.userId
+        const phoneNumber=response.data.phoneNumber||null
+
+        const address={
+          line1:response.data.address.line1||null,
+          line2:response.data.address.line2||null,
+          city:response.data.address.city||null,
+          zipcode:response.data.address.zipcode||null,
+        }
+
+        console.log(response);
+
+        dispatch(loginsuccess({name,userId,phoneNumber,address}))
+
+
+      } catch (err) {
+        dispatch(loginfailure())
+        alert(`Sign-in Failed : ${err}`);
+      }
+
+    }
        
 
 
@@ -331,6 +334,11 @@ const FromPasswordInputWrapper=styled.div`
 
 const FormHead=styled.div`
     text-align: left;
+    h3{
+      font-size: 18px;
+      font-weight: 700;
+      padding: 10px;
+    }
 `
 const Gdiv=styled.div`
   display: flex;
