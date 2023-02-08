@@ -3,13 +3,10 @@ import React from "react";
 import logo from "../assets/onchoiselogo_4.jpg";
 import {
   Box,
-  Center,
-  Container,
+
   Divider,
   Flex,
   Image,
-  Text,
-  Icon,
   Input,
   Button,
   useDisclosure,
@@ -17,7 +14,6 @@ import {
   DrawerBody,
   DrawerCloseButton,
   DrawerContent,
-  MenuItem,
   DrawerHeader,
   DrawerOverlay,
   IconButton,
@@ -37,12 +33,11 @@ import { useSelector } from "react-redux";
 
 
 
-
 function Navbar() {
 
-  const {product, auth } = useSelector(store => store);
-  const {name}=auth
-  
+  // const { auth } = useSelector(store => store);
+  const {name} = useSelector(store => store.Authreducer);
+  // const {name}=auth
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -51,18 +46,21 @@ function Navbar() {
     height="fit-content"
     w="100vw"
     pt="10px"
+    display="flex"
+    justify="center"
+    alignItems="center"
     border={"2px solid #0e6548"}
     backgroundColor={"#0e6548"}
     position={"fixed"} top={"0"} zIndex={5} >
-
-  <Flex justify="space-around" align="center" >
-    <Link to="/" style={{width:"80px"}}><Image w="80px" h="45px" id="logo" src={logo} alt="" /></Link>
-    <Flex w="40%" justify="center" align="center" >
+  <Link to="/" style={{width:"150px", marginLeft:"20px"}}><Image w="150px" h="45px" id="logo" src={logo} alt="" /></Link>
+  <Box w="100%">
+  <Flex justify="space-around" align="center" ml={["0px","100px", "100px"]} >
+    <Flex w={["50%", "50%", "70%"]} justify="center" align="center" >
     <Input  w="80%"
    border="1px solid black"
    borderRight="0"
    borderLeftRadius="4px"
-   h="38px"
+   h="35px"
    borderRightRadius="0" 
    bg="white"
   type="text" 
@@ -72,20 +70,20 @@ function Navbar() {
 <Button 
   border="1px solid black"
   w="50px" 
-
+  h={["36px","36.5px", "37px"]}
   borderLeft="0"
   borderLeftRadius="0"
   borderRightRadius="4px" 
   bg="white"
 >
-  <AiOutlineSearch style={{fontSize:"40px", fontWeight:"800"}} />
+  <AiOutlineSearch style={{fontSize:"35px", fontWeight:"800"}} />
 </Button>
     </Flex >
-    <Flex w="20%" display={["none", "none", "flex"]} justify="space-around" align="center">
+    <Flex w={["15%","20%","15%"]} display={["none", "none", "flex"]} justify="space-around" align="center">
     <Link to="/login" style={{textDecoration:"none"}} id="sign"><Box color="#FFFFFF" fontWeight="600" >{name? name:"Sign In"}</Box></Link>
     <Link to="/cart" style={{textDecoration:"none"}}  id="cart"><Box color="#FFFFFF"><AiOutlineShoppingCart style={{fontSize:"22px",fontWeight:"900"}}/></Box></Link>
     </Flex>
-    <Box display={["block", "none", "none"]}>
+    <Box display={["block", "block", "none"]}>
         <IconButton
           icon={<AiOutlineMenu />}
           fontSize="20px"
@@ -100,14 +98,14 @@ function Navbar() {
             <DrawerBody p="10px" textAlign="left">
             
             <Flex w="100%" p="10px" justify="space-around" align="center">
-              <Link to="/login" style={{textDecoration:"none"}} id="sign"><Box color="#030202" fontWeight="600" >{name? name:"Sign In"}</Box></Link>
-               <Link to="/cart" style={{textDecoration:"none"}}  id="cart"><Box color="#000000"><AiOutlineShoppingCart style={{fontSize:"22px",fontWeight:"900"}}/></Box></Link>
+              <Link to="/login" onClick={onClose} style={{textDecoration:"none"}} id="sign"><Box color="#030202" fontWeight="600" >{name? name:"Sign In"}</Box></Link>
+              <Link to="/cart" onClick={onClose} style={{textDecoration:"none"}}  id="cart"><Box color="#000000"><AiOutlineShoppingCart style={{fontSize:"22px",fontWeight:"900"}}/></Box></Link>
             </Flex>
 
             <Divider />
-
+            <Box p="30px">
             <Link style={{textDecoration:"none"}} to="/newproducts" id="new">
-              <Box color="#1a1818" fontWeight="600" >New</Box>
+              <Box color="#1a1818" p="10px 0px" fontWeight="600" >New</Box>
             </Link>
             
             <Link style={{textDecoration:"none"}}  to="/bestproducts" id="best">
@@ -129,12 +127,12 @@ function Navbar() {
             <Link style={{textDecoration:"none"}} to="/apponlyproducts" id="ap">
               <Box color="#1a1818" p="10px 0px" fontWeight="600">App Only</Box>
             </Link>
+            </Box>
             </DrawerBody>
           </DrawerContent>
         </Drawer>
     </Box>
   </Flex>
-
 
   <Flex
         w="60%"
@@ -152,6 +150,7 @@ function Navbar() {
         <Link style={{textDecoration:"none"}} to="/payment" id="coup"><Box color="#FFFFFF" fontWeight="600">Wallet</Box></Link>
         <Link style={{textDecoration:"none"}} to="/apponlyproducts" id="ap"><Box color="#FFFFFF" fontWeight="600">App Only</Box></Link>
       </Flex>
+</Box>
 </Box>
 </ChakraProvider>
 );

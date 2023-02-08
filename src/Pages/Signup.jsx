@@ -3,17 +3,13 @@ import styled from 'styled-components'
 import {RxEyeClosed, RxEyeOpen} from 'react-icons/rx'
 import { loadCaptchaEnginge,LoadCanvasTemplateNoReload,validateCaptcha} from 'react-simple-captcha';
 import {FcGoogle} from 'react-icons/fc'
-import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    updateProfile
-  } from "firebase/auth";
+import axios from 'axios';
 import {signuprequest, signupsuccess, signupfailure} from '../redux/Auth/AuthAction'
-import { app, db } from "../config/firebaseConfig"
-import { doc, getDoc, setDoc } from "firebase/firestore";
 import { Link, useNavigate } from 'react-router-dom';
 import bg from "../assets/Signup.jpg"
 import { useDispatch, useSelector } from 'react-redux';
+
+
 
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{2,23}$/;
@@ -23,7 +19,7 @@ const EMAIl_REGEX =/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-
 
 function Signup() {
 
-    const auth = getAuth();
+    // const auth = getAuth();
     const userRef=useRef();
     const errRef=useRef();
     const dispatch=useDispatch()
@@ -93,43 +89,37 @@ function Signup() {
 
         dispatch(signuprequest())
         const data={
-            username:user,
+            name:user,
             email:email,
             password:pwd
         }
         console.log(data)
-            createUserWithEmailAndPassword(auth, data.email, data.password)
-            .then((res) => {
-              updateProfile(auth.currentUser, {
-                displayName: data.username
-              }).then(()=>{
-                console.log(res)
-                const {displayName, uid} = res.user;
-                
-                console.log(displayName, uid)
-                dispatch(signupsuccess({displayName, uid}))
-                const docData={
-                  address: {
-                    pincode: "",
-                    locality: "",
-                    city: "",
-                    state: "",
-                  },
-                  wishlist:[],
-                  bag:[],
-                  phone:""
-                }
-               setDoc(doc(db, "users", `${res.user.uid}`), docData);
-               navigate("/");
-              alert("sign")
-              }).catch((error)=>{
-                alert("something went wrong")
-              })
-            })
-            .catch((err) =>{
-             dispatch(signupfailure())   
-             alert(err)
-            });
+        const config = {
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+            }
+          };
+        
+        try {
+          const response = await axios.post('http://localhost:6351/users/signup', data);
+          console.log(response);
+          const token = response.data.token;
+          axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  
+          // name: payload.name, userId:payload.userId
+          const name=response.data.name
+          const userId=response.data.userId
+          
+          console.log(response);
+  
+          dispatch(signupsuccess({name,userId}))
+  
+  
+        } catch (err) {
+          dispatch(signupfailure())
+          alert(`Sign-in Failed : ${err}`);
+        }
           } 
        
 
@@ -361,10 +351,11 @@ const BgImage=styled.img`
 const FromCaptchaInputWrapper=styled.div`
     border:1.5px solid ;
     width: 100%;
-    height: 30px;
-    padding: none;
+    height: 35px;
+    padding: 5px;
     margin: none;
    > input{
+    width: 100%;
     padding: 0;
     margin: 0;
    }
@@ -372,7 +363,7 @@ const FromCaptchaInputWrapper=styled.div`
 `
 
 const CaptchaInput=styled.input`
-   width: 60%;
+   width: 100%;
    height: 28px;
    padding: none;
    margin: none;
@@ -484,8 +475,15 @@ const FormHead=styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    > p{
+    padding: 5px;
+    > a{
+        font-size: 18px;
+        font-weight: 600;
         cursor: pointer;
+    }
+    > h3{
+        font-size: 18px;
+        font-weight: 600;
     }
 `
 

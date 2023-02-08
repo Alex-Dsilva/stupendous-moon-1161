@@ -1,13 +1,19 @@
-import DesktopNav from './components/Navbar'
+import Navbar from './components/Navbar'
 import Footer from "./components/Footer/Footer";
-import MainRoutes from './Pages/MainRoutes'
+// import MainRoutes from './Pages/MainRoutes'
 import Products from './Pages/Products/Products'
+// import Homepage from "./Pages/Homepage/Homepage";
+import Signup from './Pages/Signup';
+import Login from './Pages/Login';
 
 function App() {
   return (
     <div className="App">
-      <DesktopNav/>
-      <MainRoutes/>
+      <Navbar/>
+      {/* <Signup/> */}
+      <Products/>
+      {/* <Homepage/> */}
+      {/* <MainRoutes/> */}
       <Footer/>
     </div>
   )

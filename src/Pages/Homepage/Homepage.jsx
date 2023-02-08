@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Homepage.css";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -10,6 +10,7 @@ import { Navigation, Pagination } from "swiper";
 import Swiper_One from "./Swiper_one";
 
 const Homepage = () => {
+
   return (
     <div className="Homepage">
       {/* Deals of The Day */}
