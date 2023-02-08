@@ -1,0 +1,153 @@
+
+
+.Footer{
+    background: #F1F6FD;
+    height: 800px;
+    margin-top: 50px;
+}
+
+#textHead{
+    margin-top: 20px;
+}
+
+.subscribeBox{
+    display: flex;
+   padding: 20px 0px 20px 0px;
+   
+   justify-content: center;
+}
+
+.input{
+    width:480px;
+    height:50px;
+    border:1px solid #0066FF;
+}
+
+.subBtn{
+    height: 50px;
+    border: 1px solid #0066FF;
+    width: 112px;
+    color: white;
+    background: #0066FF;
+}
+
+.footerDiv{
+    display: flex;
+    margin-top: 70px;
+    margin-left: 100px;
+    
+}
+
+.footerDiv:hover{
+    cursor: pointer;
+}
+
+.policySection{
+    margin-left: 50px;
+}
+
+.qrCode{
+    margin-left: 120px;
+}
+
+.DandC{
+    font-weight: bold;
+}
+
+.lowerImages{
+    display:flex;
+    margin-top:170px;
+    margin-left:100px;
+    padding-bottom:60px;
+}
+
+@media screen and (max-width:500px)
+{
+    .Footer{
+        width: 100%;
+        
+    }
+
+    .subscribeBox{
+       
+        width: 100%;
+      
+    }
+
+    
+
+    .footerDiv{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+       
+    }
+
+    .policySection{
+        margin-left: 10px;
+    }
+
+    .qrCode{
+        margin: auto;
+    }
+
+    .DandC{
+        margin-left: -50px;
+    }
+
+    .lowerImages{
+        display: grid;
+        margin-left: 10px;
+        grid-template-columns: repeat(4, 1fr);
+        margin-top: 30px;
+    }
+}
+
+
+
+@media screen and (max-width:900px)
+{
+    .Footer{
+        width: 100%;
+        
+    }
+
+    .subscribeBox{
+        margin: auto;
+        width: 100%;
+        display: grid;
+        gap: 10px;
+    }
+
+    .input{
+        width: 400px;
+        margin-left: 20px;
+    }
+
+    .footerDiv{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        margin-left: 20px;
+    }
+
+    .policySection{
+        margin-left: 10px;
+    }
+
+    .qrCode{
+        /* margin-left: 80px; */
+        margin: auto;
+    }
+
+    .DandC{
+        /* margin-left: -60px; */
+        margin: auto;
+    }
+
+    .lowerImages{
+        /* display: grid;
+        margin-left: 10px;
+        grid-template-columns: repeat(4, 1fr);
+        margin-top: 70px; */
+        display: none;
+    }
+}
