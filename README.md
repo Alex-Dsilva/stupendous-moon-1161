@@ -44,10 +44,12 @@ You can signup/login, and then arrive on a super detailed landing page, explore 
 
 </p>
 
+
+
 <h4 align="center">Deployed On:</h4>
 
 <p align="center">
-<a href="https://dailyshope.netlify.app/">
+<a href="https://cool-maamoul-e2db46.netlify.app">
   <img src="https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white" alt="netlify" />
 </a>  
 <a href="">
@@ -55,7 +57,7 @@ You can signup/login, and then arrive on a super detailed landing page, explore 
   </a>
 </p>
 
-<h3 align="center"><a href="https://dailyshope.netlify.app/"><strong>Want to see live preview »</strong></a></h3>
+<h3 align="center"><a href="https://cool-maamoul-e2db46.netlify.app/"><strong>Want to see live preview »</strong></a></h3>
 
 
 <br />
@@ -83,6 +85,6 @@ its Fully Responsive. Daily Objects is a E-Commerce Website who deals with the c
 ## Team Members.
 1.	Mr. Alex Dislva 
 2.	Mr. Sandeep Prajapati
-3.	Mr. Ms. Vishal Raj.
+3.	Mr. Vishal Raj.
 
 
