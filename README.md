@@ -9,3 +9,8 @@ shopMart makes your shopping even simpler. No more hassle finding the products i
 
 ## About!
 shopMart is a Ecomerce Website, which is built using React which gives this app a faster and optimized user expirence
+
+Geekbuying is the ultimate shopping hub for new releases covering smart home products like vacuum cleaners, fitness equipment like treadmills, top of the line home and office furniture, outdoor items including e-bikes, scooters, and other consumer goods like TV boxes, RC Toys and so much more! Shop for your favorite brands and products today!
+
+Features
+You can signup/login, and then arrive on a super detailed landing page, explore various sections such as new and bestselling, various categories, and then order any product from our website. Also our website is really easy to use with its navbar showing all the important info on it. We accept all the popular payment methods.
