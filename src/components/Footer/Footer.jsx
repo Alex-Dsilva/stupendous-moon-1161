@@ -110,31 +110,32 @@ const Footer = () => {
             src="https://content1.geekbuying.com/V1.4/en/images/index_images/android_app.png"
           />
           <Text className="DandC">Connect With Us</Text>
-          <Box display="flex"></Box>
+          {/* <Box display="flex"></Box> */}
         </Box>
-        <Box>
+        <Box className="image">
           <Image
             height="36px"
-            width="126px"
-            marginTop="20px"
+            width="100px"
+            marginTop="10px"
             marginLeft="10px"
             src="https://content1.geekbuying.com/V1.4/en/images/index_images/app_store.jpg"
           />
           <Image
             height="36px"
-            width="126px"
+            width="100px"
             marginTop="10px"
             marginLeft="10px"
             src="https://content1.geekbuying.com/V1.4/en/images/index_images/google_play.jpg"
           />
           <Image
             height="36px"
-            width="126px"
+            width="100px"
             marginTop="10px"
             marginLeft="10px"
             src="https://content1.geekbuying.com/V1.4/en/images/index_images/gallery.jpg"
           />
         </Box>
+        <br/>
 
         {/* <Box marginLeft="80px" marginTop="30px">
           <Box display="flex" gap="10px">
