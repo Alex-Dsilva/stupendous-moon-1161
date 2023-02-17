@@ -1,81 +1,138 @@
-import React, { useEffect, useState } from "react";
-import { getProducts } from "../../redux/App/AppAction";
+import { StarIcon } from '@chakra-ui/icons'
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-// import { doc, , setDoc } from "firebase/firestore";
-// import { doc, updateDoc, getDoc, arrayUnion, arrayRemove } from "firebase/firestore";
-// import { app, db } from "../../config/firebaseConfig"
-// import { RequestToCart, addToCart, FailToCart } from "../../redux/Auth/AuthAction";
+import React, { useEffect } from 'react';
+import { Box, Stack, Heading, Text, Image, Button, Skeleton, Grid, Flex, filter} from '@chakra-ui/react';
+import { getProducts, addToCart } from '../../redux/App/AppAction';
+import { ChakraProvider } from "@chakra-ui/react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import Filter from "./Filter"
+import { useState } from 'react';
+
+
+const ProductSkeleton = () => {
+  return (
+    <Box maxW="sm" borderWidth="1px" rounded="lg" overflow="hidden">
+      <Skeleton height="200px">
+        <Image />
+      </Skeleton>
+      <Box p="6">
+        <Skeleton height="20px" my="10px" />
+        <Skeleton height="20px" my="10px" />
+        <Skeleton height="20px" my="10px" />
+        <Stack isInline justifyContent="center" mt="auto">
+          <Skeleton height="20px" width="40%" />
+        </Stack>
+      </Box>
+    </Box>
+  );
+};
 
 
 const Products = ({ title }) => {
-  // const {Appreducer  }= useSelector(store => store);
-  // const { products,isLoading,searchQuery } = Appreducer ;
-  // const {cart, userId, AuthLoading}=auth
-  // console.log( Appreducer )  
+  const { products, isLoading } = useSelector(state => state.Appreducer);
+  const [searchParam] = useSearchParams();
+  const Category = searchParam.getAll("category")
+  const priceRange = searchParam.getAll("priceRange")
+  const rating = searchParam.getAll("rating")
   const dispatch = useDispatch();
-  // const options = {
-  //   method: 'GET',
-  //   url: 'https://amazon23.p.rapidapi.com/product-search',
-  //   params: {query: searchQuery , country: 'IN'},
-  //   headers: {
-  //     'X-RapidAPI-Key': '5c29c0f5dcmsh221befa5b77990fp148730jsna14c92afa3c0',
-  //     'X-RapidAPI-Host': 'amazon23.p.rapidapi.com'
-  //   }
-  // };
+  const [data, setdata]=useState(products||[])
+  console.log(products)
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [ dispatch]);
 
-  const HandleAddToCart=(el)=>{
-    console.log(el)
-    el=el.qty=1
-    console.log(el)
-    // dispatch(RequestToCart())
-   
-    //     dispatch(addToCart(bag))
-    
-  }
+  useEffect(() => {
+  const filteredProducts = products.filter(product => {
+    let match = true;
 
-  // useEffect(() => {
-  //   console.log(searchQuery)
-  //   dispatch(getProducts(searchQuery));
-  // }, [searchQuery]);
+    if (Category.length && !Category.includes(product.category)) {
+      match = false;
+    }
 
-  // if (isLoading ) {
-  //   return (
-  //     <div className="loading">
-  //     </div>
-  //   );
-  // }
+    if (rating.length && !rating.includes(product.rating)) {
+      match = false;
+    }
 
+    let selectedPrice;
+    if(priceRange.length){
+      console.log("priceRange", priceRange)
+      selectedPrice=priceRange[0]?.split(" ").map(Number)
+    }
+    if (selectedPrice && product.price >= selectedPrice[0]) {
+      match = false;
+    }
+    if (selectedPrice && product.price <= selectedPrice[1]) {
+      match = false;
+    }
+  
+    return match;
+  });
+
+  
+
+    if (filteredProducts.length > 0) {
+      setdata(filteredProducts)
+    }
+  
+}, [ searchParam ]);
+  const handleAddToCart = product => {
+    dispatch(addToCart(product));
+  };
 
   return (
-    <div id="pro">
-      <h1 className="title">
-        {title||"Products"}
-      </h1>
-      fjkzgj;dfgkbkfzd
-      <div className="product">
-        {/* {products && products.length > 0 &&
-          products.map((ele,index) =>
-            <div key={index} className="product1">
-              <div id="imgdiv" ><img style={{height:"120px"}} src={ele.thumbnail} alt={ele.title} /></div>
-              <p>
-                {ele.title}
-              </p>
-              <h2 className="Price">
-              ₹{ele.price.current_price===null?"249":ele.price.current_price }      
-              </h2>
-              <p>
-              <s>{ele.price.before_price===null?"₹1249":ele.price.before_price}</s>
+    <ChakraProvider>
+    <Box id="pro" mt="90px">
+      <Heading className="title" as="h1" p="20px">
+        {title || "Products"}
+      </Heading>
+      {isLoading ? (
+        <Grid templateColumns={[ "repeat(1, 1fr)", "repeat(2, 1fr)",  "repeat(4, 1fr)" ]}  gap={6} p="20px">
+          {Array.from({ length: 10 }, (_, i) => (
+            <ProductSkeleton key={i+50} />
+          ))}
+        </Grid>
 
-              </p>
-              <button className="rating" disabled>
-                {ele.reviews.rating !== null ? ele.reviews.rating  : "No Reviews"}
-              </button>
-              <button onClick={()=> HandleAddToCart(ele)} className="cart">Add To Cart</button>
-            </div>
-          )} */}
-      </div>
-    </div>
+      ) : (
+        <Flex>
+        <Filter products={products}/>
+        <Grid templateColumns={[ "repeat(1, 1fr)", "repeat(2, 1fr)",  "repeat(3, 1fr)" ]} gap={7} p="25px" >
+          {data.map((product, index) => {
+            const discount= ((product.strikedprice - product.price) / product.strikedprice) * 100 
+            return (
+            // <ProductCard key={index} product={product} onAddToCart={handleAddToCart} />
+            <Flex flexDir="column" gap={3} p={5} borderRadius="10px" shadow="md"
+              overflow="hidden"
+              _hover={{ transform: 'scale(1.1)' }}
+              transition="all 0.3s ease-in-out" borderWidth="1px">
+            <Image src={product.image_url} alt={product.name} />
+            <Text fontWeight="bold">{product.name}</Text>
+            <Text>
+              <b>₹{product.price  || 2549} </b> 
+              <s> ₹{product.strikedprice || 1249}</s>{" "}
+              <Text as="span" color="green.500">
+                        {discount.toFixed()}% off
+              </Text>
+            </Text>
+            <Text fontWeight="bold">
+              {Array(5)
+            .fill('')
+            .map((_, i) => (
+              <StarIcon
+                key={i}
+                color={i < product.rating ? 'yellow.400' : 'gray.300'}
+              />
+            )) || "No Reviews"}   { product.ratingCount}
+            </Text>
+            <Button onClick={() => handleAddToCart(product)}>
+              Add to Cart
+            </Button>
+          </Flex>
+          )})}
+        </Grid>
+        </Flex>
+      )}
+    </Box>
+    </ChakraProvider>
   );
 };
 

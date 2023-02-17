@@ -4,7 +4,7 @@
 
 .Footer{
     background: #F1F6FD;
-    height: 800px;
+    /* height: 800px; */
     margin-top: 50px;
 }
 
@@ -69,6 +69,12 @@
     .Footer{
         width: 100%;
         
+    }
+
+    .image{
+        display: flex;
+        align-items: center;
+        padding: 20px 0px;
     }
 
     .subscribeBox{

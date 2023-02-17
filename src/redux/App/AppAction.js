@@ -47,10 +47,10 @@ const getProductsByID = (options) => async(dispatch) => {
 };
 
 
-const addtocart=(payload)=>async(dispatch)=>{
+const addToCart=(payload)=>async(dispatch)=>{
   
 }
 
 
-export { getTodayDeals ,getProducts,getProductsByID};
+export { getTodayDeals ,getProducts,getProductsByID, addToCart};
 
