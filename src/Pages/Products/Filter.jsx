@@ -77,7 +77,7 @@ const Filter = ({ products }) => {
             isChecked={rating.includes(`${index+1}`)}
             m="3px"
           >
-            <Text fontWeight="bold" >
+            <Text fontWeight="bold" >0
               {Array(5)
                 .fill('')
                 .map((_, i) => (

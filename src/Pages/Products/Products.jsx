@@ -35,46 +35,46 @@ const Products = ({ title }) => {
   const priceRange = searchParam.getAll("priceRange")
   const rating = searchParam.getAll("rating")
   const dispatch = useDispatch();
-  const [data, setdata]=useState(products||[])
+  // const [data, setdata]=useState(products||[])
   console.log(products)
   useEffect(() => {
     dispatch(getProducts());
-  }, [ dispatch]);
+  }, []);
 
-  useEffect(() => {
-  const filteredProducts = products.filter(product => {
-    let match = true;
+  // useEffect(() => {
+  // const filteredProducts = products.filter(product => {
+  //   let match = true;
 
-    if (Category.length && !Category.includes(product.category)) {
-      match = false;
-    }
+  //   if (Category.length && !Category.includes(product.category)) {
+  //     match = false;
+  //   }
 
-    if (rating.length && !rating.includes(product.rating)) {
-      match = false;
-    }
+  //   if (rating.length && !rating.includes(product.rating)) {
+  //     match = false;
+  //   }
 
-    let selectedPrice;
-    if(priceRange.length){
-      console.log("priceRange", priceRange)
-      selectedPrice=priceRange[0]?.split(" ").map(Number)
-    }
-    if (selectedPrice && product.price >= selectedPrice[0]) {
-      match = false;
-    }
-    if (selectedPrice && product.price <= selectedPrice[1]) {
-      match = false;
-    }
+  //   let selectedPrice;
+  //   if(priceRange.length){
+  //     console.log("priceRange", priceRange)
+  //     selectedPrice=priceRange[0]?.split(" ").map(Number)
+  //   }
+  //   if (selectedPrice && product.price >= selectedPrice[0]) {
+  //     match = false;
+  //   }
+  //   if (selectedPrice && product.price <= selectedPrice[1]) {
+  //     match = false;
+  //   }
   
-    return match;
-  });
+  //   return match;
+  // });
 
   
 
-    if (filteredProducts.length > 0) {
-      setdata(filteredProducts)
-    }
+//     if (filteredProducts.length > 0) {
+//       setdata(filteredProducts)
+//     }
   
-}, [ searchParam ]);
+// }, [ searchParam ]);
   const handleAddToCart = product => {
     dispatch(addToCart(product));
   };
