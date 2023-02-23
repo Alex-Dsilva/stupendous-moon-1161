@@ -2,7 +2,7 @@
 ![image](https://user-images.githubusercontent.com/107488954/217531935-18fcdad9-733a-40f6-a9b1-649feb3e139a.png)
 
 ## Buy Anything from AnyWhere
-shopMart makes your shopping even simpler. No more hassle finding the products in diffrent websites get in all in one place - now shop from the comfort of your home; office or on the move.
+shopMart makes your shopping even simpler. No more hassle finding the products in diffrent websites get it all at one place - now shop from the comfort of your home, office or on the move.
 
 ## About!
 shopMart is a Ecomerce Website, which is built using React which gives this app a faster and optimized user expirence
