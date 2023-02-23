@@ -36,7 +36,7 @@ const Products = ({ title }) => {
   const rating = searchParam.getAll("rating")
   const dispatch = useDispatch();
   // const [data, setdata]=useState(products||[])
-  console.log(products)
+  // console.log(products)
   useEffect(() => {
     dispatch(getProducts());
   }, []);
@@ -96,11 +96,11 @@ const Products = ({ title }) => {
         <Flex>
         <Filter products={products}/>
         <Grid templateColumns={[ "repeat(1, 1fr)", "repeat(2, 1fr)",  "repeat(3, 1fr)" ]} gap={7} p="25px" >
-          {data.map((product, index) => {
+          {products.map((product, index) => {
             const discount= ((product.strikedprice - product.price) / product.strikedprice) * 100 
             return (
             // <ProductCard key={index} product={product} onAddToCart={handleAddToCart} />
-            <Flex flexDir="column" gap={3} p={5} borderRadius="10px" shadow="md"
+            <Flex key={index} flexDir="column" gap={3} p={5} borderRadius="10px" shadow="md"
               overflow="hidden"
               _hover={{ transform: 'scale(1.1)' }}
               transition="all 0.3s ease-in-out" borderWidth="1px">

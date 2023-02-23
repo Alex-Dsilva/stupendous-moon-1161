@@ -30,12 +30,14 @@ import { CgProfile } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 
 
 
 function Navbar() {
 
   // const { auth } = useSelector(store => store);
+  const [search, setSearch]=useState('')
   const {name} = useSelector(store => store.Authreducer);
   // const {name}=auth
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -56,17 +58,18 @@ function Navbar() {
   <Box w="100%">
   <Flex justify="space-around" align="center" ml={["0px","100px", "100px"]} >
     <Flex w={["50%", "50%", "70%"]} justify="center" align="center" >
-    <Input  w="80%"
-   border="1px solid black"
-   borderRight="0"
-   borderLeftRadius="4px"
-   h="35px"
-   borderRightRadius="0" 
-   bg="white"
-  type="text" 
-  id="search" 
-  placeholder={"Search by Keyword"}
-/>
+              <Input w="80%"
+                border="1px solid black"
+                borderRight="0"
+                borderLeftRadius="4px"
+                h="35px"
+                borderRightRadius="0"
+                bg="white"
+                type="text"
+                id="search"
+                placeholder={"Search by Keyword"}
+                onChange={(e)=>setSearch(e.target.value)}
+              />
 <Button 
   border="1px solid black"
   w="50px" 
