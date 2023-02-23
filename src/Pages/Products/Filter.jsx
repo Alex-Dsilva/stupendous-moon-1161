@@ -14,8 +14,9 @@ const Filter = ({ products }) => {
   const [category, setCategory] = useState(initialCategory || []);
   const brands = Array.from(new Set(products.map(p => p.brand)))
   const [rating, setrating]=useState(initialrating||[])
-  const [values, setValues] = useState(initialpriceRange?.[0]?.split(" ")||[]);
+  const [values, setValues] = useState(initialpriceRange?.[0]?.split(" ")||[ 0, 1000000]);
   const handleChange = (values) => {
+    console.log(values)
     setValues(values);
   };
 
@@ -97,7 +98,7 @@ const Filter = ({ products }) => {
         </Heading>
         <Flex gap="5" mb={3} align="center">
           <Text >min</Text>
-          <Input type="number" fontSize="sm" value={values.length? values[0]:0} ></Input>
+          <Input type="number" fontSize="sm" value={values.length? values[0]:0} isReadOnly={true}></Input>
         </Flex>
         <RangeSlider
           aria-label={['min', 'max']}
@@ -116,7 +117,7 @@ const Filter = ({ products }) => {
         </RangeSlider>
         <Flex gap="5" align="center">
           <Text >max</Text>
-          <Input type="number" fontSize="sm" value={values.length? values[1]:1000000} ></Input>
+          <Input type="number" fontSize="sm" value={values.length? values[1]:1000000} isReadOnly={true}></Input>
         </Flex>
 
       </Box>
