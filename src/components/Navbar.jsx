@@ -51,8 +51,8 @@ function Navbar() {
     display="flex"
     justify="center"
     alignItems="center"
-    border={"2px solid #0e6548"}
-    backgroundColor={"#0e6548"}
+    border={"2px solid #046381"}
+    backgroundColor={"#046381"}
     position={"fixed"} top={"0"} zIndex={5} >
   <Link to="/" style={{width:"150px", marginLeft:"20px"}}><Image w="150px" h="45px" id="logo" src={logo} alt="" /></Link>
   <Box w="100%">

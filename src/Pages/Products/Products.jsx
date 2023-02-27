@@ -35,11 +35,15 @@ const Products = ({ title }) => {
   const priceRange = searchParam.getAll("priceRange")
   const rating = searchParam.getAll("rating")
   const dispatch = useDispatch();
-  // const [data, setdata]=useState(products||[])
-  // console.log(products)
+  const [data, setdata]=useState([])
+
   useEffect(() => {
     dispatch(getProducts());
   }, []);
+
+  useEffect(() => {
+    setdata(products);
+  }, [products]);
 
   // useEffect(() => {
   // const filteredProducts = products.filter(product => {
@@ -75,6 +79,7 @@ const Products = ({ title }) => {
 //     }
   
 // }, [ searchParam ]);
+
   const handleAddToCart = product => {
     dispatch(addToCart(product));
   };
@@ -93,10 +98,12 @@ const Products = ({ title }) => {
         </Grid>
 
       ) : (
-        <Flex>
+        <>
+
         <Filter products={products}/>
+        
         <Grid templateColumns={[ "repeat(1, 1fr)", "repeat(2, 1fr)",  "repeat(3, 1fr)" ]} gap={7} p="25px" >
-          {products.map((product, index) => {
+          {data.map((product, index) => {
             const discount= ((product.strikedprice - product.price) / product.strikedprice) * 100 
             return (
             // <ProductCard key={index} product={product} onAddToCart={handleAddToCart} />
@@ -129,7 +136,7 @@ const Products = ({ title }) => {
           </Flex>
           )})}
         </Grid>
-        </Flex>
+        </>
       )}
     </Box>
     </ChakraProvider>
