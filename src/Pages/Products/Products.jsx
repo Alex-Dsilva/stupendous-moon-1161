@@ -31,56 +31,42 @@ const ProductSkeleton = () => {
 const Products = ({ title }) => {
   const { products, isLoading } = useSelector(state => state.Appreducer);
   const [searchParam] = useSearchParams();
-  const Category = searchParam.getAll("category")
-  const priceRange = searchParam.getAll("priceRange")
-  const rating = searchParam.getAll("rating")
   const dispatch = useDispatch();
   const [data, setdata]=useState([])
 
+  const params = {
+    category: searchParam.getAll("category"),
+    // priceRange: searchParam.getAll("priceRange"),
+    rating: searchParam.getAll("rating"),
+    brand: searchParam.getAll("brand"),
+    FreeShipping: searchParam.get("FreeShipping"),
+    SortBy: searchParam.get("SortBy"),
+    min: searchParam.get("min"),
+    max: searchParam.get("max"),
+    onSale: searchParam.get("onSale"),
+    Shiping: searchParam.get("Shiping"),
+  };
+
+  Object.keys(params).forEach(key => {
+    if (!params[key]||!params[key].length) {
+      delete params[key];
+    }
+  });
+
+ 
+
   useEffect(() => {
-    dispatch(getProducts());
-  }, []);
+    // pass the params object to the getProducts function
+    console.log(params)
+    dispatch(getProducts(params));
+  }, [searchParam]);
 
   useEffect(() => {
     setdata(products);
   }, [products]);
 
-  // useEffect(() => {
-  // const filteredProducts = products.filter(product => {
-  //   let match = true;
 
-  //   if (Category.length && !Category.includes(product.category)) {
-  //     match = false;
-  //   }
-
-  //   if (rating.length && !rating.includes(product.rating)) {
-  //     match = false;
-  //   }
-
-  //   let selectedPrice;
-  //   if(priceRange.length){
-  //     console.log("priceRange", priceRange)
-  //     selectedPrice=priceRange[0]?.split(" ").map(Number)
-  //   }
-  //   if (selectedPrice && product.price >= selectedPrice[0]) {
-  //     match = false;
-  //   }
-  //   if (selectedPrice && product.price <= selectedPrice[1]) {
-  //     match = false;
-  //   }
-  
-  //   return match;
-  // });
-
-  
-
-//     if (filteredProducts.length > 0) {
-//       setdata(filteredProducts)
-//     }
-  
-// }, [ searchParam ]);
-
-  const handleAddToCart = product => {
+  const handleAddToCart = (product) => {
     dispatch(addToCart(product));
   };
 

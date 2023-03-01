@@ -27,6 +27,7 @@ const getTodayDeals = (options) => async(dispatch) => {
 // getptoducts
 const getProducts = (options) => async(dispatch) => {
   dispatch(getProductsRequest());
+  console.log(`${new URLSearchParams(options).toString()}, from get`)
   axios.get(`http://localhost:6351/products?${new URLSearchParams(options).toString()}`).then((res) =>{
     console.log(res.data)
     dispatch(getProductsSuccess(res.data));

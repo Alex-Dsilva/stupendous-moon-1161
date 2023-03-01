@@ -15,31 +15,26 @@ const Filter = ({ products }) => {
 
   const [searchParam, setSearchParams] = useSearchParams();
   const initialBrand = searchParam.getAll("brand")
-  const initialpriceRange = searchParam.getAll("priceRange")
-  const initialrating = searchParam.getAll("rating")
+  const intialFreeShiping=searchParam.get("FreeShipping")
   const initialsort = searchParam.get("SortBy")
-  const [brand, setBrand] = useState(initialBrand || '');
+  const initialmin = searchParam.get("min")
+  const initialmax = searchParam.get("max")
+  const initialSale= searchParam.get("onSale")
+  const initialShiping= searchParam.get("Shiping")
+  const ShipingFrom=country.findIndex(c => c.name === initialShiping)
+  const [brand, setBrand] = useState(initialBrand || []);
   const brands = Array.from(new Set(products.map(p => p.brand)))
-  // const brands = ["OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO"]
-  // const [rating, setrating]=useState(initialrating||[])
   const [Sort, setSort]=useState(initialsort||'')
-  const [selectedOption, setSelectedOption] = useState("Ship From");
-  const [priceRange, setPriceRange] = useState({ min: '', max: '' })
+  const [FreeShiping, setFreeShiping]=useState(intialFreeShiping||false)
+  const [onSale, setOnSale]=useState(initialSale||false)
+  const [selectedOption, setSelectedOption] = useState(country[ShipingFrom]||"Ship From");
   const [showMore, setShowMore] = useState(false);
   const visibleBrands = showMore ? brands : brands.slice(0, 6);
+  const [minPrice, setMinPrice] = useState(initialmin||'');
+  const [maxPrice, setMaxPrice] = useState(initialmax||'');
+  const [hasValue, setHasValue] = useState(false);
+  const [Ok, setOk]=useState(false)
 
-
-  const handleValuesChange = (e,Ops) => {
-    let arr=[]
-    if(Ops==='min'){
-      arr[0]=e.target.value
-      arr[1]=1000000
-    }else{
-      arr[0]=0
-      arr[1]=e.target.value
-    }
-    setValues(arr);
-  };
 
   const handleSort=(e)=>{
     let newsort= e
@@ -50,26 +45,42 @@ const Filter = ({ products }) => {
   }
 
   const handlBrandChange = (e) => {
-    let newbrand = e
-    if(brand==e){
-      newbrand=""
+    const newbrand = [...brand];
+    if (newbrand.includes(e)) {
+        // console.log()
+      newbrand.splice(newbrand.indexOf(e), 1)
+    } else {
+      newbrand.push(e)
     }
     setBrand(newbrand)
   };
 
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
+    
   };
 
-  // const handlFilterChangestar = (e) => {
-  //   const newrat = [...rating];
-  //   if (newrat.includes(`${e}`)) {
-  //     newrat.splice(newrat.indexOf(`${e}`), 1)
-  //   } else {
-  //     newrat.push(e)
-  //   }
-  //   setrating(newrat)
-  // };
+  const handleMinPriceChange = (value) => {
+    setMinPrice(value);
+    if(minPrice||maxPrice){
+          setHasValue(true)
+        }else{
+          setHasValue(false)
+        }
+  }
+  
+  const handleMaxPriceChange = (value) => {
+    setMaxPrice(value);
+    if(minPrice||maxPrice){
+          setHasValue(true)
+        }else{
+          setHasValue(false)
+        }
+  }
+  
+  const handleOkClick = () => {
+    setOk(!Ok)
+  }
 
 
   useEffect(() => {
@@ -81,14 +92,27 @@ const Filter = ({ products }) => {
       console.log(Sort)
       params.SortBy =Sort;
     }
-    console.log(values)
+
+      if(minPrice){
+        params.min=minPrice
+      }
+      if(maxPrice){
+        params.max=maxPrice
+      }
+     if(FreeShiping){
+      params.FreeShiping=FreeShiping
+     }
+     if(onSale){
+      params.onSale=onSale
+     }  
+     if(selectedOption !== 'Ship From'){
+      params.Shiping=selectedOption.name
+     }
     
-    if(values.length>0 && values[0]>0||values[1]<1000000){
-      params.priceRange = `${values[0]} ${values[1]}`;
-    }
+
 
     setSearchParams(params)
-  }, [brand, values, Sort, setSearchParams]);
+  }, [brand, Ok, selectedOption, FreeShiping, onSale, Sort, setSearchParams]);
   // rating ,
 
   return (
@@ -130,8 +154,8 @@ const Filter = ({ products }) => {
               height='2.5rem'
               border='0.1rem solid #b4b4b4'
               m="3px"
-              bg={brand === el ? '#046381' : 'transparent'}
-              color={brand === el ? 'white' : 'black'}
+              bg={brand.includes(el) ? '#046381' : 'transparent'}
+              color={brand.includes(el)? 'white' : 'black'}
             >
               <Text>{el}</Text>
             </Button>
@@ -154,17 +178,21 @@ const Filter = ({ products }) => {
               }) : ""}
             </MenuList>
           </Menu>
-          <Checkbox m="3px">
+          <Checkbox m="3px"
+          onChange={() => setOnSale(!onSale)}
+          isChecked={!!onSale}>
             <Text fontSize='sm' fontWeight='400' >On Sale</Text>
           </Checkbox>
-          <Checkbox m="3px">
+          <Checkbox m="3px" 
+          onChange={() => setFreeShiping(!FreeShiping)}
+          isChecked={!!FreeShiping}>
             <Text fontSize='sm' fontWeight='400' >Free shipping only</Text>
           </Checkbox>
           <Text fontSize='sm' fontWeight='400' >Price :</Text>
           <Flex gap='1rem'>
-            <Input placeholder='min' onChange={(e)=>handleValuesChange(e,"min")} w='5rem' height='2rem' />
-            <Input placeholder='max' onChange={(e)=>handleValuesChange(e,"max")} w='5rem' height='2rem' />
-            <Button height='2rem'>OK</Button>
+             <Input placeholder='min' value={minPrice} onChange={(e)=>handleMinPriceChange(e.target.value)} w='5rem' height='2rem' />
+             <Input placeholder='max' value={maxPrice} onChange={(e)=>handleMaxPriceChange(e.target.value)} w='5rem' height='2rem' />
+            {hasValue && <Button height='2rem' onClick={()=>handleOkClick()}>OK</Button>}
           </Flex>
         </Flex>
         <Flex align='center' gap='1.5rem' >
@@ -223,6 +251,27 @@ const Filter = ({ products }) => {
 }
 
 export default Filter
+
+
+
+// const initialrating = searchParam.getAll("rating")
+// const brands = ["OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO","OPPO"]
+  // const [rating, setrating]=useState(initialrating||[])
+
+
+  // const handlFilterChangestar = (e) => {
+  //   const newrat = [...rating];
+  //   if (newrat.includes(`${e}`)) {
+  //     newrat.splice(newrat.indexOf(`${e}`), 1)
+  //   } else {
+  //     newrat.push(e)
+  //   }
+  //   setrating(newrat)
+  // };
+
+      // if(values.length>0 && values[0]>0||values[1]<1000000){
+    //   params.priceRange = `${values[0]} ${values[1]}`;
+    // }
 
 
 
