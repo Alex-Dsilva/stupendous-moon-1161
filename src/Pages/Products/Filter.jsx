@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { Box, Checkbox, Text, Heading, RangeSlider, RangeSliderTrack, RangeSliderFilledTrack, RangeSliderThumb, Input, Flex, Button, Grid, MenuItem, Menu, MenuButton, MenuList, Image, List, ListItem } from '@chakra-ui/react'
+import { Box, Checkbox, Text, Heading, RangeSlider, RangeSliderTrack, RangeSliderFilledTrack, RangeSliderThumb, Input, Flex, Button, Grid, MenuItem, Menu, MenuButton, MenuList, Image, List, ListItem, Spinner } from '@chakra-ui/react'
 import { BsCircleFill } from 'react-icons/bs'
 import { StarIcon } from '@chakra-ui/icons'
 import {ChevronDownIcon, ChevronUpIcon, CloseIcon} from '@chakra-ui/icons'
+import { useSelector } from 'react-redux'
 
 
 const country=[{img:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/800px-Flag_of_Europe.svg.png', name:'Europe'},
@@ -11,8 +12,8 @@ const country=[{img:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/F
               {img:'https://flagcdn.com/w320/gb.png',name:'United Kingdom'},
             ]
 
-const Filter = ({ products }) => {
-
+const Filter = () => {
+  const { products, isLoading } = useSelector(state => state.Appreducer);
   const [searchParam, setSearchParams] = useSearchParams();
   const initialBrand = searchParam.getAll("brand")
   const intialFreeShiping=searchParam.get("FreeShipping")
@@ -116,36 +117,32 @@ const Filter = ({ products }) => {
   // rating ,
 
   return (
-    <Flex>
-      <Box border='1px solid' w='25%' p='5px' ml='1rem' h='300px'>
-        <Flex justify='space-between' flexDir='column'>
-          <Heading color='gray' size='sm' mb={3}>
-            Catagary
-          </Heading>
-          <List spacing={3} pl='1rem'>
-            <ListItem>
-              Home
-            </ListItem>
-            <ListItem>
-              Fashion
-            </ListItem>
-            <ListItem>
-              Electronic
-            </ListItem>
-            <ListItem>
-              Vahicals
-            </ListItem>
-          </List>
-        </Flex>
-      </Box>
-      <Box boxShadow='rgba(100, 100, 111, 0.2) 0px 7px 29px 0px' m="20px" p="30px" w='100%'  >
+      <Box boxShadow='rgba(100, 100, 111, 0.2) 0px 7px 29px 0px' m="10px" p="30px" w='96%'  >
         <Flex justify='space-between'>
           <Heading color='gray' size='sm' mb={3}>
             Brands
           </Heading>
-          {brands.length > 7 ? <Text color='blue.500' cursor='pointer' onClick={(e) => setShowMore(!showMore)}>{showMore ? "View less" : "View more"} {showMore ? <ChevronUpIcon /> : <ChevronDownIcon />} </Text> : ""}
+          {brands.length > 6 ? <Text color='blue.500' cursor='pointer' onClick={(e) => setShowMore(!showMore)}>{showMore ? "View less" : "View more"} {showMore ? <ChevronUpIcon /> : <ChevronDownIcon />} </Text> : ""}
         </Flex>
-        <Grid templateColumns='repeat(6,1fr)' mb={4} gap={4}>
+        {isLoading? (<Grid templateColumns='repeat(6,1fr)' mb={4} gap={4}>
+        {Array.from({ length: 6 }, (_, i) => (
+            <Button
+            key={i}
+            size='md'
+            height='2.5rem'
+            border='0.1rem solid #b4b4b4'
+            m="3px"
+          >
+            <Spinner
+              thickness='4px'
+              speed='0.65s'
+              emptyColor='gray.200'
+              color='blue.500'
+              size='md'
+            />
+          </Button>
+          ))}
+        </Grid>):(<Grid templateColumns='repeat(6,1fr)' mb={4} gap={4}>
           {visibleBrands.map(el => (
             <Button
               key={el}
@@ -160,7 +157,7 @@ const Filter = ({ products }) => {
               <Text>{el}</Text>
             </Button>
           ))}
-        </Grid>
+        </Grid>)}
         <Flex align='center' gap='1rem' mb='1rem'>
           <Text color='gray'>Filter :</Text>
           <Menu >
@@ -246,7 +243,7 @@ const Filter = ({ products }) => {
         </Flex>
 
       </Box>
-    </Flex>
+    
   )
 }
 
