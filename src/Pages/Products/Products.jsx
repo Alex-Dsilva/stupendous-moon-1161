@@ -1,7 +1,7 @@
 import { StarIcon } from '@chakra-ui/icons'
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from 'react';
-import { Box, Stack, Heading, Text, Image, Button, Skeleton, Grid, Flex, filter} from '@chakra-ui/react';
+import { Box, Stack, Heading, Text, Image, Button, Skeleton, Grid, Flex, filter, List, ListItem} from '@chakra-ui/react';
 import { getProducts, addToCart } from '../../redux/App/AppAction';
 import { ChakraProvider } from "@chakra-ui/react";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -13,7 +13,7 @@ const ProductSkeleton = () => {
   return (
     <Box maxW="sm" borderWidth="1px" rounded="lg" overflow="hidden">
       <Skeleton height="200px">
-        <Image />
+        <Image h='13rem' />
       </Skeleton>
       <Box p="6">
         <Skeleton height="20px" my="10px" />
@@ -33,6 +33,7 @@ const Products = ({ title }) => {
   const [searchParam] = useSearchParams();
   const dispatch = useDispatch();
   const [data, setdata]=useState([])
+  const [page, setPage]=useState(1)
 
   const params = {
     category: searchParam.getAll("category"),
@@ -45,10 +46,14 @@ const Products = ({ title }) => {
     max: searchParam.get("max"),
     onSale: searchParam.get("onSale"),
     Shiping: searchParam.get("Shiping"),
+    page
   };
 
   Object.keys(params).forEach(key => {
-    if (!params[key]||!params[key].length) {
+    if (!params[key]) {
+      delete params[key];
+    }
+    if(typeof(params[key])==="object" && params[key].length<1){
       delete params[key];
     }
   });
@@ -56,13 +61,14 @@ const Products = ({ title }) => {
  
 
   useEffect(() => {
-    // pass the params object to the getProducts function
     console.log(params)
     dispatch(getProducts(params));
-  }, [searchParam]);
+  }, [searchParam, page]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setdata(products);
+
   }, [products]);
 
 
@@ -72,10 +78,34 @@ const Products = ({ title }) => {
 
   return (
     <ChakraProvider>
-    <Box id="pro" mt="90px">
+    <Box id="pro" mt="80px">
       <Heading className="title" as="h1" p="20px">
         {title || "Products"}
       </Heading>
+      <Flex>
+      <Box border='1px solid' w='22%' p='5px' ml='1rem' h='300px'>
+        <Flex justify='space-between' flexDir='column'>
+          <Heading color='gray' size='sm' mb={3}>
+            Catagary
+          </Heading>
+          <List spacing={3} pl='1rem'>
+            <ListItem>
+              Home
+            </ListItem>
+            <ListItem>
+              Fashion
+            </ListItem>
+            <ListItem>
+              Electronic
+            </ListItem>
+            <ListItem>
+              Vahicals
+            </ListItem>
+          </List>
+        </Flex>
+      </Box>
+      <Box w='100%'>
+      <Filter/>
       {isLoading ? (
         <Grid templateColumns={[ "repeat(1, 1fr)", "repeat(2, 1fr)",  "repeat(4, 1fr)" ]}  gap={6} p="20px">
           {Array.from({ length: 10 }, (_, i) => (
@@ -84,10 +114,6 @@ const Products = ({ title }) => {
         </Grid>
 
       ) : (
-        <>
-
-        <Filter products={products}/>
-        
         <Grid templateColumns={[ "repeat(1, 1fr)", "repeat(2, 1fr)",  "repeat(3, 1fr)" ]} gap={7} p="25px" >
           {data.map((product, index) => {
             const discount= ((product.strikedprice - product.price) / product.strikedprice) * 100 
@@ -95,9 +121,10 @@ const Products = ({ title }) => {
             // <ProductCard key={index} product={product} onAddToCart={handleAddToCart} />
             <Flex key={index} flexDir="column" gap={3} p={5} borderRadius="10px" shadow="md"
               overflow="hidden"
+              justify='center'
               _hover={{ transform: 'scale(1.1)' }}
               transition="all 0.3s ease-in-out" borderWidth="1px">
-            <Image src={product.image_url} alt={product.name} />
+            <Image h='13rem'  src={product.image_url} alt={product.name} />
             <Text fontWeight="bold">{product.name}</Text>
             <Text>
               <b>₹{product.price  || 2549} </b> 
@@ -116,14 +143,20 @@ const Products = ({ title }) => {
               />
             )) || "No Reviews"}   { product.ratingCount}
             </Text>
-            <Button onClick={() => handleAddToCart(product)}>
+            {/* <Button onClick={() => handleAddToCart(product)}>
               Add to Cart
-            </Button>
+            </Button> */}
           </Flex>
           )})}
         </Grid>
-        </>
       )}
+      </Box>
+      </Flex>
+      <Flex gap='2rem' justify='center' align='center'>
+        <Button isDisabled={page<2} borderRadius='none' bg='#046381' color='white' onClick={()=>setPage(page-1)}>PREVIOUS</Button>
+        <Text  borderRadius={5} bg='gray.100' p='10px 20px' >{page}</Text>
+        <Button borderRadius='none' bg='#046381' color='white' onClick={()=>setPage(page+1)}>NEXT</Button>
+      </Flex>
     </Box>
     </ChakraProvider>
   );
