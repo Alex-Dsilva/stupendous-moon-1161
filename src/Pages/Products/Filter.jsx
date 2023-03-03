@@ -5,6 +5,9 @@ import { BsCircleFill } from 'react-icons/bs'
 import { StarIcon } from '@chakra-ui/icons'
 import {ChevronDownIcon, ChevronUpIcon, CloseIcon} from '@chakra-ui/icons'
 import { useSelector } from 'react-redux'
+import PulseLoader from "react-spinners/PulseLoader";
+
+
 
 
 const country=[{img:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/800px-Flag_of_Europe.svg.png', name:'Europe'},
@@ -129,17 +132,12 @@ const Filter = () => {
             <Button
             key={i}
             size='md'
+            isLoading
+            spinner={<PulseLoader size={8} loading={isLoading} color='#0b7392'  />}
             height='2.5rem'
             border='0.1rem solid #b4b4b4'
             m="3px"
           >
-            <Spinner
-              thickness='4px'
-              speed='0.65s'
-              emptyColor='gray.200'
-              color='blue.500'
-              size='md'
-            />
           </Button>
           ))}
         </Grid>):(<Grid templateColumns='repeat(6,1fr)' mb={4} gap={4}>
