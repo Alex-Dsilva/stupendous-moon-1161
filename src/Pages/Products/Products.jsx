@@ -46,7 +46,7 @@ const Products = ({ title }) => {
   useEffect(() => {
     console.log(params)
     dispatch(getProducts(params));
-  }, [searchParam, page]);
+  }, [searchParam, page ]);
 
   useEffect(() => {
     window.scrollTo(0, 0);

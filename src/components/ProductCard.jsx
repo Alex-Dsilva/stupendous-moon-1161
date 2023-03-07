@@ -2,10 +2,12 @@ import { StarIcon } from '@chakra-ui/icons'
 import { Box, Flex, Image, Text, IconButton } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const ProductCard = ({product, index}) => {
 
     const [liked, setLiked] = useState(false);
+    const navigate = useNavigate();
     const discount= ((product.strikedprice - product.price) / product.strikedprice) * 100 
     const heartIcon = liked ? <FaHeart color="red" /> : <FaRegHeart />;
     const handleLike = async () => {
@@ -13,13 +15,13 @@ const ProductCard = ({product, index}) => {
     };
 
     const handleClick = () =>{
-        
+        navigate(`/singleproduct${product._id}`)
     }
 
   return (
     <Flex key={index} flexDir="column" gap={1} p={3} 
               overflow="hidden"
-              onClick={()=>alert("hi")}
+              onClick={handleClick}
               justify='center'
               border='none'
               _hover={{ shadow:" rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}

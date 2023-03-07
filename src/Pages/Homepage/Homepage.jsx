@@ -8,8 +8,14 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper";
 import Swiper_One from "./Swiper_one";
+import { useNavigate } from 'react-router-dom';
+
 
 const Homepage = () => {
+
+
+  
+  let id='63dfe273cca7ffdc03def7e8'
 
   return (
     <div className="Homepage">
