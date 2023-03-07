@@ -102,7 +102,7 @@ function Signup() {
           };
         
         try {
-          const response = await axios.post('http://localhost:6351/users/signup', data);
+          const response = await axios.post('https://victorious-houndstooth-colt.cyclic.app/users/signup', data);
           console.log(response);
           const token = response.data.token;
           axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;

@@ -28,22 +28,24 @@ const getTodayDeals = (options) => async(dispatch) => {
 const getProducts = (options) => async(dispatch) => {
   dispatch(getProductsRequest());
   // console.log(`${new URLSearchParams(options).toString()}, from get`)
-  axios.get(`http://localhost:6351/products?${new URLSearchParams(options).toString()}`).then((res) =>{
+  axios.get(`https://victorious-houndstooth-colt.cyclic.app/products?${new URLSearchParams(options).toString()}`).then((res) =>{
     console.log(res.data)
     dispatch(getProductsSuccess(res.data));
   }).catch( (error)=> {
     console.error(error);
+    dispatch({type:types.GET_SINGLE_PRODUCTS_FAILURE, payload:error.data.message});
     alert(error.data.message)
   });
 };
 // getproducts by id
-const getProductsByID = (options) => async(dispatch) => {
-  dispatch(getProductsRequest());
-  axios.request(options).then(function (response) {
-    console.log(response.data)
-    dispatch(getProductsSuccess(response.data));
-  }).catch(function (error) {
+const getProductsByID = (id) => async(dispatch) => {
+  dispatch({type:types.GET_SINGLE_PRODUCTS_REQUEST});
+  axios.get(`https://victorious-houndstooth-colt.cyclic.app/products/singleProduct/${id}`).then((res) =>{
+    dispatch({type:types.GET_SINGLE_PRODUCTS_SUCCESS, payload:res.data.data});
+  }).catch( (error)=> {
     console.error(error);
+    dispatch({type:types.GET_SINGLE_PRODUCTS_FAILURE, payload:error.data.message});
+    alert(error.data.message)
   });
 };
 

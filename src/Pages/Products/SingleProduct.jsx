@@ -1,30 +1,99 @@
-import React, { useEffect } from "react";
+import { Box, Image, Flex, Heading, Text, Button, Spacer } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import ProductDisplay from "../../components/ProductDisplay";
 import { getProductsByID } from "../../redux/App/AppAction";
 
-export const SingleProduct = () => {
-  const {product, auth } = useSelector(store => store);
-  const { products ,isLoading, } = product;
-  const {cart, userId, AuthLoading}=auth
-  //   console.log(Appreducer);
-//   const { products, isLoading } = Appreducer;
-  console.log(Appreducer);
-  const dispatch = useDispatch();
-  const options = {
-    method: "GET",
-    url: "https://amazon24.p.rapidapi.com/api/product/B0B9N6HV6B",
-    params: { country: "US" },
-    headers: {
-      "X-RapidAPI-Key": "5c29c0f5dcmsh221befa5b77990fp148730jsna14c92afa3c0",
-      "X-RapidAPI-Host": "amazon24.p.rapidapi.com"
-    }
-  };
-  
-  useEffect(()=>{
-    dispatch(getProductsByID(options))
-  },[])
 
-  return (
-    <div>SingleProduct</div>
-  );
+const demoImage={
+  image_url:"	https://img.gkbcdn.com/p/2022-05-11/ELEGLIDE-T1-El…e-36V-12-5AH-250W-MTB-Bike-500404-1._w500_p1_.jpg",
+  images:["	https://img.gkbcdn.com/p/2022-05-11/ELEGLIDE-T1-El…e-36V-12-5AH-250W-MTB-Bike-500404-1._w500_p1_.jpg", ]
+}
+
+export const SingleProduct = () => {
+  const { singleproduct, isLoading, isError, errorMsg } = useSelector(state => state.Appreducer);
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const [selectedImage, setSelectedImage] = useState(singleproduct?.images[0]);
+  const [zoomed, setZoomed] = useState(false);
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    dispatch(getProductsByID(id));
+  }, [dispatch, id]);
+
+  const handleImageChange = (image) => {
+    setSelectedImage(image);
+    setZoomed(false);
+  };
+
+  const handleMouseMove = (e) => {
+    setCursorPosition({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY });
+  };
+
+  const handleMouseLeave = () => {
+    setZoomed(false);
+  };
+
+
+  useEffect(() => {
+    dispatch(getProductsByID(id));
+  }, [dispatch, id]);
+
+  if (isLoading || singleproduct === null || singleproduct === undefined) {
+    return <Box mt="100px">
+      Loading...
+    </Box>;
+  }
+
+  if (isError) {
+    return <Box mt="90px">Error: {errorMsg}</Box>;
+  }
+
+
+  return ( <Box >
+  <Flex>
+    {/* <Box flex="1" mr="40px">
+      <Image src={singleproduct.image_url} alt={singleproduct.title} maxW="500px" h="auto"
+        cursor='crosshair'
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+      />
+      <Flex mt="20px" w="100%">
+        {singleproduct.images.map((image, index) => (
+          <Box key={index} mr="10px">
+            <Image src={image} alt={singleproduct.title} w="80px" h="80px"
+              border={selectedImage === image ? "2px solid #3182CE" : "none"}
+              cursor="pointer"
+              onClick={() => handleImageChange(image)}
+            />
+          </Box>
+        ))}
+      </Flex>
+    </Box> */}
+
+
+    <ProductDisplay/>
+    {/* <Box flex="1">
+      <Heading mb="10px">{singleproduct.title}</Heading>
+      <Flex mb="10px">
+        <Text mr="10px" fontSize="xl" fontWeight="semibold">${singleproduct.discountPrice}</Text>
+        <Text textDecoration="line-through" color="gray.500">${singleproduct.price}</Text>
+      </Flex>
+      <Flex mb="10px">
+        <Text mr="10px" color="gray.500" fontSize="sm">Brand:</Text>
+        <Text>{singleproduct.brand}</Text>
+      </Flex>
+      <Flex mb="10px">
+        <Text mr="10px" color="gray.500" fontSize="sm">Rating:</Text>
+        <Text>{singleproduct.rating}/5</Text>
+      </Flex>
+      <Button mb="20px" mr="10px" colorScheme="blue">Add to Cart</Button>
+      <Button mb="20px" mr="10px" colorScheme="blue">Buy Now</Button>
+      <Button mb="20px" colorScheme="gray"><i className="far fa-heart"></i></Button>
+    </Box> */}
+  </Flex>
+</Box>
+);
 };

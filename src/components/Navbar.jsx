@@ -53,7 +53,7 @@ function Navbar() {
     alignItems="center"
     border={"2px solid #046381"}
     backgroundColor={"#046381"}
-    position={"fixed"} top={"0"} zIndex={5} >
+     top={"0"} zIndex={5} >
   <Link to="/" style={{width:"150px", marginLeft:"20px"}}><Image w="150px" h="45px" id="logo" src={logo} alt="" /></Link>
   <Box w="100%">
   <Flex justify="space-around" align="center" ml={["0px","100px", "100px"]} >

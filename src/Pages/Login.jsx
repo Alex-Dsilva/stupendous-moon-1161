@@ -79,7 +79,7 @@ const Login = () => {
         }
       };
       try {
-        const response = await axios.post('http://localhost:6351/users/login', data);
+        const response = await axios.post('https://victorious-houndstooth-colt.cyclic.app/users/login', data);
         const token = response.data.token;
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
