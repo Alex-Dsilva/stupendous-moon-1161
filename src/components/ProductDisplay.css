@@ -1,0 +1,9 @@
+.slick-arrow::before{
+    opacity: 1;
+    color: rgb(1, 1, 1);
+    font-size: 40px;
+    line-height: 40px;
+}
+.slick-prev {
+    left: -45px;
+}

@@ -46,7 +46,6 @@ function Navbar() {
     <ChakraProvider>
   <Box
     height="fit-content"
-    w="100vw"
     pt="10px"
     display="flex"
     justify="center"
