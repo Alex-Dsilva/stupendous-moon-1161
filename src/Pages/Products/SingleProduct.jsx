@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import ProductDisplay from "../../components/ProductDisplay";
 import { getProductsByID } from "../../redux/App/AppAction";
+import { ChakraProvider } from "@chakra-ui/react";
 
 
 const demoImage={
@@ -52,31 +53,12 @@ export const SingleProduct = () => {
   }
 
 
-  return ( <Box >
-  <Flex>
-    {/* <Box flex="1" mr="40px">
-      <Image src={singleproduct.image_url} alt={singleproduct.title} maxW="500px" h="auto"
-        cursor='crosshair'
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-      />
-      <Flex mt="20px" w="100%">
-        {singleproduct.images.map((image, index) => (
-          <Box key={index} mr="10px">
-            <Image src={image} alt={singleproduct.title} w="80px" h="80px"
-              border={selectedImage === image ? "2px solid #3182CE" : "none"}
-              cursor="pointer"
-              onClick={() => handleImageChange(image)}
-            />
-          </Box>
-        ))}
-      </Flex>
-    </Box> */}
-
-
+  return (
+    <ChakraProvider>
+  <Flex >
     <ProductDisplay/>
-    {/* <Box flex="1">
-      <Heading mb="10px">{singleproduct.title}</Heading>
+    <Box  m="30px" >
+      <Heading as='h4' size='md'>{singleproduct.name}{singleproduct.name} {singleproduct.name}</Heading>
       <Flex mb="10px">
         <Text mr="10px" fontSize="xl" fontWeight="semibold">${singleproduct.discountPrice}</Text>
         <Text textDecoration="line-through" color="gray.500">${singleproduct.price}</Text>
@@ -91,9 +73,9 @@ export const SingleProduct = () => {
       </Flex>
       <Button mb="20px" mr="10px" colorScheme="blue">Add to Cart</Button>
       <Button mb="20px" mr="10px" colorScheme="blue">Buy Now</Button>
-      <Button mb="20px" colorScheme="gray"><i className="far fa-heart"></i></Button>
-    </Box> */}
+      {/* <Button mb="20px" colorScheme="gray"></Button> */}
+    </Box>
   </Flex>
-</Box>
-);
+  </ChakraProvider>
+  );
 };
