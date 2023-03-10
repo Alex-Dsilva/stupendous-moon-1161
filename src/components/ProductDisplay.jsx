@@ -13,19 +13,6 @@
       Text,
     } from '@chakra-ui/react';
 
-
-
-
-    const images = [
-    'https://img.gkbcdn.com/s3/p/2022-05-11/ELEGLIDE-T1-Electric-Bike-36V-12-5AH-250W-MTB-Bike-500404-1.jpg',
-    'https://img.gkbcdn.com/s3/p/2022-05-11/ELEGLIDE-T1-Electric-Bike-36V-12-5AH-250W-MTB-Bike-500404-2.jpg',
-    'https://img.gkbcdn.com/s3/p/2022-05-11/ELEGLIDE-T1-Electric-Bike-36V-12-5AH-250W-MTB-Bike-500404-4.jpg',
-    'https://img.gkbcdn.com/s3/p/2022-05-11/ELEGLIDE-T1-Electric-Bike-36V-12-5AH-250W-MTB-Bike-500404-7.jpg',
-    'https://img.gkbcdn.com/s3/p/2022-05-11/ELEGLIDE-T1-Electric-Bike-36V-12-5AH-250W-MTB-Bike-500404-5.jpg',
-    'https://img.gkbcdn.com/s3/p/2022-05-11/ELEGLIDE-T1-Electric-Bike-36V-12-5AH-250W-MTB-Bike-500404-6.jpg'
-  ];
-
-
   const SamplePrevArrow = (props) => {
     const { className, style, onClick } = props;
     return (
@@ -48,7 +35,7 @@
     );
   };
 
-  const ProductDisplay = () => {
+  const ProductDisplay = ({images}) => {
   
     const [swiperRef, setSwiperRef] = useState(null);
   const [img, setImg] = useState(images[0]);
@@ -90,7 +77,7 @@
                   background-position: center;
                   opacity: 0.7;
                 `,
-                  zoomPosition:"default",
+                  zoomPosition:"right",
                   zoomWidth:380,
                   offset:{"vertical": 0, "horizontal": 10},
                   img:img

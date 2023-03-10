@@ -1,11 +1,10 @@
-import { StarIcon } from '@chakra-ui/icons'
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from 'react';
 import { Box, Stack, Heading, Text, Image, Button, Skeleton, Grid, Flex, filter, List, ListItem} from '@chakra-ui/react';
 import { getProducts, addToCart } from '../../redux/App/AppAction';
 import { ChakraProvider } from "@chakra-ui/react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import Filter from "./Filter"
+import Filter from "../../components/Filter"
 import { useState } from 'react';
 import ProductCard from '../../components/ProductCard';
 import ProductSkeleton from '../../components/ProductSkeleton';
@@ -61,12 +60,12 @@ const Products = ({ title }) => {
 
   return (
     <ChakraProvider>
-    <Box id="pro" mt="80px">
+    <Box  id="pro" mt="80px">
       <Heading className="title" as="h1" p="20px">
         {title || "Products"}
       </Heading>
       <Flex>
-      <Box border='1px solid' w='22%' p='5px' ml='1rem' h='300px'>
+      {/* <Box border='1px solid' display={['none','none','block']} w='22%' p='5px' ml='1rem' h='300px'>
         <Flex justify='space-between' flexDir='column'>
           <Heading color='gray' size='sm' mb={3}>
             Catagary
@@ -86,7 +85,7 @@ const Products = ({ title }) => {
             </ListItem>
           </List>
         </Flex>
-      </Box>
+      </Box> */}
       <Box w='100%'>
       <Filter/>
       {isLoading ? (

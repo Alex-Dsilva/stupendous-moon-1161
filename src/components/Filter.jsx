@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { Box, Checkbox, Text, Heading, RangeSlider, RangeSliderTrack, RangeSliderFilledTrack, RangeSliderThumb, Input, Flex, Button, Grid, MenuItem, Menu, MenuButton, MenuList, Image, List, ListItem, Spinner } from '@chakra-ui/react'
+import { Box, Checkbox, Text, Heading, RangeSlider, RangeSliderTrack, RangeSliderFilledTrack, RangeSliderThumb, Input, Flex, Button, Grid,Drawer,DrawerBody,DrawerFooter,DrawerHeader,DrawerOverlay, DrawerContent,DrawerCloseButton, MenuItem, Menu, MenuButton, MenuList, Image, List, ListItem, Spinner } from '@chakra-ui/react'
 import { BsCircleFill } from 'react-icons/bs'
 import { StarIcon } from '@chakra-ui/icons'
 import {ChevronDownIcon, ChevronUpIcon, CloseIcon} from '@chakra-ui/icons'
@@ -33,12 +33,15 @@ const Filter = () => {
   const [onSale, setOnSale]=useState(initialSale||false)
   const [selectedOption, setSelectedOption] = useState(country[ShipingFrom]||"Ship From");
   const [showMore, setShowMore] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
   const visibleBrands = showMore ? brands : brands.slice(0, 6);
   const [minPrice, setMinPrice] = useState(initialmin||'');
   const [maxPrice, setMaxPrice] = useState(initialmax||'');
   const [hasValue, setHasValue] = useState(false);
   const [Ok, setOk]=useState(false)
 
+  const onClose = () => setIsOpen(false)
+  const onOpen = () => setIsOpen(true)
 
   const handleSort=(e)=>{
     let newsort= e
@@ -120,7 +123,8 @@ const Filter = () => {
   // rating ,
 
   return (
-      <Box boxShadow='rgba(100, 100, 111, 0.2) 0px 7px 29px 0px' m="10px" p="30px" w='96%'  >
+    <>
+      <Box display={['none','none','block']} boxShadow='rgba(100, 100, 111, 0.2) 0px 7px 29px 0px' m="10px" p="30px" w='96%'  >
         <Flex justify='space-between'>
           <Heading color='gray' size='sm' mb={3}>
             Brands
@@ -191,7 +195,7 @@ const Filter = () => {
           </Flex>
         </Flex>
         <Flex align='center' gap='1.5rem' >
-          <Text color='gray'>Sort By: </Text>
+          <Text color='gray'>Sort By :</Text>
 
           <Button
             onClick={() => handleSort("Best_Match")}
@@ -241,7 +245,146 @@ const Filter = () => {
         </Flex>
 
       </Box>
-    
+      
+      <Text display={['block','none','none']} _hover={{textDecor:'underline'}} onClick={onOpen} fontSize='md'>Filter</Text>
+      <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton />
+          <DrawerHeader>Filters</DrawerHeader>
+
+          <DrawerBody>
+          <Flex justify='space-between'>
+          <Heading color='gray' size='sm' mb={3}>
+            Brands
+          </Heading>
+          {brands.length > 6 ? <Text color='blue.500' cursor='pointer' onClick={(e) => setShowMore(!showMore)}>{showMore ? "View less" : "View more"} {showMore ? <ChevronUpIcon /> : <ChevronDownIcon />} </Text> : ""}
+        </Flex>
+        {isLoading? (<Grid templateColumns='repeat(2,1fr)' mb={4} gap={4}>
+        {Array.from({ length: 6 }, (_, i) => (
+            <Button
+            key={i}
+            size='md'
+            isLoading
+            spinner={<PulseLoader size={8} loading={isLoading} color='#0b7392'  />}
+            height='2.5rem'
+            border='0.1rem solid #b4b4b4'
+            m="3px"
+          >
+          </Button>
+          ))}
+        </Grid>):(<Grid templateColumns='repeat(2,1fr)' mb={4} gap={4}>
+          {visibleBrands.map(el => (
+            <Button
+              key={el}
+              onClick={() => handlBrandChange(el)}
+              size='md'
+              height='2.5rem'
+              border='0.1rem solid #b4b4b4'
+              m="3px"
+              bg={brand.includes(el) ? '#046381' : 'transparent'}
+              color={brand.includes(el)? 'white' : 'black'}
+            >
+              <Text>{el}</Text>
+            </Button>
+          ))}
+        </Grid>)}
+        <Flex gap={5} align={'center'}>
+        <Text color='gray' size='sm' mb={3} >
+          Ship From :
+        </Text>
+        <Menu>
+            <MenuButton as={Button} variant="outline" w='10rem' h='2rem' textAlign='left' mr="2" rightIcon={<ChevronDownIcon />} >
+              {selectedOption == 'Ship From' ? <Text bg='none' fontWeight='400' fontSize='sm'>{selectedOption}</Text> : <Flex align='center' gap='0.5rem'><Image w='1rem' src={selectedOption.img} alt={selectedOption.name} bg='none' />
+                <Text bg='none' fontWeight='400' fontSize='sm'>{selectedOption.name}</Text></Flex>}
+            </MenuButton>
+            <MenuList minW='10rem' >
+              <MenuItem display={selectedOption == 'Ship From' ? 'none' : 'block'} gap='1rem' onClick={() => handleOptionSelect("Ship From")}>Reset</MenuItem>
+              {selectedOption == 'Ship From' ? country.map((e, i) => {
+                return (<MenuItem key={i} display='flex' gap='1rem' onClick={() => handleOptionSelect(e)}>
+                  <Image w='1rem' src={e.img} alt={e.name} bg='none' />
+                  <Text bg='none' fontSize='sm' fontWeight='400' >{e.name}</Text>
+                </MenuItem>)
+              }) : ""}
+            </MenuList>
+          </Menu>
+          </Flex>
+          <Flex flexDir='column' gap='5' mt='25px'>
+          <Checkbox m="3px"
+          onChange={() => setOnSale(!onSale)}
+          isChecked={!!onSale}>
+            <Text fontSize='sm' fontWeight='400' >On Sale</Text>
+          </Checkbox>
+          <Checkbox m="3px" 
+          onChange={() => setFreeShiping(!FreeShiping)}
+          isChecked={!!FreeShiping}>
+            <Text fontSize='sm' fontWeight='400' >Free shipping only</Text>
+          </Checkbox>
+          <Flex gap='1rem' align='center'>
+             <Text fontSize='sm' fontWeight='400' >Price :</Text>
+             <Input placeholder='min' value={minPrice} onChange={(e)=>handleMinPriceChange(e.target.value)} w='5rem' height='2rem' />
+             <Input placeholder='max' value={maxPrice} onChange={(e)=>handleMaxPriceChange(e.target.value)} w='5rem' height='2rem' />
+            {hasValue && <Button height='2rem' onClick={()=>handleOkClick()}>OK</Button>}
+          </Flex>
+          </Flex>
+          <Heading color='gray' size='sm' mt='25px' mb={3}>
+            Sort By :
+          </Heading>
+          <Flex  flexDir={'column'}  gap='0.5rem' >
+          <Button
+            onClick={() => handleSort("Best_Match")}
+            size='sm'
+            height='2.2rem'
+            border='0.1rem solid #b4b4b4'
+            m="3px"
+            bg={Sort === "Best_Match" ? '#046381' : 'transparent'}
+            color={Sort === "Best_Match" ? 'white' : 'black'}
+          >
+            <Text fontSize='sm' fontWeight='400' >Best Match </Text>
+          </Button>
+          <Button
+            onClick={() => handleSort("New")}
+            size='md'
+            height='2.2rem'
+            border='0.1rem solid #b4b4b4'
+            m="3px"
+            bg={Sort === "New" ? '#046381' : 'transparent'}
+            color={Sort === "New" ? 'white' : 'black'}
+          >
+            <Text fontSize='sm' fontWeight='400' >New Arrival</Text>
+          </Button>
+          <Button
+            onClick={() => handleSort("High_to_Low")}
+            size='md'
+            height='2.2rem'
+            border='0.1rem solid #b4b4b4'
+            m="3px"
+            bg={Sort === "High_to_Low" ? '#046381' : 'transparent'}
+            color={Sort === "High_to_Low" ? 'white' : 'black'}
+          >
+            <Text fontSize='sm' fontWeight='400' >High to Low</Text>
+          </Button>
+          <Button
+            onClick={() => handleSort("Low_to_High")}
+            size='md'
+            height='2.2rem'
+            border='0.1rem solid #b4b4b4'
+            m="3px"
+            bg={Sort === "Low_to_High" ? '#046381' : 'transparent'}
+            color={Sort === "Low_to_High" ? 'white' : 'black'}
+          >
+            <Text fontSize='sm' fontWeight='400' >Low to High</Text>
+          </Button>
+        </Flex>
+          </DrawerBody>
+
+          <DrawerFooter>
+            Drawer footer goes here.
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+
+      </>
   )
 }
 
