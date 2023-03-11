@@ -23,12 +23,14 @@ const ProductCard = ({product, index}) => {
               overflow="hidden"
               onClick={handleClick}
               justify='center'
+              align={'center'}
               border='none'
               _hover={{ shadow:" rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}
               transition="all 0.3s ease-in-out" borderWidth="1px">
             <Image alignSelf='center' w='80%' src={product.image_url} alt={product.name} />
+            
+            <Flex flexDir={'column'} wrap='wrap' w='80%'>
             <Text>{product.name}</Text>
-            <Box>
             <Text>
               <b>₹{product.price  || 2549} </b> 
             </Text>
@@ -38,7 +40,6 @@ const ProductCard = ({product, index}) => {
                         {discount.toFixed()}% off
               </Text>
             </Text>
-            </Box>
             <Text fontWeight="bold">
               {Array(5)
             .fill('')
@@ -67,6 +68,8 @@ const ProductCard = ({product, index}) => {
                     handleLike();
                 }}
             />
+            </Flex>
+            
           </Flex>
   )
 }

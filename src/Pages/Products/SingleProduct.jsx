@@ -1,42 +1,37 @@
-import { Box, Image, Flex, Heading, Text, Button, Spacer } from "@chakra-ui/react";
+import { Box, Image, IconButton, Flex, Heading, Text, Button, Spacer, Icon, Tag, Badge, Divider } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
+import {FaBolt, FaHeart, FaRegHeart} from 'react-icons/fa'
+import {MdTabletAndroid } from 'react-icons/md'
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import ProductDisplay from "../../components/ProductDisplay";
 import { getProductsByID } from "../../redux/App/AppAction";
 import { ChakraProvider } from "@chakra-ui/react";
+import { StarIcon, QuestionIcon } from "@chakra-ui/icons";
+import { MinusIcon, AddIcon, } from "@chakra-ui/icons";
 
+const images = [
+  'https://img.gkbcdn.com/s3/p/2022-05-11/ELEGLIDE-T1-Electric-Bike-36V-12-5AH-250W-MTB-Bike-500404-1.jpg',
+  'https://img.gkbcdn.com/s3/p/2022-05-11/ELEGLIDE-T1-Electric-Bike-36V-12-5AH-250W-MTB-Bike-500404-2.jpg',
+  'https://img.gkbcdn.com/s3/p/2022-05-11/ELEGLIDE-T1-Electric-Bike-36V-12-5AH-250W-MTB-Bike-500404-4.jpg',
+  'https://img.gkbcdn.com/s3/p/2022-05-11/ELEGLIDE-T1-Electric-Bike-36V-12-5AH-250W-MTB-Bike-500404-7.jpg',
+  'https://img.gkbcdn.com/s3/p/2022-05-11/ELEGLIDE-T1-Electric-Bike-36V-12-5AH-250W-MTB-Bike-500404-5.jpg',
+  'https://img.gkbcdn.com/s3/p/2022-05-11/ELEGLIDE-T1-Electric-Bike-36V-12-5AH-250W-MTB-Bike-500404-6.jpg'
+];
 
-const demoImage={
-  image_url:"	https://img.gkbcdn.com/p/2022-05-11/ELEGLIDE-T1-El…e-36V-12-5AH-250W-MTB-Bike-500404-1._w500_p1_.jpg",
-  images:["	https://img.gkbcdn.com/p/2022-05-11/ELEGLIDE-T1-El…e-36V-12-5AH-250W-MTB-Bike-500404-1._w500_p1_.jpg", ]
-}
+const Shiping=['China']
+
+const Option=["i3-1115G4 CPU 8+256GB", "i5-1135G7 CPU 8+256GB", "i5-1135G7 CPU 10+512GB"]
 
 export const SingleProduct = () => {
-  const { singleproduct, isLoading, isError, errorMsg } = useSelector(state => state.Appreducer);
+  const { products, singleproduct, isLoading, isError, errorMsg } = useSelector(state => state.Appreducer);
   const { id } = useParams();
   const dispatch = useDispatch();
-  const [selectedImage, setSelectedImage] = useState(singleproduct?.images[0]);
-  const [zoomed, setZoomed] = useState(false);
-  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    dispatch(getProductsByID(id));
-  }, [dispatch, id]);
-
-  const handleImageChange = (image) => {
-    setSelectedImage(image);
-    setZoomed(false);
+  const [liked, setLiked] = useState(false);
+  const heartIcon = liked ? <FaHeart color="red" style={{height:'20px', width:"20px"}}/> : <FaRegHeart style={{height:'20px', width:"20px"}} />;
+  const handleLike = async () => {
+      setLiked(!liked);
   };
-
-  const handleMouseMove = (e) => {
-    setCursorPosition({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY });
-  };
-
-  const handleMouseLeave = () => {
-    setZoomed(false);
-  };
-
 
   useEffect(() => {
     dispatch(getProductsByID(id));
@@ -52,28 +47,98 @@ export const SingleProduct = () => {
     return <Box mt="90px">Error: {errorMsg}</Box>;
   }
 
+  console.log(singleproduct)
+
 
   return (
     <ChakraProvider>
   <Flex >
-    <ProductDisplay/>
+    <ProductDisplay images={images}/>
     <Box  m="30px" >
-      <Heading as='h4' size='md'>{singleproduct.name}{singleproduct.name} {singleproduct.name}</Heading>
-      <Flex mb="10px">
-        <Text mr="10px" fontSize="xl" fontWeight="semibold">${singleproduct.discountPrice}</Text>
-        <Text textDecoration="line-through" color="gray.500">${singleproduct.price}</Text>
+      <Text fontSize={'xl'} fontWeight={500}>{singleproduct.name}{singleproduct.name} {singleproduct.name}</Text>
+      <Flex mb="10px" gap={'5'} align='center'>
+        <Text fontSize={17} style={{ wordSpacing: "0.5px" }}><StarIcon color={'yellow.400'} />{" "}{singleproduct.reviews.length}{" "} Reviews</Text>
+        <Text fontSize={17} style={{ wordSpacing: "0.5px" }}> Brand: {" "}{singleproduct.brand}</Text>
+        <Text fontSize={17} style={{ wordSpacing: "0.5px" }}><QuestionIcon color={'Black.400'} />{" "}{singleproduct.reviews.length}{" "} Answered Questions</Text>
+        <Text fontSize={16} color={'gray.400'} style={{ wordSpacing: "0.5px" }}>Item Code:499844</Text>
       </Flex>
-      <Flex mb="10px">
-        <Text mr="10px" color="gray.500" fontSize="sm">Brand:</Text>
-        <Text>{singleproduct.brand}</Text>
+      <Flex mb="10px" gap={'3'} align={'center'}>
+        <Icon as={FaBolt} w={5} h={5} color={'#F1403C'} mr='-4' />
+        <Text fontSize={18} color={'#F1403C'} fontWeight={600} style={{ wordSpacing: "0.5px" }}>Flash Deal </Text>
+        <Text fontSize={16} color={'#F1403C'} style={{ wordSpacing: "0.5px" }}>Ends In: </Text>
       </Flex>
-      <Flex mb="10px">
-        <Text mr="10px" color="gray.500" fontSize="sm">Rating:</Text>
-        <Text>{singleproduct.rating}/5</Text>
+      <Flex gap={'2'} p='1' align={'center'} >
+        <Heading as='h6' size='lg'>₹{singleproduct.price}</Heading>
+        <Text as='del' color='gray.400' fontSize={'16'}>₹{singleproduct.strikedprice}</Text>
+        <Tag size={'md'} fontWeight={700} fontSize={15} variant='solid' colorScheme='red'>14% OFF</Tag>
       </Flex>
-      <Button mb="20px" mr="10px" colorScheme="blue">Add to Cart</Button>
-      <Button mb="20px" mr="10px" colorScheme="blue">Buy Now</Button>
-      {/* <Button mb="20px" colorScheme="gray"></Button> */}
+      <Flex mb="10px" gap={1}>
+        <Icon h='6' w='5' color="gray.500" as={MdTabletAndroid}/>
+        <Text fontWeight={600} fontSize="17px">₹{singleproduct.price-250} </Text>
+        <Text>Exclusive app price!</Text>
+      </Flex>
+      <Flex mb="20px" gap={7} align={'center'} >
+        <Badge color={'green.600'} fontWeight={400} p='3px 10px'> 2% OFF New User </Badge>
+        <Text color={'#046381'}>Get Coupons</Text>
+      </Flex>
+      <Divider position='absolute' w='600px'zIndex='-1'  variant="solid" borderWidth='0.5px' borderColor="#d8d8d8" />
+      <Flex mt="40px" mb="20px" gap={5} align={'center'}>
+        <Text mr="10px" fontSize="17">Ship from:</Text>
+        { Shiping.length? Shiping.map((el, i)=><Button zIndex='-1' bg='none' p='0px 15px' size='sm' color={i==0?"#06f":"#818181"} fontSize={16}  fontWeight={400} border={i==0?'1px solid #06f':'1px dashed #a0a0a0'}>{el}</Button>):"N/A"  }
+      </Flex>
+      <Flex mb="20px"  gap={9} >
+        <Text mr="10px" fontSize="17">Option:</Text>
+        <Flex wrap={"wrap"} gap={5}>
+          { Option.length? Option.map((el,i)=><Button zIndex='-1' bg='none' p='0px 15px' size='sm' color={i==1?"#06f":"#818181"} fontSize={16}  fontWeight={400} border={i==1?'1px solid #06f':'1px dashed #a0a0a0'}>{el}</Button>):"N/A"  }
+        </Flex>
+      </Flex>
+      <Flex mb="20px"  gap={5} >
+        <Text mr="47px" fontSize="17">QTY:</Text>
+        <Flex align="center" justify="center">
+      <IconButton
+        aria-label="minus"
+        icon={<MinusIcon color='gray.500' w={2} h={2}/>}
+        // onClick={handleMinusClick}
+        borderRadius="3px"
+        border='0.1px solid #c0c0c0'
+        h={'29px'}
+        minW='28px'
+        bg='none'
+        borderRightRadius="0"
+      />
+      <Text px={5} border='1px solid #c0c0c0' fontSize="lg">
+        {1}
+      </Text>
+      <IconButton
+        aria-label="add"
+        icon={<AddIcon color='gray.500' w={2} h={2}/>}
+        h={'29px'}
+        border='0.1px solid #c0c0c0'
+        bg='none'
+        minW='28px'
+        // onClick={handleAddClick}
+        borderRadius="3px"
+        borderLeftRadius="0"
+      />
+    </Flex>
+      </Flex>
+      <Flex align='center' mt='50px' >
+      <Button mr="10px" zIndex='-1' size={'lg'} fontSize={'20px'} w='200px' border={'3px solid #06f'} bg='none' color={'#06f'} >Add to Cart</Button>
+      <Button mr="10px" zIndex='-1' size={'lg'} fontSize={'20px'} w='200px' color='white' bg="#06f">Buy Now</Button>
+      <IconButton
+                icon={heartIcon}
+                aria-label="Like"
+                alignItems='center'
+                cursor='pointer'
+                bg={'none'}
+                _hover={{bg:"none", border:'none'}}
+                _focus={{bg:"none", border:'none'}}
+                onClick={(e) => {
+                    e.stopPropagation();
+                    handleLike();
+                }}
+            />
+        </Flex>
     </Box>
   </Flex>
   </ChakraProvider>

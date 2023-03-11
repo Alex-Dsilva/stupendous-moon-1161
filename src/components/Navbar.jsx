@@ -50,6 +50,7 @@ function Navbar() {
     display="flex"
     justify="center"
     alignItems="center"
+    w={['100vw', 'inherit', 'inherit']}
     border={"2px solid #046381"}
     backgroundColor={"#046381"}
      top={"0"} zIndex={5} >
