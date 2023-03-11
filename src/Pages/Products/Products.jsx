@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from 'react';
-import { Box, Stack, Heading, Text, Image, Button, Skeleton, Grid, Flex, filter, List, ListItem} from '@chakra-ui/react';
+import { Box, Stack, Heading, Text, Image, Button, Grid, Flex, List, ListItem, AccordionButton, AccordionItem, Accordion, AccordionPanel, Icon} from '@chakra-ui/react';
 import { getProducts, addToCart } from '../../redux/App/AppAction';
 import { ChakraProvider } from "@chakra-ui/react";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -8,6 +8,8 @@ import Filter from "../../components/Filter"
 import { useState } from 'react';
 import ProductCard from '../../components/ProductCard';
 import ProductSkeleton from '../../components/ProductSkeleton';
+import {HiViewBoards} from 'react-icons/hi'
+import {FaBars} from 'react-icons/fa'
 
 
 const Products = ({ title }) => {
@@ -22,6 +24,7 @@ const Products = ({ title }) => {
     // priceRange: searchParam.getAll("priceRange"),
     rating: searchParam.getAll("rating"),
     brand: searchParam.getAll("brand"),
+    // brand: ['Xiaomi', 'OnePlus'],
     FreeShipping: searchParam.get("FreeShipping"),
     SortBy: searchParam.get("SortBy"),
     min: searchParam.get("min"),
@@ -64,12 +67,48 @@ const Products = ({ title }) => {
       <Heading className="title" as="h1" p="20px">
         {title || "Products"}
       </Heading>
-      <Flex>
-      {/* <Box border='1px solid' display={['none','none','block']} w='22%' p='5px' ml='1rem' h='300px'>
+      <Flex >
+      <Box border='1px solid' display={['none','none','block']} w='15rem' p='5px' ml='1rem'>
         <Flex justify='space-between' flexDir='column'>
           <Heading color='gray' size='sm' mb={3}>
             Catagary
           </Heading>
+              <Accordion allowMultiple>
+                <AccordionItem>
+                  {({ isExpanded }) => (
+                    <>
+                      <h2>
+                        <AccordionButton>
+                          <Box as="span" flex='1' textAlign='left'>
+                            Electronics
+                          </Box>
+                          {isExpanded ? (
+                            <Icon as={HiViewBoards}/>
+                          ) : (
+                            <Icon as={FaBars}/>
+                          )}
+                        </AccordionButton>
+                      </h2>
+                      <AccordionPanel pb={4}>
+                        <List spacing={3} pl='1rem'>
+                          <ListItem>
+                            Bluetooth Speaker
+                          </ListItem>
+                          <ListItem>
+                            Headphones & Earphones
+                          </ListItem>
+                          <ListItem>
+                            3D Printers & Accessories
+                          </ListItem>
+                          <ListItem>
+                            Video Games Accessories
+                          </ListItem>
+                        </List>
+                      </AccordionPanel>
+                    </>
+                  )}
+                </AccordionItem>
+              </Accordion>
           <List spacing={3} pl='1rem'>
             <ListItem>
               Home
@@ -85,8 +124,8 @@ const Products = ({ title }) => {
             </ListItem>
           </List>
         </Flex>
-      </Box> */}
-      <Box w='100%'>
+      </Box>
+      <Box w={['100%', '60%', '78%']}>
       <Filter/>
       {isLoading ? (
         <Grid templateColumns={[ "repeat(1, 1fr)", "repeat(2, 1fr)",  "repeat(4, 1fr)" ]}  gap={6} p="20px">
