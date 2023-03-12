@@ -52,47 +52,47 @@ export const SingleProduct = () => {
 
   return (
     <ChakraProvider>
-  <Flex >
+  <Flex  flexDir={['column','column','row']}>
     <ProductDisplay images={images}/>
-    <Box  m="30px" >
-      <Text fontSize={'xl'} fontWeight={500}>{singleproduct.name}{singleproduct.name} {singleproduct.name}</Text>
-      <Flex mb="10px" gap={'5'} align='center'>
+    <Box  w={['100vw', '100vw', '60vw']} m={['0','5','5']} >
+      <Text fontSize={'xl'} p='5'  fontWeight={500}>{singleproduct.name}{singleproduct.name} {singleproduct.name}</Text>
+      <Flex mb="10px" pl='5' gap={'5'} wrap='wrap' align='center'>
         <Text fontSize={17} style={{ wordSpacing: "0.5px" }}><StarIcon color={'yellow.400'} />{" "}{singleproduct.reviews.length}{" "} Reviews</Text>
         <Text fontSize={17} style={{ wordSpacing: "0.5px" }}> Brand: {" "}{singleproduct.brand}</Text>
         <Text fontSize={17} style={{ wordSpacing: "0.5px" }}><QuestionIcon color={'Black.400'} />{" "}{singleproduct.reviews.length}{" "} Answered Questions</Text>
         <Text fontSize={16} color={'gray.400'} style={{ wordSpacing: "0.5px" }}>Item Code:499844</Text>
       </Flex>
-      <Flex mb="10px" gap={'3'} align={'center'}>
+      <Flex mb="10px" pl='5'  gap={'3'} align={'center'}>
         <Icon as={FaBolt} w={5} h={5} color={'#F1403C'} mr='-4' />
         <Text fontSize={18} color={'#F1403C'} fontWeight={600} style={{ wordSpacing: "0.5px" }}>Flash Deal </Text>
         <Text fontSize={16} color={'#F1403C'} style={{ wordSpacing: "0.5px" }}>Ends In: </Text>
       </Flex>
-      <Flex gap={'2'} p='1' align={'center'} >
+      <Flex gap={'2'} pl='5'  align={'center'} >
         <Heading as='h6' size='lg'>₹{singleproduct.price}</Heading>
         <Text as='del' color='gray.400' fontSize={'16'}>₹{singleproduct.strikedprice}</Text>
         <Tag size={'md'} fontWeight={700} fontSize={15} variant='solid' colorScheme='red'>14% OFF</Tag>
       </Flex>
-      <Flex mb="10px" gap={1}>
+      <Flex mb="10px" pl='5'  gap={1}>
         <Icon h='6' w='5' color="gray.500" as={MdTabletAndroid}/>
         <Text fontWeight={600} fontSize="17px">₹{singleproduct.price-250} </Text>
         <Text>Exclusive app price!</Text>
       </Flex>
-      <Flex mb="20px" gap={7} align={'center'} >
+      <Flex mb="20px" gap={7} pl='5'  align={'center'} >
         <Badge color={'green.600'} fontWeight={400} p='3px 10px'> 2% OFF New User </Badge>
         <Text color={'#046381'}>Get Coupons</Text>
       </Flex>
-      <Divider position='absolute' w='600px'zIndex='-1'  variant="solid" borderWidth='0.5px' borderColor="#d8d8d8" />
-      <Flex mt="40px" mb="20px" gap={5} align={'center'}>
+      <Divider  w={['95vw','100%','100%']} variant="solid" borderWidth='0.5px' borderColor="#d8d8d8" />
+      <Flex mt="40px" pl='5' mb="20px" gap={5} align={'center'}>
         <Text mr="10px" fontSize="17">Ship from:</Text>
         { Shiping.length? Shiping.map((el, i)=><Button zIndex='-1' bg='none' p='0px 15px' size='sm' color={i==0?"#06f":"#818181"} fontSize={16}  fontWeight={400} border={i==0?'1px solid #06f':'1px dashed #a0a0a0'}>{el}</Button>):"N/A"  }
       </Flex>
-      <Flex mb="20px"  gap={9} >
+      <Flex mb="20px" pl='5'  gap={9} >
         <Text mr="10px" fontSize="17">Option:</Text>
         <Flex wrap={"wrap"} gap={5}>
           { Option.length? Option.map((el,i)=><Button zIndex='-1' bg='none' p='0px 15px' size='sm' color={i==1?"#06f":"#818181"} fontSize={16}  fontWeight={400} border={i==1?'1px solid #06f':'1px dashed #a0a0a0'}>{el}</Button>):"N/A"  }
         </Flex>
       </Flex>
-      <Flex mb="20px"  gap={5} >
+      <Flex mb="20px" pl='5'  gap={5} >
         <Text mr="47px" fontSize="17">QTY:</Text>
         <Flex align="center" justify="center">
       <IconButton
@@ -122,7 +122,7 @@ export const SingleProduct = () => {
       />
     </Flex>
       </Flex>
-      <Flex align='center' mt='50px' >
+      <Flex align='center' pl='5' mt='50px' >
       <Button mr="10px" zIndex='-1' size={'lg'} fontSize={'20px'} w='200px' border={'3px solid #06f'} bg='none' color={'#06f'} >Add to Cart</Button>
       <Button mr="10px" zIndex='-1' size={'lg'} fontSize={'20px'} w='200px' color='white' bg="#06f">Buy Now</Button>
       <IconButton

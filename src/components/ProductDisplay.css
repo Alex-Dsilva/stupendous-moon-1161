@@ -1,9 +1,20 @@
-.slick-arrow::before{
-    opacity: 1;
-    color: rgb(1, 1, 1);
-    font-size: 40px;
-    line-height: 40px;
+
+.arrow-icon-left {
+  position: absolute;
+  top: 25%;
+  font-size: 3rem;
+  z-index: 50;
+  border-radius: 50%;
+  padding: 0rem;
+  cursor: pointer;
 }
-.slick-prev {
-    left: -45px;
-}
+
+.arrow-icon-right {
+    position: absolute;
+    top: 25%;
+    right: 0;
+    font-size: 3rem;
+    z-index: 50;
+    border-radius: 50%;
+    cursor: pointer;
+  }
