@@ -9,6 +9,7 @@ import { getProductsByID } from "../../redux/App/AppAction";
 import { ChakraProvider } from "@chakra-ui/react";
 import { StarIcon, QuestionIcon } from "@chakra-ui/icons";
 import { MinusIcon, AddIcon, } from "@chakra-ui/icons";
+import ProductDetails from "../../components/ProductDetails";
 
 const images = [
   'https://img.gkbcdn.com/s3/p/2022-05-11/ELEGLIDE-T1-Electric-Bike-36V-12-5AH-250W-MTB-Bike-500404-1.jpg',
@@ -141,6 +142,7 @@ export const SingleProduct = () => {
         </Flex>
     </Box>
   </Flex>
+  <ProductDetails  productId={singleproduct._id} />
   </ChakraProvider>
   );
 };
