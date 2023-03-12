@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from 'react';
-import { Box, Stack, Heading, Text, Image, Button, Grid, Flex, List, ListItem, AccordionButton, AccordionItem, Accordion, AccordionPanel, Icon} from '@chakra-ui/react';
+import { Box, Stack, Heading, Text, Image, Button, Grid, Flex, List, ListItem, AccordionButton, AccordionItem, Accordion, AccordionPanel,useDisclosure,Drawer,DrawerOverlay,DrawerContent,DrawerHeader,DrawerBody,IconButton, Icon, DrawerCloseButton} from '@chakra-ui/react';
 import { getProducts, addToCart } from '../../redux/App/AppAction';
 import { ChakraProvider } from "@chakra-ui/react";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -10,7 +10,26 @@ import ProductCard from '../../components/ProductCard';
 import ProductSkeleton from '../../components/ProductSkeleton';
 import {HiViewBoards} from 'react-icons/hi'
 import {FaBars} from 'react-icons/fa'
+import { HamburgerIcon } from "@chakra-ui/icons";
 
+const catagorys=[
+  {
+    name:'Electronics',
+    list:['Bluetooth Speaker', 'Headphones & Earphones', '3D Printers & Accessories', 'Video Games Accessories']
+  },
+  {
+    name:'Sports & Outdoors',
+    list:['E-Bikes', 'Scooters & Wheels', 'Fitness & Body Building', ' Cardio']
+  },
+  {
+    name:'TV Boxes & Mini PCs',
+    list:['TV Boxes', 'Windows Mini PCs']
+  },
+  {
+    name:'Computers, Tablets & Accessories',
+    list:['Laptops', 'Gaming Laptops', ' Keyboard & Mouse']
+  },
+]
 
 const Products = ({ title }) => {
   const { products, isLoading } = useSelector(state => state.Appreducer);
@@ -18,6 +37,11 @@ const Products = ({ title }) => {
   const dispatch = useDispatch();
   const [data, setdata]=useState([])
   const [page, setPage]=useState(1)
+  const [isOpen, setIsOpen] = useState(false)
+
+
+  const onClose = () => setIsOpen(false)
+  const onOpen = () => setIsOpen(true)
 
   const params = {
     category: searchParam.getAll("category"),
@@ -68,74 +92,92 @@ const Products = ({ title }) => {
         {title || "Products"}
       </Heading>
       <Flex >
-      <Box border='1px solid' display={['none','none','block']} w='15rem' p='5px' ml='1rem'>
-        <Flex justify='space-between' flexDir='column'>
-          <Heading color='gray' size='sm' mb={3}>
-            Catagary
-          </Heading>
-              <Accordion allowMultiple>
-                <AccordionItem>
-                  {({ isExpanded }) => (
-                    <>
-                      <h2>
-                        <AccordionButton>
-                          <Box as="span" flex='1' textAlign='left'>
-                            Electronics
-                          </Box>
-                          {isExpanded ? (
-                            <Icon as={HiViewBoards}/>
-                          ) : (
-                            <Icon as={FaBars}/>
-                          )}
-                        </AccordionButton>
-                      </h2>
-                      <AccordionPanel pb={4}>
-                        <List spacing={3} pl='1rem'>
-                          <ListItem>
-                            Bluetooth Speaker
-                          </ListItem>
-                          <ListItem>
-                            Headphones & Earphones
-                          </ListItem>
-                          <ListItem>
-                            3D Printers & Accessories
-                          </ListItem>
-                          <ListItem>
-                            Video Games Accessories
-                          </ListItem>
-                        </List>
-                      </AccordionPanel>
-                    </>
-                  )}
-                </AccordionItem>
-              </Accordion>
-          <List spacing={3} pl='1rem'>
-            <ListItem>
-              Home
-            </ListItem>
-            <ListItem>
-              Fashion
-            </ListItem>
-            <ListItem>
-              Electronic
-            </ListItem>
-            <ListItem>
-              Vahicals
-            </ListItem>
-          </List>
-        </Flex>
+      <>
+      <Box display={['none', 'none', 'block']} w="15rem" p="5px" h="max-content" ml="1rem">
+        <Heading color="gray" size="sm" mb={3}>
+          Category
+        </Heading>
+        <Accordion allowMultiple>
+          {catagorys.map((category,i) => (
+            <AccordionItem mt="5" key={i}>
+              {({ isExpanded }) => (
+                <>
+                  <h2>
+                    <AccordionButton >
+                      <Box as="span" flex="1" textAlign="left">
+                        {category.name}
+                      </Box>
+                      {isExpanded ? <HiViewBoards /> : <FaBars />}
+                    </AccordionButton>
+                  </h2>
+                  <AccordionPanel pb={4}>
+                    <List spacing={3} pl="1rem">
+                      {category.list.map((item) => (
+                        <ListItem key={item} mt="2">
+                          {item}
+                        </ListItem>
+                      ))}
+                    </List>
+                  </AccordionPanel>
+                </>
+              )}
+            </AccordionItem>
+          ))}
+        </Accordion>
       </Box>
-      <Box w={['100%', '60%', '78%']}>
-      <Filter/>
+      <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton />
+          <DrawerHeader>Category</DrawerHeader>
+
+          <DrawerBody>
+          <Accordion allowMultiple>
+          {catagorys.map((category) => (
+            <AccordionItem mt="5">
+              {({ isExpanded }) => (
+                <>
+                  <h2>
+                    <AccordionButton >
+                      <Box as="span" flex="1" textAlign="left">
+                        {category.name}
+                      </Box>
+                      {isExpanded ? <HiViewBoards /> : <FaBars />}
+                    </AccordionButton>
+                  </h2>
+                  <AccordionPanel pb={4}>
+                    <List spacing={3} pl="1rem">
+                      {category.list.map((item) => (
+                        <ListItem key={item} mt="2">
+                          {item}
+                        </ListItem>
+                      ))}
+                    </List>
+                  </AccordionPanel>
+                </>
+              )}
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </DrawerBody>
+        </DrawerContent>
+      </Drawer>
+    </>
+      <Box w={['100%', '100%', '78%']}>
+       <Flex justify='space-around'>
+       <Text display={['flex','flex','none']} align='center' gap={3}color='blue.500' _hover={{textDecor:'underline'}} onClick={onOpen} fontSize='md'><HamburgerIcon boxSize={6}/> Category</Text>
+       <Filter/>
+      </Flex> 
+      
       {isLoading ? (
-        <Grid templateColumns={[ "repeat(1, 1fr)", "repeat(2, 1fr)",  "repeat(4, 1fr)" ]}  gap={6} p="20px">
+        <Grid templateColumns={[ "repeat(2, 1fr)", "repeat(3, 1fr)",  "repeat(4, 1fr)" ]}  gap={6} p="20px">
           {Array.from({ length: 10 }, (_, i) => (
             <ProductSkeleton key={i+50} />
           ))}
         </Grid>
 
       ) : (
-        <Grid templateColumns={[ "repeat(1, 1fr)", "repeat(2, 1fr)",  "repeat(4, 1fr)" ]} gap={3} p="25px" >
+        <Grid templateColumns={[ "repeat(2, 1fr)", "repeat(3, 1fr)",  "repeat(4, 1fr)" ]} gap={3} p="25px" >
           {data.map((product, index) => {
             return (
             <ProductCard key={index} product={product} />

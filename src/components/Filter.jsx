@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { Box, Checkbox, Text, Heading, RangeSlider, RangeSliderTrack, RangeSliderFilledTrack, RangeSliderThumb, Input, Flex, Button, Grid,Drawer,DrawerBody,DrawerFooter,DrawerHeader,DrawerOverlay, DrawerContent,DrawerCloseButton, MenuItem, Menu, MenuButton, MenuList, Image, List, ListItem, Spinner } from '@chakra-ui/react'
-import { BsCircleFill } from 'react-icons/bs'
-import { StarIcon } from '@chakra-ui/icons'
+import { Box, Checkbox, Text, Heading, RangeSlider, RangeSliderTrack, RangeSliderFilledTrack, RangeSliderThumb, Input, Flex, Button, Grid,Drawer,DrawerBody,DrawerFooter,DrawerHeader,DrawerOverlay, DrawerContent,DrawerCloseButton, MenuItem, Menu, MenuButton, MenuList, Image, List, ListItem, Spinner, Icon } from '@chakra-ui/react'
+import { BsCircleFill,BiFilter } from 'react-icons/all'
+import { StarIcon, HamburgerIcon } from '@chakra-ui/icons'
 import {ChevronDownIcon, ChevronUpIcon, CloseIcon} from '@chakra-ui/icons'
 import { useSelector } from 'react-redux'
 import PulseLoader from "react-spinners/PulseLoader";
@@ -246,7 +246,7 @@ const Filter = () => {
 
       </Box>
       
-      <Text display={['block','none','none']} _hover={{textDecor:'underline'}} onClick={onOpen} fontSize='md'>Filter</Text>
+      <Text display={['flex','flex','none']} align='center' gap={3} color='blue.500' _hover={{textDecor:'underline'}} onClick={onOpen} fontSize='md'> <Icon as={BiFilter} boxSize={6}/> Filter</Text>
       <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent>
@@ -377,10 +377,6 @@ const Filter = () => {
           </Button>
         </Flex>
           </DrawerBody>
-
-          <DrawerFooter>
-            Drawer footer goes here.
-          </DrawerFooter>
         </DrawerContent>
       </Drawer>
 
