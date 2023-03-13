@@ -41,29 +41,29 @@ const ProductDetails = ({ productId }) => {
           </TabPanel>
 
           <TabPanel>
-            {reviews.length ? (
+            {/* {reviews.length ? (
               reviews.map((review) => (
                 <Box key={review.id}>
                   <Text fontWeight="bold">{review.author}</Text>
                   <Text>{review.content}</Text>
                 </Box>
               ))
-            ) : (
+            ) : ( */}
               <Text>No reviews yet.</Text>
-            )}
+            {/* )} */}
           </TabPanel>
 
           <TabPanel>
-            {questions.length ? (
+            {/* {questions.length ? (
               questions.map((question) => (
                 <Box key={question.id}>
                   <Text fontWeight="bold">{question.author}</Text>
                   <Text>{question.content}</Text>
                 </Box>
               ))
-            ) : (
+            ) : ( */}
               <Text>No questions yet.</Text>
-            )}
+            {/* )} */}
           </TabPanel>
         </TabPanels>
       </Tabs>
