@@ -9,6 +9,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
+import Reviews from "./Reviews";
 // import { getProductReviews, getProductQuestions } from "../redux/actions";
 
 const ProductDetails = ({ productId }) => {
@@ -22,10 +23,9 @@ const ProductDetails = ({ productId }) => {
 //   useSelector((state) => state.questions[productId]);
 
   useEffect(() => {
-    dispatch(getProductReviews(productId));
     // dispatch(getProductQuestions(productId));
   }, [dispatch, productId]);
-
+  console.log(singleproduct.reviews.length)
   return (
     <Box>
       <Tabs index={selectedTabIndex} onChange={setSelectedTabIndex}>
@@ -41,16 +41,7 @@ const ProductDetails = ({ productId }) => {
           </TabPanel>
 
           <TabPanel>
-            {/* {reviews.length ? (
-              reviews.map((review) => (
-                <Box key={review.id}>
-                  <Text fontWeight="bold">{review.author}</Text>
-                  <Text>{review.content}</Text>
-                </Box>
-              ))
-            ) : ( */}
-              <Text>No reviews yet.</Text>
-            {/* )} */}
+            <Reviews singleproduct={singleproduct}/>
           </TabPanel>
 
           <TabPanel>
