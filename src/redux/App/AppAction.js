@@ -50,12 +50,12 @@ const getProductsByID = (id) => async(dispatch) => {
 };
 
 const getProductReviews = (id) => async(dispatch) => {
-  dispatch({type:types.GET_SINGLE_PRODUCTS_REQUEST});
+  dispatch({type:types.GET_REVIEWS_REQUEST});
   axios.get(`https://victorious-houndstooth-colt.cyclic.app/products/productReviews/${id}`).then((res) =>{
-    dispatch({type:types.GET_SINGLE_PRODUCTS_SUCCESS, payload:res.data.data});
+    dispatch({type:types.GET_REVIEWS_SUCCESS, payload:res.data.data});
   }).catch( (error)=> {
     console.error(error);
-    dispatch({type:types.GET_SINGLE_PRODUCTS_FAILURE, payload:error.data.message});
+    dispatch({type:types.GET_REVIEWS_FAILURE, payload:error.data.message});
     alert(error.data.message)
   });
 };
@@ -65,5 +65,5 @@ const addToCart=(payload)=>async(dispatch)=>{
 }
 
 
-export { getTodayDeals ,getProducts,getProductsByID, addToCart};
+export { getTodayDeals ,getProducts,getProductsByID, getProductReviews, addToCart};
 

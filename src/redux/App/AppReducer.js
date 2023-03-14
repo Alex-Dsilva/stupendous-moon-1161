@@ -6,6 +6,7 @@ const initialData = {
     errorMsg:"",
     singleproduct:null,
     products : [],
+    reviwes:[],
     carts: [],
     isError : false
 }
@@ -31,6 +32,12 @@ const Appreducer = ( State = initialData,action )=>{
         case types.GET_SINGLE_PRODUCTS_SUCCESS:
             return { ...State, isLoading: false, isError: false, singleproduct : payload };
         case types.GET_SINGLE_PRODUCTS_FAILURE:
+            return { ...State, isLoading: false, errorMsg: payload, isError: true};
+        case types.GET_REVIEWS_REQUEST:
+            return {...State, isLoading : true,isError : false }
+        case types.GET_REVIEWS_SUCCESS:
+            return { ...State, isLoading: false, isError: false, singleproduct : payload };
+        case types.GET_REVIEWS_SUCCESS:
             return { ...State, isLoading: false, errorMsg: payload, isError: true};
         default : 
         return State        
