@@ -7,6 +7,7 @@ import {
   TabPanel,
   Box,
   Text,
+  Image,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import Reviews from "./Reviews";
@@ -39,7 +40,8 @@ const ProductDetails = ({ productId }) => {
         <TabPanels>
           <TabPanel>
             <Text m='5'>{singleproduct.description}</Text>
-            <Image src={delivary} alt='Fast Delavary'/>
+            <Image m='5' src={delivary} alt='Fast Delavary'/>
+            {/* <Image m='5' src={delivary} alt='Fast Delavary'/> */}
           </TabPanel>
 
           <TabPanel>
