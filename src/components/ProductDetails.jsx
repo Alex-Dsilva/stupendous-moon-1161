@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import Reviews from "./Reviews";
+import delivary from '../assets/Delivary.jpg'
 // import { getProductReviews, getProductQuestions } from "../redux/actions";
 
 const ProductDetails = ({ productId }) => {
@@ -37,7 +38,8 @@ const ProductDetails = ({ productId }) => {
 
         <TabPanels>
           <TabPanel>
-            <Text>{singleproduct.description}</Text>
+            <Text m='5'>{singleproduct.description}</Text>
+            <Image src={delivary} alt='Fast Delavary'/>
           </TabPanel>
 
           <TabPanel>
