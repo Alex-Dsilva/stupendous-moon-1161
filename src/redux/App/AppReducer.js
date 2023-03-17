@@ -49,7 +49,10 @@ const Appreducer = ( State = initialData,action )=>{
         case types.UPDATE_REVIEWS_REQUEST:
             return {...State, isLoading : true,isError : false }
         case types.UPDATE_REVIEWS_SUCCESS:
-            return { ...State, isLoading: false, isError: false, reviews: [...State.reviews, payload] };
+            const updatedReviewIndex = State.reviews.findIndex((review) => review.id === payload.id);
+            const updatedReviews = [...State.reviews];
+            updatedReviews[updatedReviewIndex] = payload;
+            return { ...State, isLoading: false, isError: false, reviews: updatedReviews };
         case types.UPDATE_REVIEWS_FAILURE:
             return { ...State, isLoading: false, errorMsg: payload, isError: true};
         default : 

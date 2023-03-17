@@ -61,16 +61,16 @@ const postProductReviews = ({id, data}) => async(dispatch) => {
   }
 };
 
-// const updateProductReviews = ({id, data}) => async (dispatch) => {
-//   dispatch({type: types.UPDATE_REVIEWS_REQUEST});
-//   try {
-//     const res = await axios.put(`https://localhost:6351/review/like-dislike/${id}`, data);
-//     dispatch({type: types.UPDATE_REVIEWS_SUCCESS, payload: res.data.review});
-//   } catch (error) {
-//     console.error(error);
-//     dispatch({type: types.UPDATE_REVIEWS_FAILURE, payload: error.message});
-//   }
-// };
+const updateProductReviews = ({id, data}) => async (dispatch) => {
+  dispatch({type: types.UPDATE_REVIEWS_REQUEST});
+  try {
+    const res = await axios.put(`https://victorious-houndstooth-colt.cyclic.app/review/like-dislike/${id}`, data);
+    dispatch({type: types.UPDATE_REVIEWS_SUCCESS, payload: res.data});
+  } catch (error) {
+    console.error(error);
+    dispatch({type: types.UPDATE_REVIEWS_FAILURE, payload: error.response.data.message? error.response.data.message:error.message});
+  }
+};
 
 const addToCart=(payload)=>async(dispatch)=>{
   
