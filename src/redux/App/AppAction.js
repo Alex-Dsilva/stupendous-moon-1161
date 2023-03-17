@@ -1,42 +1,21 @@
 import * as types from "./AppActionTypes";
 import axios from "axios";
 
-let getProductsRequest = () => {
-  return { type: types.GET_PRODUCTS_REQUEST };
-};
-
-let getProductsSuccess = (payload) => {
-  return { type: types.GET_PRODUCTS_SUCCESS, payload };
-};
-
-let getProductsFailure = () => {
-  return { type: types.GET_PRODUCTS_FAILURE };
-};
-//today deals api
-const getTodayDeals = (options) => async(dispatch) => {
-  dispatch(getProductsRequest());
-  axios.request(options).then(function (response) {
-    console.log(response.data)
-    dispatch(getProductsSuccess(response.data.docs));
-  }).catch(function (error) {
-    console.error(error);
-    alert(error.response.data.message)
-  });
-};
 
 // getptoducts
 const getProducts = (options) => async(dispatch) => {
-  dispatch(getProductsRequest());
-  // console.log(`${new URLSearchParams(options).toString()}, from get`)
+  dispatch({ type: types.GET_PRODUCTS_REQUEST });
   axios.get(`https://victorious-houndstooth-colt.cyclic.app/products?${new URLSearchParams(options).toString()}`).then((res) =>{
     console.log(res.data)
-    dispatch(getProductsSuccess(res.data));
+    dispatch({ type: types.GET_PRODUCTS_SUCCESS, payload:res.data });
   }).catch( (error)=> {
     console.error(error);
     dispatch({type:types.GET_SINGLE_PRODUCTS_FAILURE, payload:error.data.message});
     alert(error.data.message)
   });
 };
+
+
 // getproducts by id
 const getProductsByID = (id) => async(dispatch) => {
   dispatch({type:types.GET_SINGLE_PRODUCTS_REQUEST});
@@ -45,25 +24,58 @@ const getProductsByID = (id) => async(dispatch) => {
   }).catch( (error)=> {
     console.error(error);
     dispatch({type:types.GET_SINGLE_PRODUCTS_FAILURE, payload:error.data.message});
-    alert(error.data.message)
   });
 };
 
+
+
+// const getProductReviews = (id) => async(dispatch) => {
+//   dispatch({type:types.GET_REVIEWS_REQUEST});
+//   axios.get(`https://victorious-houndstooth-colt.cyclic.app/products/productReviews/${id}`).then((res) =>{
+//     dispatch({type:types.GET_REVIEWS_SUCCESS, payload:res.data.data});
+//   }).catch( (error)=> {
+//     console.error(error);
+//     dispatch({type:types.GET_REVIEWS_FAILURE, payload:error.data.message});
+//     alert(error.data.message)
+//   });
+// };
+
 const getProductReviews = (id) => async(dispatch) => {
-  dispatch({type:types.GET_REVIEWS_REQUEST});
-  axios.get(`https://victorious-houndstooth-colt.cyclic.app/products/productReviews/${id}`).then((res) =>{
-    dispatch({type:types.GET_REVIEWS_SUCCESS, payload:res.data.data});
-  }).catch( (error)=> {
-    console.error(error);
-    dispatch({type:types.GET_REVIEWS_FAILURE, payload:error.data.message});
-    alert(error.data.message)
-  });
+    dispatch({type:types.GET_REVIEWS_REQUEST});
+    axios.get(`https://victorious-houndstooth-colt.cyclic.app/review/${id}`).then((res) =>{
+      dispatch({type:types.GET_REVIEWS_SUCCESS, payload:res.data});
+    }).catch( (error)=> {
+      console.error(error);
+      dispatch({type:types.GET_REVIEWS_FAILURE, payload:error.data.message});
+    });
 };
+
+const postProductReviews = ({id, data}) => async(dispatch) => {
+  dispatch({type: types.ADD_REVIEWS_REQUEST});
+  try {
+    const res = await axios.post(`https://victorious-houndstooth-colt.cyclic.app/review/${id}`, data);
+    dispatch({type: types.ADD_REVIEWS_SUCCESS, payload: res.data.review});
+  } catch (error) {
+    console.error(error);
+    dispatch({type: types.ADD_REVIEWS_FAILURE, payload: error.response.data.message});
+  }
+};
+
+// const updateProductReviews = ({id, data}) => async (dispatch) => {
+//   dispatch({type: types.UPDATE_REVIEWS_REQUEST});
+//   try {
+//     const res = await axios.put(`https://localhost:6351/review/like-dislike/${id}`, data);
+//     dispatch({type: types.UPDATE_REVIEWS_SUCCESS, payload: res.data.review});
+//   } catch (error) {
+//     console.error(error);
+//     dispatch({type: types.UPDATE_REVIEWS_FAILURE, payload: error.message});
+//   }
+// };
 
 const addToCart=(payload)=>async(dispatch)=>{
   
 }
 
 
-export { getTodayDeals ,getProducts,getProductsByID, getProductReviews, addToCart};
+export { getProducts,getProductsByID, updateProductReviews, getProductReviews,postProductReviews, addToCart};
 

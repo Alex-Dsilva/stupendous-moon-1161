@@ -5,7 +5,7 @@ import {MdTabletAndroid } from 'react-icons/md'
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import ProductDisplay from "../../components/ProductDisplay";
-import { getProductsByID } from "../../redux/App/AppAction";
+import { getProductReviews, getProductsByID } from "../../redux/App/AppAction";
 import { ChakraProvider } from "@chakra-ui/react";
 import { StarIcon, QuestionIcon } from "@chakra-ui/icons";
 import { MinusIcon, AddIcon, } from "@chakra-ui/icons";
@@ -25,7 +25,7 @@ const Shiping=['China']
 const Option=["i3-1115G4 CPU 8+256GB", "i5-1135G7 CPU 8+256GB", "i5-1135G7 CPU 10+512GB"]
 
 export const SingleProduct = () => {
-  const { products, singleproduct, isLoading, isError, errorMsg } = useSelector(state => state.Appreducer);
+  const { singleproduct, isLoading, isError, errorMsg } = useSelector(state => state.Appreducer);
   const { id } = useParams();
   const dispatch = useDispatch();
   const [liked, setLiked] = useState(false);
@@ -36,7 +36,8 @@ export const SingleProduct = () => {
 
   useEffect(() => {
     dispatch(getProductsByID(id));
-  }, [dispatch, id]);
+    dispatch(getProductReviews(id))
+  }, [id]);
 
   if (isLoading || singleproduct === null || singleproduct === undefined) {
     return <Box mt="100px">
@@ -47,8 +48,6 @@ export const SingleProduct = () => {
   if (isError) {
     return <Box mt="90px">Error: {errorMsg}</Box>;
   }
-
-  console.log(singleproduct)
 
 
   return (
@@ -85,12 +84,12 @@ export const SingleProduct = () => {
       <Divider  w={['95vw','100%','100%']} variant="solid" borderWidth='0.5px' borderColor="#d8d8d8" />
       <Flex mt="40px" pl='5' mb="20px" gap={5} align={'center'}>
         <Text mr="10px" fontSize="17">Ship from:</Text>
-        { Shiping.length? Shiping.map((el, i)=><Button zIndex='-1' bg='none' p='0px 15px' size='sm' color={i==0?"#06f":"#818181"} fontSize={16}  fontWeight={400} border={i==0?'1px solid #06f':'1px dashed #a0a0a0'}>{el}</Button>):"N/A"  }
+        { Shiping.length? Shiping.map((el, i)=><Button key={i} zIndex='-1' bg='none' p='0px 15px' size='sm' color={i==0?"#06f":"#818181"} fontSize={16}  fontWeight={400} border={i==0?'1px solid #06f':'1px dashed #a0a0a0'}>{el}</Button>):"N/A"  }
       </Flex>
       <Flex mb="20px" pl='5'  gap={9} >
         <Text mr="10px" fontSize="17">Option:</Text>
         <Flex wrap={"wrap"} gap={5}>
-          { Option.length? Option.map((el,i)=><Button zIndex='-1' bg='none' p='0px 15px' size='sm' color={i==1?"#06f":"#818181"} fontSize={16}  fontWeight={400} border={i==1?'1px solid #06f':'1px dashed #a0a0a0'}>{el}</Button>):"N/A"  }
+          { Option.length? Option.map((el,i)=><Button key={i} zIndex='-1' bg='none' p='0px 15px' size='sm' color={i==1?"#06f":"#818181"} fontSize={16}  fontWeight={400} border={i==1?'1px solid #06f':'1px dashed #a0a0a0'}>{el}</Button>):"N/A"  }
         </Flex>
       </Flex>
       <Flex mb="20px" pl='5'  gap={5} >
