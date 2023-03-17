@@ -24,24 +24,25 @@ const ProductDetails = ({ productId }) => {
   const questions = []
 //   useSelector((state) => state.questions[productId]);
 
-  useEffect(() => {
+  // useEffect(() => {
     // dispatch(getProductQuestions(productId));
-  }, [dispatch, productId]);
+  // }, [productId]);
   console.log(singleproduct.reviews.length)
   return (
-    <Box>
-      <Tabs index={selectedTabIndex} onChange={setSelectedTabIndex}>
+    <Box >
+      <Tabs w='97%' m={'auto'} borderTop='2px solid #dfdfdf' index={selectedTabIndex} onChange={setSelectedTabIndex}>
         <TabList>
-          <Tab>Description</Tab>
-          <Tab>Reviews</Tab>
-          <Tab>Q&A</Tab>
+          <Tab h='60px' _selected={{ color: 'white', bg: 'blue.500', fontWeight:'600' }} >Description</Tab>
+          <Tab h='60px' _selected={{ color: 'white', bg: 'blue.500', fontWeight:'600' }} >Reviews</Tab>
+          <Tab h='60px' _selected={{ color: 'white', bg: 'blue.500', fontWeight:'600' }} >Q&A</Tab>
         </TabList>
 
         <TabPanels>
-          <TabPanel>
-            <Text m='5'>{singleproduct.description}</Text>
-            <Image m='5' src={delivary} alt='Fast Delavary'/>
-            {/* <Image m='5' src={delivary} alt='Fast Delavary'/> */}
+          <TabPanel textAlign='center'>
+            <Text m='5' fontSize='2em'>{singleproduct.description}</Text>
+            <Image m='auto' w='90%' src={delivary} alt='Fast Delavary'/>
+            <Image m='auto' mb='5' w='90%' src="https://cdn.magloft.com/pdf-import/520/images/img_24-6.jpg" alt='Best Product Quality'/>
+            <Image m='auto' w='90%' src="https://kenbrooksolar.com/wp-content/uploads/2016/08/Solar-Panel-and-Power-Plant-Systems-price-list-per-watt.png" alt='Best Product Price'/>
           </TabPanel>
 
           <TabPanel>

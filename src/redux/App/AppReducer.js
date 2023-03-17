@@ -6,7 +6,8 @@ const initialData = {
     errorMsg:"",
     singleproduct:null,
     products : [],
-    reviwes:[],
+    reviews:[],
+    wishlist:[],
     carts: [],
     isError : false
 }
@@ -15,7 +16,7 @@ const initialData = {
 
 
 const Appreducer = ( State = initialData,action )=>{
-    // console.log( "products reducer", action);
+    console.log( "products reducer", action);
     const {type,payload} = action;
 
     console.log(type)
@@ -36,8 +37,20 @@ const Appreducer = ( State = initialData,action )=>{
         case types.GET_REVIEWS_REQUEST:
             return {...State, isLoading : true,isError : false }
         case types.GET_REVIEWS_SUCCESS:
-            return { ...State, isLoading: false, isError: false, singleproduct : payload };
+            return { ...State, isLoading: false, isError: false, reviews : payload };
         case types.GET_REVIEWS_SUCCESS:
+            return { ...State, isLoading: false, errorMsg: payload, isError: true};
+        case types.ADD_REVIEWS_REQUEST:
+            return {...State, isLoading : true,isError : false }
+        case types.ADD_REVIEWS_SUCCESS:
+            return { ...State, isLoading: false, isError: false, reviews: [...State.reviews, payload] };
+        case types.ADD_REVIEWS_FAILURE:
+            return { ...State, isLoading: false, errorMsg: payload, isError: true};
+        case types.UPDATE_REVIEWS_REQUEST:
+            return {...State, isLoading : true,isError : false }
+        case types.UPDATE_REVIEWS_SUCCESS:
+            return { ...State, isLoading: false, isError: false, reviews: [...State.reviews, payload] };
+        case types.UPDATE_REVIEWS_FAILURE:
             return { ...State, isLoading: false, errorMsg: payload, isError: true};
         default : 
         return State        
