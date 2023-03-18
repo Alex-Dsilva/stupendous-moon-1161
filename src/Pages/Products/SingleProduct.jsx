@@ -5,7 +5,7 @@ import {MdTabletAndroid } from 'react-icons/md'
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import ProductDisplay from "../../components/ProductDisplay";
-import { getProductReviews, getProductsByID } from "../../redux/App/AppAction";
+import { getProductQuestions, getProductReviews, getProductsByID } from "../../redux/App/AppAction";
 import { ChakraProvider } from "@chakra-ui/react";
 import { StarIcon, QuestionIcon } from "@chakra-ui/icons";
 import { MinusIcon, AddIcon, } from "@chakra-ui/icons";
@@ -37,6 +37,7 @@ export const SingleProduct = () => {
   useEffect(() => {
     dispatch(getProductsByID(id));
     dispatch(getProductReviews(id))
+    dispatch(getProductQuestions(id))
   }, [id]);
 
   if (isLoading || singleproduct === null || singleproduct === undefined) {

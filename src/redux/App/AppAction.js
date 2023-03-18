@@ -72,10 +72,33 @@ const updateProductReviews = ({id, data}) => async (dispatch) => {
   }
 };
 
+const getProductQuestions = (id) => async(dispatch) => {
+  dispatch({type:types.GET_QUESTION_REQUEST});
+  axios.get(`https://victorious-houndstooth-colt.cyclic.app/question/${id}`).then((res) =>{
+    dispatch({type:types.GET_QUESTION_SUCCESS, payload:res.data.question});
+  }).catch( (error)=> {
+    console.error(error);
+    dispatch({type:types.GET_QUESTION_FAILURE, payload:error.data.message});
+  });
+};
+
+
+const postProductQuestions = ({id, data}) => async(dispatch) => {
+  dispatch({type: types.ADD_QUESTION_REQUEST});
+  try {
+    const res = await axios.post(`https://victorious-houndstooth-colt.cyclic.app/question/${id}`, data);
+    dispatch({type: types.ADD_QUESTION_SUCCESS, payload: res.data.question});
+  } catch (error) {
+    console.error(error);
+    dispatch({type: types.ADD_QUESTION_FAILURE, payload: error.response.data.message});
+  }
+};
+
+
 const addToCart=(payload)=>async(dispatch)=>{
   
 }
 
 
-export { getProducts,getProductsByID, updateProductReviews, getProductReviews,postProductReviews, addToCart};
+export { getProducts,getProductsByID, updateProductReviews, getProductReviews,postProductReviews, getProductQuestions, postProductQuestions, addToCart};
 

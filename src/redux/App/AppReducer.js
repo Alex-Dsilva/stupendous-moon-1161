@@ -7,6 +7,7 @@ const initialData = {
     singleproduct:null,
     products : [],
     reviews:[],
+    question:[],
     wishlist:[],
     carts: [],
     isError : false
@@ -54,6 +55,18 @@ const Appreducer = ( State = initialData,action )=>{
             updatedReviews[updatedReviewIndex] = payload;
             return { ...State, isLoading: false, isError: false, reviews: updatedReviews };
         case types.UPDATE_REVIEWS_FAILURE:
+            return { ...State, isLoading: false, errorMsg: payload, isError: true};
+        case types.GET_QUESTION_REQUEST:
+            return {...State, isLoading : true,isError : false };
+        case types.GET_QUESTION_SUCCESS:
+            return { ...State, isLoading: false, isError: false, question:payload };
+        case types.GET_QUESTION_FAILURE:
+            return { ...State, isLoading: false, errorMsg: payload, isError: true};
+        case types.ADD_QUESTION_REQUEST:
+            return {...State, isLoading : true,isError : false };
+        case types.ADD_QUESTION_SUCCESS:
+            return { ...State, isLoading: false, isError: false, question:[...State.question, payload] };
+        case types.ADD_QUESTION_FAILURE:
             return { ...State, isLoading: false, errorMsg: payload, isError: true};
         default : 
         return State        
