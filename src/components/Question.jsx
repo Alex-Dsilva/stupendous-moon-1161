@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { BsHandThumbsDown, BsHandThumbsUp } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import img from '../assets/5217215.jpg'
-import { getProductReviews, postProductQuestions, postProductReviews, updateProductReviews } from '../redux/App/AppAction';
+import { getProductReviews, postProductQuestions, postProductReviews, putProductQuestionAnswer, updateProductReviews } from '../redux/App/AppAction';
 
 const Question = ({singleproduct}) => {
 
@@ -14,23 +14,23 @@ const Question = ({singleproduct}) => {
     const [Question, setQuestion] = useState("");
     const [answer, setAnswer] = useState("");
     const { question } =useSelector((store)=>store.Appreducer)
-
+    const [selectedQuestionIndex, setSelectedQuestionIndex] = useState(null);
     const dispatch=useDispatch()
     const wordCount = Question.trim().split(/\s+/).length;
     const isDisabled = wordCount > 200;
-    const isAdmin=true
+    const isAdmin=false
 
     const handleQuestionChange = (event) => {
       setQuestion(event.target.value);
     };
 
-    const handleAnswerSubmit= () =>{
+    const handleAnswerSubmit= (id) =>{
       const data={
         answer: answer
       }
-      console.log(singleproduct._id, data, "samlex")
+      // console.log(id, data, "samlex")
 
-      // dispatch()
+      dispatch(putProductQuestionAnswer({id, data}))
 
     }
   
@@ -111,12 +111,38 @@ const Question = ({singleproduct}) => {
               ):(
                 <>
                   {isAdmin ? (
-                    <Box p="2">
-                      <Text mb='2' >Please provide an answer:</Text>
-                      <Input mb='2' value={answer} placeholder='Please provide an answer...' onChange={(e) => setAnswer(e.target.value)} />
-                      <Button bg='#046381' color='white' onClick={handleAnswerSubmit}>Submit</Button>
-                    </Box>
-                  ) : (
+                    <>
+                    {selectedQuestionIndex === index ? (
+                      <Box p="2">
+                        <Text mb="2">Please provide an answer:</Text>
+                        <Input
+                          mb="2"
+                          value={answer}
+                          placeholder="Please provide an answer..."
+                          onChange={(e) => setAnswer(e.target.value)}
+                        />
+                        <Button
+                          bg="#046381"
+                          color="white"
+                          onClick={() => handleAnswerSubmit(ques._id)}
+                        >
+                          Submit
+                        </Button>
+                      </Box>
+                    ) : (
+                      <Box p="2">
+                        <Text
+                          _hover={{textDecor:'underline'}}
+                          cursor='pointer'
+                          color="#046381"
+                          letterSpacing='0.5px'
+                          onClick={() => setSelectedQuestionIndex(index)}
+                        >
+                          Answer
+                        </Text>
+                      </Box>
+                    )}
+                  </>) : (
                     <Box p="2">
                       <Text>This question will be answered soon</Text>
                     </Box>
