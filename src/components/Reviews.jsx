@@ -1,5 +1,5 @@
 import { StarIcon } from '@chakra-ui/icons';
-import { Box, Button,  IconButton, CloseButton, FormControl, FormLabel, Image, Stack, Text, Textarea, Flex } from '@chakra-ui/react';
+import { Box, Button,  IconButton, CloseButton, FormControl, FormLabel, Image, Stack, Text, Textarea, Flex, Heading } from '@chakra-ui/react';
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -52,14 +52,18 @@ const Reviews = ({singleproduct}) => {
     };
   
     return (
-      <Box>
+      <Box >
         {/* Review form */}
         {/* Button to open review form */}
-        <Button bg='#046381' _active={{color:'#000000'}} borderRadius='3px' color='white' onClick={() => setShowForm(true)} my="4">
-          Write A Review
-        </Button>
+        <Flex align='center' gap='5'>
+          <Heading as='h6' fontWeight='600'>Customer Reviews</Heading>
+          <Button  bg='#046381' _active={{color:'#000000'}} p='4px 50px' borderRadius='3px' color='white' onClick={() => setShowForm(true)} my="5" >
+            Write A Review
+          </Button>
+        </Flex>
+        
         {showForm && (
-          <Box border="1px solid gray" p="4" m='4'>
+          <Box border="2px solid #e8e8e8" p="4" m='4'>
             <Flex justifyContent="flex-end" alignItems="flex-start">
               <FormControl id="rating" isRequired mb="4" >
                 <FormLabel>Rating</FormLabel>
@@ -96,17 +100,32 @@ const Reviews = ({singleproduct}) => {
         {reviews.length > 0 ? (
           <Stack spacing="4">
             {reviews.map((review, index) => (
-              <Box key={index} border="1px solid gray" p="4">
-                <Text fontWeight="bold">{review.user}</Text>
+              <Box key={index} border="2px solid #e8e8e8" p="4">
+                <Flex gap='10' flexDir={['column','column','row']} p='5'>
+                <Text fontWeight="bold">{review.name}</Text>
+                <Box >
                 <Text>{`${review.rating} stars`}</Text>
+                <Text fontWeight="bold">
+              {Array(5)
+            .fill('')
+            .map((_, i) => (
+              <StarIcon
+                key={i}
+                color={i < review.rating ? 'yellow.400' : 'gray.300'}
+              />
+            )) || "No Reviews"} 
+            </Text>
                 <Text>{review.comment}</Text>
-                <Flex gap={'3'}>
+                <Flex gap={'3'} flexDir={['column','row','row']} align={['left','center','center']} >
+                  <Text>{new Date(review.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</Text>
                   <Box>
                   <IconButton bg='none' onClick={()=>handleClick("like", review._id)} _hover={{bg:'none'}} _active={{bg:'none'}}  icon={<BsHandThumbsUp/>}/> {review.like}
                   </Box>
                   <Box>
                     <IconButton bg='none' onClick={()=>handleClick("dislike", review._id)} _hover={{bg:'none'}} _active={{bg:'none'}} icon={<BsHandThumbsDown />}/> {review.dislike}
                   </Box>
+                </Flex>
+                </Box>
                 </Flex>
               </Box>
             ))}
