@@ -142,6 +142,8 @@ export const SingleProduct = () => {
         </Flex>
     </Box>
   </Flex>
+
+
   <ProductDetails  productId={singleproduct._id} />
   </ChakraProvider>
   );
