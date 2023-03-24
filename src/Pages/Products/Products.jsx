@@ -19,7 +19,7 @@ const catagorys=[
   },
   {
     name:'Sports & Outdoors',
-    list:['E-Bikes', 'Scooters & Wheels', 'Fitness & Body Building', ' Cardio']
+    list:['E-Bikes', 'Scooters & Wheels', 'Fitness & Body Building']
   },
   {
     name:'TV Boxes & Mini PCs',
@@ -27,7 +27,7 @@ const catagorys=[
   },
   {
     name:'Computers, Tablets & Accessories',
-    list:['Laptops', 'Gaming Laptops', ' Keyboard & Mouse']
+    list:['Laptops', 'Gaming Laptops', 'Keyboard & Mouse']
   },
 ]
 

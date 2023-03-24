@@ -27,10 +27,10 @@ const ProductCard = ({product, index}) => {
               border='none'
               _hover={{ shadow:" rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}
               transition="all 0.3s ease-in-out" borderWidth="1px">
-            <Image alignSelf='center' w='80%' src={product.image_url} alt={product.name} />
+            <Image alignSelf='center' src={`${product.images[0]}`} alt={product.name} />
             
             <Flex flexDir={'column'} wrap='wrap' w='80%'>
-            <Text>{product.name}</Text>
+            <Text noOfLines={2} fontSize='16' size='sm'>{product.name}</Text>
             <Text>
               <b>₹{product.price  || 2549} </b> 
             </Text>
