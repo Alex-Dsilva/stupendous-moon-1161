@@ -29,9 +29,9 @@ const CustomNextArrow = (props) => {
   );
 };
 
-  const ProductDisplay = ({images}) => {
+const ProductDisplay = ({images}) => {
   
-    const [swiperRef, setSwiperRef] = useState(null);
+  const [swiperRef, setSwiperRef] = useState(null);
   const [img, setImg] = useState(images[0]);
   const [zoomPosition, setZoomPosition] = useState('right');
 

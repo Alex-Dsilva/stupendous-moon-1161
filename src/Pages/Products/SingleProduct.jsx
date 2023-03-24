@@ -25,7 +25,7 @@ const Shiping=['China']
 const Option=["i3-1115G4 CPU 8+256GB", "i5-1135G7 CPU 8+256GB", "i5-1135G7 CPU 10+512GB"]
 
 export const SingleProduct = () => {
-  const { singleproduct, isLoading, isError, errorMsg } = useSelector(state => state.Appreducer);
+  const { singleproduct, reviews, isLoading, isError, errorMsg } = useSelector(state => state.Appreducer);
   const { id } = useParams();
   const dispatch = useDispatch();
   const [liked, setLiked] = useState(false);
@@ -54,13 +54,13 @@ export const SingleProduct = () => {
   return (
     <ChakraProvider>
   <Flex  flexDir={['column','column','row']}>
-    <ProductDisplay images={images}/>
+    <ProductDisplay images={singleproduct.images}/>
     <Box  w={['100vw', '100vw', '60vw']} m={['0','5','5']} >
       <Text fontSize={'xl'} p='5'  fontWeight={500}>{singleproduct.name}{singleproduct.name} {singleproduct.name}</Text>
       <Flex mb="10px" pl='5' gap={'5'} wrap='wrap' align='center'>
-        <Text fontSize={17} style={{ wordSpacing: "0.5px" }}><StarIcon color={'yellow.400'} />{" "}{singleproduct.reviews.length}{" "} Reviews</Text>
+        <Text fontSize={17} style={{ wordSpacing: "0.5px" }}><StarIcon color={'yellow.400'} />{" "}{reviews.length}{" "} Reviews</Text>
         <Text fontSize={17} style={{ wordSpacing: "0.5px" }}> Brand: {" "}{singleproduct.brand}</Text>
-        <Text fontSize={17} style={{ wordSpacing: "0.5px" }}><QuestionIcon color={'Black.400'} />{" "}{singleproduct.reviews.length}{" "} Answered Questions</Text>
+        <Text fontSize={17} style={{ wordSpacing: "0.5px" }}><QuestionIcon color={'Black.400'} />{" "}{0}{" "} Answered Questions</Text>
         <Text fontSize={16} color={'gray.400'} style={{ wordSpacing: "0.5px" }}>Item Code:499844</Text>
       </Flex>
       <Flex mb="10px" pl='5'  gap={'3'} align={'center'}>
