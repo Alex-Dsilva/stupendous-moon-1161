@@ -16,6 +16,7 @@ const CustomPopover = ({ trigger, height, children, br }) => {
          
         <PopoverTrigger>
           <Box
+            cursor={'pointer'}
             onMouseEnter={() => setIsOpen(true)}
             onMouseLeave={() => setIsOpen(false)}
           >
@@ -24,7 +25,6 @@ const CustomPopover = ({ trigger, height, children, br }) => {
         </PopoverTrigger>
         <PopoverContent 
             onMouseEnter={() => setIsOpen(true)} 
-            onMouseLeave={() => setIsOpen(false)} 
             width="fit-content"
             outline="none"
         >
@@ -32,6 +32,7 @@ const CustomPopover = ({ trigger, height, children, br }) => {
             <PopoverBody 
             maxH={height}
             outline="none"
+            boxShadow='md'
             sx={{
                 "&::-webkit-scrollbar": {
                   width: "2px",

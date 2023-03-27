@@ -1,5 +1,4 @@
 import React from "react";
-// import "./Navbar.css";
 import logo from "../assets/onchoiselogo_4.jpg";
 import {
   Box,
@@ -16,16 +15,12 @@ import {
   DrawerHeader,
   DrawerOverlay,
   IconButton,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverHeader,
-  PopoverBody,
-  PopoverFooter,
-  PopoverArrow,
   Text,
-  Icon,
   Badge,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
 } from "@chakra-ui/react";
 import { ChakraProvider } from "@chakra-ui/react";
 import {
@@ -34,6 +29,7 @@ import {
   AiFillHeart,
   IoCartOutline,
   AiOutlineMenu,
+  FaBars,
   AiOutlineSearch,
   IoCallOutline,
   FiHelpCircle,
@@ -41,14 +37,16 @@ import {
   AiOutlineMessage,
   BsChevronDown,
   BsChevronUp,
-  FiSmartphone
+  FiSmartphone,
+  FaRegUser,
+  FcGoogle
 } from "react-icons/all";
-import { CgProfile } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CustomPopover from "./CustomPopover";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Countries, countriesCurrency } from '../utils/Countries'
 
 
 const languages = ['English', 'हिन्दी']
@@ -58,13 +56,15 @@ function Navbar() {
   // const { auth } = useSelector(store => store);
   const [search, setSearch] = useState('')
   const { name } = useSelector(store => store.Authreducer);
-  // const {name}=auth
+  const [shipto, setShipto] = useState(0)
+  const [buycur, setBuycur] = useState(0)
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleLanguage = (lang) => {
     // alert("lang")
     i18n.changeLanguage(lang);
   }
+  // alert()
 
   return (
     <ChakraProvider>
@@ -75,7 +75,6 @@ function Navbar() {
         flexDirection='column'
         alignItems="center"
         w={['100vw', 'inherit', 'inherit']}
-        border={"2px solid #046381"}
         backgroundColor={"#046381"}
         top={"0"} zIndex={5} >
         <Flex w='100%' justify='flex-end' align='center' gap='6' mr={10}>
@@ -139,10 +138,10 @@ function Navbar() {
             </>
           </CustomPopover>
         </Flex>
-        <Divider bg='white' mb='1' variant='solid' h='1px' orientation='horizontal' />
+        <Divider bg='gray.300' mb='1' variant='solid' h='1px' orientation='horizontal' />
         <Flex w='100%' justify='space-around' p='2' align='center'>
           <Link to="/" ><Image w={['7rem', '7rem', '9rem']} h="50px" id="logo" src={logo} alt="" /></Link>
-          <Flex w='50%' align='flex-start' >
+          <Flex w='45%' align='flex-start' >
             <Input
               border="1px solid black"
               borderRight="0"
@@ -166,38 +165,162 @@ function Navbar() {
               <AiOutlineSearch style={{ fontSize: "27px", fontWeight: "800" }} />
             </Button>
           </Flex>
-          <Flex display={["none", "none", "flex"]} ml='-30px' gap='2' align="center">
+          <Flex display={["none", "none", "flex"]} ml='-30px' gap='3' align="center">
             <CustomPopover
               trigger={(<Flex align='center' p='1' gap={1}>
-                <span style={{ fontSize: '14px', color: 'white', fontWeight: '600' }}>Ship to </span>
-                <Image w='2rem' border='1px solid white' src="https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/800px-Flag_of_India.svg.png" alt='flag' />
-                <Text color='white' fontWeight='600' >/INR</Text>
+                <span style={{ fontSize: '15px', color: 'white', fontWeight: '600' }}>Ship to </span>
+                <Image w='2rem' src={`${Countries[shipto].flagImg}`} alt='flag' />
+                <Text color='white' fontSize='16px' fontWeight='400' >/{`${countriesCurrency[buycur].code}`}</Text>
+
                 {true ? <BsChevronDown style={{ color: 'white' }} /> : <BsChevronUp style={{ color: 'white' }} />}
               </Flex>)}
               height='fit-content'>
-              <>
-                <Flex p='1' gap='2' align='center' >
-                  <AiOutlineMessage />
-                  Live Chat
-                </Flex>
-                <Flex p='1' gap='2' align='center' >
-                  <IoTicketOutline />
-                  Ticket
-                </Flex>
-                <Flex p='1' gap='2' align='center' >
-                  <FiHelpCircle />
-                  Help Center
-                </Flex>
-                <Flex p='1' gap='2' align='center' >
-                  <IoCallOutline />
-                  Call Us
-                </Flex>
-              </>
+              <Flex flexDir='column' gap='5' p='10px 5px'>
+                <Box>
+                  <Text mb='2' fontWeight='600'>Ship to</Text>
+                  <Menu>
+                    {({ isOpen }) => (
+                      <>
+                        <MenuButton isActive={isOpen}
+                          ml='2'
+                          mr='2'
+                          fontWeight='400'
+                          fontSize='15px'
+                          border='1px solid #b3b3b3'
+                          bg='white'
+                          leftIcon={<Image src={Countries[shipto].flagImg} boxSize={'30px'} />}
+                          as={Button}
+                          w='300px'
+                          textAlign='left'
+                          rightIcon={isOpen ? <BsChevronUp /> : <BsChevronDown />}>
+                          {" " + Countries[shipto].name}
+                        </MenuButton>
+                        <MenuList h='300px' minWidth='300px' sx={{
+                          "&::-webkit-scrollbar": {
+                            width: "2px",
+                            height: "2px",
+                            marginRight: '-5px'
+                          },
+                          "&::-webkit-scrollbar-thumb": {
+                            background: "gray.400",
+                            borderRadius: "50%",
+                          },
+                          "&::-webkit-scrollbar-track": {
+                            background: "transparent",
+                          },
+                          "&::-webkit-scrollbar-button": {
+                            display: "none",
+                          },
+                          outline: "none",
+                        }}
+                          overflowY="auto">
+                          {Countries.map((country, i) => (
+                            <MenuItem key={country.name} onClick={() => setShipto(i)}>
+                              <Flex alignItems="center">
+                                <Image src={country.flagImg} boxSize={4} mr={2} />
+                                <Text>{country.name}</Text>
+                              </Flex>
+                            </MenuItem>
+                          ))}
+                        </MenuList>
+                      </>
+                    )}
+                  </Menu>
+                </Box>
+                <Box>
+                  <Text mb='2' fontWeight='600'>Currency</Text>
+                  <Menu>
+                    {({ isOpen }) => (
+                      <>
+                        <MenuButton
+                          isActive={isOpen}
+                          ml='2'
+                          mr='2'
+                          border='1px solid #b3b3b3'
+                          bg='white'
+                          fontWeight='400'
+                          fontSize='15px'
+                          // leftIcon={<Image src={Countries[shipto].flagImg} boxSize={'30px'} />}
+                          as={Button}
+                          w='300px'
+                          textAlign='left'
+                          rightIcon={isOpen ? <BsChevronUp /> : <BsChevronDown />}
+                        >
+                          {countriesCurrency[buycur].code} {" "} {countriesCurrency[buycur].symbol}
+                        </MenuButton>
+                        <MenuList
+                          h='300px'
+                          minWidth='300px'
+                          sx={{
+                            "&::-webkit-scrollbar": {
+                              width: "2px",
+                              height: "2px",
+                              marginRight: '-5px'
+                            },
+                            "&::-webkit-scrollbar-thumb": {
+                              background: "gray.400",
+                              borderRadius: "50%",
+                            },
+                            "&::-webkit-scrollbar-track": {
+                              background: "transparent",
+                            },
+                            "&::-webkit-scrollbar-button": {
+                              display: "none",
+                            },
+                            outline: "none",
+                          }}
+                          overflowY="auto"
+                        >
+                          <Flex>
+                            <Box w="50%" borderRight="1px solid #b3b3b3">
+                              {countriesCurrency.slice(0, countriesCurrency.length / 2).map((country, i) => (
+                                <MenuItem key={country.name} onClick={() => setBuycur(i)}>
+                                  <Flex alignItems="center" w='100%' justify='space-between' p='2px 0px'>
+                                    <Text>{country.code}</Text>
+                                    <Text>{country.symbol}</Text>
+                                  </Flex>
+                                </MenuItem>
+                              ))}
+                            </Box>
+                            <Box w="50%">
+                              {countriesCurrency.slice(countriesCurrency.length / 2).map((country, i) => (
+                                <MenuItem key={country.name} onClick={() => setShipto(i)}>
+                                  <Flex alignItems="center" w='100%' justify='space-between' p='2px 0px'>
+                                    <Text>{country.code}</Text>
+                                    <Text>{country.symbol}</Text>
+                                  </Flex>
+                                </MenuItem>
+                              ))}
+                            </Box>
+                          </Flex>
+                        </MenuList>
+                      </>
+                    )}
+                  </Menu>
+                </Box>
+                <Button bg='#046381' color='white' border='1px solid #b3b3b3'>Save</Button>
+              </Flex>
             </CustomPopover>
-            <Link display={["none", "none", "flex"]}  to="/login" style={{ textDecoration: "none" }} id="sign">
-              <Box color="#FFFFFF" fontWeight="600" >
-                {name ? name : "Sign In"}
-              </Box>
+            <Link display={["none", "none", "flex"]} to="/login" style={{ textDecoration: "none" }} id="sign">
+
+              <CustomPopover
+            trigger={(<Flex color="#FFFFFF" fontSize='15px'  fontWeight="400" gap='1' >
+            <FaRegUser style={{width:'21px', height:'21px'}} />
+              {name ? name : "Sign In"}
+            </Flex>)}
+            height='fit-content'>
+            <>
+              <Text textAlign='center' mb='0.5rem'  mt='1rem' fontSize='17px'>Welcome to Geekbuying</Text>
+              <Flex p='1' gap='5' align='center' mb='5' >
+                <Button w='7.5rem' h='35px' bg='#046381' color='white' >Join</Button>
+                <Button w='7.5rem' h='35px' border='1px solid #b3b3b3' >Sign In</Button>
+              </Flex>
+              <Text mt='3' textAlign='center'>----------{" "}or{" "}----------</Text>
+              <Flex justify='center' m='12%'>
+                <FcGoogle style={{width:'30px', height:'40px'}} />
+              </Flex>
+            </>
+          </CustomPopover>
             </Link>
           </Flex>
           <Box
@@ -205,7 +328,7 @@ function Navbar() {
             variant="ghost"
             colorScheme="blue"
             position="relative"
-            display={["none", "none", "flex"]} 
+            display={["none", "none", "flex"]}
           >
             <IoCartOutline size={20} style={{ height: '25px', width: '25px', color: 'white' }} />
             {0 > 0 && (
@@ -219,7 +342,7 @@ function Navbar() {
           <Box display={["block", "block", "none"]}>
             <IconButton
               icon={<AiOutlineMenu />}
-              fontSize="20px"
+              fontSize="18px"
               aria-label="Open Navigation Menu"
               onClick={onOpen}
             />
@@ -266,26 +389,15 @@ function Navbar() {
             </Drawer>
           </Box>
         </Flex>
-        <Flex w='100%' border='1px solid' bg='green.500' p='5'>
-          <Flex >
-            <AiOutlineMenu />
+        <Flex w='100%' display={["none", "none", "flex"]}>
+          <Flex align='center' gap='1' ml='5' borderTopRadius='10px' p='3px' _hover={{ bg: '#50bdde' }} >
+            <FaBars style={{ fontSize: '20px', fontWeight: '900', color: 'white' }} />
+            <Text fontSize='17px' color='white'>Categories</Text>
           </Flex>
-
-        </Flex>
-      </Box>
-    </ChakraProvider>
-  );
-}
-
-
-export default Navbar;
-
-{/*
-
           <Flex
             w="60%"
             h="40px"
-            m="auto"
+            ml='20'
             align="center"
             color="#FFFFFF"
             justify="space-around"
@@ -298,4 +410,13 @@ export default Navbar;
             <Link style={{ textDecoration: "none" }} to="/payment" id="coup"><Box color="#FFFFFF" fontWeight="600">Wallet</Box></Link>
             <Link style={{ textDecoration: "none" }} to="/apponlyproducts" id="ap"><Box color="#FFFFFF" fontWeight="600">App Only</Box></Link>
           </Flex>
-        </Box> */}
+
+        </Flex>
+      </Box>
+    </ChakraProvider>
+  );
+}
+
+
+export default Navbar;
+

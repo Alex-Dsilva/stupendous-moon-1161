@@ -32,7 +32,7 @@ const ProductCard = ({product, index}) => {
             <Flex flexDir={'column'} wrap='wrap' w='80%'>
             <Text noOfLines={2} fontSize='16' size='sm'>{product.name}</Text>
             <Text>
-              <b>₹{product.price  || 2549} </b> 
+              <b>₹{product.price || 2549} </b> 
             </Text>
              <Text>
               <s> ₹{product.strikedprice || 1249}</s>{"  "}
