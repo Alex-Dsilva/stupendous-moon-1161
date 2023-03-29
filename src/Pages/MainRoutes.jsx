@@ -14,11 +14,12 @@ import Products from './Products/Products'
 function MainRoutes() {
   return (
     <Routes>
-        {/* <Route path="/" element={<Homepage/>}/> */}
-        {/* <Route path="/login" element={<Login/>}/>
-        <Route path="/signup" element={<Signup/>}/> */}
+        <Route path="/" element={<Homepage/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/signup" element={<Signup/>}/>
+        <Route path="/products/search/:searchQuery" element={<Products title={"Search"}/>}/>
         {/* <Route path="/newproducts" element={<PrivateRoute><Products title={"New Arrivals"} searchQuery={"new items"}/></PrivateRoute>}/> */}
-        <Route path="/" element={<Products title={"New Arrivals"} searchQuery={"new items"}/>}/>
+        <Route path="/newarrivals" element={<Products title={"New Arrivals"} searchQuery={"new items"}/>}/>
         {/* <Route path="/bestproducts" element={<PrivateRoute><Products title={"Best Selling"} searchQuery={"best"}/></PrivateRoute>}/>
         <Route path="/clearanceproducts" element={<PrivateRoute><Products title={"Clearance Sale"} searchQuery={'Clearance sale'}/></PrivateRoute>}/>
         <Route path="/apponlyproducts" element={ <PrivateRoute><Products title={"App Only"} searchQuery={'App only'}/></PrivateRoute>}/>

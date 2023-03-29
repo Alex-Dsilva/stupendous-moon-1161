@@ -92,7 +92,7 @@ useEffect(() => {
                   img:img,
                   }} />
          
-        {/* <div style={{width:'25rem', height:'30px', marginLeft:'25px'}}> */}
+      
       <Slider {...settings}>
         {images.map((image, i) => (
             <Box key={i}>
@@ -106,7 +106,6 @@ useEffect(() => {
                 </Box>
               ))}
       </Slider>
-    {/* </div> */}
       </Flex>
     );
   }

@@ -10,6 +10,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { StarIcon, QuestionIcon } from "@chakra-ui/icons";
 import { MinusIcon, AddIcon, } from "@chakra-ui/icons";
 import ProductDetails from "../../components/ProductDetails";
+import GridLoader from "react-spinners/GridLoader";
 
 const images = [
   'https://img.gkbcdn.com/s3/p/2022-05-11/ELEGLIDE-T1-Electric-Bike-36V-12-5AH-250W-MTB-Bike-500404-1.jpg',
@@ -41,9 +42,9 @@ export const SingleProduct = () => {
   }, [id]);
 
   if (isLoading || singleproduct === null || singleproduct === undefined) {
-    return <Box mt="100px">
-      Loading...
-    </Box>;
+    return <Flex mt="150px" justify='center' >
+      <GridLoader color="#06f" />
+    </Flex>;
   }
 
   if (isError) {
@@ -56,7 +57,7 @@ export const SingleProduct = () => {
   <Flex  flexDir={['column','column','row']}>
     <ProductDisplay images={singleproduct.images}/>
     <Box  w={['100vw', '100vw', '60vw']} m={['0','5','5']} >
-      <Text fontSize={'xl'} p='5'  fontWeight={500}>{singleproduct.name}{singleproduct.name} {singleproduct.name}</Text>
+      <Text fontSize={'xl'} p='5' fontWeight={500}>{singleproduct.name}</Text>
       <Flex mb="10px" pl='5' gap={'5'} wrap='wrap' align='center'>
         <Text fontSize={17} style={{ wordSpacing: "0.5px" }}><StarIcon color={'yellow.400'} />{" "}{reviews.length}{" "} Reviews</Text>
         <Text fontSize={17} style={{ wordSpacing: "0.5px" }}> Brand: {" "}{singleproduct.brand}</Text>
@@ -82,15 +83,15 @@ export const SingleProduct = () => {
         <Badge color={'green.600'} fontWeight={400} p='3px 10px'> 2% OFF New User </Badge>
         <Text color={'#046381'}>Get Coupons</Text>
       </Flex>
-      <Divider  w={['95vw','100%','100%']} variant="solid" borderWidth='0.5px' borderColor="#d8d8d8" />
+      <Divider  w={['95vw','100%','100%']} zIndex='-999' variant="solid" borderWidth='0.5px' borderColor="#d8d8d8" />
       <Flex mt="40px" pl='5' mb="20px" gap={5} align={'center'}>
         <Text mr="10px" fontSize="17">Ship from:</Text>
-        { Shiping.length? Shiping.map((el, i)=><Button key={i} zIndex='-1' bg='none' p='0px 15px' size='sm' color={i==0?"#06f":"#818181"} fontSize={16}  fontWeight={400} border={i==0?'1px solid #06f':'1px dashed #a0a0a0'}>{el}</Button>):"N/A"  }
+        { singleproduct.shiping.length? singleproduct.shiping.map((el, i)=><Button key={i} zIndex='-1' bg='none' p='0px 15px' size='sm' color={i==0?"#06f":"#818181"} fontSize={16}  fontWeight={400} border={i==0?'1px solid #06f':'1px dashed #a0a0a0'}>{el}</Button>):"N/A"  }
       </Flex>
       <Flex mb="20px" pl='5'  gap={9} >
         <Text mr="10px" fontSize="17">Option:</Text>
         <Flex wrap={"wrap"} gap={5}>
-          { Option.length? Option.map((el,i)=><Button key={i} zIndex='-1' bg='none' p='0px 15px' size='sm' color={i==1?"#06f":"#818181"} fontSize={16}  fontWeight={400} border={i==1?'1px solid #06f':'1px dashed #a0a0a0'}>{el}</Button>):"N/A"  }
+          { singleproduct.option.length? singleproduct.option.map((el,i)=><Button key={i} zIndex='-1' bg='none' p='0px 15px' size='sm' color={i==1?"#06f":"#818181"} fontSize={16}  fontWeight={400} border={i==1?'1px solid #06f':'1px dashed #a0a0a0'}>{el}</Button>):"N/A"  }
         </Flex>
       </Flex>
       <Flex mb="20px" pl='5'  gap={5} >

@@ -20,9 +20,13 @@ import {
   Menu,
   MenuButton,
   MenuList,
+  InputGroup,
   MenuItem,
+  InputLeftElement,
+  List,
+  ListItem,
 } from "@chakra-ui/react";
-import catagorys from '../utils/catagorys'
+import {catagorys} from '../utils/catagorys'
 import { ChakraProvider } from "@chakra-ui/react";
 import {
   GrCart,
@@ -42,7 +46,7 @@ import {
   FaRegUser,
   FcGoogle
 } from "react-icons/all";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CustomPopover from "./CustomPopover";
 import { useState } from "react";
@@ -55,21 +59,33 @@ function Navbar() {
   const [suggestions, setSuggestions] = useState([]);
   const { name } = useSelector(store => store.Authreducer);
   const [shipto, setShipto] = useState(0)
-  const [curlang, setCurlang] = useState('English')
   const [buycur, setBuycur] = useState(0)
+  const [shipcur, setShipCur]=useState({shipto, buycur })
+  const [curlang, setCurlang] = useState('English')
+  const [cartdropdown, setCartDropDown]=useState(false)
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [serIsOpen, setSerIsOpen] = useState(false)
+  const navigate=useNavigate()
 
   const fetchSuggestions = (value) => {
-    const results = sampleData.filter(item =>
+    const results = sugesstion.filter(item =>
       item.toLowerCase().includes(value.toLowerCase())
     );
     setSuggestions(results);
+    if (results.length > 0) {
+      setSerIsOpen(true)
+    }
   };
+
+    const handleShipping=()=>{
+      setShipCur({shipto, buycur})
+    }
 
   const handleInputChange = (event) => {
     const value = event.target.value;
     setSearch(value);
     fetchSuggestions(value);
+    console.log(suggestions)
   };
 
   const handleLanguage = (lang) => {
@@ -78,6 +94,10 @@ function Navbar() {
 
     // i18n.changeLanguage(lang);
 
+  }
+
+  const handleSearch =()=>{
+    navigate(`/products/search/${search}`)
   }
 
   return (
@@ -91,12 +111,12 @@ function Navbar() {
         w={['100vw', 'inherit', 'inherit']}
         backgroundColor={"#046381"}
         top={"0"} zIndex={5} >
-        <Flex w='100%' justify='flex-end' align='center' gap='6' mr={10}>
+        <Flex w='100%' display={["none", "none", "flex"]} justify='flex-end' align='center' gap='6' mr={10}>
           <CustomPopover
             trigger={(<Flex align='center' p='2'>
               <FiSmartphone style={{ fontSize: "24px", color: 'white' }} />
               <Text fontSize='13.5px' mr='1.5' color='white' >{t('Save $50 with App')}</Text>
-             <BsChevronDown style={{ color: 'white' }} />
+              <BsChevronDown style={{ color: 'white' }} />
             </Flex>)}
             height='fit-content'>
             <>
@@ -104,10 +124,10 @@ function Navbar() {
               <Flex align='center' justify='center'>
                 <Image h='8rem' w='8rem' src='https://content1.geekbuying.com/V1.4/en/images/index_images/android_app.png' alt='qr Download' />
                 <Box p='1'>
-                <a href="https://geekbuying.app.link/pcwebios" target="_blank" rel="noopener noreferrer"><Image mt='2' mb='2' src='https://content1.geekbuying.com/V1.4/en/images/index_images/app_store.jpg' alt='qr Download' /></a>
-                <a href="https://geekbuying.app.link/pcwebandroid" target="_blank" rel="noopener noreferrer"><Image mb='2.5' src='https://content1.geekbuying.com/V1.4/en/images/index_images/google_play.jpg' alt='qr Download' /></a>
-                <a href="https://appgallery.huawei.com/app/C105563881" target="_blank" rel="noopener noreferrer"><Image mb='2.5' src='https://content1.geekbuying.com/V1.4/en/images/index_images/gallery.jpg' alt='qr Download' /></a>
-                  
+                  <a href="https://geekbuying.app.link/pcwebios" target="_blank" rel="noopener noreferrer"><Image mt='2' mb='2' src='https://content1.geekbuying.com/V1.4/en/images/index_images/app_store.jpg' alt='qr Download' /></a>
+                  <a href="https://geekbuying.app.link/pcwebandroid" target="_blank" rel="noopener noreferrer"><Image mb='2.5' src='https://content1.geekbuying.com/V1.4/en/images/index_images/google_play.jpg' alt='qr Download' /></a>
+                  <a href="https://appgallery.huawei.com/app/C105563881" target="_blank" rel="noopener noreferrer"><Image mb='2.5' src='https://content1.geekbuying.com/V1.4/en/images/index_images/gallery.jpg' alt='qr Download' /></a>
+
                 </Box>
               </Flex>
             </>
@@ -120,8 +140,8 @@ function Navbar() {
             height='fit-content'>
             <>
               {
-                languages.map((language) => {
-                  return <Text mb='1' noOfLines={3} cursor='pointer' onClick={() => handleLanguage(language)} p='2px 10px'>{language.language}</Text>
+                languages.map((language, i) => {
+                  return <Text key={i} mb='1' noOfLines={3} cursor='pointer' onClick={() => handleLanguage(language)} p='2px 10px'>{language.language}</Text>
                 })
               }
             </>
@@ -153,46 +173,53 @@ function Navbar() {
             </>
           </CustomPopover>
         </Flex>
-        <Divider bg='gray.300' mb='1' variant='solid' h='1px' orientation='horizontal' />
+        <Divider display={["none", "none", "flex"]} bg='gray.300' mb='1' variant='solid' h='1px' orientation='horizontal' />
         <Flex w='100%' justify='space-around' p='2' align='center'>
           <Link to="/" ><Image w={['7rem', '7rem', '9rem']} h="50px" id="logo" src={logo} alt="" /></Link>
-          <Flex w='45%' align='flex-start' >
-            <Input
-              border="1px solid black"
-              borderRight="0"
-              borderLeftRadius="4px"
-              h="40px"
-              borderRightRadius="0"
-              bg="white"
-              type="text"
-              id="search"
-              onChange={handleInputChange}
-              placeholder={"Search by Keyword"}
-            />
-            <Button
-              w="50px"
-              h="40px"
-              borderLeft="0"
-              borderLeftRadius="0"
-              borderRightRadius="4px"
-              bg="white"
-            >
-              <AiOutlineSearch style={{ fontSize: "27px", fontWeight: "800" }} />
-            </Button>
+          <Flex w="45%" align="flex-start">
+            <InputGroup w="100%" position='relative'>
+              <Input
+                border="1px solid black"
+                borderRight="0"
+                borderLeftRadius="4px"
+                h="40px"
+                borderRightRadius="0"
+                bg="white"
+                type="text"
+                id="search"
+                value={search}
+                onChange={handleInputChange}
+                placeholder={"Search by Keyword"}
+              />
+              <Button
+                w="50px"
+                h="40px"
+                borderLeft="0"
+                borderLeftRadius="0"
+                borderRightRadius="4px"
+                bg="white"
+                onClick={handleSearch}
+              >
+                <AiOutlineSearch style={{ fontSize: "27px", fontWeight: "800" }} />
+              </Button>
+            </InputGroup>
+            {serIsOpen && (
+              <List shadow='md' onMouseLeave={() => setSerIsOpen(false)} mt={2} w="40%" h='300px' overflow='auto' position="absolute" bg='white' top={['46px', '46px', '90px']} zIndex="1">
+                {suggestions.map((suggestion,i) => (
+                  <Link key={i} to={`/products/search/${suggestion}`}><ListItem m='2' cursor='pointer' key={suggestion} py={1} px={2} _hover={{ bg: "gray.200" }}>
+                    <Text>{suggestion}</Text>
+                  </ListItem></Link>
+                ))}
+              </List>
+            )}
           </Flex>
-          { suggestions.length > 0 && (
-  <ul>
-    { suggestions.map((item, index) => (
-      <li key={index}>{item}</li>
-    ))}
-  </ul>
-)}
+
           <Flex display={["none", "none", "flex"]} ml='-30px' gap='3' align="center">
             <CustomPopover
               trigger={(<Flex align='center' p='1' gap={1}>
                 <span style={{ fontSize: '15px', color: 'white', fontWeight: '600' }}>Ship to </span>
-                <Image w='2rem' src={`${Countries[shipto].flagImg}`} alt='flag' />
-                <Text color='white' fontSize='16px' fontWeight='400' >/{`${countriesCurrency[buycur].code}`}</Text>
+                <Image w='2rem' src={`${Countries[shipcur.shipto].flagImg}`} alt='flag' />
+                <Text color='white' fontSize='16px' fontWeight='400' >/{`${countriesCurrency[shipcur.buycur].code}`}</Text>
 
                 {true ? <BsChevronDown style={{ color: 'white' }} /> : <BsChevronUp style={{ color: 'white' }} />}
               </Flex>)}
@@ -237,7 +264,7 @@ function Navbar() {
                         }}
                           overflowY="auto">
                           {Countries.map((country, i) => (
-                            <MenuItem key={country.name} onClick={() => setShipto(i)}>
+                            <MenuItem key={i} onClick={() => setShipto(i)}>
                               <Flex alignItems="center">
                                 <Image src={country.flagImg} boxSize={4} mr={2} />
                                 <Text>{country.name}</Text>
@@ -251,7 +278,7 @@ function Navbar() {
                 </Box>
                 <Box>
                   <Text mb='2' fontWeight='600'>Currency</Text>
-                  <Menu>
+                  <Menu >
                     {({ isOpen }) => (
                       <>
                         <MenuButton
@@ -294,9 +321,9 @@ function Navbar() {
                           overflowY="auto"
                         >
                           <Flex>
-                            <Box w="50%" borderRight="1px solid #b3b3b3">
+                            <Box w="50%" key='first-half' borderRight="1px solid #b3b3b3">
                               {countriesCurrency.slice(0, countriesCurrency.length / 2).map((country, i) => (
-                                <MenuItem key={country.name} onClick={() => setBuycur(i)}>
+                                <MenuItem key={i} onClick={() => setBuycur(i)}>
                                   <Flex alignItems="center" w='100%' justify='space-between' p='2px 0px'>
                                     <Text>{country.code}</Text>
                                     <Text>{country.symbol}</Text>
@@ -304,9 +331,9 @@ function Navbar() {
                                 </MenuItem>
                               ))}
                             </Box>
-                            <Box w="50%">
+                            <Box w="50%" key='secound-half'>
                               {countriesCurrency.slice(countriesCurrency.length / 2).map((country, i) => (
-                                <MenuItem key={country.name} onClick={() => setShipto(i)}>
+                                <MenuItem key={i} onClick={() => setBuycur(i + countriesCurrency.length / 2)}>
                                   <Flex alignItems="center" w='100%' justify='space-between' p='2px 0px'>
                                     <Text>{country.code}</Text>
                                     <Text>{country.symbol}</Text>
@@ -320,11 +347,10 @@ function Navbar() {
                     )}
                   </Menu>
                 </Box>
-                <Button bg='#046381' color='white' border='1px solid #b3b3b3'>Save</Button>
+                <Button bg='#046381' onClick={handleShipping} color='white' border='1px solid #b3b3b3'>Save</Button>
               </Flex>
             </CustomPopover>
-            <Link display={["none", "none", "flex"]} to="/login" style={{ textDecoration: "none" }} id="sign">
-
+            
               <CustomPopover
                 trigger={(<Flex color="#FFFFFF" fontSize='15px' fontWeight="400" gap='1' >
                   <FaRegUser style={{ width: '21px', height: '21px' }} />
@@ -334,8 +360,8 @@ function Navbar() {
                 <>
                   <Text textAlign='center' mb='0.5rem' mt='1rem' fontSize='17px'>Welcome to Geekbuying</Text>
                   <Flex p='1' gap='5' align='center' mb='5' >
-                    <Button w='7.5rem' h='35px' bg='#046381' color='white' >Join</Button>
-                    <Button w='7.5rem' h='35px' border='1px solid #b3b3b3' >Sign In</Button>
+                    <Link to='/login'><Button cursor='pointer' w='7.5rem' h='35px' bg='#046381' color='white' >Join</Button></Link>
+                    <Link to='/signup'><Button w='7.5rem' h='35px' border='1px solid #b3b3b3' cursor='pointer' >Sign In</Button></Link>
                   </Flex>
                   <Text mt='3' textAlign='center'>----------{" "}or{" "}----------</Text>
                   <Flex justify='center' m='12%'>
@@ -343,14 +369,13 @@ function Navbar() {
                   </Flex>
                 </>
               </CustomPopover>
-            </Link>
           </Flex>
 
           <CustomPopover
             trigger={(<Box
               size="sm"
               variant="ghost"
-              colorScheme="blue"
+              colorscheme="blue"
               position="relative"
               display={["none", "none", "flex"]}
             >
@@ -497,7 +522,7 @@ function Navbar() {
             {({ isOpen }) => (
               <>
                 <MenuButton
-                  isActive={isOpen}
+                  // isActive={isOpen}
                   fontWeight='400'
                   fontSize='15px'
                   textAlign='left'
@@ -514,6 +539,7 @@ function Navbar() {
                 <MenuList
                   h='300px'
                   minWidth='fit-content'
+                  zIndex='999'
                   sx={{
                     "&::-webkit-scrollbar": {
                       width: "2px",
@@ -535,16 +561,16 @@ function Navbar() {
                   overflowY="auto"
                 >
                   <Flex flexDir='column'>
-                   {
-                    catagorys.map((category,i)=>(
+                    {
+                      catagorys.map((category, i) => (
                         category.list.map((item) => (
-                        <Text cursor='pointer' _hover={{bg:'gray.200'}} p='2' key={item} mx='2' >
-                          {item}
-                        </Text>
+                          <Text cursor='pointer' _hover={{ bg: 'gray.200' }} p='2' key={item} mx='2' >
+                            {item}
+                          </Text>
+                        ))
                       ))
-                    ))
-                   }
-                      
+                    }
+
                   </Flex>
                 </MenuList>
               </>
@@ -559,12 +585,12 @@ function Navbar() {
             justify="space-around"
             display={["none", "none", "flex"]}
           >
-            <Link style={{ textDecoration: "none" }} to="/newproducts" id="new"><Box color="#FFFFFF" fontWeight="600" >New</Box></Link>
-            <Link style={{ textDecoration: "none" }} to="/bestproducts" id="best"><Box color="#FFFFFF" fontWeight="600">Bestselling</Box></Link>
-            <Link style={{ textDecoration: "none" }} to="/clearanceproducts" id="clear"><Box color="#FFFFFF" fontWeight="600">Clearance</Box></Link>
-            <Link style={{ textDecoration: "none" }} to="/todaydeals" id="deal"><Box color="#FFFFFF" fontWeight="600">Deals</Box></Link>
-            <Link style={{ textDecoration: "none" }} to="/payment" id="coup"><Box color="#FFFFFF" fontWeight="600">Wallet</Box></Link>
-            <Link style={{ textDecoration: "none" }} to="/apponlyproducts" id="ap"><Box color="#FFFFFF" fontWeight="600">App Only</Box></Link>
+            <Link style={{ textDecoration: "none" }} to="/newproducts" key="new"><Box color="#FFFFFF" fontWeight="600" >New</Box></Link>
+            <Link style={{ textDecoration: "none" }} to="/bestproducts" key="best"><Box color="#FFFFFF" fontWeight="600">Bestselling</Box></Link>
+            <Link style={{ textDecoration: "none" }} to="/clearanceproducts" key="clear"><Box color="#FFFFFF" fontWeight="600">Clearance</Box></Link>
+            <Link style={{ textDecoration: "none" }} to="/todaydeals" key="deal"><Box color="#FFFFFF" fontWeight="600">Deals</Box></Link>
+            <Link style={{ textDecoration: "none" }} to="/payment" key="coup"><Box color="#FFFFFF" fontWeight="600">Wallet</Box></Link>
+            <Link style={{ textDecoration: "none" }} to="/apponlyproducts" key="ap"><Box color="#FFFFFF" fontWeight="600">App Only</Box></Link>
           </Flex>
 
         </Flex>

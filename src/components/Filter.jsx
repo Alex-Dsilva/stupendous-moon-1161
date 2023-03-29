@@ -9,7 +9,6 @@ import PulseLoader from "react-spinners/PulseLoader";
 
 
 
-
 const country=[{img:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/800px-Flag_of_Europe.svg.png', name:'Europe'},
               {img:'https://flagcdn.com/w320/de.png',name:'Germany'},
               {img:'https://flagcdn.com/w320/gb.png',name:'United Kingdom'},
@@ -28,6 +27,7 @@ const Filter = () => {
   const ShipingFrom=country.findIndex(c => c.name === initialShiping)
   const [brand, setBrand] = useState(initialBrand || []);
   const brands = Array.from(new Set(products.map(p => p.brand)))
+  // const brands = Brands.filter(bran => cat.includes(bran.category));
   const [Sort, setSort]=useState(initialsort||'')
   const [FreeShiping, setFreeShiping]=useState(intialFreeShiping||false)
   const [onSale, setOnSale]=useState(initialSale||false)
@@ -52,7 +52,9 @@ const Filter = () => {
   }
 
   const handlBrandChange = (e) => {
+    // console.log(e)
     const newbrand = [...brand];
+    
     if (newbrand.includes(e)) {
         // console.log()
       newbrand.splice(newbrand.indexOf(e), 1)

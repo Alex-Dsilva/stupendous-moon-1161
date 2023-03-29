@@ -314,7 +314,7 @@ const Formbg=styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 60px;
+  /* margin-top: 60px; */
   width: 100%;
   height: 90vh;
   background: url(${bg});
@@ -373,14 +373,13 @@ const CaptchaInput=styled.input`
 `;
 
 const FormWrapper=styled.div`
+    padding: 5px;
     padding: 20px 30px;
     background-color: #fff;
     border-radius: 4px;
     box-shadow: 0 0 10px rgb(0 0 0 / 20%);
     position: absolute;
-     top: 50px;
-    /* transform: translate(120%); 
-    z-index: 3; */
+    margin-top: 70px;
     z-index: 3;
     @media (max-width: 768px) {
       width: 80%;
