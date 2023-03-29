@@ -180,7 +180,6 @@ const Formbg=styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 60px;
   width: 100%;
   height: 90vh;
   background: url(${bg});
@@ -191,17 +190,12 @@ const Formbg=styled.div`
 
 const FormWrapper=styled.div`
     padding: 5px;
-    /* width: 30%; */
     padding: 20px 30px;
     background-color: #fff;
     border-radius: 4px;
     box-shadow: 0 0 10px rgb(0 0 0 / 20%);
     position: absolute;
     margin-top: 70px;
-
-    /* top: 200px;
-    transform: translate(90%);
-    text-align: left; */
     z-index: 3;
     @media (max-width: 768px) {
       width: 80%;

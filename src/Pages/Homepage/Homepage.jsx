@@ -23,7 +23,7 @@ const Homepage = () => {
       <div className="deal">
         <div className="deal_1">
           <div>
-            <Swiper_One />
+            {/* <Swiper_One /> */}
           </div>
           <div>
             <div className="deal_1_5">

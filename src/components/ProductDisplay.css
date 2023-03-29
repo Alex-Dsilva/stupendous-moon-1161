@@ -9,6 +9,11 @@
   cursor: pointer;
 }
 
+.slick-list{
+  width: 300px;
+  margin: auto;
+}
+
 .arrow-icon-right {
     position: absolute;
     top: 25%;
@@ -17,4 +22,8 @@
     z-index: 50;
     border-radius: 50%;
     cursor: pointer;
+  }
+
+  .js-image-zoom__zoomed-image{
+    z-index: 999;
   }

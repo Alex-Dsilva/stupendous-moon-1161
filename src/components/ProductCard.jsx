@@ -35,7 +35,7 @@ const ProductCard = ({product, index}) => {
               <b>₹{product.price || 2549} </b> 
             </Text>
              <Text>
-              <s> ₹{product.strikedprice || 1249}</s>{"  "}
+              <s> ₹{product.strikedprice.toFixed(2) || 1249}</s>{"  "}
               <Text ml='6px' as="span" color="green.500">
                         {discount.toFixed()}% off
               </Text>

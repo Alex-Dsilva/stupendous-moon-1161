@@ -164,6 +164,8 @@ const Countries = [
     },
   ];
 
+  
+
   const languages = [{ language: 'English', code: 'en' },{ language: 'Hindi', code: 'hi' },]
   const sugesstion=['QIDI', '3D Printer','3D', 'Printer', 'Gaming Laptop', 'Laptop', 'One Netbook', 'Tablet', 'Game Console', 'Game', 'Console', 'AMD Ryzen', 'IPS Screen', 'Bluetooth speaker', 'Bluetooth', 'Speaker', 'Portable Bluetooth Speaker', 'Bluetooth Earphone', 'Gaming Bluetooth Earphone', 'Wireless Bluetooth Necklace Headphones', 'Wireless Headphones', 'Necklace Earphones', 'Portable', 'Sports Stereo In-Ear Headphones','Bluetooth Keyboard', 'Keyboard', 'Keyboard and Mouse Combo', 'Ultra-Slim Bluetooth Keyboard', 'QWERTY Keyboard', 'Trekking Bike', 'Electric Scooter', 'Scoote', 'Bike', 'Road Skateboard', 'Motor', 'Running Machine', 'Treadmill', 'Fitness Equipment', 'Fitness' ]
   export {Countries, countriesCurrency, languages, sugesstion } 
