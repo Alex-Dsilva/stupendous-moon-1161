@@ -50,11 +50,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CustomPopover from "./CustomPopover";
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
+// import { useTranslation } from "react-i18next";
 import { Countries, countriesCurrency, languages, sugesstion } from '../utils/Countries'
+import { useEffect } from "react";
 
 function Navbar() {
-  const { t, i18n } = useTranslation()
+  // const { t, i18n } = useTranslation()
   const [search, setSearch] = useState('')
   const [suggestions, setSuggestions] = useState([]);
   const { name } = useSelector(store => store.Authreducer);
@@ -96,6 +97,11 @@ function Navbar() {
 
   }
 
+  // useEffect(() => {
+  //  dispatch()
+  // }, [])
+  
+
   const handleSearch =()=>{
     navigate(`/products/search/${search}`)
   }
@@ -115,7 +121,7 @@ function Navbar() {
           <CustomPopover
             trigger={(<Flex align='center' p='2'>
               <FiSmartphone style={{ fontSize: "24px", color: 'white' }} />
-              <Text fontSize='13.5px' mr='1.5' color='white' >{t('Save $50 with App')}</Text>
+              <Text fontSize='13.5px' mr='1.5' color='white' >{'Save $50 with App'}</Text>
               <BsChevronDown style={{ color: 'white' }} />
             </Flex>)}
             height='fit-content'>
@@ -585,12 +591,12 @@ function Navbar() {
             justify="space-around"
             display={["none", "none", "flex"]}
           >
-            <Link style={{ textDecoration: "none" }} to="/newproducts" key="new"><Box color="#FFFFFF" fontWeight="600" >New</Box></Link>
-            <Link style={{ textDecoration: "none" }} to="/bestproducts" key="best"><Box color="#FFFFFF" fontWeight="600">Bestselling</Box></Link>
-            <Link style={{ textDecoration: "none" }} to="/clearanceproducts" key="clear"><Box color="#FFFFFF" fontWeight="600">Clearance</Box></Link>
-            <Link style={{ textDecoration: "none" }} to="/todaydeals" key="deal"><Box color="#FFFFFF" fontWeight="600">Deals</Box></Link>
+            <Link style={{ textDecoration: "none" }} to="/products/new/newarrival" key="new"><Box color="#FFFFFF" fontWeight="600" >New</Box></Link>
+            <Link style={{ textDecoration: "none" }} to="/products/best/bestselling" key="best"><Box color="#FFFFFF" fontWeight="600">Bestselling</Box></Link>
+            <Link style={{ textDecoration: "none" }} to="/products/clearance/special_clearance_sale" key="clear"><Box color="#FFFFFF" fontWeight="600">Clearance</Box></Link>
+            <Link style={{ textDecoration: "none" }} to="/products/todaydeals/deals" key="deal"><Box color="#FFFFFF" fontWeight="600">Deals</Box></Link>
             <Link style={{ textDecoration: "none" }} to="/payment" key="coup"><Box color="#FFFFFF" fontWeight="600">Wallet</Box></Link>
-            <Link style={{ textDecoration: "none" }} to="/apponlyproducts" key="ap"><Box color="#FFFFFF" fontWeight="600">App Only</Box></Link>
+            <Link style={{ textDecoration: "none" }} to="/products/apponly" key="ap"><Box color="#FFFFFF" fontWeight="600">App Only</Box></Link>
           </Flex>
 
         </Flex>

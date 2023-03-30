@@ -328,5 +328,31 @@ const catagorys=[
     }
   ]
 
+  const Home={
+    deal:[
+      {
+        "brand": "ORICO",
+        "category": "apponly",
+        "description": "<p>5Gbps USB 3.0 with UASP, Faster and More Efficient</p> <p>Creative soft LED light monitors working situation clearly.</p> <p>Suitable for most major systems in the market including Windows, Mac OS and Linux.</p> <p>A strong power supply can be easy to meet the needs of the hard drive power supply up to 24W.</p> <p>Aluminum alloy and ABS material to improve heat dissipation and prevent static.</p> <p>The creative vertical design makes the hard drive enclosure make the desk more clean and tidy.</p> <p>Installed with screws, much safer and stable</p> <p>Brand: ORICO<br/>\r\n            Type: 3.5-inch HDD Enclosure<br/>\r\n            Model: 7688U3-US-BK-BP</p>",
+        "images": [
+          "//img.gkbcdn.com/s3/p/2022-03-24/ORICO-USB3-0-to-SATA-III-Hard-Drive-Enclosure-498304-0.jpg",
+          "//img.gkbcdn.com/s3/p/2022-03-24/ORICO-USB3-0-to-SATA-III-Hard-Drive-Enclosure-498304-1.jpg",
+          "//img.gkbcdn.com/s3/p/2022-03-24/ORICO-USB3-0-to-SATA-III-Hard-Drive-Enclosure-498304-2.jpg",
+          "//img.gkbcdn.com/s3/p/2022-03-24/ORICO-USB3-0-to-SATA-III-Hard-Drive-Enclosure-498304-3.jpg",
+          "//img.gkbcdn.com/s3/p/2022-03-24/ORICO-USB3-0-to-SATA-III-Hard-Drive-Enclosure-498304-4.jpg"
+        ],
+        "shiping": [
+          "China-1"
+        ],
+        "option": [],
+        "name": "ORICO 3.5inch USB3.0 to SATA III Hard Drive Enclosure for 2.inch 3.5inxh SSD Disk HDD Case for PC Support 16TB",
+        "price": 3646.57,
+        "strikedprice": 4245.57,
+        "qnty": 50,
+        "rating": 1
+      },
+    ]
+  }
+
 
 export {catagorys, Brands}
