@@ -1,32 +1,34 @@
 import {Routes, Route} from 'react-router-dom'
 import Homepage from "./Homepage/Homepage";
+import Homepage_copy from "./Homepage/Homepage_copy";
 import React from 'react'
 import Login from './Login'
 import Signup from './Signup'
 import { SingleProduct } from './Products/SingleProduct';
+
 // import Payment from "./Payment"
 import Products from './Products/Products'
 // import Passwordreset from './Passwordreset'
 // import Cart from './Cart'
-// import TodayDeals from './Products/TodayDeals';
+import TodayDeals from './Products/TodayDeals';
 // import PrivateRoute from './PrivateRoute'
 
 function MainRoutes() {
   return (
     <Routes>
         <Route path="/" element={<Homepage/>}/>
+        <Route path="/c" element={<Homepage_copy/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/products/search/:searchQuery" element={<Products title={"Search"}/>}/>
-        {/* <Route path="/newproducts" element={<PrivateRoute><Products title={"New Arrivals"} searchQuery={"new items"}/></PrivateRoute>}/> */}
-        <Route path="/newarrivals" element={<Products title={"New Arrivals"} searchQuery={"new items"}/>}/>
-        {/* <Route path="/bestproducts" element={<PrivateRoute><Products title={"Best Selling"} searchQuery={"best"}/></PrivateRoute>}/>
-        <Route path="/clearanceproducts" element={<PrivateRoute><Products title={"Clearance Sale"} searchQuery={'Clearance sale'}/></PrivateRoute>}/>
-        <Route path="/apponlyproducts" element={ <PrivateRoute><Products title={"App Only"} searchQuery={'App only'}/></PrivateRoute>}/>
-        <Route path="/cart" element={<PrivateRoute><Cart/></PrivateRoute>} />
-        <Route path="/todaydeals" element={<PrivateRoute><TodayDeals title={"Featured Outlet Deals"}/></PrivateRoute>} />
-        <Route path="/payment" element={<PrivateRoute><Payment/></PrivateRoute>} /> */}
-        {/* <Route path="/passwordreset" element={<PrivateRoute><Passwordreset/></PrivateRoute>} /> */}
+        <Route path="/products/new/:searchQuery" element={<Products title={"New Arrivals"}/>}/>
+        <Route path="/products/best/:searchQuery" element={<Products title={"Best Selling"}/>}/>
+        <Route path="/products/clearance/:searchQuery" element={<Products title={"Clearance Sale"}/>}/>
+        <Route path="/products/:searchQuery" element={<Products title={"App Only"}/>}/>
+        {/* <Route path="/cart" element={<PrivateRoute><Cart/></PrivateRoute>} /> */}
+        <Route path="/products/todaydeals/:searchQuery" element={<TodayDeals title={"Today's Deals"}/>} />
+        {/* <Route path="/payment" element={<PrivateRoute><Payment/></PrivateRoute>} /> 
+        <Route path="/passwordreset" element={<PrivateRoute><Passwordreset/></PrivateRoute>} /> */}
         <Route path="/singleproduct:id" element={<SingleProduct/>} />
     </Routes>
   )

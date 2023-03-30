@@ -7,7 +7,7 @@ import Loading from './components/Loading'
 import { Provider } from 'react-redux'
 import { store } from './redux/store'
 // import i18n from './utils/i18n'
-import './utils/i18n'
+// import './utils/i18n'
 import { BrowserRouter } from 'react-router-dom'
 
 

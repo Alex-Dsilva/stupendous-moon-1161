@@ -28,18 +28,6 @@ const getProductsByID = (id) => async(dispatch) => {
 };
 
 
-
-// const getProductReviews = (id) => async(dispatch) => {
-//   dispatch({type:types.GET_REVIEWS_REQUEST});
-//   axios.get(`https://victorious-houndstooth-colt.cyclic.app/products/productReviews/${id}`).then((res) =>{
-//     dispatch({type:types.GET_REVIEWS_SUCCESS, payload:res.data.data});
-//   }).catch( (error)=> {
-//     console.error(error);
-//     dispatch({type:types.GET_REVIEWS_FAILURE, payload:error.data.message});
-//     alert(error.data.message)
-//   });
-// };
-
 const getProductReviews = (id) => async(dispatch) => {
     dispatch({type:types.GET_REVIEWS_REQUEST});
     axios.get(`https://victorious-houndstooth-colt.cyclic.app/review/${id}`).then((res) =>{
@@ -95,6 +83,69 @@ const postProductQuestions = ({id, data}) => async(dispatch) => {
 };
 
 
+
+// Cart 
+
+const getCart=(payload)=>async(dispatch)=>{
+  dispatch({type: types.REQUEST_GET_CART});
+    axios.get(`https://victorious-houndstooth-colt.cyclic.app/cart/cart/${payload}`).then((res) =>{
+      dispatch({type:types.SUCCESS_GET_CART, payload:res.data.cart});
+    }).catch( (error)=> {
+      console.error(error);
+      dispatch({type:types.FAILURE_GET_CART, payload:error.data.message});
+    });
+}
+
+
+const addToCart=(payload)=>async(dispatch)=>{
+  dispatch({type: types.REQUEST_ADD_CART});
+  try {
+    const res = await axios.post(`https://victorious-houndstooth-colt.cyclic.app/question/${id}`, data);
+    dispatch({type: types.SUCCESS_ADD_CART, payload: res.data.cart});
+  } catch (error) {
+    console.error(error);
+    dispatch({type: types.FAILURE_ADD_CART, payload: error.response.data.message});
+  }
+}
+
+const modifyCartQty=(payload)=>async(dispatch)=>{
+  
+}
+
+const removeitemCart=(payload)=>async(dispatch)=>{
+  
+}
+
+const deleteCart=(payload)=>async(dispatch)=>{
+  
+}
+
+
+// Wishlist
+
+const getWishlist=(payload)=>async(dispatch)=>{
+  
+}
+
+const addWishlist=(payload)=>async(dispatch)=>{
+  
+}
+
+const removeWishlist=(payload)=>async(dispatch)=>{
+  
+}
+
+const deleteWishlist=(payload)=>async(dispatch)=>{
+  
+}
+
+
+// Admin
+
+const addProducts=(payload)=>async(dispatch)=>{
+  
+}
+
 const putProductQuestionAnswer = ({id, data}) => async(dispatch) => {
   dispatch({type: types.ANSWER_QUESTION_REQUEST});
   console.log(id,data)
@@ -108,9 +159,6 @@ const putProductQuestionAnswer = ({id, data}) => async(dispatch) => {
 };
 
 
-const addToCart=(payload)=>async(dispatch)=>{
-  
-}
 
 
 export { getProducts,getProductsByID, updateProductReviews, getProductReviews,postProductReviews, getProductQuestions, postProductQuestions, putProductQuestionAnswer, addToCart};
