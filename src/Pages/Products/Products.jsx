@@ -66,7 +66,7 @@ const Products = ({ title }) => {
 
   }, [products]);
 
-  console.log(Deals)
+  // console.log(Deals)
 
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
