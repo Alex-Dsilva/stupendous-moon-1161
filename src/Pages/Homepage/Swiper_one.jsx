@@ -13,7 +13,7 @@ export default function Swiper_One() {
         navigation={true}
         pagination={{clickable:true}}
         loop={true}
-        style={{height:'100vh', width:'50%'}}
+        style={{height:'500px', width:'50%'}}
         modules={[Navigation, Pagination]}
         className="mySwiper1"
       >
