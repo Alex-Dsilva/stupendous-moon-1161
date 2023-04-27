@@ -1,0 +1,45 @@
+.mySwiper1 {
+    height: 79vh;
+    width: 50%;
+  }
+
+  @media screen and (max-width: 1899px) {
+    .mySwiper1 {
+      width: 60%;
+      height: 95vh;
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    .mySwiper1 {
+      width: 50%;
+      height: 41vh;
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+      .mySwiper1 {
+        width: 50%;
+        height: 45vh;
+      }
+  }
+  
+  @media screen and (max-width: 769px) {
+    .mySwiper1 {
+      width: 50%;
+      height: 50vh;
+    }
+  }
+
+
+  
+ @media screen and (max-width: 541px) {
+  .mySwiper1 {
+    width: 100%;
+    height: 55vh;
+  }
+}
+
+  
+
+  

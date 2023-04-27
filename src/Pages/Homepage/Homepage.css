@@ -121,6 +121,9 @@ h2{
     width: 70%;
     height: 10rem;
 }
+
+
+  
 @media screen and (max-width:750px) {
     .new_one img{
         height: 21rem;
@@ -128,8 +131,6 @@ h2{
     .new_2{
         height: 19rem;
     }
-}
-@media screen and (max-width:750px) {
     .mySwiper1{
         width: 50rem;
         /* height: 21rem; */
@@ -144,6 +145,7 @@ h2{
         display: grid;
     }
 }
+
 @media screen and (max-width:768px) {
     .mySwiper1{
         width: 35rem;
@@ -172,6 +174,7 @@ h2{
         grid-template-columns: repeat(2,1fr);
     }
 }
+
 @media screen and (max-width:480px){
     .mySwiper1{
         width: 20rem;

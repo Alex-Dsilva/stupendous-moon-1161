@@ -6,6 +6,9 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper";
 
+import "./swiper-one.css"; // import your css file
+
+
 export default function Swiper_One() {
   return (
     <>
@@ -13,7 +16,7 @@ export default function Swiper_One() {
         navigation={true}
         pagination={{clickable:true}}
         loop={true}
-        style={{height:'500px', width:'50%'}}
+        // style={{height:'80vh', width:'50%'}}
         modules={[Navigation, Pagination]}
         className="mySwiper1"
       >
@@ -32,9 +35,6 @@ export default function Swiper_One() {
         <SwiperSlide>
             <img src="https://img.gkbcdn.com/bn/2211/740x670-6384700b2b40c916cc6fe91c._p1_.jpg" alt="" />
         </SwiperSlide>
-        {/* <SwiperSlide>
-        <img src="https://img.gkbcdn.com/bn/2212/740x670-6391ab6d2b40c932e0963f16._p1_.jpg" alt="" />
-        </SwiperSlide> */}
       </Swiper>
     </>
   );
