@@ -30,12 +30,12 @@ const Homepage = () => {
   return (
     <ChakraProvider>
       <Box className="Homepage">
-        <Flex gap={5} w='90vw'>
+        <Flex flexDir={["column", "column", "row"]} align={'center'} gap={5} w='90vw' h='fit-content' >
           <Swiper_One />
-          <Box w='50%'  >
-            <Box p='2' mb='5px' border='2px solid #76767680'>
-              <Text fontSize={'19'} fontWeight={'400'} >Deal of the Day</Text>
-              <Grid templateColumns='repeat(3,1fr)' gap={2} justifyContent='center'>
+          <Box w={['100%', '100%', '50%']}  >
+            <Box p='2' mb='5px' h='fit-content' >
+              <Text fontSize={'19'} fontWeight={'600'} >Deal of the Day</Text>
+              <Grid templateColumns='repeat(3,1fr)' gap={5} justifyContent='center'>
                 {Home.deal.map((el, i) => {
                   return (
                     <Flex key={i} flexDir="column" gap='0.5' p={1}
@@ -45,26 +45,26 @@ const Homepage = () => {
                       border='none'
                       // _hover={{ shadow:" rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}
                       transition="all 0.3s ease-in-out" borderWidth="1px">
-                      <Image alignSelf='left' h='100px' w='100px' src={`${el.images[0]}`} alt={el.name} />
+                      <Image alignSelf='left' h='100%' w='100%' src={`${el.images[0]}`} alt={el.name} />
                       <Tag
-                        size={'sm'}
+                        size={'xs'}
                         key={'sm'}
                         w='fit-content'
                         borderRadius='full'
                         variant='solid'
                         colorScheme='red'
                       >
-                        <TagLabel fontSize='11'>{(((el.strikedprice - el.price) / el.strikedprice) * 100).toFixed()}% off</TagLabel>
+                        <TagLabel fontSize='9' p='1'>{(((el.strikedprice - el.price) / el.strikedprice) * 100).toFixed()}% off</TagLabel>
                       </Tag>
-                      <Text fontSize='14'>
+                      <Text fontSize={['14','14','17']}>
                         <b>₹{el.price || 2549} </b>
                       </Text>
-                      <Text as='s' fontSize='12'>
+                      <Text as='s' fontSize='15'>
                         ₹{el.strikedprice.toFixed(2) || 1249}
                       </Text>
 
-                      <Progress borderRadius={'50px'} h='1.5' colorScheme='blue' size='sm' value={20} />
-                      <Text fontSize={'11'} color='gray.400'>{el.qnty} Left</Text>
+                      <Progress borderRadius={'50px'} h='1.5' colorScheme='blue' size='sm' value={el.qnty} />
+                      <Text fontSize={'13'} color='gray.400'>{el.qnty} Left</Text>
 
                     </Flex>
                   )
@@ -74,10 +74,9 @@ const Homepage = () => {
               </Grid>
 
             </Box>
-
-            <Box p='2' border='2px solid #76767680'>
-              <Text fontSize={'19'} fontWeight={'400'} >Featured Products</Text>
-              <Grid templateColumns='repeat(3,1fr)' h='fit-content' gap={2} justifyContent='center'>
+            <Box p='2' h='fit-content' >
+              <Text fontSize={'19'} fontWeight={'600'} >Featured Products</Text>
+              <Grid templateColumns='repeat(3,1fr)' h='fit-content' gap={5} justifyContent='center'>
                 {Home.featured.map((el, i) => {
                   return (
                     <Flex key={i} flexDir="column" gap='0.5' p={1}
@@ -87,26 +86,26 @@ const Homepage = () => {
                       border='none'
                       // _hover={{ shadow:" rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" }}
                       transition="all 0.3s ease-in-out" borderWidth="1px">
-                      <Image alignSelf='left' h='100px' w='100px' src={`${el.images[0]}`} alt={el.name} />
+                      <Image alignSelf='left' h='100%' w='100%' src={`${el.images[0]}`} alt={el.name} />
                       <Tag
-                        size={'sm'}
+                        size={'xs'}
                         key={'sm'}
                         w='fit-content'
                         borderRadius='full'
                         variant='solid'
                         colorScheme='red'
                       >
-                        <TagLabel fontSize='13'>{(((el.strikedprice - el.price) / el.strikedprice) * 100).toFixed()}% off</TagLabel>
+                        <TagLabel fontSize='9' p='1'>{(((el.strikedprice - el.price) / el.strikedprice) * 100).toFixed()}% off</TagLabel>
                       </Tag>
-                      <Text fontSize='15'>
+                      <Text fontSize='17'>
                         <b>₹{el.price || 2549} </b>
                       </Text>
-                      <Text as='s' fontSize='13'>
+                      <Text as='s' fontSize='15'>
                         ₹{el.strikedprice.toFixed(2) || 1249}
                       </Text>
 
-                      <Progress borderRadius={'50px'} h='1.5' colorScheme='blue' size='sm' value={20} />
-                      <Text fontSize={'11'} color='gray.400'>{el.qnty} Left</Text>
+                      <Progress borderRadius={'50px'} h='1.5' colorScheme='blue' size='sm' value={el.qnty} />
+                      <Text fontSize={'13'} color='gray.400'>{el.qnty} Left</Text>
 
                     </Flex>
                   )

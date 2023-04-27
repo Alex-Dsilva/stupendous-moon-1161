@@ -11,12 +11,18 @@ import Products from './Products/Products'
 // import Passwordreset from './Passwordreset'
 // import Cart from './Cart'
 import TodayDeals from './Products/TodayDeals';
+import LoginTest from './LoginTest';
+import Signuptest from './Signuptest';
+import PhoneSignupTest from './PhoneSignupTest';
 // import PrivateRoute from './PrivateRoute'
 
 function MainRoutes() {
   return (
     <Routes>
+
         <Route path="/" element={<Homepage/>}/>
+        <Route path="/s" element={<Signuptest/>}/>
+        <Route path="/p" element={<PhoneSignupTest/>}/>
         <Route path="/c" element={<Homepage_copy/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<Signup/>}/>

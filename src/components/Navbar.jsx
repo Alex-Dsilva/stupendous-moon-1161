@@ -182,7 +182,7 @@ function Navbar() {
         <Divider display={["none", "none", "flex"]} bg='gray.300' mb='1' variant='solid' h='1px' orientation='horizontal' />
         <Flex w='100%' justify='space-around' p='2' align='center'>
           <Link to="/" ><Image w={['7rem', '7rem', '9rem']} h="50px" id="logo" src={logo} alt="" /></Link>
-          <Flex w="45%" align="flex-start">
+          <Flex w="35%" align="flex-start">
             <InputGroup w="100%" position='relative'>
               <Input
                 border="1px solid black"
