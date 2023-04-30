@@ -2,6 +2,31 @@ import * as types from "./AppActionTypes";
 import axios from "axios";
 
 
+// getHomenew
+const getNew = () => async(dispatch) => {
+  dispatch({ type: types.GET_NEW_REQUEST });
+  axios.get(`https://victorious-houndstooth-colt.cyclic.app/products?search=newarrival`).then((res) =>{
+    console.log(res.data)
+    dispatch({ type: types.GET_NEW_SUCCESS, payload:res.data });
+  }).catch( (error)=> {
+    console.error(error);
+    dispatch({type:types.GET_NEW_FAILURE, payload:error.data.message});
+    alert(error.data.message)
+  });
+};
+
+const getbest = () => async(dispatch) => {
+  dispatch({ type: types.GET_BEST_REQUEST });
+  axios.get(`https://victorious-houndstooth-colt.cyclic.app/products?search=bestselling`).then((res) =>{
+    console.log(res.data)
+    dispatch({ type: types.GET_BEST_SUCCESS, payload:res.data });
+  }).catch( (error)=> {
+    console.error(error);
+    dispatch({type:types.GET_BEST_FAILURE, payload:error.data.message});
+    alert(error.data.message)
+  });
+};
+
 // getptoducts
 const getProducts = (options) => async(dispatch) => {
   dispatch({ type: types.GET_PRODUCTS_REQUEST });
@@ -161,5 +186,5 @@ const putProductQuestionAnswer = ({id, data}) => async(dispatch) => {
 
 
 
-export { getProducts,getProductsByID, updateProductReviews, getProductReviews,postProductReviews, getProductQuestions, postProductQuestions, putProductQuestionAnswer, addToCart};
+export { getProducts,getProductsByID, getNew, getbest, updateProductReviews, getProductReviews,postProductReviews, getProductQuestions, postProductQuestions, putProductQuestionAnswer, addToCart};
 

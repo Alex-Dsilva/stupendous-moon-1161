@@ -1,0 +1,24 @@
+.mySwiper{
+    width: 100%;
+}
+
+#newslider .swiper-button-next{
+    background: rgba(0,0,0,.4);
+    padding: 33px;
+    border-radius: 50%;
+    color: white;
+    display: none;
+}
+
+#newslider  .swiper-button-prev { 
+    background:rgba(0,0,0,.4);
+    padding: 33px;
+    border-radius: 50%;
+    color: white;
+    display: none;
+}
+
+#newslider:hover .swiper-button-prev,
+#newslider:hover .swiper-button-next {
+  display: flex;
+}

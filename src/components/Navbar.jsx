@@ -114,10 +114,11 @@ function Navbar() {
         justify="center"
         flexDirection='column'
         alignItems="center"
-        w={['100vw', 'inherit', 'inherit']}
+        w='100vw'
         backgroundColor={"#046381"}
         top={"0"} zIndex={5} >
-        <Flex w='100%' display={["none", "none", "flex"]} justify='flex-end' align='center' gap='6' mr={10}>
+        <Box maxW={{sm:'700px', md:'1200px', lg:'1800px'}} m='auto' w='100%'>
+        <Flex  display={["none", "none", "flex"]} justify='flex-end' align='center' gap='6' mr={10}>
           <CustomPopover
             trigger={(<Flex align='center' p='2'>
               <FiSmartphone style={{ fontSize: "24px", color: 'white' }} />
@@ -182,7 +183,7 @@ function Navbar() {
         <Divider display={["none", "none", "flex"]} bg='gray.300' mb='1' variant='solid' h='1px' orientation='horizontal' />
         <Flex w='100%' justify='space-around' p='2' align='center'>
           <Link to="/" ><Image w={['7rem', '7rem', '9rem']} h="50px" id="logo" src={logo} alt="" /></Link>
-          <Flex w="35%" align="flex-start">
+          <Flex w={["55%", "35%", "40%"]} align="flex-start">
             <InputGroup w="100%" position='relative'>
               <Input
                 border="1px solid black"
@@ -494,19 +495,19 @@ function Navbar() {
 
                   <Divider />
                   <Box p="30px">
-                    <Link style={{ textDecoration: "none" }} to="/newproducts" id="new">
+                    <Link style={{ textDecoration: "none" }} to="/products/new/newarrival" id="new">
                       <Box color="#1a1818" p="10px 0px" fontWeight="600" >New</Box>
                     </Link>
 
-                    <Link style={{ textDecoration: "none" }} to="/bestproducts" id="best">
+                    <Link style={{ textDecoration: "none" }} to="/products/best/bestselling" id="best">
                       <Box color="#1a1818" p="10px 0px" fontWeight="600">Bestselling</Box>
                     </Link>
 
-                    <Link style={{ textDecoration: "none" }} to="/clearanceproducts" id="clear">
+                    <Link style={{ textDecoration: "none" }} to="/products/clearance/special_clearance_sale" id="clear">
                       <Box color="#1a1818" p="10px 0px" fontWeight="600">Clearance</Box>
                     </Link>
 
-                    <Link style={{ textDecoration: "none" }} to="/todaydeals" id="deal">
+                    <Link style={{ textDecoration: "none" }} to="/products/todaydeals/deals" id="deal">
                       <Box color="#1a1818" p="10px 0px" fontWeight="600">Deals</Box>
                     </Link>
 
@@ -514,7 +515,7 @@ function Navbar() {
                       <Box color="#1a1818" p="10px 0px" fontWeight="600">Wallet</Box>
                     </Link>
 
-                    <Link style={{ textDecoration: "none" }} to="/apponlyproducts" id="ap">
+                    <Link style={{ textDecoration: "none" }} to="products/apponly" id="ap">
                       <Box color="#1a1818" p="10px 0px" fontWeight="600">App Only</Box>
                     </Link>
                   </Box>
@@ -600,6 +601,7 @@ function Navbar() {
           </Flex>
 
         </Flex>
+        </Box>
       </Box>
     </ChakraProvider>
   );

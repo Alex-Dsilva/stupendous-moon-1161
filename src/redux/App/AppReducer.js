@@ -5,6 +5,8 @@ const initialData = {
     searchQuery:"",
     errorMsg:"",
     singleproduct:null,
+    homenew:[],
+    homebest:[],
     products : [],
     reviews:[],
     question:[],
@@ -77,6 +79,18 @@ const Appreducer = ( State = initialData,action )=>{
             return { ...State, isLoading: false, isError: false, question: updatedQuestions };
         case types.ANSWER_QUESTION_FAILURE:
             return { ...State, isLoading: false, errorMsg: payload, isError: true};
+        case types.GET_NEW_REQUEST:
+            return {...State, isLoading : true,isError : false};
+        case types.GET_NEW_SUCCESS:
+            return {...State, isLoading :false, isError: false, homenew:payload,  }
+        case types.GET_NEW_FAILURE:
+            return  { ...State, isLoading: false, errorMsg: payload, isError: true};
+        case types.GET_BEST_REQUEST:
+            return {...State, isLoading : true,isError : false};
+        case types.GET_BEST_SUCCESS:
+            return {...State, isLoading :false, isError: false, homebest:payload,  }
+        case types.GET_BEST_FAILURE:
+            return  { ...State, isLoading: false, errorMsg: payload, isError: true};
         default : 
         return State        
 
