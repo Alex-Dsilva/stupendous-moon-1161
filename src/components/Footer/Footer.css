@@ -4,8 +4,8 @@
 
 .Footer{
     background: #F1F6FD;
-    /* height: 800px; */
     margin-top: 50px;
+    max-width: 1800px;
 }
 
 #textHead{
@@ -38,16 +38,14 @@
     display: flex;
     margin-top: 70px;
     margin-left: 100px;
-    
+    gap: 5px;
 }
 
 .footerDiv:hover{
     cursor: pointer;
 }
 
-.policySection{
-    margin-left: 50px;
-}
+
 
 .qrCode{
     margin-left: 120px;
