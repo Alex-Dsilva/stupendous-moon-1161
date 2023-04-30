@@ -53,6 +53,7 @@ import { useState } from "react";
 // import { useTranslation } from "react-i18next";
 import { Countries, countriesCurrency, languages, sugesstion } from '../utils/Countries'
 import { useEffect } from "react";
+import CartNav from "./CartNav";
 
 function Navbar() {
   // const { t, i18n } = useTranslation()
@@ -114,10 +115,11 @@ function Navbar() {
         justify="center"
         flexDirection='column'
         alignItems="center"
-        w={['100vw', 'inherit', 'inherit']}
+        w='100vw'
         backgroundColor={"#046381"}
         top={"0"} zIndex={5} >
-        <Flex w='100%' display={["none", "none", "flex"]} justify='flex-end' align='center' gap='6' mr={10}>
+        <Box maxW={{sm:'700px', md:'1200px', lg:'1800px'}} m='auto' w='100%'>
+        <Flex  display={["none", "none", "flex"]} justify='flex-end' align='center' gap='6' mr={10}>
           <CustomPopover
             trigger={(<Flex align='center' p='2'>
               <FiSmartphone style={{ fontSize: "24px", color: 'white' }} />
@@ -182,7 +184,7 @@ function Navbar() {
         <Divider display={["none", "none", "flex"]} bg='gray.300' mb='1' variant='solid' h='1px' orientation='horizontal' />
         <Flex w='100%' justify='space-around' p='2' align='center'>
           <Link to="/" ><Image w={['7rem', '7rem', '9rem']} h="50px" id="logo" src={logo} alt="" /></Link>
-          <Flex w="35%" align="flex-start">
+          <Flex w={["55%", "35%", "40%"]} align="flex-start">
             <InputGroup w="100%" position='relative'>
               <Input
                 border="1px solid black"
@@ -377,102 +379,7 @@ function Navbar() {
               </CustomPopover>
           </Flex>
 
-          <CustomPopover
-            trigger={(<Box
-              size="sm"
-              variant="ghost"
-              colorscheme="blue"
-              position="relative"
-              display={["none", "none", "flex"]}
-            >
-              <IoCartOutline size={20} style={{ height: '25px', width: '25px', color: 'white' }} />
-              {1 > 0 && (
-                <Box position="absolute" top="-12px" right="-6px">
-                  <Badge borderRadius="full" fontSize='10' variant="solid" colorScheme="red">
-                    {0}
-                  </Badge>
-                </Box>
-              )}
-            </Box>)}
-            height='fit-content'>
-            <>
-              <Flex className="cart_full" direction="column" justifyContent="space-between">
-                <Box w='300px' h='220px' overflowY='scroll'>
-                  <Flex alignItems="center">
-                    <Image src="//img.gkbcdn.com/p/2022-09-09/DUOTTS-C29-Electric-Bike-750W-Mountain-Bike-516948-0._w280_.jpg" alt="Electric Bike" boxSize="100px" objectFit="contain" mr={4} />
-                    <Flex direction="column" justifyContent="space-between">
-                      <Text fontSize="sm" fontWeight="500">
-                        DUOTTS C29 Electric Bike 29 Inch 750W Mountain Bike
-                      </Text>
-                      <Flex alignItems="center">
-                        <Text mr={2}>₹ 78833.20</Text>
-                        <Text>X7</Text>
-                      </Flex>
-                    </Flex>
-                  </Flex>
-                  <Divider bg='gray.300' mb='1' variant='solid' h='1px' orientation='horizontal' />
-                  <Flex alignItems="center">
-                    <Image src="//img.gkbcdn.com/p/2022-09-09/DUOTTS-C29-Electric-Bike-750W-Mountain-Bike-516948-0._w280_.jpg" alt="Electric Bike" boxSize="100px" objectFit="contain" mr={4} />
-                    <Flex direction="column" justifyContent="space-between">
-                      <Text fontSize="sm" fontWeight="500">
-                        DUOTTS C29 Electric Bike 29 Inch 750W Mountain Bike
-                      </Text>
-                      <Flex alignItems="center">
-                        <Text mr={2}>₹ 78833.20</Text>
-                        <Text>X7</Text>
-                      </Flex>
-                    </Flex>
-                  </Flex>
-                  <Divider bg='gray.300' mb='1' variant='solid' h='1px' orientation='horizontal' />
-                  <Flex alignItems="center">
-                    <Image src="//img.gkbcdn.com/p/2022-09-09/DUOTTS-C29-Electric-Bike-750W-Mountain-Bike-516948-0._w280_.jpg" alt="Electric Bike" boxSize="100px" objectFit="contain" mr={4} />
-                    <Flex direction="column" justifyContent="space-between">
-                      <Text fontSize="sm" fontWeight="500">
-                        DUOTTS C29 Electric Bike 29 Inch 750W Mountain Bike
-                      </Text>
-                      <Flex alignItems="center">
-                        <Text mr={2}>₹ 78833.20</Text>
-                        <Text>X7</Text>
-                      </Flex>
-                    </Flex>
-                  </Flex>
-                  <Divider bg='gray.300' mb='1' variant='solid' h='1px' orientation='horizontal' />
-                  <Flex alignItems="center">
-                    <Image src="//img.gkbcdn.com/p/2022-09-09/DUOTTS-C29-Electric-Bike-750W-Mountain-Bike-516948-0._w280_.jpg" alt="Electric Bike" boxSize="100px" objectFit="contain" mr={4} />
-                    <Flex direction="column" justifyContent="space-between">
-                      <Text fontSize="sm" fontWeight="500">
-                        DUOTTS C29 Electric Bike 29 Inch 750W Mountain Bike
-                      </Text>
-                      <Flex alignItems="center">
-                        <Text mr={2}>₹ 78833.20</Text>
-                        <Text>X7</Text>
-                      </Flex>
-                    </Flex>
-                  </Flex>
-                  <Divider bg='gray.300' mb='1' variant='solid' h='1px' orientation='horizontal' />
-                  <Flex alignItems="center">
-                    <Image src="//img.gkbcdn.com/p/2022-09-09/DUOTTS-C29-Electric-Bike-750W-Mountain-Bike-516948-0._w280_.jpg" alt="Electric Bike" boxSize="100px" objectFit="contain" mr={4} />
-                    <Flex direction="column" justifyContent="space-between">
-                      <Text fontSize="sm" fontWeight="500">
-                        DUOTTS C29 Electric Bike 29 Inch 750W Mountain Bike
-                      </Text>
-                      <Flex alignItems="center">
-                        <Text mr={2}>₹ 78833.20</Text>
-                        <Text>X7</Text>
-                      </Flex>
-                    </Flex>
-                  </Flex>
-                  <Divider bg='gray.300' mb='1' variant='solid' h='1px' orientation='horizontal' />
-                </Box>
-                <Flex justifyContent="space-between" mb='2' alignItems="center">
-                  <Text>7 Item(s)</Text>
-                  <Text fontWeight="bold">₹ 551832.4</Text>
-                </Flex>
-                <Button bg='#046381' color='white' border='1px solid #b3b3b3'>View My Cart</Button>
-              </Flex>
-
-            </>
-          </CustomPopover>
+          <CartNav/>
           <Box display={["block", "block", "none"]}>
             <IconButton
               icon={<AiOutlineMenu />}
@@ -494,19 +401,19 @@ function Navbar() {
 
                   <Divider />
                   <Box p="30px">
-                    <Link style={{ textDecoration: "none" }} to="/newproducts" id="new">
+                    <Link style={{ textDecoration: "none" }} to="/products/new/newarrival" id="new">
                       <Box color="#1a1818" p="10px 0px" fontWeight="600" >New</Box>
                     </Link>
 
-                    <Link style={{ textDecoration: "none" }} to="/bestproducts" id="best">
+                    <Link style={{ textDecoration: "none" }} to="/products/best/bestselling" id="best">
                       <Box color="#1a1818" p="10px 0px" fontWeight="600">Bestselling</Box>
                     </Link>
 
-                    <Link style={{ textDecoration: "none" }} to="/clearanceproducts" id="clear">
+                    <Link style={{ textDecoration: "none" }} to="/products/clearance/special_clearance_sale" id="clear">
                       <Box color="#1a1818" p="10px 0px" fontWeight="600">Clearance</Box>
                     </Link>
 
-                    <Link style={{ textDecoration: "none" }} to="/todaydeals" id="deal">
+                    <Link style={{ textDecoration: "none" }} to="/products/todaydeals/deals" id="deal">
                       <Box color="#1a1818" p="10px 0px" fontWeight="600">Deals</Box>
                     </Link>
 
@@ -514,7 +421,7 @@ function Navbar() {
                       <Box color="#1a1818" p="10px 0px" fontWeight="600">Wallet</Box>
                     </Link>
 
-                    <Link style={{ textDecoration: "none" }} to="/apponlyproducts" id="ap">
+                    <Link style={{ textDecoration: "none" }} to="products/apponly" id="ap">
                       <Box color="#1a1818" p="10px 0px" fontWeight="600">App Only</Box>
                     </Link>
                   </Box>
@@ -600,6 +507,7 @@ function Navbar() {
           </Flex>
 
         </Flex>
+        </Box>
       </Box>
     </ChakraProvider>
   );

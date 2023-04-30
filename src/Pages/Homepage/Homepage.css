@@ -1,7 +1,7 @@
 .Homepage {
-  width: 90%;
-  margin: auto;
-  margin-top: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 30px;
 }
 .trending_bef {
   margin: 1rem;
