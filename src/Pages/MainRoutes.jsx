@@ -1,6 +1,6 @@
 import {Routes, Route} from 'react-router-dom'
 import Homepage from "./Homepage/Homepage";
-import Homepage_copy from "./Homepage/Homepage_copy";
+import Homepage_copy from "./Homepage/Homepage";
 import React from 'react'
 import Login from './Login'
 import Signup from './Signup'
@@ -23,7 +23,6 @@ function MainRoutes() {
         <Route path="/" element={<Homepage/>}/>
         <Route path="/s" element={<Signuptest/>}/>
         <Route path="/p" element={<PhoneSignupTest/>}/>
-        <Route path="/c" element={<Homepage_copy/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/products/search/:searchQuery" element={<Products title={"Search"}/>}/>

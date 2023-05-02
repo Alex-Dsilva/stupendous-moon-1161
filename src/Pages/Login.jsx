@@ -83,24 +83,29 @@ const Login = () => {
         const token = response.data.token;
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-
-
-        // name: payload.name, userId:payload.userId
-        const name=response.data.name
-        const userId=response.data.userId
-        const phoneNumber=response.data.phoneNumber||null
-
-        const address={
-          line1:response.data.address.line1||null,
-          line2:response.data.address.line2||null,
-          city:response.data.address.city||null,
-          zipcode:response.data.address.zipcode||null,
+        // Extract name and userId from the response data
+        const name = response.data.name;
+        const userId = response.data.userId;
+    
+        // Extract phone number if it is present
+        let phoneNumber = null;
+        if (response.data.phoneNumber) {
+          phoneNumber = response.data.phoneNumber;
         }
-
-        console.log(response);
-
-        dispatch(loginsuccess({name,userId,phoneNumber,address}))
-
+    
+        // Extract address if it is present
+        let address = null;
+        if (response.data.address) {
+          address = {
+            line1: response.data.address.line1,
+            line2: response.data.address.line2,
+            city: response.data.address.city,
+            zipcode: response.data.address.zipcode
+          }
+        }
+        const logindata = { name, userId };
+        dispatch(loginsuccess({ name, userId, phoneNumber, address }));
+        navigate("/");
 
       } catch (err) {
         dispatch(loginfailure())

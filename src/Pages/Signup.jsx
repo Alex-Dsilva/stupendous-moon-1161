@@ -114,7 +114,7 @@ function Signup() {
           console.log(response);
   
           dispatch(signupsuccess({name,userId}))
-  
+          navigate("/");
   
         } catch (err) {
           dispatch(signupfailure())
