@@ -25,18 +25,21 @@ const PopularBrands = () => {
               <Image
                 src="https://img.gkbcdn.com/bn/2205/1500x2602-628f67e92b40c91f8ca376f9._p1_.jpg"
                 alt=""
+                w='100%'
               />
             </SwiperSlide>
             <SwiperSlide>
               <Image
                 src="https://img.gkbcdn.com/bn/2205/1500x260-628f67db2b40c91f8ca376f8._p1_.jpg"
                 alt=""
+                w='100%'
               />
             </SwiperSlide>
             <SwiperSlide>
               <Image
                 src="https://img.gkbcdn.com/bn/2205/1500x2603-628f67f02b40c91f8ca376fa._p1_.jpg"
                 alt=""
+                w='100%'
               />
             </SwiperSlide>
           </Swiper>

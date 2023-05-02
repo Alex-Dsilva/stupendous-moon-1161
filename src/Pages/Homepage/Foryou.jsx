@@ -31,7 +31,7 @@ const Foryou = () => {
             </Flex>
             <Flex id='newslider' gap='3' flexDir={['column', 'column', 'row']} p='4' h={'fit-content'} bgImage={'linear-gradient(to bottom, #f1f6fd, #e0edff)'}>
                 <Box id='Imageban' w={{base:"50%", md:"50%", lg:"23.5%"}}>
-                    <Image src="https://img.gkbcdn.com/bn/2304/2-6437bcb52b40c92fb84b1064._p1_.jpg" alt='Banner' />
+                    <Image h='100%' src="https://img.gkbcdn.com/bn/2304/2-6437bcb52b40c92fb84b1064._p1_.jpg" alt='Banner' />
                 </Box>
                 <Box w={{md:"48.5%", lg:"73%"}}>
                 <Swiper

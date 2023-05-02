@@ -33,14 +33,30 @@ const Authreducer = (state = initialState, action) => {
           line2: line2,
         },
       };
-
+    case types.LOGOUT_SUCCESS:
+      return {
+        ...state,
+        name: null,
+        userId: null,
+        phoneNumber: null,
+        address: null,
+        AuthLoading: false,
+        isError: false
+      };
     case types.LOGIN_REQUEST:
-        return {...state, AuthLoading:true};
+      return { ...state, AuthLoading: true };
     case types.LOGIN_SUCCESS:
-      const {address:getAddress}=payload;
-      return { ...state, name: payload.name, userId:payload.userId, phoneNumber:payload.phoneNumber, address:payload.address, AuthLoading:false  };
+      const { address: getAddress = null, phoneNumber: getPhoneNumber = null } = payload;
+      return {
+        ...state,
+        name: payload.name,
+        userId: payload.userId,
+        phoneNumber: getPhoneNumber,
+        address: getAddress,
+        AuthLoading: false
+      };
     case types.LOGIN_FAILURE:
-      return {...state, isError:true}
+      return { ...state, isError: true };
     case types.GOOGLE_LOGIN_REQUEST:
       return {...state, AuthLoading:true}
     case types.GOOGLE_LOGIN_SUCCESS:
