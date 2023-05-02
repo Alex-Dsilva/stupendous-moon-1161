@@ -126,23 +126,22 @@ function Navbar() {
         w='100vw'
         backgroundColor={"#046381"}
         top={"0"} zIndex={5} >
-        <Box maxW={{ sm: '700px', md: '1200px', lg: '1800px' }} m='auto' w='100%'>
-          <Flex display={["none", "none", "flex"]} justify='flex-end' align='center' gap='6' mr={10}>
-            <CustomPopover
-              trigger={(<Flex align='center' p='2'>
-                <FiSmartphone style={{ fontSize: "24px", color: 'white' }} />
-                <Text fontSize='13.5px' mr='1.5' color='white' >{'Save $50 with App'}</Text>
-                <BsChevronDown style={{ color: 'white' }} />
-              </Flex>)}
-              height='fit-content'>
-              <>
-                <Text mb='1' noOfLines={3} >Download app to get up to 70% off <br /> app-only deals and coupons worth $50</Text>
-                <Flex align='center' justify='center'>
-                  <Image h='8rem' w='8rem' src='https://content1.geekbuying.com/V1.4/en/images/index_images/android_app.png' alt='qr Download' />
-                  <Box p='1'>
-                    <a href="https://geekbuying.app.link/pcwebios" target="_blank" rel="noopener noreferrer"><Image mt='2' mb='2' src='https://content1.geekbuying.com/V1.4/en/images/index_images/app_store.jpg' alt='qr Download' /></a>
-                    <a href="https://geekbuying.app.link/pcwebandroid" target="_blank" rel="noopener noreferrer"><Image mb='2.5' src='https://content1.geekbuying.com/V1.4/en/images/index_images/google_play.jpg' alt='qr Download' /></a>
-                    <a href="https://appgallery.huawei.com/app/C105563881" target="_blank" rel="noopener noreferrer"><Image mb='2.5' src='https://content1.geekbuying.com/V1.4/en/images/index_images/gallery.jpg' alt='qr Download' /></a>
+        <Flex w='100%' display={["none", "none", "flex"]} justify='flex-end' align='center' gap='6' mr={10}>
+          <CustomPopover
+            trigger={(<Flex align='center' p='2'>
+              <FiSmartphone style={{ fontSize: "24px", color: 'white' }} />
+              <Text fontSize='13.5px' mr='1.5' color='white' >{'Save $50 with App'}</Text>
+              <BsChevronDown style={{ color: 'white' }} />
+            </Flex>)}
+            height='fit-content'>
+            <>
+              <Text mb='1' noOfLines={3} >Download app to get up to 70% off <br /> app-only deals and coupons worth $50</Text>
+              <Flex align='center' justify='center'>
+                <Image h='8rem' w='8rem' src='https://content1.geekbuying.com/V1.4/en/images/index_images/android_app.png' alt='qr Download' />
+                <Box p='1'>
+                  <a href="https://geekbuying.app.link/pcwebios" target="_blank" rel="noopener noreferrer"><Image mt='2' mb='2' src='https://content1.geekbuying.com/V1.4/en/images/index_images/app_store.jpg' alt='qr Download' /></a>
+                  <a href="https://geekbuying.app.link/pcwebandroid" target="_blank" rel="noopener noreferrer"><Image mb='2.5' src='https://content1.geekbuying.com/V1.4/en/images/index_images/google_play.jpg' alt='qr Download' /></a>
+                  <a href="https://appgallery.huawei.com/app/C105563881" target="_blank" rel="noopener noreferrer"><Image mb='2.5' src='https://content1.geekbuying.com/V1.4/en/images/index_images/gallery.jpg' alt='qr Download' /></a>
 
                   </Box>
                 </Flex>
@@ -163,72 +162,72 @@ function Navbar() {
               </>
             </CustomPopover>
 
-            <CustomPopover
-              trigger={(<Flex align='center' p='1' gap={1}>
-                <Text fontSize='13.5px' color='white' >Support Center</Text>
-                {true ? <BsChevronDown style={{ color: 'white' }} /> : <BsChevronUp style={{ color: 'white' }} />}
-              </Flex>)}
-              height='fit-content'>
-              <>
-                <Flex p='1' gap='2' align='center' >
-                  <AiOutlineMessage />
-                  Live Chat
-                </Flex>
-                <Flex p='1' gap='2' align='center' >
-                  <IoTicketOutline />
-                  Ticket
-                </Flex>
-                <Flex p='1' gap='2' align='center' >
-                  <FiHelpCircle />
-                  Help Center
-                </Flex>
-                <Flex p='1' gap='2' align='center' >
-                  <IoCallOutline />
-                  Call Us
-                </Flex>
-              </>
-            </CustomPopover>
+          <CustomPopover
+            trigger={(<Flex align='center' p='1' gap={1}>
+              <Text fontSize='13.5px' color='white' >Support Center</Text>
+              {true ? <BsChevronDown style={{ color: 'white' }} /> : <BsChevronUp style={{ color: 'white' }} />}
+            </Flex>)}
+            height='fit-content'>
+            <>
+              <Flex p='1' gap='2' align='center' >
+                <AiOutlineMessage />
+                Live Chat
+              </Flex>
+              <Flex p='1' gap='2' align='center' >
+                <IoTicketOutline />
+                Ticket
+              </Flex>
+              <Flex p='1' gap='2' align='center' >
+                <FiHelpCircle />
+                Help Center
+              </Flex>
+              <Flex p='1' gap='2' align='center' >
+                <IoCallOutline />
+                Call Us
+              </Flex>
+            </>
+          </CustomPopover>
+        </Flex>
+        <Divider display={["none", "none", "flex"]} bg='gray.300' mb='1' variant='solid' h='1px' orientation='horizontal' />
+        <Flex w='100%' justify='space-around' p='2' align='center'>
+          <Link to="/" ><Image w={['7rem', '7rem', '9rem']} h="50px" id="logo" src={logo} alt="" /></Link>
+          <Flex w="35%" align="flex-start">
+            <InputGroup w="100%" position='relative'>
+              <Input
+                border="1px solid black"
+                borderRight="0"
+                borderLeftRadius="4px"
+                h="40px"
+                borderRightRadius="0"
+                bg="white"
+                type="text"
+                id="search"
+                value={search}
+                onChange={handleInputChange}
+                placeholder={"Search by Keyword"}
+              />
+              <Button
+                w="50px"
+                h="40px"
+                borderLeft="0"
+                borderLeftRadius="0"
+                borderRightRadius="4px"
+                bg="white"
+                onClick={handleSearch}
+              >
+                <AiOutlineSearch style={{ fontSize: "27px", fontWeight: "800" }} />
+              </Button>
+            </InputGroup>
+            {serIsOpen && (
+              <List shadow='md' onMouseLeave={() => setSerIsOpen(false)} mt={2} w="40%" h='300px' overflow='auto' position="absolute" bg='white' top={['46px', '46px', '90px']} zIndex="1">
+                {suggestions.map((suggestion,i) => (
+                  <Link key={i} to={`/products/search/${suggestion}`}><ListItem m='2' cursor='pointer' key={suggestion} py={1} px={2} _hover={{ bg: "gray.200" }}>
+                    <Text>{suggestion}</Text>
+                  </ListItem></Link>
+                ))}
+              </List>
+            )}
           </Flex>
-          <Divider display={["none", "none", "flex"]} bg='gray.300' mb='1' variant='solid' h='1px' orientation='horizontal' />
-          <Flex w='100%' justify='space-around' p='2' align='center'>
-            <Link to="/" ><Image w={['7rem', '7rem', '9rem']} h="50px" id="logo" src={logo} alt="" /></Link>
-            <Flex w={["55%", "35%", "40%"]} align="flex-start">
-              <InputGroup w="100%" position='relative'>
-                <Input
-                  border="1px solid black"
-                  borderRight="0"
-                  borderLeftRadius="4px"
-                  h="40px"
-                  borderRightRadius="0"
-                  bg="white"
-                  type="text"
-                  id="search"
-                  value={search}
-                  onChange={handleInputChange}
-                  placeholder={"Search by Keyword"}
-                />
-                <Button
-                  w="50px"
-                  h="40px"
-                  borderLeft="0"
-                  borderLeftRadius="0"
-                  borderRightRadius="4px"
-                  bg="white"
-                  onClick={handleSearch}
-                >
-                  <AiOutlineSearch style={{ fontSize: "27px", fontWeight: "800" }} />
-                </Button>
-              </InputGroup>
-              {serIsOpen && (
-                <List shadow='md' onMouseLeave={() => setSerIsOpen(false)} mt={2} w="40%" h='300px' overflow='auto' position="absolute" bg='white' top={['46px', '46px', '90px']} zIndex="1">
-                  {suggestions.map((suggestion, i) => (
-                    <Link key={i} to={`/products/search/${suggestion}`}><ListItem m='2' cursor='pointer' key={suggestion} py={1} px={2} _hover={{ bg: "gray.200" }}>
-                      <Text>{suggestion}</Text>
-                    </ListItem></Link>
-                  ))}
-                </List>
-              )}
-            </Flex>
 
             <Flex display={["none", "none", "flex"]} ml='-30px' gap='5' align="center">
               <CustomPopover
@@ -435,90 +434,90 @@ function Navbar() {
                       <Link to="/cart" onClick={onClose} style={{ textDecoration: "none" }} id="cart"><Box color="#000000"><GrCart style={{ fontSize: "22px", fontWeight: "900" }} /></Box></Link>
                     </Flex>
 
-                    <Divider />
-                    <Box p="30px">
-                      <Link style={{ textDecoration: "none" }} to="/products/new/newarrival" id="new">
-                        <Box color="#1a1818" p="10px 0px" fontWeight="600" >New</Box>
-                      </Link>
+                  <Divider />
+                  <Box p="30px">
+                    <Link style={{ textDecoration: "none" }} to="/newproducts" id="new">
+                      <Box color="#1a1818" p="10px 0px" fontWeight="600" >New</Box>
+                    </Link>
 
-                      <Link style={{ textDecoration: "none" }} to="/products/best/bestselling" id="best">
-                        <Box color="#1a1818" p="10px 0px" fontWeight="600">Bestselling</Box>
-                      </Link>
+                    <Link style={{ textDecoration: "none" }} to="/bestproducts" id="best">
+                      <Box color="#1a1818" p="10px 0px" fontWeight="600">Bestselling</Box>
+                    </Link>
 
-                      <Link style={{ textDecoration: "none" }} to="/products/clearance/special_clearance_sale" id="clear">
-                        <Box color="#1a1818" p="10px 0px" fontWeight="600">Clearance</Box>
-                      </Link>
+                    <Link style={{ textDecoration: "none" }} to="/clearanceproducts" id="clear">
+                      <Box color="#1a1818" p="10px 0px" fontWeight="600">Clearance</Box>
+                    </Link>
 
-                      <Link style={{ textDecoration: "none" }} to="/products/todaydeals/deals" id="deal">
-                        <Box color="#1a1818" p="10px 0px" fontWeight="600">Deals</Box>
-                      </Link>
+                    <Link style={{ textDecoration: "none" }} to="/todaydeals" id="deal">
+                      <Box color="#1a1818" p="10px 0px" fontWeight="600">Deals</Box>
+                    </Link>
 
                       <Link style={{ textDecoration: "none" }} to="/payment" id="coup">
                         <Box color="#1a1818" p="10px 0px" fontWeight="600">Wallet</Box>
                       </Link>
 
-                      <Link style={{ textDecoration: "none" }} to="products/apponly" id="ap">
-                        <Box color="#1a1818" p="10px 0px" fontWeight="600">App Only</Box>
-                      </Link>
-                    </Box>
-                  </DrawerBody>
-                </DrawerContent>
-              </Drawer>
-            </Box>
-          </Flex>
-          <Flex w='100%' display={["none", "none", "flex"]}>
-            <Menu>
-              {({ isOpen }) => (
-                <>
-                  <MenuButton
-                    // isActive={isOpen}
-                    fontWeight='400'
-                    fontSize='15px'
-                    textAlign='left'
-                    borderTopRadius='10px'
-                    ml='5'
-                    p='5px'
-                    _hover={{ bg: '#50bdde' }}
-                  >
-                    <Flex align='center' gap='1' >
-                      <FaBars style={{ fontSize: '20px', fontWeight: '900', color: 'white' }} />
-                      <Text fontSize='17px' color='white'>Categories</Text>
-                    </Flex>
-                  </MenuButton>
-                  <MenuList
-                    h='300px'
-                    minWidth='fit-content'
-                    zIndex='999'
-                    sx={{
-                      "&::-webkit-scrollbar": {
-                        width: "2px",
-                        height: "2px",
-                        marginRight: '-5px'
-                      },
-                      "&::-webkit-scrollbar-thumb": {
-                        background: "gray.400",
-                        borderRadius: "50%",
-                      },
-                      "&::-webkit-scrollbar-track": {
-                        background: "transparent",
-                      },
-                      "&::-webkit-scrollbar-button": {
-                        display: "none",
-                      },
-                      outline: "none",
-                    }}
-                    overflowY="auto"
-                  >
-                    <Flex flexDir='column'>
-                      {
-                        catagorys.map((category, i) => (
-                          category.list.map((item) => (
-                            <Text cursor='pointer' _hover={{ bg: 'gray.200' }} p='2' key={item} mx='2' >
-                              {item}
-                            </Text>
-                          ))
+                    <Link style={{ textDecoration: "none" }} to="/apponlyproducts" id="ap">
+                      <Box color="#1a1818" p="10px 0px" fontWeight="600">App Only</Box>
+                    </Link>
+                  </Box>
+                </DrawerBody>
+              </DrawerContent>
+            </Drawer>
+          </Box>
+        </Flex>
+        <Flex w='100%' display={["none", "none", "flex"]}>
+          <Menu>
+            {({ isOpen }) => (
+              <>
+                <MenuButton
+                  // isActive={isOpen}
+                  fontWeight='400'
+                  fontSize='15px'
+                  textAlign='left'
+                  borderTopRadius='10px'
+                  ml='5'
+                  p='5px'
+                  _hover={{ bg: '#50bdde' }}
+                >
+                  <Flex align='center' gap='1' >
+                    <FaBars style={{ fontSize: '20px', fontWeight: '900', color: 'white' }} />
+                    <Text fontSize='17px' color='white'>Categories</Text>
+                  </Flex>
+                </MenuButton>
+                <MenuList
+                  h='300px'
+                  minWidth='fit-content'
+                  zIndex='999'
+                  sx={{
+                    "&::-webkit-scrollbar": {
+                      width: "2px",
+                      height: "2px",
+                      marginRight: '-5px'
+                    },
+                    "&::-webkit-scrollbar-thumb": {
+                      background: "gray.400",
+                      borderRadius: "50%",
+                    },
+                    "&::-webkit-scrollbar-track": {
+                      background: "transparent",
+                    },
+                    "&::-webkit-scrollbar-button": {
+                      display: "none",
+                    },
+                    outline: "none",
+                  }}
+                  overflowY="auto"
+                >
+                  <Flex flexDir='column'>
+                    {
+                      catagorys.map((category, i) => (
+                        category.list.map((item) => (
+                          <Text cursor='pointer' _hover={{ bg: 'gray.200' }} p='2' key={item} mx='2' >
+                            {item}
+                          </Text>
                         ))
-                      }
+                      ))
+                    }
 
                     </Flex>
                   </MenuList>
@@ -542,8 +541,7 @@ function Navbar() {
               <Link style={{ textDecoration: "none" }} to="/products/apponly" key="ap"><Box color="#FFFFFF" fontWeight="600">App Only</Box></Link>
             </Flex>
 
-          </Flex>
-        </Box>
+        </Flex>
       </Box>
     </ChakraProvider>
   );

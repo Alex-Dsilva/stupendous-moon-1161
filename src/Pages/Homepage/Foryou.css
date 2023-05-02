@@ -23,3 +23,8 @@
   display: flex;
 }
 
+
+#newslider:hover .swiper-button-prev,
+#newslider:hover .swiper-button-next {
+  display: flex;
+}
