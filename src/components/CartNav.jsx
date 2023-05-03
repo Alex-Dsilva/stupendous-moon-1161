@@ -2,6 +2,7 @@ import React from 'react'
 import CustomPopover from './CustomPopover'
 import { Badge, Box, Button, Divider, Flex, Image, Text } from '@chakra-ui/react'
 import { IoCartOutline } from 'react-icons/io5'
+import { Link } from 'react-router-dom'
 
 const CartNav = () => {
   return (
@@ -96,7 +97,7 @@ const CartNav = () => {
                   <Text>7 Item(s)</Text>
                   <Text fontWeight="bold">₹ 551832.4</Text>
                 </Flex>
-                <Button bg='#046381' color='white' border='1px solid #b3b3b3'>View My Cart</Button>
+                <Link to={"cart"}><Button bg='#046381' color='white' border='1px solid #b3b3b3'>View My Cart</Button></Link>
               </Flex>
 
             </>

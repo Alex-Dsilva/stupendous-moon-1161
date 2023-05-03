@@ -2,7 +2,7 @@ import { StarIcon } from '@chakra-ui/icons'
 import { Box, Flex, Image, Text, IconButton, Grid, ChakraProvider, Tag, TagLabel, Progress, CardBody, Stack, Heading, Card } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -26,8 +26,9 @@ const Homepage = () => {
     setLiked(!liked);
   };
 
-  const handleClick = () => {
-    navigate(`/singleproduct${el._id}`)
+  const handleClick = (id) => {
+
+    navigate(`/singleproduct${id}`)
   }
 
   return (
@@ -41,7 +42,7 @@ const Homepage = () => {
               <Grid templateColumns='repeat(3,1fr)' gap={5} justifyContent='center'>
                 {Home.deal.map((el, i) => {
                   return (
-                    <Flex key={i} flexDir="column" gap='0.5' p={1}
+                    <Link to={`/singleproduct${el._id}`}><Flex key={i} flexDir="column" gap='0.5' p={1}
                       overflow="hidden"
                       justify='center'
                       align={'left'}
@@ -69,7 +70,7 @@ const Homepage = () => {
                       <Progress borderRadius={'50px'} mt='2' h='2.5' colorScheme='blue' size='sm' value={el.qnty} />
                       <Text fontSize={'13'} color='gray.400'>{el.qnty} Left</Text>
 
-                    </Flex>
+                    </Flex></Link>
                   )
                 })
 
@@ -82,7 +83,7 @@ const Homepage = () => {
               <Grid templateColumns='repeat(3,1fr)' h='fit-content' gap={5} justifyContent='center'>
                 {Home.featured.map((el, i) => {
                   return (
-                    <Flex key={i} flexDir="column" gap='0.5' p={1}
+                    <Flex onClick={()=> handleClick(el._id)} cursor={'pointer'} key={i} flexDir="column" gap='0.5' p={1}
                       overflow="hidden"
                       justify='center'
                       align={'left'}
@@ -110,7 +111,7 @@ const Homepage = () => {
         <Box maxW='95%' m={'auto'}  h='fit-content'>
           <Text fontSize={'18'} fontWeight={'600'}>Trending Categories</Text>
           <Flex p='2' gap='2' mt='2' flexDir={['column', 'column', 'row']}>
-            <Card w={['100%', '100%','33%']} borderRadius='lg' overflow={'hidden'} border='0.5px solid #e3e3e3'>
+            <Card _hover={{transform:'scale(0.9)', transition: 'transform 0.5s ease-in-out'}}  w={['100%', '100%','33%']} borderRadius='lg' overflow={'hidden'} border='0.5px solid #e3e3e3'>
               <CardBody p={0}>
                 <Image
                   src='https://img.gkbcdn.com/bn/2205/488x2743-628f62882b40c91f8cd36998._p1_.jpg'
@@ -128,7 +129,7 @@ const Homepage = () => {
               </CardBody>
 
             </Card>
-            <Card w={['100%', '100%','33%']} borderRadius='lg' overflow={'hidden'} border='0.5px solid #e3e3e3'>
+            <Card _hover={{transform:'scale(0.9)', transition: 'transform 0.5s ease-in-out'}} w={['100%', '100%','33%']} borderRadius='lg' overflow={'hidden'} border='0.5px solid #e3e3e3'>
               <CardBody p={0}>
                 <Image
                   src='https://img.gkbcdn.com/bn/2205/488x274-628f63522b40c91f8cd3699a._p1_.jpg'
@@ -146,11 +147,11 @@ const Homepage = () => {
               </CardBody>
 
             </Card>
-            <Card w={['100%', '100%','33%']} borderRadius='lg' overflow={'hidden'} border='0.5px solid #e3e3e3'>
+            <Card _hover={{transform:'scale(0.9)', transition: 'transform 0.5s ease-in-out'}} w={['100%', '100%','33%']} borderRadius='lg' overflow={'hidden'} border='0.5px solid #e3e3e3'>
               <CardBody p={0}>
                 <Image
-                  src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
-                  alt='Green double couch with wooden legs'
+                  src='https://img.gkbcdn.com/bn/2304/5-6437b5c42b40c92fb8758062._p1_.jpg'
+                  alt='3D printer'
                   h='60%'
                 />
                 <Stack spacing='3' p='15px 15px'>

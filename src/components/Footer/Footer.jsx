@@ -77,22 +77,22 @@ const Footer = () => {
           />
           <Box w='max-content'>
           <Image
-            height={{base:"25%", md:"45px", lg:"36px"}}
+            height={{base:"25%", md:"45px", lg:"42px"}}
             width={{base:"213px", md:"227px"}}
             marginTop="10px"
             marginLeft="10px"
             src="https://content1.geekbuying.com/V1.4/en/images/index_images/app_store.jpg"
           />
           <Image
-            height={{base:"25%", md:"45px", lg:"36px"}}
+            height={{base:"25%", md:"45px", lg:"42px"}}
             width={{base:"213px", md:"227px"}}
             marginTop="10px"
             marginLeft="10px"
             src="https://content1.geekbuying.com/V1.4/en/images/index_images/google_play.jpg"
           />
           <Image
-            height={{base:"25%", md:"45px", lg:"36px"}}
-            width={{base:"213px", md:"227px"}}
+            height={{base:"25%", md:"45px", lg:"42px"}}
+            width={{base:"213px", md:"227px", lg:"275px"}}
             marginTop="10px"
             marginLeft="10px"
             src="https://content1.geekbuying.com/V1.4/en/images/index_images/gallery.jpg"
