@@ -4,8 +4,7 @@ import { useSelector } from 'react-redux';
 
 const PrivateRoute = ({children}) => {
 
-  const { auth } = useSelector(store => store);
-  const {userId}=auth
+  const { name, userId } = useSelector(store => store.Authreducer);
 
     // console.log()
     if(!userId){

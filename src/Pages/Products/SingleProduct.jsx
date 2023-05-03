@@ -36,10 +36,13 @@ export const SingleProduct = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(getProductsByID(id));
     dispatch(getProductReviews(id))
     dispatch(getProductQuestions(id))
+    
   }, [id]);
+
 
   if (isLoading || singleproduct === null || singleproduct === undefined) {
     return <Flex mt="150px" justify='center' >

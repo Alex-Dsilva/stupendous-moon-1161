@@ -59,7 +59,7 @@ const Foryou = () => {
                     {homenew && homenew.map((el, i) => {
                         return (
                             <SwiperSlide key={i}>
-                                <Card bg='#fff' borderRadius={'sm'} h='100%'>
+                                <Link to={`/singleproduct${el._id}`}><Card bg='#fff' borderRadius={'sm'} h='100%'>
                                     <CardBody p={0}>
                                         <Image
                                             src={el.images[0]}
@@ -77,7 +77,7 @@ const Foryou = () => {
                                     </CardBody>
 
 
-                                </Card>
+                                </Card></Link>
                             </SwiperSlide>
                         )
                     })

@@ -124,7 +124,7 @@ function Navbar() {
         flexDirection='column'
         alignItems="center"
         w='100vw'
-        backgroundColor={"#046381"}
+        backgroundColor={"#026bdc"}
         top={"0"} zIndex={5} >
         <Box maxW={{ sm: '700px', md: '1200px', lg: '1800px' }} m='auto' w='100%'>
           <Flex display={["none", "none", "flex"]} justify='flex-end' align='center' gap='6' mr={10}>
@@ -374,22 +374,22 @@ function Navbar() {
             </Flex>)}
               height='fit-content'>
               <>
-                <Flex p='1' gap='2' align='center' _hover={{bg:"#efefef"}} >
+                <Link to={'Order'}><Flex p='1' gap='2' align='center' _hover={{bg:"#efefef"}} >
                   <GiHandTruck/>
                   My Order
-                </Flex>
-                <Flex p='1' gap='2' align='center' _hover={{bg:"#efefef"}} >
+                </Flex></Link>
+                <Link to={'Wishlist'}><Flex p='1' gap='2' align='center' _hover={{bg:"#efefef"}} >
                   <BsBookmarkHeart/>
                   My Wishlist 
-                </Flex>
-                <Flex p='1' gap='2' align='center' _hover={{bg:"#efefef"}} >
+                </Flex></Link>
+                <Link to={'Coupons'}><Flex p='1' gap='2' align='center' _hover={{bg:"#efefef"}} >
                   <RiCoupon3Line/>
                   My Coupons
-                </Flex>
-                <Flex p='1' gap='2' align='center' _hover={{bg:"#efefef"}} >
+                </Flex></Link>
+                <Link to={'myprofile'}><Flex p='1' gap='2' align='center' _hover={{bg:"#efefef"}} >
                   <CgProfile/>
                   My Profile
-                </Flex>
+                </Flex></Link>
                 <Flex p='1' onClick={()=>handleLogout()} cursor={'pointer'} gap='2' align='center' _hover={{bg:"#efefef"}} >
                   <VscSignOut/>
                   Sign out
@@ -513,9 +513,9 @@ function Navbar() {
                       {
                         catagorys.map((category, i) => (
                           category.list.map((item) => (
-                            <Text cursor='pointer' _hover={{ bg: 'gray.200' }} p='2' key={item} mx='2' >
+                            <Link key={i} to={`/products/search/${item}`}><Text cursor='pointer' _hover={{ bg: 'gray.200' }} p='2' key={item} mx='2' >
                               {item}
-                            </Text>
+                            </Text></Link>
                           ))
                         ))
                       }

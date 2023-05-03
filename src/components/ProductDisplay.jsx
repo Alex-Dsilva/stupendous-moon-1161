@@ -47,6 +47,10 @@ useEffect(() => {
   }
 }, [mq.matches]);
 
+  useEffect(() => {
+    setImg(images[0])
+  }, [images]);
+
   const hoverHandler = (image, i) => {
     setImg(image);
   };

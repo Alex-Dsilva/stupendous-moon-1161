@@ -9,12 +9,12 @@ import { SingleProduct } from './Products/SingleProduct';
 // import Payment from "./Payment"
 import Products from './Products/Products'
 // import Passwordreset from './Passwordreset'
-// import Cart from './Cart'
+import Cart from './Cart'
 import TodayDeals from './Products/TodayDeals';
 import LoginTest from './LoginTest';
 import Signuptest from './Signuptest';
 import PhoneSignupTest from './PhoneSignupTest';
-// import PrivateRoute from './PrivateRoute'
+import PrivateRoute from './PrivateRoute'
 
 function MainRoutes() {
   return (
@@ -30,7 +30,7 @@ function MainRoutes() {
         <Route path="/products/best/:searchQuery" element={<Products title={"Best Selling"}/>}/>
         <Route path="/products/clearance/:searchQuery" element={<Products title={"Clearance Sale"}/>}/>
         <Route path="/products/:searchQuery" element={<Products title={"App Only"}/>}/>
-        {/* <Route path="/cart" element={<PrivateRoute><Cart/></PrivateRoute>} /> */}
+        <Route path="/cart" element={<PrivateRoute><Cart/></PrivateRoute>} />
         <Route path="/products/todaydeals/:searchQuery" element={<TodayDeals title={"Today's Deals"}/>} />
         {/* <Route path="/payment" element={<PrivateRoute><Payment/></PrivateRoute>} /> 
         <Route path="/passwordreset" element={<PrivateRoute><Passwordreset/></PrivateRoute>} /> */}

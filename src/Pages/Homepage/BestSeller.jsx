@@ -59,7 +59,7 @@ const BestSeller = () => {
                         return (
                             <SwiperSlide key={i}>
                                 {/* <ProductCard product={el}/> */}
-                                <Card bg='#fff' borderRadius={'sm'} h='fit-content'>
+                                <Link to={`/singleproduct${el._id}`}><Card bg='#fff' borderRadius={'sm'} h='fit-content'>
                                     <CardBody p={0}>
                                         <Image
                                             src={el.images[0]}
@@ -103,7 +103,7 @@ const BestSeller = () => {
                                     </CardBody>
 
 
-                                </Card>
+                                </Card></Link>
                             </SwiperSlide>
                         )
                     })
