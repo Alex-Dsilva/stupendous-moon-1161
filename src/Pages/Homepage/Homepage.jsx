@@ -26,6 +26,10 @@ const Homepage = () => {
     setLiked(!liked);
   };
 
+  const handleSearch = (search) => {
+    navigate(`/products/search/${search}`)
+  }
+
   const handleClick = (id) => {
 
     navigate(`/singleproduct${id}`)
@@ -111,7 +115,7 @@ const Homepage = () => {
         <Box maxW='95%' m={'auto'}  h='fit-content'>
           <Text fontSize={'18'} fontWeight={'600'}>Trending Categories</Text>
           <Flex p='2' gap='2' mt='2' flexDir={['column', 'column', 'row']}>
-            <Card _hover={{transform:'scale(0.9)', transition: 'transform 0.5s ease-in-out'}}  w={['100%', '100%','33%']} borderRadius='lg' overflow={'hidden'} border='0.5px solid #e3e3e3'>
+            <Card onClick={()=>handleSearch("Smart Home & Garden")} _hover={{transform:'scale(0.9)', transition: 'transform 0.5s ease-in-out'}}  w={['100%', '100%','33%']} borderRadius='lg' overflow={'hidden'} border='0.5px solid #e3e3e3'>
               <CardBody p={0}>
                 <Image
                   src='https://img.gkbcdn.com/bn/2205/488x2743-628f62882b40c91f8cd36998._p1_.jpg'
@@ -129,11 +133,11 @@ const Homepage = () => {
               </CardBody>
 
             </Card>
-            <Card _hover={{transform:'scale(0.9)', transition: 'transform 0.5s ease-in-out'}} w={['100%', '100%','33%']} borderRadius='lg' overflow={'hidden'} border='0.5px solid #e3e3e3'>
+            <Card onClick={()=>handleSearch("E-transport")} _hover={{transform:'scale(0.9)', transition: 'transform 0.5s ease-in-out'}} w={['100%', '100%','33%']} borderRadius='lg' overflow={'hidden'} border='0.5px solid #e3e3e3'>
               <CardBody p={0}>
                 <Image
                   src='https://img.gkbcdn.com/bn/2205/488x274-628f63522b40c91f8cd3699a._p1_.jpg'
-                  alt='Green double couch with wooden legs'
+                  alt='Smart Home & Garden'
                   h='60%'
                 />
                 <Stack spacing='3' p='15px 15px'>
@@ -147,7 +151,7 @@ const Homepage = () => {
               </CardBody>
 
             </Card>
-            <Card _hover={{transform:'scale(0.9)', transition: 'transform 0.5s ease-in-out'}} w={['100%', '100%','33%']} borderRadius='lg' overflow={'hidden'} border='0.5px solid #e3e3e3'>
+            <Card onClick={()=>handleSearch("3D Printers")} _hover={{transform:'scale(0.9)', transition: 'transform 0.5s ease-in-out'}} w={['100%', '100%','33%']} borderRadius='lg' overflow={'hidden'} border='0.5px solid #e3e3e3'>
               <CardBody p={0}>
                 <Image
                   src='https://img.gkbcdn.com/bn/2304/5-6437b5c42b40c92fb8758062._p1_.jpg'

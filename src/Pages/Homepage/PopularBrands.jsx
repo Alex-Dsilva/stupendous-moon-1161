@@ -18,7 +18,6 @@ const PopularBrands = () => {
         <Swiper
             pagination={{ clickable: true }}
             loop={true}
-            allowTouchMove={false}
             autoplay={{
               delay: 3000,
               disableOnInteraction: false,

@@ -91,7 +91,7 @@ useEffect(() => {
                   opacity: 0.7;
                 `,
                   zoomPosition:zoomPosition,
-                  zoomWidth:450,
+                  zoomWidth:420,
                   offset:{"vertical": 0, "horizontal": 10},
                   img:img,
                   }} />

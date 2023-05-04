@@ -2,9 +2,14 @@ import React from 'react'
 import CustomPopover from './CustomPopover'
 import { Badge, Box, Button, Divider, Flex, Image, Text } from '@chakra-ui/react'
 import { IoCartOutline } from 'react-icons/io5'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
 const CartNav = () => {
+  const { name, userId } = useSelector(store => store.Authreducer);
+  const navigate = useNavigate()
+  const dispatch=useDispatch()
+
   return (
     <CustomPopover
             trigger={(<Box
@@ -27,6 +32,7 @@ const CartNav = () => {
             <>
               <Flex className="cart_full" direction="column" justifyContent="space-between">
                 <Box w='300px' h='220px' overflowY='scroll'>
+
                   <Flex alignItems="center">
                     <Image src="//img.gkbcdn.com/p/2022-09-09/DUOTTS-C29-Electric-Bike-750W-Mountain-Bike-516948-0._w280_.jpg" alt="Electric Bike" boxSize="100px" objectFit="contain" mr={4} />
                     <Flex direction="column" justifyContent="space-between">
@@ -93,11 +99,11 @@ const CartNav = () => {
                   </Flex>
                   <Divider bg='gray.300' mb='1' variant='solid' h='1px' orientation='horizontal' />
                 </Box>
-                <Flex justifyContent="space-between" mb='2' alignItems="center">
+                <Flex justifyContent="space-between" mb='2' m='auto' w='90%' p='1' alignItems="center">
                   <Text>7 Item(s)</Text>
                   <Text fontWeight="bold">₹ 551832.4</Text>
                 </Flex>
-                <Link to={"cart"}><Button bg='#046381' color='white' border='1px solid #b3b3b3'>View My Cart</Button></Link>
+                <Link to={"cart"}><Button bg='#046381' w='100%' color='white' border='1px solid #b3b3b3'>View My Cart</Button></Link>
               </Flex>
 
             </>

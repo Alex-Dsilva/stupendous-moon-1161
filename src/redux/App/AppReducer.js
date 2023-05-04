@@ -91,6 +91,12 @@ const Appreducer = ( State = initialData,action )=>{
             return {...State, isLoading :false, isError: false, homebest:payload,  }
         case types.GET_BEST_FAILURE:
             return  { ...State, isLoading: false, errorMsg: payload, isError: true};
+        case types.REQUEST_ADD_CART:
+            return {...State, isLoading : true,isError : false};
+        case types.SUCCESS_ADD_CART:
+            return {...State, isLoading :false, isError: false, carts:payload  }
+        case types.FAILURE_ADD_CART:
+            return  { ...State, isLoading: false, errorMsg: payload, isError: true};
         default : 
         return State        
 

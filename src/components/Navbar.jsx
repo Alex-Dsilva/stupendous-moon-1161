@@ -80,9 +80,13 @@ function Navbar() {
     const results = sugesstion.filter(item =>
       item.toLowerCase().includes(value.toLowerCase())
     );
+    
     setSuggestions(results);
-    if (results.length > 0) {
+    
+    if (results.length > 0 && value) {
       setSerIsOpen(true)
+    }else{
+      setSerIsOpen(false)
     }
   };
 
@@ -220,7 +224,7 @@ function Navbar() {
                 </Button>
               </InputGroup>
               {serIsOpen && (
-                <List shadow='md' onMouseLeave={() => setSerIsOpen(false)} mt={2} w="40%" h='300px' overflow='auto' position="absolute" bg='white' top={['46px', '46px', '90px']} zIndex="1">
+                <List shadow='md' onMouseLeave={() => setSerIsOpen(false)} mt={2} w="35.8%" h='fit-content' maxH={'300px'} overflow='auto' position="absolute" bg='white' top={['46px', '46px', '90px']} zIndex="999">
                   {suggestions.map((suggestion, i) => (
                     <Link key={i} to={`/products/search/${suggestion}`}><ListItem m='2' cursor='pointer' key={suggestion} py={1} px={2} _hover={{ bg: "gray.200" }}>
                       <Text>{suggestion}</Text>

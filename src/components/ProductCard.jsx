@@ -57,7 +57,6 @@ const ProductCard = ({product, index}) => {
                 cursor='pointer'
                 m='15px 5px 10px 5px'
                 p='0'
-                // h='1'
                 w='1'
                 bg='none'
                 border='none'
