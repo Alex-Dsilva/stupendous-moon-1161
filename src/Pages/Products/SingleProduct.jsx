@@ -5,7 +5,7 @@ import {MdTabletAndroid } from 'react-icons/md'
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import ProductDisplay from "../../components/ProductDisplay";
-import { getProductQuestions, getProductReviews, getProductsByID } from "../../redux/App/AppAction";
+import { addToCart, getProductQuestions, getProductReviews, getProductsByID } from "../../redux/App/AppAction";
 import { ChakraProvider } from "@chakra-ui/react";
 import { StarIcon, QuestionIcon } from "@chakra-ui/icons";
 import { MinusIcon, AddIcon, } from "@chakra-ui/icons";
@@ -27,7 +27,9 @@ const Option=["i3-1115G4 CPU 8+256GB", "i5-1135G7 CPU 8+256GB", "i5-1135G7 CPU 1
 
 export const SingleProduct = () => {
   const { singleproduct, reviews, isLoading, isError, errorMsg } = useSelector(state => state.Appreducer);
+  const { userId } = useSelector(store => store.Authreducer);
   const { id } = useParams();
+  const [qty, setQty]= useState(1)
   const dispatch = useDispatch();
   const [liked, setLiked] = useState(false);
   const heartIcon = liked ? <FaHeart color="red" style={{height:'20px', width:"20px"}}/> : <FaRegHeart style={{height:'20px', width:"20px"}} />;
@@ -43,6 +45,25 @@ export const SingleProduct = () => {
     
   }, [id]);
 
+
+  const handleAddToCart=()=>{
+    let obj={ product:id, quantity:qty}
+    dispatch(addToCart({userId, obj}))
+  }
+
+  const handleMinusClick=()=>{
+    if(qty>1){
+      setQty(qty-1)
+    }
+  }
+
+  const handleAddClick=()=>{
+    if(qty<10){
+      setQty(qty+1)
+    }else{
+      alert("Max Limit is 10 Units")
+    }
+  }
 
   if (isLoading || singleproduct === null || singleproduct === undefined) {
     return <Flex mt="150px" justify='center' >
@@ -103,7 +124,7 @@ export const SingleProduct = () => {
       <IconButton
         aria-label="minus"
         icon={<MinusIcon color='gray.500' w={2} h={2}/>}
-        // onClick={handleMinusClick}
+        onClick={handleMinusClick}
         borderRadius="3px"
         border='0.1px solid #c0c0c0'
         h={'29px'}
@@ -112,7 +133,7 @@ export const SingleProduct = () => {
         borderRightRadius="0"
       />
       <Text px={5} border='1px solid #c0c0c0' fontSize="lg">
-        {1}
+        {qty}
       </Text>
       <IconButton
         aria-label="add"
@@ -121,15 +142,15 @@ export const SingleProduct = () => {
         border='0.1px solid #c0c0c0'
         bg='none'
         minW='28px'
-        // onClick={handleAddClick}
+        onClick={handleAddClick}
         borderRadius="3px"
         borderLeftRadius="0"
       />
     </Flex>
       </Flex>
       <Flex align='center' pl='5' mt='50px' >
-      <Button mr="10px" zIndex='-1' size={'lg'} fontSize={'20px'} w='200px' border={'3px solid #06f'} bg='none' color={'#06f'} >Add to Cart</Button>
-      <Button mr="10px" zIndex='-1' size={'lg'} fontSize={'20px'} w='200px' color='white' bg="#06f">Buy Now</Button>
+      <Button mr="10px"  size={'lg'} cursor={'pointer'} onClick={()=>handleAddToCart()} fontSize={'20px'} w='200px' border={'3px solid #06f'} bg='none' color={'#06f'} >Add to Cart</Button>
+      <Button mr="10px" size={'lg'} fontSize={'20px'} w='200px' color='white' bg="#06f">Buy Now</Button>
       <IconButton
                 icon={heartIcon}
                 aria-label="Like"

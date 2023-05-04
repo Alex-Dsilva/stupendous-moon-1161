@@ -26,4 +26,5 @@
 
   .js-image-zoom__zoomed-image{
     z-index: 999;
+    max-width: 88vw;
   }

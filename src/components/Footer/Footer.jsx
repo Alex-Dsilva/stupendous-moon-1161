@@ -66,39 +66,17 @@ const Footer = () => {
             <Link to='#'>Privacy</Link>
             <Link to='#'>Declaration</Link>
             <Link to='#'>Customs</Link>
-          </Stack>
+          </Stack>  
           <Stack align={'flex-start'} w='fit-content'>
             <Text textAlign="left" fontSize="18px" fontWeight="bold">Download the App</Text>
-          <Flex>
-          <Image
-            height="100%"
-            width="100%"
-            src="https://content1.geekbuying.com/V1.4/en/images/index_images/android_app.png"
-          />
-          <Box w='max-content'>
-          <Image
-            height={{base:"25%", md:"45px", lg:"42px"}}
-            width={{base:"213px", md:"227px"}}
-            marginTop="10px"
-            marginLeft="10px"
-            src="https://content1.geekbuying.com/V1.4/en/images/index_images/app_store.jpg"
-          />
-          <Image
-            height={{base:"25%", md:"45px", lg:"42px"}}
-            width={{base:"213px", md:"227px"}}
-            marginTop="10px"
-            marginLeft="10px"
-            src="https://content1.geekbuying.com/V1.4/en/images/index_images/google_play.jpg"
-          />
-          <Image
-            height={{base:"25%", md:"45px", lg:"42px"}}
-            width={{base:"213px", md:"227px", lg:"275px"}}
-            marginTop="10px"
-            marginLeft="10px"
-            src="https://content1.geekbuying.com/V1.4/en/images/index_images/gallery.jpg"
-          />
-          </Box>
-          </Flex>
+            <Flex align='center' w='100%' justify='center'>
+                  <Image h='7rem' w='47%' src='https://content1.geekbuying.com/V1.4/en/images/index_images/android_app.png' alt='qr Download' />
+                  <Flex flexDir={'column'} justify='center' align='center' p='1' w='53%' >
+                    <a href="https://geekbuying.app.link/pcwebios" target="_blank" rel="noopener noreferrer"><Image w='100%'  mb='1'  src='https://content1.geekbuying.com/V1.4/en/images/index_images/app_store.jpg' alt='qr Download' /></a>
+                    <a href="https://geekbuying.app.link/pcwebandroid" target="_blank" rel="noopener noreferrer"><Image h='100%' mb='1' src='https://content1.geekbuying.com/V1.4/en/images/index_images/google_play.jpg' alt='qr Download' /></a>
+                    <a href="https://appgallery.huawei.com/app/C105563881" target="_blank" rel="noopener noreferrer"><Image h='100%' mb='1' src='https://content1.geekbuying.com/V1.4/en/images/index_images/gallery.jpg' alt='qr Download' /></a>
+                  </Flex>
+                </Flex>
           <Text textAlign="left" fontSize="18px" fontWeight="bold">Connect with us</Text>
           <Flex gap='4'>
             <Link to='#'><FaFacebookF style={{color:"#06f", height:"20px", width:"20px"}}/></Link>

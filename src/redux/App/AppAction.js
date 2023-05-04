@@ -123,13 +123,15 @@ const getCart=(payload)=>async(dispatch)=>{
 
 
 const addToCart=(payload)=>async(dispatch)=>{
+  console.log(payload)
   dispatch({type: types.REQUEST_ADD_CART});
   try {
-    const res = await axios.post(`https://victorious-houndstooth-colt.cyclic.app/question/${id}`, data);
-    dispatch({type: types.SUCCESS_ADD_CART, payload: res.data.cart});
+    const res = await axios.post(`https://victorious-houndstooth-colt.cyclic.app/cart/add-to-cart/${payload.userId}`, payload.obj);
+    console.log(res)
+    // dispatch({type: types.SUCCESS_ADD_CART, payload: res.data.cart});
   } catch (error) {
     console.error(error);
-    dispatch({type: types.FAILURE_ADD_CART, payload: error.response.data.message});
+    // dispatch({type: types.FAILURE_ADD_CART, payload: error.response.data.message});
   }
 }
 
@@ -164,7 +166,6 @@ const deleteWishlist=(payload)=>async(dispatch)=>{
   
 }
 
-
 // Admin
 
 const addProducts=(payload)=>async(dispatch)=>{
@@ -186,5 +187,5 @@ const putProductQuestionAnswer = ({id, data}) => async(dispatch) => {
 
 
 
-export { getProducts,getProductsByID, getNew, getbest, updateProductReviews, getProductReviews,postProductReviews, getProductQuestions, postProductQuestions, putProductQuestionAnswer, addToCart};
+export { getProducts,getProductsByID, getNew, getbest, updateProductReviews, getProductReviews,postProductReviews, getProductQuestions, postProductQuestions, putProductQuestionAnswer, addToCart, getCart};
 
