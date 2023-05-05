@@ -1,14 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import CustomPopover from './CustomPopover'
 import { Badge, Box, Button, Divider, Flex, Image, Text } from '@chakra-ui/react'
 import { IoCartOutline } from 'react-icons/io5'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { getCart } from '../redux/App/AppAction'
 
 const CartNav = () => {
-  const { name, userId } = useSelector(store => store.Authreducer);
+  const {userId } = useSelector(store => store.Authreducer);
   const navigate = useNavigate()
   const dispatch=useDispatch()
+
+  useEffect(()=>{
+    dispatch(getCart(userId))
+  },[])
 
   return (
     <CustomPopover

@@ -65,8 +65,8 @@ export const SingleProduct = () => {
     }
   }
 
-  if (isLoading || singleproduct === null || singleproduct === undefined) {
-    return <Flex mt="150px" justify='center' >
+  if (isLoading || singleproduct === null || singleproduct === undefined ) {
+    return <Flex mt="40vh" mb='40vh' justify='center' >
       <GridLoader color="#06f" />
     </Flex>;
   }

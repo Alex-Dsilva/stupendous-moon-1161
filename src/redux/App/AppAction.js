@@ -127,11 +127,11 @@ const addToCart=(payload)=>async(dispatch)=>{
   dispatch({type: types.REQUEST_ADD_CART});
   try {
     const res = await axios.post(`https://victorious-houndstooth-colt.cyclic.app/cart/add-to-cart/${payload.userId}`, payload.obj);
-    console.log(res)
-    // dispatch({type: types.SUCCESS_ADD_CART, payload: res.data.cart});
+    console.log(res.data.cart.items)
+    dispatch({type: types.SUCCESS_ADD_CART, payload: res.data.cart.items});
   } catch (error) {
     console.error(error);
-    // dispatch({type: types.FAILURE_ADD_CART, payload: error.response.data.message});
+    dispatch({type: types.FAILURE_ADD_CART, payload: error.response.data.message});
   }
 }
 
