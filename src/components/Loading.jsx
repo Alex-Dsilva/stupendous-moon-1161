@@ -44,7 +44,7 @@ const Loading = () => {
         justifyContent="center"
         alignitems="center"
         backgroundImage={`url(${loading})`}
-        backgroundSize="200px"
+        backgroundSize="500px"
         backgroundRepeat="no-repeat"
         backgroundPosition="center"
         variants={variants}
