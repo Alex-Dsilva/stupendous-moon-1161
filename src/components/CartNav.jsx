@@ -24,6 +24,10 @@ const CartNav = () => {
     console.log(carts)
   }
 
+  const handleClick=(id)=>{
+    navigate(`/singleproduct${id}`)
+  }
+
 
   return (
     <CustomPopover
@@ -48,44 +52,44 @@ const CartNav = () => {
         <Flex className="cart_full" direction="column" justifyContent="space-between">
           {userId? (<><Box w='300px' h='220px' overflowY='scroll'>
             {isLoading ? (
-              <Grid templateColumns={["repeat(2, 1fr)", "repeat(3, 1fr)", "repeat(4, 1fr)"]} gap={6} p="20px">
+              <Flex flexDir={'column'} gap={6} p="20px">
                 {Array.from({ length: 10 }, (_, i) => (
-                  <Flex key={i} alignItems="center">
-                  <Skeleton boxSize="100px" >
+                  <Flex key={i} w='100%' alignItems="center">
+                  <Skeleton boxSize="100px" maxW={'100px'} >
                     <Image boxSize="100px" objectFit="contain" mr={4} />
                   </Skeleton>
-                  <Flex direction="column" justifyContent="space-between">
-                    <SkeletonText height="20px" />
-                    <SkeletonText height="20px"/>
-                    <SkeletonText height="20px"/>
+                  <Flex flexDir={'column'} gap='1' justify={'center'} ml='2' w='100%' h='100px' >
+                      <Skeleton height='0.7rem' w='90%' />
+                      <Skeleton height='0.7rem' w='90%' />
+                      <Skeleton height='0.7rem' w='90%' />
+                      <Skeleton height='0.7rem' w='90%' />
+                      <Skeleton height='0.7rem' w='70%' />
                   </Flex>
                   </Flex>
                 ))}
-              </Grid>
+              </Flex>
             ) : (
               <>
                 {carts.length > 0 ? (
-                  <Grid templateColumns={["repeat(2, 1fr)", "repeat(3, 1fr)", "repeat(4, 1fr)"]} gap={3} p="25px" >
+                  <Flex flexDir={'column'} gap={3} p="25px" >
                     {carts.map((product, i) => {
                       return (
                         <>
-                          <Flex key={i} alignItems="center">
-                            <Image src="//img.gkbcdn.com/p/2022-09-09/DUOTTS-C29-Electric-Bike-750W-Mountain-Bike-516948-0._w280_.jpg" alt="Electric Bike" boxSize="100px" objectFit="contain" mr={4} />
+                          <Flex key={i} alignItems="center" onClick={()=>handleClick(product.product._id)}>
+                            <Image src={product.product.images[0]} alt="Electric Bike" boxSize="100px" objectFit="contain" mr={4} />
                             <Flex direction="column" justifyContent="space-between">
-                              <Text fontSize="sm" fontWeight="500">
-                                DUOTTS C29 Electric Bike 29 Inch 750W Mountain Bike
+                              <Text fontSize="xs" noOfLines={2} fontWeight="500">
+                                { product.product.name}
                               </Text>
-                              <Flex alignItems="center">
-                                <Text mr={2}>₹ 78833.20</Text>
-                                <Text>X7</Text>
-                              </Flex>
+                              <Text fontSize="xs"  mr={2}>₹ {product.product.price}</Text>
+                              <Text fontSize="xs"  mr={2}>Qty : {product.quantity}</Text>
                             </Flex>
                           </Flex>
                           <Divider bg='gray.300' mb='1' variant='solid' h='1px' orientation='horizontal' />
                         </>
                       )
                     })}
-                  </Grid>
+                  </Flex>
                 ) : (
                   <Flex flexDir='column' gap='5' align='center' mb='10rem' justify='center' >
                     <Image src={Emptycart} w='50%' alt="No products found" />
