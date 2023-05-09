@@ -51,7 +51,7 @@ import {
   CgProfile,
   VscSignOut
 } from "react-icons/all";
-import {BsBookmarkHeart, BsFillBookmarkHeartFill} from "react-icons/bs"
+import { BsBookmarkHeart, BsFillBookmarkHeartFill } from "react-icons/bs"
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import CustomPopover from "./CustomPopover";
@@ -74,18 +74,18 @@ function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [serIsOpen, setSerIsOpen] = useState(false)
   const navigate = useNavigate()
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
 
   const fetchSuggestions = (value) => {
     const results = sugesstion.filter(item =>
       item.toLowerCase().includes(value.toLowerCase())
     );
-    
+
     setSuggestions(results);
-    
+
     if (results.length > 0 && value) {
       setSerIsOpen(true)
-    }else{
+    } else {
       setSerIsOpen(false)
     }
   };
@@ -161,12 +161,11 @@ function Navbar() {
               <>
                 {
                   languages.map((language, i) => {
-                    return <Text key={i} mb='1' noOfLines={3} cursor='pointer' onClick={() => handleLanguage(language)} p='2px 10px'>{language.language}</Text>
+                    return <Text key={i + 1} mb='1' noOfLines={3} cursor='pointer' onClick={() => handleLanguage(language)} p='2px 10px'>{language.language}</Text>
                   })
                 }
               </>
             </CustomPopover>
-
             <CustomPopover
               trigger={(<Flex align='center' p='1' gap={1}>
                 <Text fontSize='13.5px' color='white' >Support Center</Text>
@@ -226,7 +225,7 @@ function Navbar() {
               {serIsOpen && (
                 <List shadow='md' onMouseLeave={() => setSerIsOpen(false)} mt={2} w="35.8%" h='fit-content' maxH={'300px'} overflow='auto' position="absolute" bg='white' top={['46px', '46px', '90px']} zIndex="999">
                   {suggestions.map((suggestion, i) => (
-                    <Link key={i} to={`/products/search/${suggestion}`}><ListItem m='2' cursor='pointer' key={suggestion} py={1} px={2} _hover={{ bg: "gray.200" }}>
+                    <Link key={i + 1} to={`/products/search/${suggestion}`}><ListItem m='2' cursor='pointer' key={suggestion} py={1} px={2} _hover={{ bg: "gray.200" }}>
                       <Text>{suggestion}</Text>
                     </ListItem></Link>
                   ))}
@@ -343,7 +342,7 @@ function Navbar() {
                             <Flex>
                               <Box w="50%" key='first-half' borderRight="1px solid #b3b3b3">
                                 {countriesCurrency.slice(0, countriesCurrency.length / 2).map((country, i) => (
-                                  <MenuItem key={i} onClick={() => setBuycur(i)}>
+                                  <MenuItem key={i + 1} onClick={() => setBuycur(i)}>
                                     <Flex alignItems="center" w='100%' justify='space-between' p='2px 0px'>
                                       <Text>{country.code}</Text>
                                       <Text>{country.symbol}</Text>
@@ -353,7 +352,7 @@ function Navbar() {
                               </Box>
                               <Box w="50%" key='secound-half'>
                                 {countriesCurrency.slice(countriesCurrency.length / 2).map((country, i) => (
-                                  <MenuItem key={i} onClick={() => setBuycur(i + countriesCurrency.length / 2)}>
+                                  <MenuItem key={i + 1} onClick={() => setBuycur(i + countriesCurrency.length / 2)}>
                                     <Flex alignItems="center" w='100%' justify='space-between' p='2px 0px'>
                                       <Text>{country.code}</Text>
                                       <Text>{country.symbol}</Text>
@@ -370,36 +369,35 @@ function Navbar() {
                   <Button bg='#046381' onClick={handleShipping} color='white' border='1px solid #b3b3b3'>Save</Button>
                 </Flex>
               </CustomPopover>
-
-              {name?(<CustomPopover
-              trigger={(<Flex color="#FFFFFF" fontSize='15px' fontWeight="400" gap='1' >
-              <FaRegUser style={{ width: '21px', height: '21px' }} />
-              {name ? name : "Sign In"}
-            </Flex>)}
-              height='fit-content'>
-              <>
-                <Link to={'Order'}><Flex p='1' gap='2' align='center' _hover={{bg:"#efefef"}} >
-                  <GiHandTruck/>
-                  My Order
-                </Flex></Link>
-                <Link to={'Wishlist'}><Flex p='1' gap='2' align='center' _hover={{bg:"#efefef"}} >
-                  <BsBookmarkHeart/>
-                  My Wishlist 
-                </Flex></Link>
-                <Link to={'Coupons'}><Flex p='1' gap='2' align='center' _hover={{bg:"#efefef"}} >
-                  <RiCoupon3Line/>
-                  My Coupons
-                </Flex></Link>
-                <Link to={'myprofile'}><Flex p='1' gap='2' align='center' _hover={{bg:"#efefef"}} >
-                  <CgProfile/>
-                  My Profile
-                </Flex></Link>
-                <Flex p='1' onClick={()=>handleLogout()} cursor={'pointer'} gap='2' align='center' _hover={{bg:"#efefef"}} >
-                  <VscSignOut/>
-                  Sign out
-                </Flex>
-              </>
-            </CustomPopover>):(<CustomPopover
+              {name ? (<CustomPopover
+                trigger={(<Flex color="#FFFFFF" fontSize='15px' fontWeight="400" gap='1' >
+                  <FaRegUser style={{ width: '21px', height: '21px' }} />
+                  {name ? name : "Sign In"}
+                </Flex>)}
+                height='fit-content'>
+                <>
+                  <Link to={'Order'}><Flex p='1' gap='2' align='center' _hover={{ bg: "#efefef" }} >
+                    <GiHandTruck />
+                    My Order
+                  </Flex></Link>
+                  <Link to={'Wishlist'}><Flex p='1' gap='2' align='center' _hover={{ bg: "#efefef" }} >
+                    <BsBookmarkHeart />
+                    My Wishlist
+                  </Flex></Link>
+                  <Link to={'Coupons'}><Flex p='1' gap='2' align='center' _hover={{ bg: "#efefef" }} >
+                    <RiCoupon3Line />
+                    My Coupons
+                  </Flex></Link>
+                  <Link to={'myprofile'}><Flex p='1' gap='2' align='center' _hover={{ bg: "#efefef" }} >
+                    <CgProfile />
+                    My Profile
+                  </Flex></Link>
+                  <Flex p='1' onClick={() => handleLogout()} cursor={'pointer'} gap='2' align='center' _hover={{ bg: "#efefef" }} >
+                    <VscSignOut />
+                    Sign out
+                  </Flex>
+                </>
+              </CustomPopover>) : (<CustomPopover
                 trigger={(<Flex color="#FFFFFF" fontSize='15px' fontWeight="400" gap='1' >
                   <FaRegUser style={{ width: '21px', height: '21px' }} />
                   {name ? name : "Sign In"}
@@ -418,7 +416,6 @@ function Navbar() {
                 </>
               </CustomPopover>)}
             </Flex>
-
             <CartNav />
             <Box display={["block", "block", "none"]}>
               <IconButton
@@ -435,7 +432,10 @@ function Navbar() {
                   <DrawerBody p="10px" textAlign="left">
 
                     <Flex w="100%" p="10px" justify="space-around" align="center">
-                      <Link to="/login" onClick={onClose} style={{ textDecoration: "none" }} id="sign"><Box color="#030202" fontWeight="600" >{name ? name : "Sign In"}</Box></Link>
+                      <Link to="/login" onClick={onClose} style={{ textDecoration: "none" }} id="sign"><Box color="#030202" fontWeight="600" ><Flex color="#FFFFFF" fontSize='15px' fontWeight="400" gap='1' >
+                        <FaRegUser style={{ width: '21px', height: '21px' }} />
+                        {name ? name : "Sign In"}
+                      </Flex></Box></Link>
                       <Link to="/cart" onClick={onClose} style={{ textDecoration: "none" }} id="cart"><Box color="#000000"><GrCart style={{ fontSize: "22px", fontWeight: "900" }} /></Box></Link>
                     </Flex>
 
@@ -516,8 +516,8 @@ function Navbar() {
                     <Flex flexDir='column'>
                       {
                         catagorys.map((category, i) => (
-                          category.list.map((item) => (
-                            <Link key={i} to={`/products/search/${item}`}><Text cursor='pointer' _hover={{ bg: 'gray.200' }} p='2' key={item} mx='2' >
+                          category.list.map((item, j) => (
+                            <Link key={i + j} to={`/products/search/${item}`}><Text cursor='pointer' _hover={{ bg: 'gray.200' }} p='2' key={item} mx='2' >
                               {item}
                             </Text></Link>
                           ))
