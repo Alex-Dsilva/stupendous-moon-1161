@@ -22,8 +22,8 @@ const getbest = () => async(dispatch) => {
     dispatch({ type: types.GET_BEST_SUCCESS, payload:res.data });
   }).catch( (error)=> {
     console.error(error);
-    dispatch({type:types.GET_BEST_FAILURE, payload:error.data.message});
-    alert(error.data.message)
+    dispatch({type:types.GET_BEST_FAILURE, payload:error.data});
+    alert(error.data)
   });
 };
 
@@ -117,7 +117,7 @@ const getCart=(payload)=>async(dispatch)=>{
       dispatch({type:types.SUCCESS_GET_CART, payload:res.data.cart[0].items});
     }).catch( (error)=> {
       console.error(error);
-      dispatch({type:types.FAILURE_GET_CART, payload:error.data.message});
+      dispatch({type:types.FAILURE_GET_CART, payload:error.data});
     });
 }
 

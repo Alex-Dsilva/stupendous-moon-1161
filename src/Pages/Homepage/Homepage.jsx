@@ -46,7 +46,7 @@ const Homepage = () => {
               <Grid templateColumns='repeat(3,1fr)' gap={5} justifyContent='center'>
                 {Home.deal.map((el, i) => {
                   return (
-                    <Link to={`/singleproduct${el._id}`}><Flex key={i} flexDir="column" gap='0.5' p={1}
+                    <Link key={i+1}  to={`/singleproduct${el._id}`}><Flex key={i+1} flexDir="column" gap='0.5' p={1}
                       overflow="hidden"
                       justify='center'
                       align={'left'}
@@ -82,12 +82,12 @@ const Homepage = () => {
               </Grid>
 
             </Box>
-            <Box p='2' h='fit-content' >
+            <Box p='2' h='fit-content' mb='2' >
               <Text fontSize={'19'} fontWeight={'600'} >Featured Products</Text>
               <Grid templateColumns='repeat(3,1fr)' h='fit-content' gap={5} justifyContent='center'>
                 {Home.featured.map((el, i) => {
                   return (
-                    <Flex onClick={()=> handleClick(el._id)} cursor={'pointer'} key={i} flexDir="column" gap='0.5' p={1}
+                    <Flex onClick={()=> handleClick(el._id)} cursor={'pointer'} key={i+1} flexDir="column" gap='0.5' p={1}
                       overflow="hidden"
                       justify='center'
                       align={'left'}
@@ -121,6 +121,7 @@ const Homepage = () => {
                   src='https://img.gkbcdn.com/bn/2205/488x2743-628f62882b40c91f8cd36998._p1_.jpg'
                   alt='Green double couch with wooden legs'
                   h='60%'
+                  w='100%'
                 />
                 <Stack spacing='3' p='15px 15px' >
                   <Heading size='md' fontWeight={'600'}>Smart Home & Garden</Heading>
@@ -139,6 +140,7 @@ const Homepage = () => {
                   src='https://img.gkbcdn.com/bn/2205/488x274-628f63522b40c91f8cd3699a._p1_.jpg'
                   alt='Smart Home & Garden'
                   h='60%'
+                  w='100%'
                 />
                 <Stack spacing='3' p='15px 15px'>
                   <Heading size='md' fontWeight={'600'}>E-transport</Heading>
@@ -157,6 +159,7 @@ const Homepage = () => {
                   src='https://img.gkbcdn.com/bn/2304/5-6437b5c42b40c92fb8758062._p1_.jpg'
                   alt='3D printer'
                   h='60%'
+                  w='100%'
                 />
                 <Stack spacing='3' p='15px 15px'>
                   <Heading size='md' fontWeight={'600'}>3D Printers</Heading>

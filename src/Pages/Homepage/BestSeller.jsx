@@ -58,7 +58,6 @@ const BestSeller = () => {
                     {homebest && homebest.map((el, i) => {
                         return (
                             <SwiperSlide key={i}>
-                                {/* <ProductCard product={el}/> */}
                                 <Link to={`/singleproduct${el._id}`}><Card bg='#fff' borderRadius={'sm'} h='fit-content'>
                                     <CardBody p={0}>
                                         <Image
@@ -101,8 +100,6 @@ const BestSeller = () => {
                                             </Text>
                                         </Stack>
                                     </CardBody>
-
-
                                 </Card></Link>
                             </SwiperSlide>
                         )

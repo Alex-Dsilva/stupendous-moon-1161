@@ -16,8 +16,9 @@ const CartNav = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    if(userId){
     dispatch(getCart(userId))
-
+    }
   }, [userId])
 
   if (!isLoading) {
@@ -54,7 +55,7 @@ const CartNav = () => {
             {isLoading ? (
               <Flex flexDir={'column'} gap={6} p="20px">
                 {Array.from({ length: 10 }, (_, i) => (
-                  <Flex key={i} w='100%' alignItems="center">
+                  <Flex key={i+1} w='100%' alignItems="center">
                   <Skeleton boxSize="100px" maxW={'100px'} >
                     <Image boxSize="100px" objectFit="contain" mr={4} />
                   </Skeleton>
@@ -74,8 +75,8 @@ const CartNav = () => {
                   <Flex flexDir={'column'} gap={3} p="25px" >
                     {carts.map((product, i) => {
                       return (
-                        <>
-                          <Flex key={i} alignItems="center" onClick={()=>handleClick(product.product._id)}>
+                        <Box key={i+1}>
+                          <Flex key={i+1} alignItems="center" onClick={()=>handleClick(product.product._id)}>
                             <Image src={product.product.images[0]} alt="Electric Bike" boxSize="100px" objectFit="contain" mr={4} />
                             <Flex direction="column" justifyContent="space-between">
                               <Text fontSize="xs" noOfLines={2} fontWeight="500">
@@ -86,7 +87,7 @@ const CartNav = () => {
                             </Flex>
                           </Flex>
                           <Divider bg='gray.300' mb='1' variant='solid' h='1px' orientation='horizontal' />
-                        </>
+                        </Box>
                       )
                     })}
                   </Flex>
