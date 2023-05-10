@@ -146,7 +146,7 @@ export const SingleProduct = () => {
         borderRadius="3px"
         borderLeftRadius="0"
       />
-    </Flex>
+        </Flex>
       </Flex>
       <Flex align='center' pl='5' mt='50px' >
       <Button mr="10px"  size={'lg'} cursor={'pointer'} onClick={()=>handleAddToCart()} fontSize={'20px'} w='200px' border={'3px solid #06f'} bg='none' color={'#06f'} >Add to Cart</Button>
