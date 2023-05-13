@@ -66,6 +66,7 @@ function Navbar() {
   const [search, setSearch] = useState('')
   const [suggestions, setSuggestions] = useState([]);
   const { name } = useSelector(store => store.Authreducer);
+
   const [shipto, setShipto] = useState(0)
   const [buycur, setBuycur] = useState(0)
   const [shipcur, setShipCur] = useState({ shipto, buycur })
@@ -118,6 +119,7 @@ function Navbar() {
   const handleSearch = () => {
     navigate(`/products/search/${search}`)
   }
+  console.log(name)
 
   return (
     <ChakraProvider>
@@ -128,7 +130,7 @@ function Navbar() {
         flexDirection='column'
         alignItems="center"
         w='100vw'
-        backgroundColor={"#026bdc"}
+        backgroundColor={"#06f"}
         top={"0"} zIndex={5} >
         <Box maxW={{ sm: '700px', md: '1200px', lg: '1800px' }} m='auto' w='100%'>
           <Flex display={["none", "none", "flex"]} justify='flex-end' align='center' gap='6' mr={10}>
@@ -432,9 +434,10 @@ function Navbar() {
                   <DrawerBody p="10px" textAlign="left">
 
                     <Flex w="100%" p="10px" justify="space-around" align="center">
-                      <Link to="/login" onClick={onClose} style={{ textDecoration: "none" }} id="sign"><Box color="#030202" fontWeight="600" ><Flex color="#FFFFFF" fontSize='15px' fontWeight="400" gap='1' >
+                      <Link to="/login" onClick={onClose} style={{ textDecoration: "none" }} id="sign"><Box color="#030202" fontWeight="600" >
+                        <Flex color="#030202" fontSize='15px' fontWeight="400" gap='1' >
                         <FaRegUser style={{ width: '21px', height: '21px' }} />
-                        {name ? name : "Sign In"}
+                        {name ? `${name}` : "Sign In"}
                       </Flex></Box></Link>
                       <Link to="/cart" onClick={onClose} style={{ textDecoration: "none" }} id="cart"><Box color="#000000"><GrCart style={{ fontSize: "22px", fontWeight: "900" }} /></Box></Link>
                     </Flex>

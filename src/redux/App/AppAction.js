@@ -136,11 +136,25 @@ const addToCart=(payload)=>async(dispatch)=>{
 }
 
 const modifyCartQty=(payload)=>async(dispatch)=>{
-  
+  dispatch({type: types.REQUEST_MODIFY_ITEM_QUANTITY})
+  try {
+    const res = await axios.delete(`https://victorious-houndstooth-colt.cyclic.app/cart/${payload.userId}/${payload.id}`, payload.obj)
+    dispatch({type: types.SUCCESS_MODIFY_ITEM_QUANTITY, payload: res.data.cart.items});
+  } catch (error) {
+    console.log(error)
+    dispatch({type: types.FAILURE_MODIFY_ITEM_QUANTITY, payload: error.response.data.message});
+  }
 }
 
 const removeitemCart=(payload)=>async(dispatch)=>{
-  
+  dispatch({type: types.REQUEST_REMOVE_CART})
+  try {
+    const res = await axios.delete(`https://victorious-houndstooth-colt.cyclic.app/cart/${payload.userId}/${payload.id}`)
+    dispatch({type: types.SUCCESS_REMOVE_CART, payload: res.data.cart.items});
+  } catch (error) {
+    console.log(error)
+    dispatch({type: types.FAILURE_REMOVE_CART, payload: error.response.data.message});
+  }
 }
 
 const deleteCart=(payload)=>async(dispatch)=>{
@@ -187,5 +201,15 @@ const putProductQuestionAnswer = ({id, data}) => async(dispatch) => {
 
 
 
-export { getProducts,getProductsByID, getNew, getbest, updateProductReviews, getProductReviews,postProductReviews, getProductQuestions, postProductQuestions, putProductQuestionAnswer, addToCart, getCart};
+export { getProducts, 
+  getProductsByID, 
+  getNew, getbest, 
+  updateProductReviews, 
+  getProductReviews,
+  postProductReviews, 
+  getProductQuestions, 
+  postProductQuestions, 
+  removeitemCart,
+  putProductQuestionAnswer, 
+  addToCart, getCart, modifyCartQty};
 

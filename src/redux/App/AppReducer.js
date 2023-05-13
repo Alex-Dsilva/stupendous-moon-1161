@@ -103,6 +103,18 @@ const Appreducer = ( State = initialData,action )=>{
             return {...State, isLoading :false, isError: false, carts:payload  }
         case types.FAILURE_GET_CART:
             return  { ...State, isLoading: false, errorMsg: payload, isError: true};
+        case types.REQUEST_REMOVE_CART:
+            return {...State, isLoading : true,isError : false};
+        case types.SUCCESS_REMOVE_CART:
+            return {...State, isLoading :false, isError: false, carts:payload  }
+        case types.FAILURE_REMOVE_CART:
+            return  { ...State, isLoading: false, errorMsg: payload, isError: true};
+        case types.REQUEST_MODIFY_ITEM_QUANTITY:
+            return {...State, isLoading : true,isError : false};
+        case types.SUCCESS_MODIFY_ITEM_QUANTITY:
+            return {...State, isLoading :false, isError: false, carts:payload  }
+        case types.FAILURE_MODIFY_ITEM_QUANTITY:
+            return  { ...State, isLoading: false, errorMsg: payload, isError: true};
         default : 
         return State        
 
