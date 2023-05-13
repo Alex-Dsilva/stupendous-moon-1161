@@ -14,7 +14,7 @@ function Cart() {
   const { carts, isLoading, isError, errorMsg } = useSelector(
     state => state.Appreducer
   );
-  const [qty, setQty] = useState(1);
+
   const [totalPrice, setTotalPrice] = useState(0);
   const dispatch=useDispatch()
 
@@ -145,7 +145,7 @@ function Cart() {
                       <IconButton
                         aria-label="minus"
                         icon={<MinusIcon color='gray.500' w={2} h={2} />}
-                        onClick={()=>handleMinusClick(el._id, el.product.quantity)}
+                        onClick={()=>handleMinusClick(el._id, el.quantity)}
                         borderRadius="3px"
                         border='0.1px solid #c0c0c0'
                         h={'29px'}
@@ -163,7 +163,7 @@ function Cart() {
                         border='0.1px solid #c0c0c0'
                         bg='none'
                         minW='28px'
-                        onClick={()=> handleAddClick(el._id, el.product.quantity)}
+                        onClick={()=> handleAddClick(el._id, el.quantity)}
                         borderRadius="3px"
                         borderLeftRadius="0"
                       />
@@ -171,7 +171,7 @@ function Cart() {
                   </Flex>
                   <Flex align={'center'} gap='5' justify={'center'} w={{base:"100%", lg:"13%"}} >
                   <Text as='b' display={{base:"block", lg:"none"}} color={'#999'} >Total :  </Text>
-                    <Text as='b' color={'#999'} >₹ {el.product.price * el.quantity}</Text>
+                    <Text as='b' color={'#999'} >₹ {(el.product.price * el.quantity).toFixed(2)}</Text>
                   </Flex>
                   <Flex flexDir={{base:"column", md:'row', lg:"column"}} gap='5' align={'center'} justify={'center'} w={{base:"100%", lg:"13%"}} >
                     <Button w='100%' onClick={()=>handleWishlist(el._id)} bg='#06f' leftIcon={< AiFillHeart />} color={'white'} >Wishlist</Button>
