@@ -26,7 +26,7 @@ const Shiping=['China']
 const Option=["i3-1115G4 CPU 8+256GB", "i5-1135G7 CPU 8+256GB", "i5-1135G7 CPU 10+512GB"]
 
 export const SingleProduct = () => {
-  const { singleproduct, reviews, isLoading, isError, errorMsg } = useSelector(state => state.Appreducer);
+  const { singleproduct, carts, reviews, isLoading, isError, errorMsg } = useSelector(state => state.Appreducer);
   const { userId } = useSelector(store => store.Authreducer);
   const { id } = useParams();
   const [qty, setQty]= useState(1)
@@ -44,6 +44,15 @@ export const SingleProduct = () => {
     dispatch(getProductQuestions(id))
     
   }, [id]);
+
+  useEffect(()=>{
+    const productIndex = carts.findIndex((item) => item.product._id === singleproduct._id);
+    if(productIndex===-1){
+      setQty(1)
+    }else{
+      setQty(carts[productIndex].quantity)
+    }
+  },[singleproduct])
 
 
   const handleAddToCart=()=>{

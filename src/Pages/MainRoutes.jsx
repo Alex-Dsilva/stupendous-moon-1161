@@ -11,9 +11,6 @@ import Products from './Products/Products'
 // import Passwordreset from './Passwordreset'
 import Cart from './Cart'
 import TodayDeals from './Products/TodayDeals';
-import LoginTest from './LoginTest';
-import Signuptest from './Signuptest';
-import PhoneSignupTest from './PhoneSignupTest';
 import PrivateRoute from './PrivateRoute'
 
 function MainRoutes() {
@@ -21,8 +18,6 @@ function MainRoutes() {
     <Routes>
 
         <Route path="/" element={<Homepage/>}/>
-        <Route path="/s" element={<Signuptest/>}/>
-        <Route path="/p" element={<PhoneSignupTest/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/products/search/:searchQuery" element={<Products title={"Search"}/>}/>
@@ -34,7 +29,7 @@ function MainRoutes() {
         <Route path="/products/todaydeals/:searchQuery" element={<TodayDeals title={"Today's Deals"}/>} />
         {/* <Route path="/payment" element={<PrivateRoute><Payment/></PrivateRoute>} /> 
         <Route path="/passwordreset" element={<PrivateRoute><Passwordreset/></PrivateRoute>} /> */}
-        <Route path="/singleproduct:id" element={<SingleProduct/>} />
+        <Route path="/singleproduct:id" element={<PrivateRoute><SingleProduct/></PrivateRoute> } />
     </Routes>
   )
 }
