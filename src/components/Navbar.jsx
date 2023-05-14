@@ -408,8 +408,8 @@ function Navbar() {
                 <>
                   <Text textAlign='center' mb='0.5rem' mt='1rem' fontSize='17px'>Welcome to Geekbuying</Text>
                   <Flex p='1' gap='5' align='center' mb='5' >
-                    <Link to='/login'><Button cursor='pointer' w='7.5rem' h='35px' bg='#046381' color='white' >Join</Button></Link>
-                    <Link to='/signup'><Button w='7.5rem' h='35px' border='1px solid #b3b3b3' cursor='pointer' >Sign In</Button></Link>
+                    <Link to='/signup'><Button cursor='pointer' w='7.5rem' h='35px' bg='#046381' color='white' >Join</Button></Link>
+                    <Link to='/login'><Button w='7.5rem' h='35px' border='1px solid #b3b3b3' cursor='pointer' >Sign In</Button></Link>
                   </Flex>
                   <Text mt='3' textAlign='center'>----------{" "}or{" "}----------</Text>
                   <Flex justify='center' m='12%'>
