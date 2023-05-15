@@ -460,7 +460,7 @@ function Navbar() {
                         <Box color="#1a1818" p="10px 0px" fontWeight="600">Deals</Box>
                       </Link>
 
-                      <Link style={{ textDecoration: "none" }} to="/payment" id="coup">
+                      <Link style={{ textDecoration: "none" }} to="/Wallet" id="coup">
                         <Box color="#1a1818" p="10px 0px" fontWeight="600">Wallet</Box>
                       </Link>
 
@@ -545,7 +545,7 @@ function Navbar() {
               <Link style={{ textDecoration: "none" }} to="/products/best/bestselling" key="best"><Box color="#FFFFFF" fontWeight="600">Bestselling</Box></Link>
               <Link style={{ textDecoration: "none" }} to="/products/clearance/special_clearance_sale" key="clear"><Box color="#FFFFFF" fontWeight="600">Clearance</Box></Link>
               <Link style={{ textDecoration: "none" }} to="/products/todaydeals/deals" key="deal"><Box color="#FFFFFF" fontWeight="600">Deals</Box></Link>
-              <Link style={{ textDecoration: "none" }} to="/payment" key="coup"><Box color="#FFFFFF" fontWeight="600">Wallet</Box></Link>
+              <Link style={{ textDecoration: "none" }} to="/Wallet" key="coup"><Box color="#FFFFFF" fontWeight="600">Wallet</Box></Link>
               <Link style={{ textDecoration: "none" }} to="/products/apponly" key="ap"><Box color="#FFFFFF" fontWeight="600">App Only</Box></Link>
             </Flex>
 
