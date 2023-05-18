@@ -10,7 +10,6 @@
     "server": "json-server --watch db.json --port 8080"
   },
   "dependencies": {
-    "@chakra-ui/core": "^0.8.0",
     "@chakra-ui/icons": "^2.0.13",
     "@chakra-ui/react": "^2.4.3",
     "@emotion/react": "^11.10.5",
