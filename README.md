@@ -1,5 +1,6 @@
 # GeekBuying
-![image](https://user-images.githubusercontent.com/107488954/217531935-18fcdad9-733a-40f6-a9b1-649feb3e139a.png)
+![image](https://github.com/Alexfp05405/stupendous-moon-1161/assets/107488954/dd19d835-bdbc-42cc-a0a7-0088fb161a69)
+
 
 ## Buy Anything from AnyWhere
 shopMart makes your shopping even simpler. No more hassle finding the products in diffrent websites get it all at one place - now shop from the comfort of your home, office or on the move.
@@ -74,12 +75,17 @@ It’s Group project where we've used MERN stack to build the dailyobjects.com w
 its Fully Responsive. Daily Objects is a E-Commerce Website who deals with the cases,covers & bags. Created Carts, Products, Users, Admin API ( Back-End ).
 
 ## Home Page
-![image](https://user-images.githubusercontent.com/107488954/217531935-18fcdad9-733a-40f6-a9b1-649feb3e139a.png)
+![image](https://github.com/Alexfp05405/stupendous-moon-1161/assets/107488954/fbb454f4-74fd-4e1f-8e0d-fe88922e7fcf)
+
 ## Products Page
-![image](https://user-images.githubusercontent.com/107488954/217532492-22e2a829-eba9-49eb-b0e8-7bdd791077ff.png)
+![image](https://github.com/Alexfp05405/stupendous-moon-1161/assets/107488954/6a92cf71-5462-4b77-acc6-e2dfb3c10a77)
+
+
 
 ## Login Page
-![image](https://user-images.githubusercontent.com/107488954/217532630-a6d26ee2-d3cf-404b-984e-d95c8e0bf735.png)
+![image](https://github.com/Alexfp05405/stupendous-moon-1161/assets/107488954/89d7607c-b542-4c91-8dc5-f11ad84cc8b3)
+
+
 
 
 ## Team Members.
