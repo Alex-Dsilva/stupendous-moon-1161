@@ -53,12 +53,12 @@ You can signup/login, and then arrive on a super detailed landing page, explore 
 <a href="https://stupendous-moon-1161-aa02kw4ni-alexfp05405.vercel.app">
   <img src="https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white" alt="netlify" />
 </a>  
-<a href="https://victorious-houndstooth-colt.cyclic.app/">
+<a href="https://victorious-houndstooth-colt.cyclic.app/products?search=newarrival">
   <img src="https://img.shields.io/badge/cyclic.sh-5458F6?style=for-the-badge&logo=cyclic&logoColor=white" alt="render" />
   </a>
 </p>
 
-<h3 align="center"><a href="https://cool-maamoul-e2db46.netlify.app/"><strong>Want to see live preview »</strong></a></h3>
+<h3 align="center"><a href="https://stupendous-moon-1161-aa02kw4ni-alexfp05405.vercel.app"><strong>Want to see live preview »</strong></a></h3>
 
 
 <br />
