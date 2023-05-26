@@ -43,7 +43,7 @@ const CartNav = () => {
         {1 > 0 && (
           <Box position="absolute" top="-12px" right="-6px">
             <Badge borderRadius="full" fontSize='10' variant="solid" colorScheme="red">
-              {0}
+              {carts.length}
             </Badge>
           </Box>
         )}
@@ -101,7 +101,7 @@ const CartNav = () => {
             )}
           </Box>
           <Flex justifyContent="space-between" mb='2' m='auto' w='90%' p='1' alignItems="center">
-            <Text>7 Item(s)</Text>
+            <Text>{carts.length} Item(s)</Text>
             <Text fontWeight="bold">₹ 551832.4</Text>
           </Flex>
           <Link to={"cart"}><Button bg='#046381' w='100%' color='white' border='1px solid #b3b3b3'>View My Cart</Button></Link></>):(<Flex  w='300px' h='20rem' flexDir='column' gap='5' align='center' justify='center' >

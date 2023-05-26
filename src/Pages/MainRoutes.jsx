@@ -13,6 +13,7 @@ import Cart from './Cart'
 import TodayDeals from './Products/TodayDeals';
 import PrivateRoute from './PrivateRoute'
 import WalletPage from './WalletPage';
+import OrderPlacedPage from './OrderPlaced';
 
 function MainRoutes() {
   return (
@@ -29,6 +30,7 @@ function MainRoutes() {
         <Route path="/cart" element={<PrivateRoute><Cart/></PrivateRoute>} />
         <Route path="/products/todaydeals/:searchQuery" element={<TodayDeals title={"Today's Deals"}/>} />
         <Route path="/Wallet" element={<WalletPage/>} />
+        <Route path="/OrderPlaced" element={<OrderPlacedPage/>} />
         {/* <Route path="/payment" element={<PrivateRoute><Payment/></PrivateRoute>} /> 
         <Route path="/passwordreset" element={<PrivateRoute><Passwordreset/></PrivateRoute>} /> */}
         <Route path="/singleproduct:id" element={<PrivateRoute><SingleProduct/></PrivateRoute> } />
