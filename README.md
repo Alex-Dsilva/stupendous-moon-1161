@@ -50,11 +50,11 @@ You can signup/login, and then arrive on a super detailed landing page, explore 
 <h4 align="center">Deployed On:</h4>
 
 <p align="center">
-<a href="https://cool-maamoul-e2db46.netlify.app">
+<a href="https://stupendous-moon-1161-aa02kw4ni-alexfp05405.vercel.app">
   <img src="https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white" alt="netlify" />
 </a>  
-<a href="">
-  <img src="https://img.shields.io/badge/render-5458F6?style=for-the-badge&logo=render&logoColor=white" alt="render" />
+<a href="https://victorious-houndstooth-colt.cyclic.app/">
+  <img src="https://img.shields.io/badge/cyclic.sh-5458F6?style=for-the-badge&logo=cyclic&logoColor=white" alt="render" />
   </a>
 </p>
 
