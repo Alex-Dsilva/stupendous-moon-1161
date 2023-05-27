@@ -46,7 +46,7 @@ export const SingleProduct = () => {
   }, [id]);
 
   useEffect(()=>{
-    const productIndex = carts.findIndex((item) => item.product._id === singleproduct._id);
+    const productIndex = carts.findIndex((item) => item.product._id === id);
     if(productIndex===-1){
       setQty(1)
     }else{
