@@ -6,9 +6,9 @@ import GridLoader from "react-spinners/GridLoader";
 import { AddIcon, DeleteIcon, MinusIcon } from '@chakra-ui/icons'
 import { AiFillHeart, AiOutlineRight } from 'react-icons/ai'
 import { FaPaypal } from 'react-icons/fa';
-import { modifyCartQty, removeitemCart } from '../redux/App/AppAction';
+import { addToCart, modifyCartQty, removeitemCart } from '../redux/App/AppAction';
 
-function Cart() {
+function Wishlist() {
 
   const { userId } = useSelector(store => store.Authreducer);
   const { carts, isLoading, isError, errorMsg } = useSelector(
@@ -40,12 +40,12 @@ function Cart() {
     alert(`item id ${i} Deleted`);
   };
 
-  const handleWishlist = i => {
-    alert(`Added item ${i} to wishlist`);
-  };
+  // const handleWishlist = i => {
+  //   alert(`Added item ${i} to wishlist`);
+  // };
 
   const [checkedItems, setCheckedItems] = useState(
-    Array(carts.length||0).fill(true)
+    Array(carts.length||0).fill(false)
   );
 
   const allChecked = checkedItems.every(Boolean);
@@ -88,14 +88,18 @@ function Cart() {
     navigate("/OrderPlaced")
   }
 
-  console.log(carts)
+  const handleAddToCart=(id, qty)=>{
+    let obj={ product:id, quantity:qty}
+    console.log(userId, obj)
+    dispatch(addToCart({userId, obj}))
+  }
   
 
   return (
     <ChakraProvider>
       <Box maxW={{ sm: '700px', md: '1200px', lg: '1800px' }} m='auto' pt='2'>
         <Heading className="title" as="h3" fontWeight={'600'} p="20px">
-          Cart
+          Wishlist
         </Heading>
         <Box h='fit-content' w='98%' m='auto' >
           <Flex h='3em' mb='2' align={'center'} bgColor={'#f1f1f1'} px='5' gap='5'>
@@ -180,7 +184,7 @@ function Cart() {
                     <Text as='b' color={'#999'} >₹ {(el.product.price * el.quantity).toFixed(2)}</Text>
                   </Flex>
                   <Flex flexDir={{base:"column", md:'row', lg:"column"}} gap='5' align={'center'} justify={'center'} w={{base:"100%", lg:"13%"}} >
-                    <Button w='100%' onClick={()=>handleWishlist(el._id)} bg='#06f' leftIcon={< AiFillHeart />} color={'white'} >Wishlist</Button>
+                    <Button w='100%' onClick={()=>handleAddToCart(el.product._id, el.quantity)} bg='#06f' leftIcon={< AiFillHeart />} color={'white'} >Add to Cart</Button>
                     <Button w='100%' onClick={()=>handleDelete(el._id)} leftIcon={< DeleteIcon />} colorScheme='red'>Delete</Button>
                   </Flex>
                 </Flex>)
@@ -188,7 +192,7 @@ function Cart() {
             </Flex>
           )}
 
-          <Flex flexDir={{base:'column-reverse', md:'column', lg:"row"}} borderRadius={'5px'} border='1.5px solid #c5c5c5' align={'center'} justify={'space-between'} gap='3' mt='5' p='2' py='8'  h='fit-content'>
+          <Flex flexDir={{base:'column-reverse', md:'column', lg:"row"}} border='1px solid #c3c3c3' borderRadius={'5px'} align={'center'} justify={'space-between'} gap='3' mt='5' p='2' py='8'  h='fit-content'>
             <Flex justify={{base:'space-around',md:'center', lg:'space-between'}} gap='5' mt={{base:"3" , lg:"0"}} align={'center'} w={{base:'100%', lg:'28%'}} >
                 <Link to='/products/search/best'> <Text display={'flex'} _hover={{textDecor:"underline"}} alignItems={'center'} >Continue Shopping {">"} </Text></Link>
                 <Text  color='#999' fontSize={'14px'}>You choose {checkedItems.filter(Boolean).length} item(s)</Text>
@@ -205,11 +209,9 @@ function Cart() {
             </Flex>
           </Flex>
         </Box>
-
-       
       </Box>
     </ChakraProvider>
   )
 }
 
-export default Cart
+export default Wishlist

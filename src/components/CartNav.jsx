@@ -29,6 +29,11 @@ const CartNav = () => {
     navigate(`/singleproduct${id}`)
   }
 
+  const total = carts.reduce(function(acc, item) {
+    var quantity = item.qty;
+    var price = item.product.price;
+    return acc + quantity * price;
+  }, 0);
 
   return (
     <CustomPopover
@@ -102,7 +107,7 @@ const CartNav = () => {
           </Box>
           <Flex justifyContent="space-between" mb='2' m='auto' w='90%' p='1' alignItems="center">
             <Text>{carts.length} Item(s)</Text>
-            <Text fontWeight="bold">₹ 551832.4</Text>
+            <Text fontWeight="bold">₹ {carts.reduce((acc, cart) =>cart.product.price * cart.quantity+ acc, 0)}</Text>
           </Flex>
           <Link to={"cart"}><Button bg='#046381' w='100%' color='white' border='1px solid #b3b3b3'>View My Cart</Button></Link></>):(<Flex  w='300px' h='20rem' flexDir='column' gap='5' align='center' justify='center' >
                     <Image src={Login} w='50%' alt="No products found" />

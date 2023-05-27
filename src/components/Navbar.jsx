@@ -382,7 +382,7 @@ function Navbar() {
                     <GiHandTruck />
                     My Order
                   </Flex></Link>
-                  <Link to={'Wishlist'}><Flex p='1' gap='2' align='center' _hover={{ bg: "#efefef" }} >
+                  <Link to={'/Wishlist'}><Flex p='1' gap='2' align='center' _hover={{ bg: "#efefef" }} >
                     <BsBookmarkHeart />
                     My Wishlist
                   </Flex></Link>
