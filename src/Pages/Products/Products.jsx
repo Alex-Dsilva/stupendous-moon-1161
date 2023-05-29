@@ -181,7 +181,7 @@ const Products = ({ title }) => {
             )}
           </Box>
         </Flex>
-        <Flex gap='2rem' justify='center' align='center'>
+        <Flex gap='2rem' mb='5' justify='center' align='center'>
           <Button isDisabled={page < 2} borderRadius='none' bg='#046381' color='white' onClick={() => setPage(page - 1)}>PREVIOUS</Button>
           <Text borderRadius={5} bg='gray.100' p='10px 20px' >{page}</Text>
           <Button borderRadius='none' bg='#046381' color='white' onClick={() => setPage(page + 1)}>NEXT</Button>

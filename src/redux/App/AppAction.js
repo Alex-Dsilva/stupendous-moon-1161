@@ -67,6 +67,7 @@ const postProductReviews = ({id, data}) => async(dispatch) => {
   dispatch({type: types.ADD_REVIEWS_REQUEST});
   try {
     const res = await axios.post(`https://victorious-houndstooth-colt.cyclic.app/review/${id}`, data);
+    
     dispatch({type: types.ADD_REVIEWS_SUCCESS, payload: res.data.review});
   } catch (error) {
     console.error(error);
@@ -78,6 +79,7 @@ const updateProductReviews = ({id, data}) => async (dispatch) => {
   dispatch({type: types.UPDATE_REVIEWS_REQUEST});
   try {
     const res = await axios.put(`https://victorious-houndstooth-colt.cyclic.app/review/like-dislike/${id}`, data);
+    console.log(res.data)
     dispatch({type: types.UPDATE_REVIEWS_SUCCESS, payload: res.data});
   } catch (error) {
     console.error(error);
@@ -166,7 +168,14 @@ const deleteCart=(payload)=>async(dispatch)=>{
 // Wishlist
 
 const getWishlist=(payload)=>async(dispatch)=>{
-  
+  dispatch({type: types.REQUEST_GET_WISHLIST});
+  axios.get(`https://victorious-houndstooth-colt.cyclic.app/wishlist/wishlist/${payload}`).then((res) =>{
+  console.log("datsdatsdtdksyad",res.data) 
+  // dispatch({type:types.SUCCESS_GET_WISHLIST, payload:res.data.cart[0].items});
+  }).catch( (error)=> {
+    console.error(error);
+    // dispatch({type:types.FAILURE_GET_WISHLIST, payload:error.data});
+  });
 }
 
 const addWishlist=(payload)=>async(dispatch)=>{
@@ -212,5 +221,5 @@ export { getProducts,
   postProductQuestions, 
   removeitemCart,
   putProductQuestionAnswer, 
-  addToCart, getCart, modifyCartQty};
+  addToCart, getCart, modifyCartQty, getWishlist};
 
