@@ -13,6 +13,7 @@ const Reviews = ({singleproduct}) => {
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState("");
     const { reviews } =useSelector((store)=>store.Appreducer)
+    const { name, userId } = useSelector(store => store.Authreducer);
     const dispatch=useDispatch()
 
     const handleRatingClick = (value) => {
@@ -26,7 +27,7 @@ const Reviews = ({singleproduct}) => {
     const handleClick=(task,id)=>{
       const data={
         action:task,
-        userId:"641338e89d70719bbfd5b156"
+        userId:userId
       }
 
       dispatch(updateProductReviews({id,data}))
@@ -37,8 +38,8 @@ const Reviews = ({singleproduct}) => {
     const handleSubmit = () => {
       // Add new review to the list
       const newReview = {
-        userId: "63dd2452c5868d2719737b3a",
-        name: "Raja Moli",
+        userId: userId,
+        name: name,
         rating,
         comment,
       };
