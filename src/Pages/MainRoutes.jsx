@@ -15,6 +15,7 @@ import PrivateRoute from './PrivateRoute'
 import WalletPage from './WalletPage';
 import OrderPlacedPage from './OrderPlaced';
 import Wishlist from './Wishlist';
+import Address from './Address';
 
 function MainRoutes() {
   return (
@@ -31,8 +32,9 @@ function MainRoutes() {
         <Route path="/cart" element={<PrivateRoute><Cart/></PrivateRoute>} />
         <Route path="/Wishlist" element={<PrivateRoute><Wishlist/></PrivateRoute>} />
         <Route path="/products/todaydeals/:searchQuery" element={<TodayDeals title={"Today's Deals"}/>} />
-        <Route path="/Wallet" element={<WalletPage/>} />
-        <Route path="/OrderPlaced" element={<OrderPlacedPage/>} />
+        <Route path="/Wallet" element={<PrivateRoute><WalletPage/></PrivateRoute>} />
+        <Route path="/OrderPlaced" element={<PrivateRoute><OrderPlacedPage/></PrivateRoute>} />
+        <Route path="/address" element={<PrivateRoute><Address/></PrivateRoute>} />
         {/* <Route path="/payment" element={<PrivateRoute><Payment/></PrivateRoute>} /> 
         <Route path="/passwordreset" element={<PrivateRoute><Passwordreset/></PrivateRoute>} /> */}
         <Route path="/singleproduct:id" element={<PrivateRoute><SingleProduct/></PrivateRoute> } />
