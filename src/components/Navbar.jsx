@@ -467,6 +467,17 @@ function Navbar() {
                       <Link style={{ textDecoration: "none" }} to="products/apponly" id="ap">
                         <Box color="#1a1818" p="10px 0px" fontWeight="600">App Only</Box>
                       </Link>
+
+                      <Link style={{ textDecoration: "none" }} to={'/Wishlist'}>
+                        <Box color="#1a1818" p="10px 0px" fontWeight="600" >Wishlist</Box>
+                      </Link>
+
+                      <Link style={{ textDecoration: "none" }} to={'Order'}>
+                        <Box color="#1a1818" p="10px 0px" fontWeight="600" > My Order</Box>
+                      </Link>
+                      <Link style={{ textDecoration: "none" }} to={'Order'}>
+                        <Box color="#1a1818" p="10px 0px" fontWeight="600" > My Order</Box>
+                      </Link>
                     </Box>
                   </DrawerBody>
                 </DrawerContent>

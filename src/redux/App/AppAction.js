@@ -169,12 +169,11 @@ const deleteCart=(payload)=>async(dispatch)=>{
 
 const getWishlist=(payload)=>async(dispatch)=>{
   dispatch({type: types.REQUEST_GET_WISHLIST});
-  axios.get(`https://victorious-houndstooth-colt.cyclic.app/wishlist/wishlist/${payload}`).then((res) =>{
-  console.log("datsdatsdtdksyad",res.data) 
-  // dispatch({type:types.SUCCESS_GET_WISHLIST, payload:res.data.cart[0].items});
+  axios.get(`https://victorious-houndstooth-colt.cyclic.app/wishlist/wishlist/${payload}`).then((res) =>{ 
+  dispatch({type:types.SUCCESS_GET_WISHLIST, payload:res.data.wishlist});
   }).catch( (error)=> {
     console.error(error);
-    // dispatch({type:types.FAILURE_GET_WISHLIST, payload:error.data});
+    dispatch({type:types.FAILURE_GET_WISHLIST, payload:error.data});
   });
 }
 
