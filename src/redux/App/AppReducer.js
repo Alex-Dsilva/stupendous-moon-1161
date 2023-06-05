@@ -137,7 +137,21 @@ const Appreducer = ( State = initialData,action )=>{
             return {...State, isLoading :false, isError: false, wishlist:payload  }
         case types.FAILURE_GET_WISHLIST:
             return  { ...State, isLoading: false, errorMsg: payload, isError: true};
+        
+        case types.REQUEST_ADD_WISHLIST:
+            return {...State, isLoading : true,isError : false};
+        case types.SUCCESS_ADD_WISHLIST:
+            return {...State, isLoading :false, isError: false, wishlist:payload  }
+        case types.FAILURE_ADD_WISHLIST:
+            return  { ...State, isLoading: false, errorMsg: payload, isError: true};
 
+        case types.REQUEST_REMOVE_WISHLIST:
+            return {...State, isLoading : true,isError : false};
+        case types.SUCCESS_REMOVE_WISHLIST:
+            return {...State, isLoading :false, isError: false, wishlist:payload  }
+        case types.FAILURE_REMOVE_WISHLIST:
+            return  { ...State, isLoading: false, errorMsg: payload, isError: true};
+        
         default : 
             return State        
 
