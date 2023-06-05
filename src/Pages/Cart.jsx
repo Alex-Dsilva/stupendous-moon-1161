@@ -60,6 +60,7 @@ function Cart() {
 
   useEffect(() => {
     let totalPrice = 0;
+    console.log("from page ", carts)
     checkedItems.forEach((checked, index) => {
       if (checked) {
         const itemPrice = carts[index].product.price * carts[index].quantity;

@@ -30,7 +30,7 @@ function MainRoutes() {
         <Route path="/products/clearance/:searchQuery" element={<Products title={"Clearance Sale"}/>}/>
         <Route path="/products/:searchQuery" element={<Products title={"App Only"}/>}/>
         <Route path="/cart" element={<PrivateRoute><Cart/></PrivateRoute>} />
-        <Route path="/Wishlist" element={<PrivateRoute><Wishlist/></PrivateRoute>} />
+        <Route path="/Wishlist"                                              element={<PrivateRoute><Wishlist/></PrivateRoute>} />
         <Route path="/products/todaydeals/:searchQuery" element={<TodayDeals title={"Today's Deals"}/>} />
         <Route path="/Wallet" element={<PrivateRoute><WalletPage/></PrivateRoute>} />
         <Route path="/OrderPlaced" element={<PrivateRoute><OrderPlacedPage/></PrivateRoute>} />

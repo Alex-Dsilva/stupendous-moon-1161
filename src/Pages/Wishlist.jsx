@@ -5,7 +5,7 @@ import { Box, Button, ChakraProvider, Checkbox, Flex, Heading, IconButton, Image
 import GridLoader from "react-spinners/GridLoader";
 import { DeleteIcon } from '@chakra-ui/icons'
 import { MdShoppingCart } from 'react-icons/md';
-import { addToCart, getWishlist, removeitemCart } from '../redux/App/AppAction';
+import { addToCart, getWishlist, removeWishlist, removeitemCart } from '../redux/App/AppAction';
 
 function Wishlist() {
 
@@ -18,13 +18,15 @@ function Wishlist() {
   const navigate = useNavigate()
 
   const handleDelete = i => {
-    dispatch(removeitemCart({ userId, id: i }))
+    dispatch(removeWishlist({ userId, id: i }))
     alert(`item id ${i} Deleted`);
   };
 
   useEffect(() => {
     dispatch(getWishlist(userId))
   }, [])
+
+  console.log("Wishlist",wishlist)
 
   if (isLoading) {
     return (
@@ -42,6 +44,7 @@ function Wishlist() {
     let obj = { product: id, quantity: qty }
     console.log(userId, obj)
     dispatch(addToCart({ userId, obj }))
+    dispatch(removeWishlist({ userId, id: id }))
   }
 
 
@@ -52,8 +55,8 @@ function Wishlist() {
           Wishlist
         </Heading>
         <Flex flexDir={'column'} h='fit-content' justifyContent={'space-between'} m='auto' >
-          <Box>
-            <Flex h='3em' mb='2' display={wishlist.length === 0 ? "none":"flex"} align={'center'} bgColor={'#f1f1f1'} px='5' gap='5'> 
+          <Box h='70vh'>
+            <Flex h='3em' mb='2' display={wishlist.length === 0 ? "none" : "flex"} align={'center'} bgColor={'#f1f1f1'} px='5' gap='5'>
               <Flex align={'center'} display={{ base: "none", lg: "block" }} w='55%'>
                 <Text as='b' color={'#999'} >Product Name & Detail</Text>
               </Flex>
@@ -72,8 +75,8 @@ function Wishlist() {
                     <Heading size="lg">Wishlist empty</Heading>
                     <Text>Find products to add to your wishlist</Text>
                     <Link to='/products/new/newarrival'><Text colorScheme="teal" mt={8} textDecoration="underline" size="lg">
-          Continue Shopping
-        </Text></Link>
+                      Continue Shopping
+                    </Text></Link>
                   </Flex>
                 ) : (
                   <Flex flexDir="column" gap="5">
@@ -92,7 +95,7 @@ function Wishlist() {
                         </Flex>
                         <Flex flexDir={{ base: "column", md: 'row', lg: "row" }} gap='5' align={'center'} justify={'center'} w={{ base: "100%", lg: "32.5%" }} >
                           <Button w='100%' onClick={() => handleAddToCart(el.product._id, el.quantity)} bg='#06f' leftIcon={< MdShoppingCart />} color={'white'} >Add to Cart</Button>
-                          <Button w='100%' onClick={() => handleDelete(el._id)} leftIcon={< DeleteIcon />} colorScheme='red'>Delete</Button>
+                          <Button w='100%' onClick={() => handleDelete(el.product._id)} leftIcon={< DeleteIcon />} colorScheme='red'>Delete</Button>
                         </Flex>
                       </Flex>);
                     })}
@@ -101,13 +104,13 @@ function Wishlist() {
               </Flex>
             )}
           </Box>
-          <Flex w='95%' display={wishlist.length === 0 ? "none":"flex"} marginX={'auto'} flexDir={{ base: 'column-reverse', md: 'column', lg: "row" }} border='1px solid #c3c3c3' borderRadius={'5px'} align={'center'} justify={'right'} gap='3' mt='5' mb='5' p='2' py='8' h='fit-content'>
+          {/* <Flex w='95%' display={wishlist.length === 0 ? "none" : "flex"} marginX={'auto'} flexDir={{ base: 'column-reverse', md: 'column', lg: "row" }} border='1px solid #c3c3c3' borderRadius={'5px'} align={'center'} justify={'right'} gap='3' mt='5' mb='5' p='2' py='8' h='fit-content'>
             <Flex flexDir={{ base: 'column', md: "row", lg: "row" }} w={{ base: '100%', lg: '70%' }} gap='2' justify={{ base: 'center', lg: "right" }}>
               <Flex flexDir={{ base: 'column', md: "column", lg: "row" }} gap='3' align={'center'} justify={'right'} w={{ base: "100%", md: "70%", lg: "60%" }}  >
                 <Button onClick={orderplaced} w={{ base: '100%', md: "100%", lg: "50%" }} bg='#06f' fontWeight={'600'} color={'white'} > Clear the Wishlist</Button>
               </Flex>
             </Flex>
-          </Flex>
+          </Flex> */}
         </Flex>
       </Box>
     </ChakraProvider>

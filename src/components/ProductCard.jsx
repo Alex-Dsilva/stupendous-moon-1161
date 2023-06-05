@@ -2,16 +2,22 @@ import { StarIcon } from '@chakra-ui/icons'
 import { Box, Flex, Image, Text, IconButton } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { addWishlist } from '../redux/App/AppAction';
 
-const ProductCard = ({ product, index }) => {
+const ProductCard = ({ product, index, }) => {
 
   const [liked, setLiked] = useState(false);
+  const { userId } = useSelector(store => store.Authreducer);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const discount = ((product.strikedprice - product.price) / product.strikedprice) * 100
   const heartIcon = liked ? <FaHeart color="red" /> : <FaRegHeart />;
   const handleLike = async () => {
     setLiked(!liked);
+    const obj={product:product._id}
+    dispatch(addWishlist({userId, obj}))
   };
 
   const handleClick = () => {

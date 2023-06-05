@@ -153,6 +153,8 @@ const removeitemCart=(payload)=>async(dispatch)=>{
   dispatch({type: types.REQUEST_REMOVE_CART})
   try {
     const res = await axios.delete(`https://victorious-houndstooth-colt.cyclic.app/cart/${payload.userId}/${payload.id}`)
+    console.log(res.data.cart.items)
+    console.log(res.data.message)
     dispatch({type: types.SUCCESS_REMOVE_CART, payload: res.data.cart.items});
   } catch (error) {
     console.log(error)
@@ -170,7 +172,7 @@ const deleteCart=(payload)=>async(dispatch)=>{
 const getWishlist=(payload)=>async(dispatch)=>{
   dispatch({type: types.REQUEST_GET_WISHLIST});
   axios.get(`https://victorious-houndstooth-colt.cyclic.app/wishlist/wishlist/${payload}`).then((res) =>{ 
-  dispatch({type:types.SUCCESS_GET_WISHLIST, payload:res.data.wishlist});
+  dispatch({type:types.SUCCESS_GET_WISHLIST, payload:res.data.wishlist[0].items});
   }).catch( (error)=> {
     console.error(error);
     dispatch({type:types.FAILURE_GET_WISHLIST, payload:error.data});
@@ -178,19 +180,27 @@ const getWishlist=(payload)=>async(dispatch)=>{
 }
 
 const addWishlist=(payload)=>async(dispatch)=>{
-  dispatch({type: types.REQUEST_ADD_WISHLIST});
+  console.log("data", payload)
   try {
-    const res = await axios.post(`https://victorious-houndstooth-colt.cyclic.app/cart/add-to-cart/${payload.userId}`, payload.obj);
-    console.log(res.data.cart.items)
-    dispatch({type: types.SUCCESS_ADD_CART, payload: res.data.cart.items});
+    const res = await axios.post(`http://localhost:6351/wishlist/wishlist/${payload.userId}`, payload.obj);
+    console.log(res.data.items)
+    dispatch({type: types.SUCCESS_ADD_WISHLIST, payload: res.data.items});
   } catch (error) {
     console.error(error);
-    dispatch({type: types.FAILURE_ADD_CART, payload: error.response.data.message});
+    dispatch({type: types.FAILURE_ADD_WISHLIST, payload: error.response.data});
   }
 }
 
 const removeWishlist=(payload)=>async(dispatch)=>{
-  
+  dispatch({type: types.REQUEST_REMOVE_WISHLIST})
+  console.log(payload)
+  try {
+    const res = await axios.delete(`http://localhost:6351/wishlist/${payload.userId}/${payload.id}`)
+    dispatch({type: types.SUCCESS_REMOVE_WISHLIST, payload: res.data.wishlist.items});
+  } catch (error) {
+    console.log(error)
+    dispatch({type: types.FAILURE_REMOVE_WISHLIST, payload: error});
+  }
 }
 
 const deleteWishlist=(payload)=>async(dispatch)=>{
@@ -228,5 +238,5 @@ export { getProducts,
   postProductQuestions, 
   removeitemCart,
   putProductQuestionAnswer, 
-  addToCart, getCart, modifyCartQty, getWishlist};
+  addToCart, getCart, modifyCartQty, getWishlist, addWishlist, removeWishlist};
 
