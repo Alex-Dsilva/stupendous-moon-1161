@@ -50,12 +50,12 @@ function Wishlist() {
 
   return (
     <ChakraProvider>
-      <Box maxW={{ sm: '700px', md: '1200px', lg: '1800px' }} m='auto' pt='2'>
+      <Box maxW={{ sm: '700px', md: '1200px', lg: '1800px' }}  m='auto' pt='2'>
         <Heading className="title" as="h3" fontWeight={'600'} p="20px">
           Wishlist
         </Heading>
         <Flex flexDir={'column'} h='fit-content' justifyContent={'space-between'} m='auto' >
-          <Box h='70vh'>
+          <Flex flexDir={'column'} justifyContent={'center'} h='70vh' overflowY={wishlist.length?'scroll':'hidden'}>
             <Flex h='3em' mb='2' display={wishlist.length === 0 ? "none" : "flex"} align={'center'} bgColor={'#f1f1f1'} px='5' gap='5'>
               <Flex align={'center'} display={{ base: "none", lg: "block" }} w='55%'>
                 <Text as='b' color={'#999'} >Product Name & Detail</Text>
@@ -68,7 +68,7 @@ function Wishlist() {
               </Flex>
             </Flex>
             {isLoading ? ("") : (
-              <Flex flexDir={'column'} gap='5'>
+              <Flex flexDir={'column'} gap='5' mb='10' >
                 {wishlist && wishlist.length === 0 ? (
                   <Flex flexDir="column" mb='5' align="center" gap="3">
                     <Image h='12rem' src="https://img.freepik.com/free-vector/reading-list-concept-illustration_114360-2657.jpg?w=360&t=st=1685467167~exp=1685467767~hmac=8ad865d900769b2994f4be4d5638f725460fac5763993208c3338f2c76162ee9" alt="Empty Wishlist" />
@@ -79,7 +79,7 @@ function Wishlist() {
                     </Text></Link>
                   </Flex>
                 ) : (
-                  <Flex flexDir="column" gap="5">
+                  <Flex flexDir="column" gap="5" mb='10' >
                     {wishlist && wishlist.map((el, index) => {
                       return (<Flex key={index + 1} flexDir={{ base: "column", lg: "row" }} h='fit-content' align={'center'} px='5' gap='5'>
                         <Flex align={'center'} flexDir={{ base: "column", md: 'row', lg: "row" }} w={{ base: "100%", lg: "55%" }}>
@@ -103,14 +103,7 @@ function Wishlist() {
                 )}
               </Flex>
             )}
-          </Box>
-          {/* <Flex w='95%' display={wishlist.length === 0 ? "none" : "flex"} marginX={'auto'} flexDir={{ base: 'column-reverse', md: 'column', lg: "row" }} border='1px solid #c3c3c3' borderRadius={'5px'} align={'center'} justify={'right'} gap='3' mt='5' mb='5' p='2' py='8' h='fit-content'>
-            <Flex flexDir={{ base: 'column', md: "row", lg: "row" }} w={{ base: '100%', lg: '70%' }} gap='2' justify={{ base: 'center', lg: "right" }}>
-              <Flex flexDir={{ base: 'column', md: "column", lg: "row" }} gap='3' align={'center'} justify={'right'} w={{ base: "100%", md: "70%", lg: "60%" }}  >
-                <Button onClick={orderplaced} w={{ base: '100%', md: "100%", lg: "50%" }} bg='#06f' fontWeight={'600'} color={'white'} > Clear the Wishlist</Button>
-              </Flex>
-            </Flex>
-          </Flex> */}
+          </Flex>
         </Flex>
       </Box>
     </ChakraProvider>

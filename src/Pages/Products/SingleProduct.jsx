@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import {FaBolt, FaHeart, FaRegHeart} from 'react-icons/fa'
 import {MdTabletAndroid } from 'react-icons/md'
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ProductDisplay from "../../components/ProductDisplay";
 import { addToCart, getProductQuestions, getProductReviews, getProductsByID } from "../../redux/App/AppAction";
 import { ChakraProvider } from "@chakra-ui/react";
@@ -33,6 +33,7 @@ export const SingleProduct = () => {
   const dispatch = useDispatch();
   const [liked, setLiked] = useState(false);
   const heartIcon = liked ? <FaHeart color="red" style={{height:'20px', width:"20px"}}/> : <FaRegHeart style={{height:'20px', width:"20px"}} />;
+  const navigate = useNavigate()
   const handleLike = async () => {
       setLiked(!liked);
   };
@@ -72,6 +73,10 @@ export const SingleProduct = () => {
     }else{
       alert("Max Limit is 10 Units")
     }
+  }
+
+  const orderplaced = () => {
+    navigate("/OrderPlaced")
   }
 
   if (isLoading || singleproduct === null || singleproduct === undefined ) {
@@ -159,7 +164,7 @@ export const SingleProduct = () => {
       </Flex>
       <Flex align='center' pl='5' mt='50px' >
       <Button mr="10px"  size={'lg'} cursor={'pointer'} onClick={()=>handleAddToCart()} fontSize={'20px'} w='200px' border={'3px solid #06f'} bg='none' color={'#06f'} >Add to Cart</Button>
-      <Button mr="10px" size={'lg'} fontSize={'20px'} w='200px' color='white' bg="#06f">Buy Now</Button>
+      <Button mr="10px" size={'lg'} onClick={orderplaced} fontSize={'20px'} w='200px' color='white' bg="#06f">Buy Now</Button>
       <IconButton
                 icon={heartIcon}
                 aria-label="Like"
